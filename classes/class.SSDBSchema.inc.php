@@ -21,7 +21,7 @@ class SSDBSchema {
 	* TODO: Indexes für Datenbankfelder erstellen (Performance-Steigerung bei der Suche)
 	*/
 	//public static function _getFields($table, $attributes=null, $filter=null){
-	public static function _getFields($table, $attributes=null, $filter=null){
+	public static function _getFields($table, array $attributes=null, $filter=null){
 		if($table == 'article' or $table == 'square_shop_article'){
 			$_fields = array(
 							array(
@@ -251,6 +251,12 @@ class SSDBSchema {
 								, 'show_in' => array('detail')
 							)
 							, array(
+								'name' => 'billing_company'
+								, 'input' => 'text'
+								, 'sql' => 'VARCHAR(20) NULL'
+								, 'show_in' => array('detail')
+							)
+							, array(
 								'name' => 'billing_firstname'
 								, 'sql' => 'VARCHAR(60) NULL'
 								, 'show_in' => array('detail')
@@ -287,6 +293,12 @@ class SSDBSchema {
 							)
 							, array(
 								'name' => 'delivery_title'
+								, 'sql' => 'VARCHAR(20) NULL'
+								, 'show_in' => array('detail')
+							)
+							, array(
+								'name' => 'delivery_company'
+								, 'input' => 'text'
 								, 'sql' => 'VARCHAR(20) NULL'
 								, 'show_in' => array('detail')
 							)

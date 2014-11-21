@@ -21,7 +21,7 @@ if ($REX['REDAXO']) {
 require($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.rex_'.$mypage.'_utils.inc.php');
 require($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.ss_utils.inc.php');
 
-$classes = array('SSException', 'SSDBSchema', 'SSDBSQL', 'SSGUI', 'SSImport');
+$classes = array('SSException', 'SSDBSchema', 'SSDBSQL', 'SSGUI', 'SSImport', 'SSHelper', 'SSClient', 'SSCart', 'SSItem');
 foreach($classes as $class){
 	if (!class_exists($class)) {
 		require_once($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.'.$class.'.inc.php');

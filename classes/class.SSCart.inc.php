@@ -56,9 +56,8 @@ class SSCart implements Iterator, Countable {
 	}
 	
 	/**
-	* Fügt di
+	* löscht ein Artikel aus dem Warenkorb
 	* param $item: Article Objekt
-	* param $qty: Menge
 	*/
 	public function deleteItem(SSItem $item){
 		// (Unique) Artikel ID holen
@@ -77,6 +76,53 @@ class SSCart implements Iterator, Countable {
 	
 		}
 		
+	}
+	
+	/**
+	* löscht alle Artikel aus dem Warenkorb
+	*/
+	public function deleteAllItems(){
+		unset($this->items);
+		unset($this->ids);
+		
+		$this->items = array();
+		$this->ids = array();
+	}
+	
+	/**
+	* Itterator current
+	*/
+	public function current(){
+	}
+	
+	/**
+	* Itterator next
+	*/
+	public function next(){
+	}
+	
+	/**
+	* Itterator key
+	*/
+	public function key(){
+	}
+	
+	/**
+	* Itterator valid
+	*/
+	public function valid(){
+	}
+	
+	/**
+	* Itterator rewind
+	*/
+	public function rewind(){
+	}
+	
+	/**
+	* Itterator count
+	*/
+	public function count(){
 	}
 }
 

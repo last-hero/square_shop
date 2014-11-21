@@ -16,6 +16,14 @@ if ($func == 'update') {
 	rex_square_shop_utils::updateSettingsFile();
 }
 ?>
+<?
+	$client = new SSClient();
+	try{
+		$client->loadClientById(1);
+	}catch(SSException $e) {
+		echo $e;
+	}
+?>
 
 <div class="rex-addon-output">
 	<div class="rex-form">
@@ -91,5 +99,4 @@ if ($func == 'update') {
 	</div>
 </div>
 <? endif;?>
-
 
