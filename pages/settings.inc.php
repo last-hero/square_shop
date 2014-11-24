@@ -20,6 +20,8 @@ if ($func == 'update') {
 	$client = new SSClient();
 	try{
 		$client->loadClientById(1);
+		SSClientLoginView::displayLoginHtml();
+		SSClientLoginView::displayLogoutHtml();
 	}catch(SSException $e) {
 		echo $e;
 	}
