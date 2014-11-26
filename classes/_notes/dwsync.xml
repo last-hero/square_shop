@@ -4,6 +4,8 @@
 <file name="class.SSCart.inc.php" server="p2.ibog.biz" local="130610605691459756" remote="130610605200000000" Dst="1" />
 <file name="class.SSClient.inc.php" server="p2.ibog.biz" local="130613376567860475" remote="130613376000000000" Dst="1" />
 <file name="class.SSDBSchema.inc.php" server="p2.ibog.biz" local="130610633617242446" remote="130610633400000000" Dst="1" />
-<file name="class.SSHelper.inc.php" server="p2.ibog.biz" local="130610649725225627" remote="130610649600000000" Dst="1" />
-<file name="class.SSClientLoginView.inc.php" server="p2.ibog.biz" local="130613404524685158" remote="130613404200000000" Dst="1" />
+<file name="class.SSHelper.inc.php" server="p2.ibog.biz" local="130614946609534903" remote="130614946200000000" Dst="1" />
+<file name="class.SSClientLoginView.inc.php" server="p2.ibog.biz" local="130615027745636275" remote="130615027200000000" Dst="1" />
+<file name="class.SSClientLoginController.inc.php" server="p2.ibog.biz" local="130615035381247338" remote="130615035000000000" Dst="1" />
+<file name="class.SSSession.inc.php" server="p2.ibog.biz" local="130615013017942115" remote="130615012800000000" Dst="1" />
 </dwsync>

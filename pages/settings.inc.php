@@ -17,6 +17,26 @@ if ($func == 'update') {
 }
 ?>
 <?
+
+	$clientLoginController = new SSClientLoginController();
+	$clientLoginController->invoke();
+	
+	/*
+	$session = SSSession::getInstance();
+	
+	if(isset($_POST['user']) and isset($_POST['user'])){
+		$session->set('Client', $client);
+	}
+	if(!$session->get('client')){
+		$clientLoginView = new SSClientLoginView($session->get('client'));
+		$clientLoginView->displayLoginHtml();
+	}else{
+		$clientLoginView = new SSClientLoginView($session->get('client'));
+		$clientLoginView->displayLogoutHtml();
+	}
+	*/
+	
+	/*
 	$client = new SSClient();
 	try{
 		$client->loadClientById(1);
@@ -25,6 +45,10 @@ if ($func == 'update') {
 	}catch(SSException $e) {
 		echo $e;
 	}
+	*/
+	
+	
+	
 ?>
 
 <div class="rex-addon-output">

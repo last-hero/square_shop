@@ -1,11 +1,12 @@
 <?php
-class SSClientLoginView {
+class SSClientLoginView {	
+	
 	/**
 	* Login Maske anzeigen
 	*/
-	public static function displayLoginHtml(){
+	public function displayLoginHtml($params = array()){
 		try{			
-			echo SSGUI::parse(SSClient::TABLE.'.login.form.tmpl.php');
+			echo SSGUI::parse(SSClient::TABLE.'.login.form.tmpl.php', $params);
 		}catch(SSException $e) {
 			echo $e;
 		}
@@ -15,9 +16,9 @@ class SSClientLoginView {
 	/**
 	* Logout Maske anzeigen
 	*/
-	public static function displayLogoutHtml(){
+	public function displayLogoutHtml($params = array()){
 		try{			
-			echo SSGUI::parse(SSClient::TABLE.'.logout.form.tmpl.php');
+			echo SSGUI::parse(SSClient::TABLE.'.logout.form.tmpl.php', $params);
 		}catch(SSException $e) {
 			echo $e;
 		}

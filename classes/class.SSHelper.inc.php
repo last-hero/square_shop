@@ -22,7 +22,11 @@ class SSHelper{
 		return true;
 	}
 	
-	
+	/**
+	* überprüft ob (1)Array Keys in (2)Array vorhanden sind
+	* param string $_str
+	* param $array2: 2. Array
+	*/
 	public static function i18l($_str){
 		return $_str;
 	}
