@@ -17,11 +17,14 @@ if ($func == 'update') {
 }
 ?>
 <?
+	
+	/*
 
 	$clientLoginController = new SSClientLoginController();
 	$clientLoginController->invoke();
 	
-	/*
+	
+	
 	$session = SSSession::getInstance();
 	
 	if(isset($_POST['user']) and isset($_POST['user'])){

@@ -88,5 +88,26 @@ class SSClient {
 	*/
 	private function _getClientWhere($where, $table = null, $fields = null, $default = null){
 	}
+	
+	
+	/**
+	* 
+	* param $email string: Email
+	* param $password string: Passwort
+	*/
+	public function checkLogin($email, $password){
+		$query = SSDBSQL::_getSqlDmlQuery("email = '$email' AND password = md5('$password')", self::TABLE, SSDBSchema::SHOW_IN_DETAIL);
+		$query = SSDBSQL::_getSqlDmlQuery("email = '$email'", self::TABLE, SSDBSchema::SHOW_IN_DETAIL);
+		$res = SSDBSQL::executeSql($query);
+		if(is_array($res) and count($res) == 1){
+			try{
+				$this->putDataAll($res[0]);
+			}catch(SSException $e) {
+				echo $e;
+			}
+			return true;
+		}
+		return false;
+	}
 }
 

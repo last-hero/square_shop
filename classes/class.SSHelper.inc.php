@@ -30,5 +30,49 @@ class SSHelper{
 	public static function i18l($_str){
 		return $_str;
 	}
+	
+	/**
+	* überprüft ob (1)Array Keys in (2)Array vorhanden sind
+	* param string $_str
+	*/
+	public static function cleanVars($vars){
+	   $input = mysql_real_escape_string($input);
+	   $input = htmlspecialchars($input, ENT_IGNORE, 'utf-8');
+	   $input = strip_tags($input);
+	   $input = stripslashes($input);
+	   return $input;
+   
+		return $_str;
+	}
+	//clean the user's input
+	public static function cleanInput($value){
+		//if the variable is an array, recurse into it
+		if(is_array($value)){
+			//for each element in the array...
+			foreach($value as $key => $val){
+				//...clean the content of each variable in the array
+				$value[$key] = self::cleanInput($val);
+			}
+	
+			//return clean array
+			return $value;
+		}
+		else{
+			$value = mysql_real_escape_string($value);
+			$value = htmlspecialchars($value, ENT_IGNORE, 'utf-8');
+			$value = strip_tags($value);
+			$value = stripslashes($value);
+			return $value;
+			return mysql_real_escape_string(strip_tags(trim($value)), $link);
+		}
+	}
+	
+	
+	public static function isEmailValid($email){
+		if(!ereg("^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$",$email))
+			return false;
+		else
+			return true;
+	}
 }
 

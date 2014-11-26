@@ -46,5 +46,13 @@ class SSSession {
 	public function set($key, $val){
 		$this->data[$key] = $val;
 	}
+	
+	/*
+	* Variable aus Session löschen
+	* param string $key  Variable Name
+	*/
+	public function remove($key){
+		unset($this->data[$key]);
+	}
 }
 

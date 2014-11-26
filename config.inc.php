@@ -29,6 +29,9 @@ $classes = array_merge($classes, array('SSSession'));
 // Client Classes
 $classes = array_merge($classes, array('SSClient', 'SSClientLoginView', 'SSClientLoginController'));
 
+// Client Register Classes
+$classes = array_merge($classes, array('SSClientRegisterView', 'SSClientRegisterController'));
+
 foreach($classes as $class){
 	if (!class_exists($class)) {
 		require_once($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.'.$class.'.inc.php');

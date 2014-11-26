@@ -1,5 +1,6 @@
 			<form action="" method="post" name="ss-form-logout" class="ss-form-logout">
-                <p>
-                    <input id="ss-logout" name="ss-logout" type="submit" class="ss-submit ss-logout" value="<?=SSHelper::i18l('logout')?>" />
+            	<input type="hidden" name="SSForm[<?=$FORM_ID?>][action]" value="<?=$action?>" />
+                <p class="ss-submit">
+                    <input id="ss-submit" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-submit" value="<?=$label_submit?>" />
                 </p>
 			</form>
