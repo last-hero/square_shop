@@ -10,7 +10,10 @@ class SSClientLoginController {
 	private $session;
 	
 	// POST Var Daten
-	private $form_data;
+	private $formPropertiesAndValues;
+	
+	// Login / Logout View
+	private $clientLoginView;
 	
 	
 	/*
@@ -18,35 +21,41 @@ class SSClientLoginController {
 	* Falls POST Request abgeschickt wurde, dann daten laden
 	*/
     public function __construct(){
+		// Session Objekt (Singleton) holen
 		$this->session = SSSession::getInstance();
 		
-		// hole Daten von Post Vars (User Input)
-		if($_POST['SSForm'][SSClientLoginView::FORM_ID]){
-			$this->form_data = SSHelper::cleanInput($_POST['SSForm'][SSClientLoginView::FORM_ID]);
-		}
+		// Objekt Login-View erstellen
+		$this->clientLoginView = new SSClientLoginView();
+		
+		// Form Post Vars (User input) holen
+		$this->formPropertiesAndValues = SSHelper::getPostByFormId(SSClientLoginView::FORM_ID);
     }
 	
 	/*
 	* Login/Logout Funktion starten
 	*/
 	public function invoke(){
-		$this->checkLogin();
+		// Login Logik
+		$this->loginHandler();
+		
+		// Zeigt entweder Login oder Logout-Maske an
 		$this->displayView();
 	}
 	
 	/*
 	* Benutzer anmelden oder abmelden
 	* Falls Post Request durch Login-Maske ausgelöst wurde:
-	* 	dann Benutzer daten in der DB abgleichen und in Session speichern, ok
+	* 	dann Benutzer daten in der DB abgleichen 
+	* 	und in Session speichern und einloggen
 	* Falls Post Request durch Logout-Maske:
-	* 	dann Benutzer in Session löschen
+	* 	dann Benutzer in Session löschen und ausloggen
 	*/
-	public function checkLogin(){
-		switch($this->form_data['action']){
+	public function loginHandler(){
+		switch($this->formPropertiesAndValues['action']){
 			case self::ACTION_LOGIN:
-				if(SSHelper::isEmailValid($this->form_data[self::FN_EMAIL])){
+				if(SSHelper::isEmailValid($this->formPropertiesAndValues[self::FN_EMAIL])){
 					$client = new SSClient();
-					if($client->loadClientByEmailAndPassword($this->form_data[self::FN_EMAIL], $this->form_data[self::FN_PASSWORD])){
+					if($client->loadClientByEmailAndPassword($this->formPropertiesAndValues[self::FN_EMAIL], $this->formPropertiesAndValues[self::FN_PASSWORD])){
 						$this->loginUser($client->get('id'));
 					}
 				}
@@ -62,7 +71,6 @@ class SSClientLoginController {
 	* Falls User angemeldet: Logout-Maske anzeigen
 	*/
 	public function displayView(){
-		$clientLoginView = new SSClientLoginView();
 		$param = array();
 		
 		if($this->isUserLoggedIn()){
@@ -71,7 +79,7 @@ class SSClientLoginController {
 			$param['action'] = self::ACTION_LOGOUT;
 			$param['message_success'] = SSHelper::i18l('LoginSuccess');
 			
-			$clientLoginView->displayLogoutHtml($param);
+			$this->clientLoginView->displayLogoutHtml($param);
 		}else{
 			// User ist nicht angemeldet
 			$param['action'] = self::ACTION_LOGIN;
@@ -81,7 +89,7 @@ class SSClientLoginController {
 			$param['fn_email'] = self::FN_EMAIL;
 			$param['fn_password'] = self::FN_PASSWORD;
 			
-			$clientLoginView->displayLoginHtml($param);
+			$this->clientLoginView->displayLoginHtml($param);
 		}
 	}
 	
@@ -101,8 +109,8 @@ class SSClientLoginController {
 	/*
 	* Speichert User ID in Session
 	*/
-	public function loginUser($id){
-		$this->session->set('UserID', $id);
+	public function loginUser($userId){
+		$this->session->set('UserID', $userId);
 	}
 	
 	/*

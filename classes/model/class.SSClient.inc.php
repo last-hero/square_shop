@@ -8,7 +8,7 @@ class SSClient {
 	private $propertiesAndValues;
 	private $properties;
 	
-	/**
+	/*
 	* Konstruktor
 	*/
     function __construct(array $propertiesAndValues = null){
@@ -16,7 +16,7 @@ class SSClient {
 		if(is_array($array)) $this->set($propertiesAndValues);
     }
 	
-	/**
+	/*
 	* Keys (Attribute) holen von SSDBSchema
 	*/
 	public function loadPropertiesAndNames(){
@@ -28,11 +28,25 @@ class SSClient {
 		}
 	}
 	
-	/**
+	/*
+	* Formular wird abgearbeitet
+	*/
+	public function getClearedUnknownProperties($propertiesAndValues){
+		$propertyNames = SSDBSchema::_getFieldsAsSingleArray(self::TABLE, array('name'));
+		$propertiesAndValuesNew = array();
+		foreach($propertiesAndValues as $key => $val){
+			if(in_array($key, $propertyNames)){
+				$propertiesAndValuesNew[$key] = $val;
+			}
+		}
+		return $propertiesAndValuesNew;
+	}
+	
+	/*
 	* Prüfen nach Existenz von Key(s)
 	* param $keys: Attributname(n) [string|array]
 	*/
-	public function isValidKeys($keys){
+	public function doPropertiesExist($keys){
 		if(is_string($keys))$keys = array($keys=>$keys);
 		if(SSHelper::array_keys_exists($keys, $this->propertiesAndValues)){
 			return true;
@@ -40,18 +54,19 @@ class SSClient {
 		return false;
 	}
 	
-	/**
+	
+	/*
 	* Client Daten holen
 	* param $key: Attributname
 	*/
 	public function get($key){
-		if($this->isValidKeys($key)){
+		if($this->doPropertiesExist($key)){
 			return $this->propertiesAndValues[$key];
 		}
 		return null;
 	}
 	
-	/**
+	/*
 	* Client Daten setzen
 	* param $key: Attributname
 	* param $val: Wert
@@ -60,16 +75,14 @@ class SSClient {
 		if(is_array($keyOrData)){
 			$data = $keyOrData;
 			
-			d($data);
-			
-			if($this->isValidKeys($data)){
+			if($this->doPropertiesExist($data)){
 				$this->propertiesAndValues = $data;
 			}else{
 				throw new SSException('Client Attr is/are different', self::ERROR_CLIENT_ATTR_DIFF);
 			}
 		}else{
 			$key = $keyOrData;
-			if($this->isValidKeys($key)){
+			if($this->doPropertiesExist($key)){
 				$this->propertiesAndValues[$key] = $val;
 			}else{
 				throw new SSException('Client Attr is different', self::ERROR_CLIENT_ATTR_DIFF);
@@ -77,21 +90,20 @@ class SSClient {
 		}
 	}
 	
-	/**
+	/*
 	* Client wird in DB gespeichert
 	*/
 	public function save(){
-		if((int)$this->getData('id') > 0){
-			$query = SSDBSQL::_getSqlInsertQuery($where, self::TABLE);
-			echo $query;
-			echo 'called: save() FOR INTERT INTO;';
-		}else{
-			echo $query;
+		if((int)$this->get('id') > 0){
 			echo 'called: save() FOR UPDATE;';
+		}else{
+			$query = SSDBSQL::_getSqlInsertQuery($this->propertiesAndValues, self::TABLE);
+			$res = SSDBSQL::executeSql($query);
+			d($res);
 		}
 	}
 	
-	/**
+	/*
 	* Client nach ID laden
 	* param $id: Client ID
 	* return boolean
@@ -111,7 +123,7 @@ class SSClient {
 		return false;
 	}
 	
-	/**
+	/*
 	* Client nach E-Mail und Passwort laden
 	* param $email string: Email
 	* param $password string: Passwort
@@ -135,7 +147,21 @@ class SSClient {
 		return false;
 	}
 	
-	/**
+	/*
+	* Überprüft in der DB, ob Email Adresse bereits
+	* vergeben ist
+	* param $email: 
+	* return bool
+	*/
+	public function isEmailAlreadyExists($email){
+		$res = $this->_getClientWhere("email = '$email'");
+		if(count($res) > 0){
+			return true;
+		}
+		return false;
+	}
+	
+	/*
 	* Client Daten aus Datenbank holen
 	* param $where: Where Klausel
 	* param $show_in: 

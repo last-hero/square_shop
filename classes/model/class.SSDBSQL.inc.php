@@ -78,7 +78,6 @@ class SSDBSQL {
 	public static function _getSqlInsertQuery($attrAndValues, $table){
         global $REX;
 		
-		
 		try{
 			$_table_fullname = SSDBSchema::_getTableAttr($table, 'name', true);
 		}catch(SSException $e) {
@@ -86,7 +85,7 @@ class SSDBSQL {
 		}
 		
 		try{
-			$fields = SSDBSchema::_getFields($table, null, array('show_in'=>$type_show_in));
+			$fields = SSDBSchema::_getFieldsAsSingleArray($table, array('name'));
 		}catch(SSException $e) {
 			echo $e;
 		}
@@ -95,11 +94,12 @@ class SSDBSQL {
 		$attrAndValues['updatedate'] = time();
 		
 		if(is_array($attrAndValues) and !empty($_table_fullname)
-			and SSHelper::array_keys_exists($attrAndValues, $fields)){
+		and SSHelper::array_keys_exists($attrAndValues, array_flip($fields))){
 			$_sql_sets = '';
 			foreach($attrAndValues as $key => $val){
-				//$_sql_sets 
+				$_sql_sets .= $key.' = "'.$val.'", ';
 			}
+			$_sql_sets = substr($_sql_sets, 0, -2);
 			$query = '
 				INSERT INTO '.$_table_fullname.'
 				SET '.$_sql_sets.'

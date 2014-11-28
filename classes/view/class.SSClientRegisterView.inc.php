@@ -15,7 +15,7 @@ class SSClientRegisterView {
 			echo $e;
 		}
 		
-		// Automatische Formular generieren
+		// automatisch Formular generieren
 		// Anhand von vordefinierten Variablen in der SSDBSchema Klasse
 		$params['fields'] = array();
 		foreach($fields as $f){

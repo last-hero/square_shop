@@ -9,17 +9,21 @@ class SSClientRegisterController {
 	private $formPropertiesAndValues;
 	
 	
+	private $client;
+	
+	
 	/*
 	* Konstruktor: lädt Session Instanz (Singleton)
 	* Falls POST Request abgeschickt wurde, dann daten laden
 	*/
     public function __construct(){
+		// Session Objekt (Singleton) holen
 		$this->session = SSSession::getInstance();
 		
-		// hole Daten von Post Vars (User Input)
-		if($_POST['SSForm'][SSClientRegisterView::FORM_ID]){
-			$this->formPropertiesAndValues = SSHelper::cleanInput($_POST['SSForm'][SSClientRegisterView::FORM_ID]);
-		}
+		$this->client = new SSClient();
+		
+		// Form Post Vars (User input) holen
+		$this->formPropertiesAndValues = SSHelper::getPostByFormId(SSClientRegisterView::FORM_ID);
     }
 	
 	/*
@@ -29,7 +33,7 @@ class SSClientRegisterController {
 		// wenn User nicht angemeldet ist
 		if(!$this->isUserLoggedIn()){
 			if($this->isInputValid()){
-				$this->handleForm();
+				$this->handleRegister();
 			}else{
 				$this->displayView();
 			}
@@ -39,14 +43,12 @@ class SSClientRegisterController {
 	/*
 	* Formular wird abgearbeitet
 	*/
-	public function handleForm(){
+	public function handleRegister(){
 		switch($this->formPropertiesAndValues['action']){
 			case self::ACTION_REGISTER:
-				if(true){
-					$client = new SSClient();
-					$client->set($this->getClearedUnknownProperties($this->formPropertiesAndValues));
-					//$client->save();
-				}
+					$clearedUserInputs = $this->client->getClearedUnknownProperties($this->formPropertiesAndValues);
+					$this->client->set($clearedUserInputs);
+					$this->client->save();
 				break;
 		}
 	}
@@ -54,26 +56,10 @@ class SSClientRegisterController {
 	/*
 	* Formular wird abgearbeitet
 	*/
-	public function getClearedUnknownProperties($propertiesAndValues){
-		$propertyNames = SSDBSchema::_getFields(SSClient::TABLE, array('name'), array('show_in'=>SSDBSchema::SHOW_IN_REGISTER));
-		
-		$propertiesAndValuesNEW = array();
-		foreach($propertiesAndValues as $key => $val){
-			if(array_key_exists($key, $propertyNames)){
-			 //$propertiesAndValuesNEW	
-			}
-		}
-		
-		if($this->formPropertiesAndValues['action'] == self::ACTION_REGISTER){
-			return true;
-		}
-		return false;
-	}
-	
-	/*
-	* Formular wird abgearbeitet
-	*/
 	public function isInputValid(){
+		if($this->client->isEmailAlreadyExists($this->formPropertiesAndValues['email'])){
+			return false;	
+		}
 		if($this->formPropertiesAndValues['action'] == self::ACTION_REGISTER){
 			return true;
 		}
@@ -85,9 +71,9 @@ class SSClientRegisterController {
 	* return bool
 	*/
 	public function isUserLoggedIn(){
-		$clientLoginController = new SSClientLoginController();
-		$clientLoginController->isUserLoggedIn();
-		if($clientLoginController->isUserLoggedIn()){
+		$this->clientLoginController = new SSClientLoginController();
+		$this->clientLoginController->isUserLoggedIn();
+		if($this->clientLoginController->isUserLoggedIn()){
 			return true;
 		}
 		return false;

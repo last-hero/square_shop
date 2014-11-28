@@ -12,6 +12,19 @@ class SSDBSchema {
 	const ERROR_TABLE_NOT_FOUND = 1001;
 	const ERROR_TABLE_ATTR_NOT_FOUND = 1003;
 	
+	
+	
+	public static function _getFieldsAsSingleArray($table, array $attributes=null, $filter=null){
+		$properties = self::_getFields($table, $attributes, $filter);
+		if(is_array($attributes) and count($attributes) == 1){
+			$_propertiesNew = array();
+			for($x=0; $x<sizeof($properties); $x++){
+				$_propertiesNew[$x] = $properties[$x]['name'];
+			}
+			return $_propertiesNew;
+		}
+		return $properties;
+	}
 	/**
 	* Enthält alle Felder
 	* param $attributes --> es werden nur diese attribute zurückgegeben

@@ -44,7 +44,25 @@ class SSHelper{
    
 		return $_str;
 	}
-	//clean the user's input
+	
+	/**
+	* überprüft ob $_POST Array für die gewünschte FormId 
+	* vorhanden ist und liefert sie zurück
+	* param string $formId
+	* return array
+	*/
+	public static function getPostByFormId($formId){
+		if($_POST['SSForm'][$formId]){
+			return SSHelper::cleanInput($_POST['SSForm'][$formId]);
+		}
+		return null;
+	}
+	
+	/**
+	* bereinigt $value Array und liefert sie zurück
+	* param array $value
+	* return array
+	*/
 	public static function cleanInput($value){
 		//if the variable is an array, recurse into it
 		if(is_array($value)){
@@ -67,7 +85,11 @@ class SSHelper{
 		}
 	}
 	
-	
+	/**
+	* überprüft ob Email Valid ist
+	* param string $email
+	* return bool
+	*/
 	public static function isEmailValid($email){
 		if(!ereg("^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$",$email))
 			return false;
