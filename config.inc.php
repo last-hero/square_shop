@@ -73,13 +73,13 @@ if ($REX['REDAXO']) {
 function __autoload($class_name) {
 	global $REX;
 	$classes_folder = $REX['INCLUDE_PATH'] . '/addons/square_shop/classes/';
-	$file = $classes_folder.'class.'.$class_name.'.inc.php';
+	$file = $classes_folder.''.$class_name.'.php';
 	if(file_exists($file)) {
         require_once $file;
     }
 	$sub_folders = array('model', 'view', 'controller', 'helper');
 	foreach($sub_folders as $folder){
-		$file = $classes_folder.'/'.$folder.'/'.'class.'.$class_name.'.inc.php';
+		$file = $classes_folder.''.$folder.'/'.''.$class_name.'.php';
 		if(file_exists($file)) {
 			require_once $file;
 		}
