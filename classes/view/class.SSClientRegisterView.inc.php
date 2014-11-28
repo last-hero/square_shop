@@ -10,63 +10,36 @@ class SSClientRegisterView {
 		$params['FORM_ID'] = self::FORM_ID;
 		
 		try{
-			$fields = SSDBSchema::_getFields(SSClient::TABLE, null, array('show_in'=>'add'));
+			$fields = SSDBSchema::_getFields(SSClient::TABLE, null, array('show_in'=>'register'));
 		}catch(SSException $e) {
 			echo $e;
 		}
+		
+		// Automatische Formular generieren
+		// Anhand von vordefinierten Variablen in der SSDBSchema Klasse
 		$params['fields'] = array();
 		foreach($fields as $f){
 			$name = $f['name'];
 			if(isset($f['input'])){
+				$array_constraint_vals_labels = array();
+				foreach($f['input_constraint_vals'] as $v){
+					$array_constraint_vals_labels[] = SSHelper::i18l(self::FORM_ID.'_label_'.$name.'_'.$v);
+				}
 				$params['fields'][] = array(
 					'name' => $name
-					, 'label' => SSHelper::i18l(FORM_ID.'_label_'.$name)
+					, 'label' => SSHelper::i18l(self::FORM_ID.'_label_'.$name)
+					, 'constraint_vals' => $f['input_constraint_vals']
+					, 'label_constraint_vals' => $array_constraint_vals_labels
 					, 'type' => $f['input']
 				);
 			}
 		}
 		
-		$form_data = '';
-		foreach($fields as $f){
-			$name = $f['name'];
-			$label = SSHelper::i18l(self::FORM_ID.'_label_'.$name);
-			if(isset($f['input'])){
-				switch ($f['input']){
-					case 'text':
-						$form_data .= 'text|'.$name.'|'.$label.'||[no_db]|cssclassname
-						';
-						break;
-					case 'textarea':
-						$form_data .= 'textarea|'.$name.'|'.$label.'||[no_db]
-						';
-						break;
-					case 'media':
-						break;
-					case 'select':
-						$form_data .= 'select|'.$name.'|'.$label.'|Frau=w,Herr=m|[no_db]|defaultwert|multiple=1|selectsize
-						';
-						break;
-					case 'select_sql':
-						break;
-				}
-			}
-		}
-		
-		$xform = new rex_xform;
-		$xform->setDebug(TRUE);
-		$form_data = trim(str_replace("<br />","",rex_xform::unhtmlentities($form_data)));
-		$xform->setFormData($form_data);
-		$xform->setRedaxoVars(REX_ARTICLE_ID,REX_CLANG_ID); 
-
-		
-		echo $xform->getForm();
-		/*
 		try{			
 			echo SSGUI::parse(SSClient::TABLE.'.register.form.tmpl.php', $params);
 		}catch(SSException $e) {
 			echo $e;
 		}
-		*/
 	}
 }
 

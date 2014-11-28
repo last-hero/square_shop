@@ -69,6 +69,47 @@ class SSDBSQL {
     }
 	
 	/**
+	* Liefert SQL Query zum Selectieren von Tabellen und Attribute (Data Manipulation Language)
+	* param $where
+	* param $table
+	* param $type_show_in: siehe const SHOW_IN_XXX
+	* @return string
+	*/
+	public static function _getSqlInsertQuery($attrAndValues, $table){
+        global $REX;
+		
+		
+		try{
+			$_table_fullname = SSDBSchema::_getTableAttr($table, 'name', true);
+		}catch(SSException $e) {
+			echo $e;
+		}
+		
+		try{
+			$fields = SSDBSchema::_getFields($table, null, array('show_in'=>$type_show_in));
+		}catch(SSException $e) {
+			echo $e;
+		}
+		
+		$attrAndValues['createdate'] = time();
+		$attrAndValues['updatedate'] = time();
+		
+		if(is_array($attrAndValues) and !empty($_table_fullname)
+			and SSHelper::array_keys_exists($attrAndValues, $fields)){
+			$_sql_sets = '';
+			foreach($attrAndValues as $key => $val){
+				//$_sql_sets 
+			}
+			$query = '
+				INSERT INTO '.$_table_fullname.'
+				SET '.$_sql_sets.'
+				';
+			return $query;
+		}
+		return '';
+    }
+	
+	/**
 	* Liefer SQL Query zum Erstellen von Tabellen und Attribute (Data Definition Language)
 	* @return string <-- sql query
 	*/

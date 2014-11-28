@@ -5,26 +5,26 @@ class SSClient {
 	
 	const ERROR_CLIENT_ATTR_DIFF = '6001';
 	
-	private $data;
-	private $fields;
+	private $propertiesAndValues;
+	private $properties;
 	
 	/**
 	* Konstruktor
 	*/
-    function __construct(array $data = null){
-		$this->loadKeys();
-		if(is_array($array)) $this->putDataAll($data);
+    function __construct(array $propertiesAndValues = null){
+		$this->loadPropertiesAndNames();
+		if(is_array($array)) $this->set($propertiesAndValues);
     }
 	
 	/**
 	* Keys (Attribute) holen von SSDBSchema
 	*/
-	public function loadKeys(){
-		//$this->fields = SSDBSchema::_getFields(self::TABLE, 'name');
-		$this->fields = SSDBSchema::_getFields(self::TABLE);
-		$this->data = array();
-		foreach($this->fields as $field){
-			$this->data[$field['name']] = null;
+	public function loadPropertiesAndNames(){
+		//$this->properties = SSDBSchema::_getFields(self::TABLE, 'name');
+		$this->properties = SSDBSchema::_getFields(self::TABLE);
+		$this->propertiesAndValues = array();
+		foreach($this->properties as $field){
+			$this->propertiesAndValues[$field['name']] = null;
 		}
 	}
 	
@@ -34,7 +34,7 @@ class SSClient {
 	*/
 	public function isValidKeys($keys){
 		if(is_string($keys))$keys = array($keys=>$keys);
-		if(SSHelper::array_keys_exists($keys, $this->data)){
+		if(SSHelper::array_keys_exists($keys, $this->propertiesAndValues)){
 			return true;
 		}
 		return false;
@@ -44,9 +44,9 @@ class SSClient {
 	* Client Daten holen
 	* param $key: Attributname
 	*/
-	public function getData($key){
+	public function get($key){
 		if($this->isValidKeys($key)){
-			return $this->data[$key];
+			return $this->propertiesAndValues[$key];
 		}
 		return null;
 	}
@@ -56,68 +56,99 @@ class SSClient {
 	* param $key: Attributname
 	* param $val: Wert
 	*/
-	public function putData($key, $val){
-		if($this->isValidKeys($key)){
-			$this->data[$key] = $val;
-		}
-	}
-	
-	/**
-	* Client Daten setzen (Alle --> array)
-	* param $data: Array --> Attribut mit Wert
-	*/
-	public function putDataAll(array $data){
-		if($this->isValidKeys($data)){
-			$this->data = $data;
+	public function set($keyOrData, $val = ''){
+		if(is_array($keyOrData)){
+			$data = $keyOrData;
+			
+			d($data);
+			
+			if($this->isValidKeys($data)){
+				$this->propertiesAndValues = $data;
+			}else{
+				throw new SSException('Client Attr is/are different', self::ERROR_CLIENT_ATTR_DIFF);
+			}
 		}else{
-			throw new SSException('Client Attr is/are different', self::ERROR_CLIENT_ATTR_DIFF);
+			$key = $keyOrData;
+			if($this->isValidKeys($key)){
+				$this->propertiesAndValues[$key] = $val;
+			}else{
+				throw new SSException('Client Attr is different', self::ERROR_CLIENT_ATTR_DIFF);
+			}
 		}
 	}
 	
 	/**
-	* holt Client Daten aus dem Datenbank
+	* Client wird in DB gespeichert
+	*/
+	public function save(){
+		if((int)$this->getData('id') > 0){
+			$query = SSDBSQL::_getSqlInsertQuery($where, self::TABLE);
+			echo $query;
+			echo 'called: save() FOR INTERT INTO;';
+		}else{
+			echo $query;
+			echo 'called: save() FOR UPDATE;';
+		}
+	}
+	
+	/**
+	* Client nach ID laden
 	* param $id: Client ID
+	* return boolean
 	*/
 	public function loadClientById($id){
-		$query = SSDBSQL::_getSqlDmlQuery("id = $id", self::TABLE, SSDBSchema::SHOW_IN_DETAIL);
-		$res = SSDBSQL::executeSql($query);
+		//$query = SSDBSQL::_getSqlDmlQuery("id = $id", self::TABLE, SSDBSchema::SHOW_IN_DETAIL);
+		//$res = SSDBSQL::executeSql($query);
+		$res = $this->_getClientWhere("id = $id");
 		if(count($res) == 1){
 			try{
-				$this->putDataAll($res[0]);
+				$this->set($res[0]);
+				return true;
 			}catch(SSException $e) {
 				echo $e;
 			}
-		}
-	}
-	
-	/**
-	* Gibt die gesamte Tabelle in Form von rex_list aus
-	* param $table: Tabellenname
-	* param $filter_key: Felder in welche gesucht werden soll
-	* param $filter_value: Suchstring zum Filtern der Lister
-	*/
-	private function _getClientWhere($where, $table = null, $fields = null, $default = null){
-	}
-	
-	
-	/**
-	* 
-	* param $email string: Email
-	* param $password string: Passwort
-	*/
-	public function checkLogin($email, $password){
-		$query = SSDBSQL::_getSqlDmlQuery("email = '$email' AND password = md5('$password')", self::TABLE, SSDBSchema::SHOW_IN_DETAIL);
-		$query = SSDBSQL::_getSqlDmlQuery("email = '$email'", self::TABLE, SSDBSchema::SHOW_IN_DETAIL);
-		$res = SSDBSQL::executeSql($query);
-		if(is_array($res) and count($res) == 1){
-			try{
-				$this->putDataAll($res[0]);
-			}catch(SSException $e) {
-				echo $e;
-			}
-			return true;
 		}
 		return false;
+	}
+	
+	/**
+	* Client nach E-Mail und Passwort laden
+	* param $email string: Email
+	* param $password string: Passwort
+	* return boolean
+	*/
+	public function loadClientByEmailAndPassword($email, $password){
+		/*
+		$query = SSDBSQL::_getSqlDmlQuery("email = '$email' AND password = md5('$password')", self::TABLE, SSDBSchema::SHOW_IN_DETAIL);
+		$query = SSDBSQL::_getSqlDmlQuery("email = '$email'", self::TABLE, SSDBSchema::SHOW_IN_DETAIL);
+		*/
+		//$res = $this->_getClientWhere("email = '$email' AND password = md5('$password')");
+		$res = $this->_getClientWhere("email = '$email'");
+		if(count($res) == 1){
+			try{
+				$this->set($res[0]);
+				return true;
+			}catch(SSException $e) {
+				echo $e;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	* Client Daten aus Datenbank holen
+	* param $where: Where Klausel
+	* param $show_in: 
+	* return (Array) $res: Clients oder Client Einträge aus Datenbank
+	*/
+	private function _getClientWhere($where, $show_in = null){
+		if(!$show_in){
+			$show_in = SSDBSchema::SHOW_IN_DETAIL;
+		}
+		$query = SSDBSQL::_getSqlDmlQuery($where, self::TABLE, SSDBSchema::SHOW_IN_DETAIL);
+		$res = SSDBSQL::executeSql($query);
+		
+		return $res;
 	}
 }
 

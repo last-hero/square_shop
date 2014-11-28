@@ -6,7 +6,7 @@ class SSClientRegisterController {
 	private $session;
 	
 	// POST Var Daten
-	private $form_data;
+	private $formPropertiesAndValues;
 	
 	
 	/*
@@ -18,7 +18,7 @@ class SSClientRegisterController {
 		
 		// hole Daten von Post Vars (User Input)
 		if($_POST['SSForm'][SSClientRegisterView::FORM_ID]){
-			$this->form_data = SSHelper::cleanInput($_POST['SSForm'][SSClientRegisterView::FORM_ID]);
+			$this->formPropertiesAndValues = SSHelper::cleanInput($_POST['SSForm'][SSClientRegisterView::FORM_ID]);
 		}
     }
 	
@@ -26,7 +26,58 @@ class SSClientRegisterController {
 	* Login/Logout Funktion starten
 	*/
 	public function invoke(){
-		$this->displayView();
+		// wenn User nicht angemeldet ist
+		if(!$this->isUserLoggedIn()){
+			if($this->isInputValid()){
+				$this->handleForm();
+			}else{
+				$this->displayView();
+			}
+		}
+	}
+	
+	/*
+	* Formular wird abgearbeitet
+	*/
+	public function handleForm(){
+		switch($this->formPropertiesAndValues['action']){
+			case self::ACTION_REGISTER:
+				if(true){
+					$client = new SSClient();
+					$client->set($this->getClearedUnknownProperties($this->formPropertiesAndValues));
+					//$client->save();
+				}
+				break;
+		}
+	}
+	
+	/*
+	* Formular wird abgearbeitet
+	*/
+	public function getClearedUnknownProperties($propertiesAndValues){
+		$propertyNames = SSDBSchema::_getFields(SSClient::TABLE, array('name'), array('show_in'=>SSDBSchema::SHOW_IN_REGISTER));
+		
+		$propertiesAndValuesNEW = array();
+		foreach($propertiesAndValues as $key => $val){
+			if(array_key_exists($key, $propertyNames)){
+			 //$propertiesAndValuesNEW	
+			}
+		}
+		
+		if($this->formPropertiesAndValues['action'] == self::ACTION_REGISTER){
+			return true;
+		}
+		return false;
+	}
+	
+	/*
+	* Formular wird abgearbeitet
+	*/
+	public function isInputValid(){
+		if($this->formPropertiesAndValues['action'] == self::ACTION_REGISTER){
+			return true;
+		}
+		return false;
 	}
 	
 	/*
@@ -47,15 +98,15 @@ class SSClientRegisterController {
 	* Falls User angemeldet: Logout-Maske anzeigen
 	*/
 	public function displayView(){
-		if(!$this->isUserLoggedIn()){
-			// User ist nicht angemeldet
-			$SSClientRegisterView = new SSClientRegisterView();
-			$param = array();
-			$param['label_submit'] = SSHelper::i18l('Logout');
-			$param['action'] = self::ACTION_REGISTER;
-			$param['message_success'] = SSHelper::i18l('LoginSuccess');
-			
-			$SSClientRegisterView->displayRegisterHtml($param);
-		}
+		// User ist nicht angemeldet
+		$SSClientRegisterView = new SSClientRegisterView();
+		$param = array();
+		$param['label_submit'] = SSHelper::i18l('Abschicken');
+		$param['action'] = self::ACTION_REGISTER;
+		$param['message_success'] = SSHelper::i18l('RegisterSuccess');
+		
+		$param['formPropertiesAndValues'] = $this->formPropertiesAndValues;
+		
+		$SSClientRegisterView->displayRegisterHtml($param);
 	}
 }

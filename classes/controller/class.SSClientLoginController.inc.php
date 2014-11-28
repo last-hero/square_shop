@@ -46,8 +46,8 @@ class SSClientLoginController {
 			case self::ACTION_LOGIN:
 				if(SSHelper::isEmailValid($this->form_data[self::FN_EMAIL])){
 					$client = new SSClient();
-					if($client->checkLogin($this->form_data[self::FN_EMAIL], $this->form_data[self::FN_PASSWORD])){
-						$this->loginUser($client->getData('id'));
+					if($client->loadClientByEmailAndPassword($this->form_data[self::FN_EMAIL], $this->form_data[self::FN_PASSWORD])){
+						$this->loginUser($client->get('id'));
 					}
 				}
 				break;

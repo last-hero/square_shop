@@ -6,6 +6,7 @@ class SSDBSchema {
 	const SHOW_IN_LIST	   = 'list';
 	const SHOW_IN_ADD		= 'add';
 	const SHOW_IN_EDIT	   = 'edit';
+	const SHOW_IN_REGISTER = 'register';
 	
 	const ERROR_FIELDS_NOT_FOUND = 1000;
 	const ERROR_TABLE_NOT_FOUND = 1001;
@@ -24,403 +25,404 @@ class SSDBSchema {
 	public static function _getFields($table, array $attributes=null, $filter=null){
 		if($table == 'article' or $table == 'square_shop_article'){
 			$_fields = array(
-							array(
-								'name' => 'id' // Feldname
-								, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT' // SQL-Script
-								, 'type' => self::PRIMARY_KEY // Feld-Typ [Foreign-Key|Primary-Key]
-								, 'show_in' => array('detail', 'list', 'search') // Woüberall soll dieses Feld angezeigt werden
-							)
-							, array(
-								'name' => 'cat_id'
-								, 'input' => 'select_sql'
-								, 'sql' => 'INT UNSIGNED NOT NULL'
-								, 'sql_index' => true
-								, 'type' => self::FOREIGN_KEY
-								, 'sql_join' => array(
-													'table' => 'category'
-													, 'field' => 'id'
-													, 'field_label' => 'title'
-													, 'field_labels' => array('id', 'title')
-													, 'on_delete' => 'RESTRICT'
-													, 'on_update' => 'CASCADE'
-												)
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-							)
-							, array(
-								'name' => 'no'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(45) NULL'
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-							)
-							, array(
-								'name' => 'title'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'sql_constraint_vals' => array('m','w')
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-								, 'multilang' => true
-							)
-							, array(
-								'name' => 'description'
-								, 'input' => 'textarea'
-								, 'sql' => 'TEXT NULL'
-								, 'show_in' => array('detail', 'search', 'edit', 'add')
-								, 'multilang' => true
-							)
-							, array(
-								'name' => 'price'
-								, 'input' => 'text'
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-								, 'sql' => 'DECIMAL(10,2) NULL DEFAULT 0'
-							)
-							, array(
-								'name' => 'images'
-								, 'input' => 'media'
-								, 'sql' => 'VARCHAR(255) NULL'
-								, 'show_in' => array('detail', 'edit', 'add')
-							)
-							, array(
-								'name' => 'status'
-								, 'sql' => 'TINYINT(1) NULL DEFAULT 1'
-								, 'show_in' => array('detail', 'edit', 'add')
-							)
-							, array(
-								'name' => 'createdate'
-								, 'sql' => 'INT(11)'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'updatedate'
-								, 'sql' => 'INT(11)'
-								, 'show_in' => array('detail')
-							)
-						);
+				array(
+					'name' => 'id' // Feldname
+					, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT' // SQL-Script
+					, 'type' => self::PRIMARY_KEY // Feld-Typ [Foreign-Key|Primary-Key]
+					, 'show_in' => array('detail', 'list', 'search') // Woüberall soll dieses Feld angezeigt werden
+				)
+				, array(
+					'name' => 'cat_id'
+					, 'input' => 'select_sql'
+					, 'sql' => 'INT UNSIGNED NOT NULL'
+					, 'sql_index' => true
+					, 'type' => self::FOREIGN_KEY
+					, 'sql_join' => array(
+							'table' => 'category'
+							, 'field' => 'id'
+							, 'field_label' => 'title'
+							, 'field_labels' => array('id', 'title')
+							, 'on_delete' => 'RESTRICT'
+							, 'on_update' => 'CASCADE'
+						)
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
+				)
+				, array(
+					'name' => 'no'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(45) NULL'
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
+				)
+				, array(
+					'name' => 'title'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
+					, 'multilang' => true
+				)
+				, array(
+					'name' => 'description'
+					, 'input' => 'textarea'
+					, 'sql' => 'TEXT NULL'
+					, 'show_in' => array('detail', 'search', 'edit', 'add')
+					, 'multilang' => true
+				)
+				, array(
+					'name' => 'price'
+					, 'input' => 'text'
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
+					, 'sql' => 'DECIMAL(10,2) NULL DEFAULT 0'
+				)
+				, array(
+					'name' => 'images'
+					, 'input' => 'media'
+					, 'sql' => 'VARCHAR(255) NULL'
+					, 'show_in' => array('detail', 'edit', 'add')
+				)
+				, array(
+					'name' => 'status'
+					, 'sql' => 'TINYINT(1) NULL DEFAULT 1'
+					, 'show_in' => array('detail', 'edit', 'add')
+				)
+				, array(
+					'name' => 'createdate'
+					, 'sql' => 'INT(11)'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'updatedate'
+					, 'sql' => 'INT(11)'
+					, 'show_in' => array('detail')
+				)
+			);
 		}elseif($table == 'category' or $table == 'square_shop_category'){
 			$_fields = array(
-							array(
-								'name' => 'id'
-								, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT'
-								, 'type' => self::PRIMARY_KEY
-								, 'show_in' => array('detail', 'list', 'search')
-							)
-							, array(
-								'name' => 'title'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-								, 'multilang' => true
-							)
-							, array(
-								'name' => 'status'
-								, 'input' => 'checkbox'
-								, 'sql' => 'TINYINT(1) NULL DEFAULT 1'
-								, 'show_in' => array('detail', 'edit', 'add')
-							)
-							, array(
-								'name' => 'createdate'
-								, 'sql' => 'INT(11)'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'updatedate'
-								, 'sql' => 'INT(11)'
-								, 'show_in' => array('detail')
-							)
-						);
+				array(
+					'name' => 'id'
+					, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT'
+					, 'type' => self::PRIMARY_KEY
+					, 'show_in' => array('detail', 'list', 'search')
+				)
+				, array(
+					'name' => 'title'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
+					, 'multilang' => true
+				)
+				, array(
+					'name' => 'status'
+					, 'input' => 'checkbox'
+					, 'sql' => 'TINYINT(1) NULL DEFAULT 1'
+					, 'show_in' => array('detail', 'edit', 'add')
+				)
+				, array(
+					'name' => 'createdate'
+					, 'sql' => 'INT(11)'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'updatedate'
+					, 'sql' => 'INT(11)'
+					, 'show_in' => array('detail')
+				)
+			);
 		}elseif($table == 'client' or $table == 'square_shop_client'){
 			$_fields = array(
-							array(
-								'name' => 'id'
-								, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT'
-								, 'type' => self::PRIMARY_KEY
-								, 'show_in' => array('detail', 'list', 'search')
-							)
-							, array(
-								'name' => 'title'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(20) NULL'
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-								, 'multilang' => true
-							)
-							, array(
-								'name' => 'company'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(20) NULL'
-								, 'show_in' => array('detail', 'edit', 'search', 'add')
-							)
-							, array(
-								'name' => 'firstname'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-							)
-							, array(
-								'name' => 'lastname'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-							)
-							, array(
-								'name' => 'street'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail', 'edit', 'search', 'add')
-							)
-							, array(
-								'name' => 'zip'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(20) NULL'
-								, 'show_in' => array('detail', 'edit', 'search', 'add')
-							)
-							, array(
-								'name' => 'city'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail', 'edit', 'search', 'add')
-							)
-							, array(
-								'name' => 'telephone'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-							)
-							, array(
-								'name' => 'email'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(90) NULL'
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-							)
-							, array(
-								'name' => 'password'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(16) NULL'
-								, 'show_in' => array('empty')
-							)
-							, array(
-								'name' => 'status'
-								, 'input' => 'checkbox'
-								, 'sql' => 'TINYINT(1) NULL DEFAULT 1'
-								, 'show_in' => array('detail', 'edit', 'add')
-							)
-							, array(
-								'name' => 'createdate'
-								, 'sql' => 'INT(11)'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'updatedate'
-								, 'sql' => 'INT(11)'
-								, 'show_in' => array('detail')
-							)
-						);
+				array(
+					'name' => 'id'
+					, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT'
+					, 'type' => self::PRIMARY_KEY
+					, 'show_in' => array('detail', 'list', 'search')
+				)
+				, array(
+					'name' => 'title'
+					, 'input' => 'select'
+					, 'input_constraint_vals' => array('m','w')
+					, 'sql' => 'VARCHAR(20) NULL'
+					, 'sql_constraint_vals' => array('m','w')
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
+					, 'multilang' => true
+				)
+				, array(
+					'name' => 'company'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(20) NULL'
+					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
+				)
+				, array(
+					'name' => 'firstname'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
+				)
+				, array(
+					'name' => 'lastname'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
+				)
+				, array(
+					'name' => 'street'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
+				)
+				, array(
+					'name' => 'zip'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(20) NULL'
+					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
+				)
+				, array(
+					'name' => 'city'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
+				)
+				, array(
+					'name' => 'telephone'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
+				)
+				, array(
+					'name' => 'email'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(90) NULL'
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
+				)
+				, array(
+					'name' => 'password'
+					, 'input' => 'password'
+					, 'sql' => 'VARCHAR(16) NULL'
+					, 'show_in' => array('empty', 'register')
+				)
+				, array(
+					'name' => 'status'
+					, 'input' => 'checkbox'
+					, 'sql' => 'TINYINT(1) NULL DEFAULT 1'
+					, 'show_in' => array('detail', 'edit', 'add')
+				)
+				, array(
+					'name' => 'createdate'
+					, 'sql' => 'INT(11)'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'updatedate'
+					, 'sql' => 'INT(11)'
+					, 'show_in' => array('detail')
+				)
+			);
 		}elseif($table == 'order' or $table == 'square_shop_order'){
 			$_fields = array(
-							array(
-								'name' => 'id'
-								, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT'
-								, 'type' => self::PRIMARY_KEY
-								, 'show_in' => array('detail', 'list', 'search')
-							)
-							, array(
-								'name' => 'client_id'
-								, 'input' => 'select_sql'
-								, 'sql' => 'INT UNSIGNED NOT NULL'
-								, 'type' => self::FOREIGN_KEY
-								, 'sql_join' => array(
-													'table' => 'client'
-													, 'field' => 'id'
-													, 'field_labels' => array('id', 'title', 'firstname', 'lastname')
-													, 'on_delete' => 'RESTRICT'
-													, 'on_update' => 'CASCADE'
-												)
-								, 'show_in' => array('detail', 'list', 'search')
-							)
-							, array(
-								'name' => 'no'
-								, 'sql' => 'VARCHAR(45) NULL'
-								, 'show_in' => array('detail', 'list')
-							)
-							, array(
-								'name' => 'date'
-								, 'sql' => 'DATETIME NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'billing_title'
-								, 'sql' => 'VARCHAR(20) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'billing_company'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(20) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'billing_firstname'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'billing_lastname'
-								, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'billing_street'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'billing_zip'
-								, 'sql' => 'VARCHAR(20) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'billing_city'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'billing_telephone'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'billing_email'
-								, 'sql' => 'VARCHAR(90) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'delivery_title'
-								, 'sql' => 'VARCHAR(20) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'delivery_company'
-								, 'input' => 'text'
-								, 'sql' => 'VARCHAR(20) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'delivery_firstname'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'delivery_lastname'
-								, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'delivery_street'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'delivery_zip'
-								, 'sql' => 'VARCHAR(20) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'delivery_city'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'delivery_telephone'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'delivery_email'
-								, 'sql' => 'VARCHAR(90) NULL'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'status'
-								, 'sql' => 'TINYINT(1) NULL DEFAULT 1'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'createdate'
-								, 'sql' => 'INT(11)'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'updatedate'
-								, 'sql' => 'INT(11)'
-								, 'show_in' => array('detail')
-							)
-						);
+				array(
+					'name' => 'id'
+					, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT'
+					, 'type' => self::PRIMARY_KEY
+					, 'show_in' => array('detail', 'list', 'search')
+				)
+				, array(
+					'name' => 'client_id'
+					, 'input' => 'select_sql'
+					, 'sql' => 'INT UNSIGNED NOT NULL'
+					, 'type' => self::FOREIGN_KEY
+					, 'sql_join' => array(
+							'table' => 'client'
+							, 'field' => 'id'
+							, 'field_labels' => array('id', 'title', 'firstname', 'lastname')
+							, 'on_delete' => 'RESTRICT'
+							, 'on_update' => 'CASCADE'
+						)
+					, 'show_in' => array('detail', 'list', 'search')
+				)
+				, array(
+					'name' => 'no'
+					, 'sql' => 'VARCHAR(45) NULL'
+					, 'show_in' => array('detail', 'list')
+				)
+				, array(
+					'name' => 'date'
+					, 'sql' => 'DATETIME NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'billing_title'
+					, 'sql' => 'VARCHAR(20) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'billing_company'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(20) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'billing_firstname'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'billing_lastname'
+					, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'billing_street'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'billing_zip'
+					, 'sql' => 'VARCHAR(20) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'billing_city'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'billing_telephone'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'billing_email'
+					, 'sql' => 'VARCHAR(90) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'delivery_title'
+					, 'sql' => 'VARCHAR(20) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'delivery_company'
+					, 'input' => 'text'
+					, 'sql' => 'VARCHAR(20) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'delivery_firstname'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'delivery_lastname'
+					, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'delivery_street'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'delivery_zip'
+					, 'sql' => 'VARCHAR(20) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'delivery_city'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'delivery_telephone'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'delivery_email'
+					, 'sql' => 'VARCHAR(90) NULL'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'status'
+					, 'sql' => 'TINYINT(1) NULL DEFAULT 1'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'createdate'
+					, 'sql' => 'INT(11)'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'updatedate'
+					, 'sql' => 'INT(11)'
+					, 'show_in' => array('detail')
+				)
+			);
 		}elseif($table == 'order_item' or $table == 'square_shop_order_item'){
 			$_fields = array(
-							array(
-								'name' => 'id'
-								, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT'
-								, 'type' => self::PRIMARY_KEY
-								, 'show_in' => array('detail', 'list', 'search')
-							)
-							, array(
-								'name' => 'order_id'
-								, 'sql' => 'INT UNSIGNED NOT NULL'
-								, 'type' => self::FOREIGN_KEY
-								, 'sql_join' => array(
-													'table' => 'order'
-													, 'field' => 'id'
-													, 'on_delete' => 'RESTRICT'
-													, 'on_update' => 'CASCADE'
-												)
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'no'
-								, 'sql' => 'VARCHAR(45) NULL'
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-							)
-							, array(
-								'name' => 'title'
-								, 'sql' => 'VARCHAR(60) NULL'
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-								, 'multilang' => true
-							)
-							, array(
-								'name' => 'description'
-								, 'sql' => 'TEXT NULL'
-								, 'show_in' => array('search', 'edit', 'add')
-								, 'multilang' => true
-							)
-							, array(
-								'name' => 'price'
-								, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-								, 'sql' => 'DECIMAL(10,2) NULL DEFAULT 0'
-							)
-							, array(
-								'name' => 'images'
-								, 'sql' => 'VARCHAR(255) NULL'
-								, 'show_in' => array('edit', 'add')
-							)
-							, array(
-								'name' => 'qty'
-								, 'sql' => 'INT NULL DEFAULT 0'
-								, 'show_in' => array('detail')
-							)
-							, array(
-								'name' => 'status'
-								, 'sql' => 'TINYINT(1) NULL DEFAULT 1'
-								, 'show_in' => array('empty')
-							)
-							, array(
-								'name' => 'createdate'
-								, 'sql' => 'INT(11)'
-								, 'show_in' => array('empty')
-							)
-							, array(
-								'name' => 'updatedate'
-								, 'sql' => 'INT(11)'
-								, 'show_in' => array('empty')
-							)
-						);
+				array(
+					'name' => 'id'
+					, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT'
+					, 'type' => self::PRIMARY_KEY
+					, 'show_in' => array('detail', 'list', 'search')
+				)
+				, array(
+					'name' => 'order_id'
+					, 'sql' => 'INT UNSIGNED NOT NULL'
+					, 'type' => self::FOREIGN_KEY
+					, 'sql_join' => array(
+							'table' => 'order'
+							, 'field' => 'id'
+							, 'on_delete' => 'RESTRICT'
+							, 'on_update' => 'CASCADE'
+						)
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'no'
+					, 'sql' => 'VARCHAR(45) NULL'
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
+				)
+				, array(
+					'name' => 'title'
+					, 'sql' => 'VARCHAR(60) NULL'
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
+					, 'multilang' => true
+				)
+				, array(
+					'name' => 'description'
+					, 'sql' => 'TEXT NULL'
+					, 'show_in' => array('search', 'edit', 'add')
+					, 'multilang' => true
+				)
+				, array(
+					'name' => 'price'
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
+					, 'sql' => 'DECIMAL(10,2) NULL DEFAULT 0'
+				)
+				, array(
+					'name' => 'images'
+					, 'sql' => 'VARCHAR(255) NULL'
+					, 'show_in' => array('edit', 'add')
+				)
+				, array(
+					'name' => 'qty'
+					, 'sql' => 'INT NULL DEFAULT 0'
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'status'
+					, 'sql' => 'TINYINT(1) NULL DEFAULT 1'
+					, 'show_in' => array('empty')
+				)
+				, array(
+					'name' => 'createdate'
+					, 'sql' => 'INT(11)'
+					, 'show_in' => array('empty')
+				)
+				, array(
+					'name' => 'updatedate'
+					, 'sql' => 'INT(11)'
+					, 'show_in' => array('empty')
+				)
+			);
 		}
 		$fields = $_fields;
 		if (!is_array($fields)) {
