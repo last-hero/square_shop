@@ -47,12 +47,12 @@ class SSClientLoginController {
 				if(SSHelper::isEmailValid($this->form_data[self::FN_EMAIL])){
 					$client = new SSClient();
 					if($client->checkLogin($this->form_data[self::FN_EMAIL], $this->form_data[self::FN_PASSWORD])){
-						$this->session->set('SSClientLogin', $client);
+						$this->loginUser($client->getData('id'));
 					}
 				}
 				break;
 			case self::ACTION_LOGOUT:
-				$this->session->remove('SSClientLogin');
+				$this->logoutUser();
 				break;
 		}
 	}
@@ -65,7 +65,7 @@ class SSClientLoginController {
 		$clientLoginView = new SSClientLoginView();
 		$param = array();
 		
-		if(self::isUser()){
+		if($this->isUserLoggedIn()){
 			// User ist angemeldet
 			$param['label_submit'] = SSHelper::i18l('Logout');
 			$param['action'] = self::ACTION_LOGOUT;
@@ -89,11 +89,26 @@ class SSClientLoginController {
 	* Prüfen ob User angemeldet ist oder nicht
 	* return bool
 	*/
-	public function isUser(){
-		if(is_object($this->session->get('SSClientLogin'))){
+	public function isUserLoggedIn(){
+		$userId = (int)$this->session->get('UserID');
+		if($userId > 0){
 			return true;
 		}else{
 			return false;
 		}
+	}
+	
+	/*
+	* Speichert User ID in Session
+	*/
+	public function loginUser($id){
+		$this->session->set('UserID', $id);
+	}
+	
+	/*
+	* löscht User ID aus dem Session
+	*/
+	public function logoutUser(){
+		$this->session->remove('UserID');
 	}
 }

@@ -33,10 +33,10 @@ class SSClientRegisterController {
 	* Prüfen ob User angemeldet ist oder nicht
 	* return bool
 	*/
-	public function isUser(){
+	public function isUserLoggedIn(){
 		$clientLoginController = new SSClientLoginController();
-		$clientLoginController->isUser();
-		if($clientLoginController->isUser()){
+		$clientLoginController->isUserLoggedIn();
+		if($clientLoginController->isUserLoggedIn()){
 			return true;
 		}
 		return false;
@@ -47,7 +47,7 @@ class SSClientRegisterController {
 	* Falls User angemeldet: Logout-Maske anzeigen
 	*/
 	public function displayView(){
-		if(!$this->isUser()){
+		if(!$this->isUserLoggedIn()){
 			// User ist nicht angemeldet
 			$SSClientRegisterView = new SSClientRegisterView();
 			$param = array();

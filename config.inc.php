@@ -1,4 +1,6 @@
 <?php
+
+
 // init addon
 $mypage = 'square_shop';
 $REX['ADDON']['name'][$mypage] = 'Online Shop';
@@ -18,25 +20,25 @@ if ($REX['REDAXO']) {
 }
 
 // includes
-require($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.rex_'.$mypage.'_utils.inc.php');
-require($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.ss_utils.inc.php');
+//require($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.rex_'.$mypage.'_utils.inc.php');
+//require($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.ss_utils.inc.php');
 
-$classes = array('SSException', 'SSDBSchema', 'SSDBSQL', 'SSGUI', 'SSImport', 'SSHelper', 'SSCart', 'SSItem');
+// $classes = array('SSException', 'SSDBSchema', 'SSDBSQL', 'SSGUI', 'SSImport', 'SSHelper', 'SSCart', 'SSItem');
 
 // SSSession Classes
-$classes = array_merge($classes, array('SSSession'));
+// $classes = array_merge($classes, array('SSSession'));
 
 // Client Classes
-$classes = array_merge($classes, array('SSClient', 'SSClientLoginView', 'SSClientLoginController'));
+// $classes = array_merge($classes, array('SSClient', 'SSClientLoginView', 'SSClientLoginController'));
 
 // Client Register Classes
-$classes = array_merge($classes, array('SSClientRegisterView', 'SSClientRegisterController'));
+// $classes = array_merge($classes, array('SSClientRegisterView', 'SSClientRegisterController'));
 
-foreach($classes as $class){
-	if (!class_exists($class)) {
-		require_once($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.'.$class.'.inc.php');
-	}
-}
+// foreach($classes as $class){
+// 	if (!class_exists($class)) {
+// 		require_once($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.'.$class.'.inc.php');
+// 	}
+// }
 
 
 // overwrite default settings with user settings
@@ -61,5 +63,26 @@ if ($REX['REDAXO']) {
 		array('settings', ss_utils::i18l('settings')),
 		array('help', ss_utils::i18l('help'))
 	);
+}
+
+
+/*
+* Klassen, welche benötigt werden automatisch eingebunden.
+* param string $class_name: Klassenname 
+*/
+function __autoload($class_name) {
+	global $REX;
+	$classes_folder = $REX['INCLUDE_PATH'] . '/addons/square_shop/classes/';
+	$file = $classes_folder.'class.'.$class_name.'.inc.php';
+	if(file_exists($file)) {
+        require_once $file;
+    }
+	$sub_folders = array('model', 'view', 'controller', 'helper');
+	foreach($sub_folders as $folder){
+		$file = $classes_folder.'/'.$folder.'/'.'class.'.$class_name.'.inc.php';
+		if(file_exists($file)) {
+			require_once $file;
+		}
+	}
 }
 ?>

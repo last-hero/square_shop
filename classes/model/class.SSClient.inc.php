@@ -33,11 +33,22 @@ class SSClient {
 	* param $keys: Attributname(n) [string|array]
 	*/
 	public function isValidKeys($keys){
-		if(is_string($keys))$keys = array($keys);
+		if(is_string($keys))$keys = array($keys=>$keys);
 		if(SSHelper::array_keys_exists($keys, $this->data)){
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	* Client Daten holen
+	* param $key: Attributname
+	*/
+	public function getData($key){
+		if($this->isValidKeys($key)){
+			return $this->data[$key];
+		}
+		return null;
 	}
 	
 	/**
@@ -78,7 +89,6 @@ class SSClient {
 			}
 		}
 	}
-	
 	
 	/**
 	* Gibt die gesamte Tabelle in Form von rex_list aus
