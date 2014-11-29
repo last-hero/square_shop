@@ -140,7 +140,7 @@ class SSDBSchema {
 					, 'show_in' => array('detail')
 				)
 			);
-		}elseif($table == 'client' or $table == 'square_shop_client'){
+		}elseif($table == 'customer' or $table == 'square_shop_customer'){
 			$_fields = array(
 				array(
 					'name' => 'id'
@@ -291,12 +291,12 @@ class SSDBSchema {
 					, 'show_in' => array('detail', 'list', 'search')
 				)
 				, array(
-					'name' => 'client_id'
+					'name' => 'customer_id'
 					, 'input' => 'select_sql'
 					, 'sql' => 'INT UNSIGNED NOT NULL'
 					, 'type' => self::FOREIGN_KEY
 					, 'sql_join' => array(
-							'table' => 'client'
+							'table' => 'customer'
 							, 'field' => 'id'
 							, 'field_labels' => array('id', 'title', 'firstname', 'lastname')
 							, 'on_delete' => 'RESTRICT'
@@ -561,8 +561,8 @@ class SSDBSchema {
 						, 'show_in' => array('list', 'detail')
 					)
 					, array(
-						'name' => 'square_shop_client'
-						, 'labels' => array('client')
+						'name' => 'square_shop_customer'
+						, 'labels' => array('customer')
 						, 'show_in' => array('list', 'edit', 'add')
 					)
 				);

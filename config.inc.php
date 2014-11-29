@@ -28,10 +28,10 @@ if ($REX['REDAXO']) {
 // SSSession Classes
 // $classes = array_merge($classes, array('SSSession'));
 
-// Client Classes
+// Customer Classes
 // $classes = array_merge($classes, array('SSClient', 'SSClientLoginView', 'SSClientLoginController'));
 
-// Client Register Classes
+// Customer Register Classes
 // $classes = array_merge($classes, array('SSClientRegisterView', 'SSClientRegisterController'));
 
 // foreach($classes as $class){
@@ -59,7 +59,7 @@ if ($REX['REDAXO']) {
 		array('article', ss_utils::i18l('article')),
 		array('category', ss_utils::i18l('category')),
 		array('order', ss_utils::i18l('order')),
-		array('client', ss_utils::i18l('client')),
+		array('customer', ss_utils::i18l('customer')),
 		array('settings', ss_utils::i18l('settings')),
 		array('help', ss_utils::i18l('help'))
 	);

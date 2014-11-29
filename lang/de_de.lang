@@ -2,7 +2,7 @@ square_shop_start = Start
 square_shop_article = Artikel
 square_shop_category = Kategorie
 square_shop_order = Bestellung
-square_shop_client = Kunde
+square_shop_customer = Kunde
 square_shop_settings = Einstellung
 square_shop_setup = Setup
 square_shop_help = Hilfe
@@ -51,12 +51,12 @@ square_shop_quicklinks = Quicklinks
 
 square_shop_searchkey = Suchwort
 
-square_shop_label_client_id = KundenID
+square_shop_label_customer_id = KundenID
 square_shop_label_category_id = Kat ID
 square_shop_label_category_title = Kategorie
-square_shop_label_client_title = Anrede
-square_shop_label_client_firstname = Vorname
-square_shop_label_client_lastname = Nachname
+square_shop_label_customer_title = Anrede
+square_shop_label_customer_firstname = Vorname
+square_shop_label_customer_lastname = Nachname
 square_shop_order_item = Belegposition
 
 square_shop_billing = Rechnungsadresse

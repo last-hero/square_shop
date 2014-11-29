@@ -3,7 +3,7 @@
 	<div class="rex-area-content">
         <h2><?=ss_utils::i18l('quicklinks')?></h2>
 		<ul>
-        <? $list = array('article', 'category', 'order', 'client', 'settings', 'help'); ?>
+        <? $list = array('article', 'category', 'order', 'customer', 'settings', 'help'); ?>
 		<? for($i=0;$i<sizeof($list);$i++): ?>
 			<li>
             	<a href="index.php?page=square_shop&subpage=<?=$list[$i]?>">

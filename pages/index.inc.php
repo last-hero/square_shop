@@ -16,7 +16,7 @@ rex_title($REX['ADDON']['name']['square_shop'] . ' <span style="font-size:14px; 
 
 
 // include subpage
-if(in_array($subpage, array('article', 'category', 'order', 'client'))){
+if(in_array($subpage, array('article', 'category', 'order', 'customer'))){
 	include($REX['INCLUDE_PATH'] . '/addons/square_shop/pages/table_data.inc.php');
 }else{
 	include($REX['INCLUDE_PATH'] . '/addons/square_shop/pages/'.$subpage.'.inc.php');

@@ -28,21 +28,21 @@ if ($func == 'update') {
 	$session = SSSession::getInstance();
 	
 	if(isset($_POST['user']) and isset($_POST['user'])){
-		$session->set('Client', $client);
+		$session->set('Customer', $customer);
 	}
-	if(!$session->get('client')){
-		$clientLoginView = new SSClientLoginView($session->get('client'));
+	if(!$session->get('customer')){
+		$clientLoginView = new SSClientLoginView($session->get('customer'));
 		$clientLoginView->displayLoginHtml();
 	}else{
-		$clientLoginView = new SSClientLoginView($session->get('client'));
+		$clientLoginView = new SSClientLoginView($session->get('customer'));
 		$clientLoginView->displayLogoutHtml();
 	}
 	*/
 	
 	/*
-	$client = new SSClient();
+	$customer = new SSClient();
 	try{
-		$client->loadClientById(1);
+		$customer->loadClientById(1);
 		SSClientLoginView::displayLoginHtml();
 		SSClientLoginView::displayLogoutHtml();
 	}catch(SSException $e) {
