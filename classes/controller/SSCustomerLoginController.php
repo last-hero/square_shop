@@ -9,11 +9,20 @@ class SSCustomerLoginController {
 	// Singleton --> Session Objekt
 	private $session;
 	
-	// POST Var Daten
+	// POST Var Daten -> korrekt eingegebene von User
 	private $formPropertiesAndValues;
+	
+	// Fehler
+	private $formPropertyValueErrors;
 	
 	// Login / Logout View
 	private $customerLoginView;
+	
+	// SSCustomer
+	private $customer;
+	
+	// bool: Fehler beim Anmeldung true / false
+	private $loginError;
 	
 	
 	/*
@@ -23,6 +32,8 @@ class SSCustomerLoginController {
     public function __construct(){
 		// Session Objekt (Singleton) holen
 		$this->session = SSSession::getInstance();
+		
+		$this->customer = new SSCustomer();
 		
 		// Objekt Login-View erstellen
 		$this->customerLoginView = new SSCustomerLoginView();
@@ -36,7 +47,7 @@ class SSCustomerLoginController {
 	*/
 	public function invoke(){
 		// Login Logik
-		$this->loginHandler();
+		$this->loginLogoutHandler();
 		
 		// Zeigt entweder Login oder Logout-Maske an
 		$this->displayView();
@@ -50,13 +61,13 @@ class SSCustomerLoginController {
 	* Falls Post Request durch Logout-Maske:
 	* 	dann Benutzer in Session löschen und ausloggen
 	*/
-	public function loginHandler(){
+	public function loginLogoutHandler(){
 		switch($this->formPropertiesAndValues['action']){
 			case self::ACTION_LOGIN:
-				if(SSHelper::isTypeOf('email', $this->formPropertiesAndValues[self::FN_EMAIL])){
+				if($this->isInputValid()){
 					$customer = new SSCustomer();
 					if($customer->loadCustomerByEmailAndPassword($this->formPropertiesAndValues[self::FN_EMAIL], $this->formPropertiesAndValues[self::FN_PASSWORD])){
-						$this->loginUser($customer->get('id'));
+						$this->loginUser($customer->get('id'), $customer->get('firstname').' '.$customer->get('lastname'));
 					}
 				}
 				break;
@@ -64,6 +75,19 @@ class SSCustomerLoginController {
 				$this->logoutUser();
 				break;
 		}
+	}
+	
+	/*
+	* Formular Input Dateon vom User auf Richtigkeit überpürfen
+	* return bool
+	*/
+	public function isInputValid(){
+		if(SSHelper::isTypeOf('email', $this->formPropertiesAndValues[self::FN_EMAIL])){
+			$this->loginError = false;
+			return true;
+		}
+		$this->loginError = true;
+		return false;
 	}
 	
 	/*
@@ -75,9 +99,9 @@ class SSCustomerLoginController {
 		
 		if($this->isUserLoggedIn()){
 			// User ist angemeldet
-			$param['label_submit'] = SSHelper::i18l('Logout');
 			$param['action'] = self::ACTION_LOGOUT;
-			$param['message_success'] = SSHelper::i18l('LoginSuccess');
+			$param['label_submit'] = SSHelper::i18l('Logout');
+			$param['label_customer'] = $this->getLoggedInUserName();
 			
 			$this->customerLoginView->displayLogoutHtml($param);
 		}else{
@@ -88,6 +112,9 @@ class SSCustomerLoginController {
 			$param['label_password'] = SSHelper::i18l('Password');
 			$param['fn_email'] = self::FN_EMAIL;
 			$param['fn_password'] = self::FN_PASSWORD;
+			if($this->loginError){
+				$param['login_error'] = SSHelper::i18l(self::ACTION_LOGIN.'_error');
+			}
 			
 			$this->customerLoginView->displayLoginHtml($param);
 		}
@@ -108,9 +135,12 @@ class SSCustomerLoginController {
 	
 	/*
 	* Speichert User ID in Session
+	* param $userId
+	* param $userName
 	*/
-	public function loginUser($userId){
+	public function loginUser($userId, $userName){
 		$this->session->set('UserID', $userId);
+		$this->session->set('UserName', $userName);
 	}
 	
 	/*
@@ -118,5 +148,14 @@ class SSCustomerLoginController {
 	*/
 	public function logoutUser(){
 		$this->session->remove('UserID');
+		$this->session->remove('UserName');
+	}
+	
+	/*
+	* Liefert Username vom eingelogten Customer 
+	* return string Username
+	*/
+	public function getLoggedInUserName(){
+		return $this->session->get('UserName');
 	}
 }

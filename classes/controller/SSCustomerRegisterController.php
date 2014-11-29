@@ -5,10 +5,10 @@ class SSCustomerRegisterController {
 	// Singleton --> Session Objekt
 	private $session;
 	
-	// POST Var Daten
+	// POST Var Daten -> korrekt eingegebene von User
 	private $formPropertiesAndValues;
 	
-	// POST Var Daten -> korrekt eingegebene von User
+	// Fehler
 	private $formPropertyValueErrors;
 	
 	
@@ -17,6 +17,9 @@ class SSCustomerRegisterController {
 	
 	// CustomerRegisterView Objekt
 	private $customerRegisterView;
+	
+	// SSCustomerLoginController Objekt
+	private $customerLoginController;
 	
 	
 	/*
@@ -31,6 +34,8 @@ class SSCustomerRegisterController {
 		
 		$this->customerRegisterView = new SSCustomerRegisterView();
 		
+		$this->customerLoginController = new SSCustomerLoginController();
+		
 		// Form Post Vars (User input) holen
 		$this->formPropertiesAndValues = SSHelper::getPostByFormId(SSCustomerRegisterView::FORM_ID);
     }
@@ -39,23 +44,27 @@ class SSCustomerRegisterController {
 	* Login/Logout Funktion starten
 	*/
 	public function invoke(){
-		if(($this->formPropertiesAndValues['action']) == self::ACTION_REGISTER){
-			if($this->isInputValid()){
-				$this->handleRegisterLogic();
-				$this->customerRegisterView->displaySuccess();
+		if($this->customerLoginController->isUserLoggedIn()){
+			$this->customerLoginController->displayView();
+		}else{
+			if(($this->formPropertiesAndValues['action']) == self::ACTION_REGISTER){
+				if($this->isInputValid()){
+					$this->registerHandler();
+					$this->customerRegisterView->displaySuccess();
+				}else{
+					$this->customerRegisterView->displayErrors($this->formPropertyValueErrors);
+					$this->displayView();
+				}
 			}else{
-				$this->customerRegisterView->displayErrors($this->formPropertyValueErrors);
 				$this->displayView();
 			}
-		}else{
-			$this->displayView();
 		}
 	}
 	
 	/*
 	* Formular wird abgearbeitet
 	*/
-	public function handleRegisterLogic(){
+	public function registerHandler(){
 		switch($this->formPropertiesAndValues['action']){
 			case self::ACTION_REGISTER:
 				if($this->isUserRequestUnique()){
@@ -68,6 +77,10 @@ class SSCustomerRegisterController {
 		}
 	}
 	
+	/*
+	* Formular Input Dateon vom User auf Richtigkeit überpürfen
+	* return bool
+	*/
 	public function isInputValid(){
 		$this->formPropertyValueErrors = SSHelper::checkFromInputs(SSCustomer::TABLE, 'register'
 												, $this->formPropertiesAndValues);
@@ -114,12 +127,21 @@ class SSCustomerRegisterController {
 		$this->customerRegisterView->displayRegisterHtml($params);
 	}
 	
+	/*
+	* überprüft ob From-Post nicht durch einen Browswer-Refresh
+	* generiert worden ist.
+	* return bool: true = nicht generiert    false = generiert durch Browser-Refresh
+	*/
 	public function isUserRequestUnique(){
 		if($this->session->get(self::ACTION_REGISTER.'SuccessUniqueId') != $this->formPropertiesAndValues['uniqueId']){
 			return true;
 		}
 		return false;
 	}
+	
+	/*
+	* Speichert From unique id in Session
+	*/
 	public function setUserRequestNoMoreUnique(){
 		$this->session->set(self::ACTION_REGISTER.'SuccessUniqueId', $this->formPropertiesAndValues['uniqueId']);
 	}

@@ -1,9 +1,9 @@
 <?php
-class SSCustomer {
-	const TABLE = 'customer';
-	const TABLE_FULL = 'square_shop_customer';
+class SSArticle {
+	const TABLE = 'article';
+	const TABLE_FULL = 'square_shop_article';
 	
-	const ERROR_CUSTOMER_ATTR_DIFF = '6001';
+	const ERROR_ARTICLE_ATTR_DIFF = '7001';
 	
 	private $propertiesAndValues;
 	private $properties;
@@ -181,12 +181,12 @@ class SSCustomer {
 	}
 	
 	/*
-	* Customer Daten aus Datenbank holen
+	* Artikel Daten aus Datenbank holen
 	* param $where: Where Klausel
 	* param $show_in: 
 	* return (Array) $res: Customers oder Customer Einträge aus Datenbank
 	*/
-	private function _getCustomerWhere($where, $show_in = null){
+	private function _getArticleWhere($where, $show_in = null){
 		if(!$show_in){
 			$show_in = SSDBSchema::SHOW_IN_DETAIL;
 		}

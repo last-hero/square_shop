@@ -247,7 +247,7 @@ class SSDBSchema {
 							, 'max' => 90
 						)
 					, 'sql' => 'VARCHAR(90) NULL'
-					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register', 'login')
 				)
 				, array(
 					'name' => 'password'
@@ -263,7 +263,7 @@ class SSDBSchema {
 					, 'sql_settings' => array(
 							'encrypt' => 'md5'
 						)
-					, 'show_in' => array('empty', 'register', 'list')
+					, 'show_in' => array('empty', 'register', 'list', 'login')
 				)
 				, array(
 					'name' => 'status'
