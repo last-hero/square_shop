@@ -97,9 +97,22 @@ class SSClient {
 		if((int)$this->get('id') > 0){
 			echo 'called: save() FOR UPDATE;';
 		}else{
+			
+			// Verschlüsseln --> z.B. Passwort
+			$dbProperties = SSDBSchema::_getFields(SSClient::TABLE, null, array('sql_settings' => 'encrypt'));
+			foreach($this->propertiesAndValues as $name => $value){
+				foreach($dbProperties as $dbProperty){
+					if($name == $dbProperty['name']){
+						$encrypt = $dbProperty['sql_settings']['encrypt'];
+						if($encrypt){
+							$this->propertiesAndValues[$name] = hash($encrypt, $value);
+						}
+					}
+				}
+			}
+			
 			$query = SSDBSQL::_getSqlInsertQuery($this->propertiesAndValues, self::TABLE);
 			$res = SSDBSQL::executeSql($query);
-			d($res);
 		}
 	}
 	
@@ -130,12 +143,18 @@ class SSClient {
 	* return boolean
 	*/
 	public function loadClientByEmailAndPassword($email, $password){
-		/*
-		$query = SSDBSQL::_getSqlDmlQuery("email = '$email' AND password = md5('$password')", self::TABLE, SSDBSchema::SHOW_IN_DETAIL);
-		$query = SSDBSQL::_getSqlDmlQuery("email = '$email'", self::TABLE, SSDBSchema::SHOW_IN_DETAIL);
-		*/
-		//$res = $this->_getClientWhere("email = '$email' AND password = md5('$password')");
-		$res = $this->_getClientWhere("email = '$email'");
+		// Passwort verschlüsseln
+		$dbProperties = SSDBSchema::_getFields(SSClient::TABLE, null, array('sql_settings' => 'encrypt'));
+		foreach($dbProperties as $dbProperty){
+			if($dbProperty['name'] == 'password'){
+				$encrypt = $dbProperty['sql_settings']['encrypt'];
+				if($encrypt){
+					$password = hash($encrypt, $password);
+				}
+			}
+		}
+		//$res = $this->_getClientWhere("email = '$email'");
+		$res = $this->_getClientWhere("email = '$email' AND password = '$password'");
 		if(count($res) == 1){
 			try{
 				$this->set($res[0]);
@@ -155,7 +174,7 @@ class SSClient {
 	*/
 	public function isEmailAlreadyExists($email){
 		$res = $this->_getClientWhere("email = '$email'");
-		if(count($res) > 0){
+		if(!empty($res)){
 			return true;
 		}
 		return false;

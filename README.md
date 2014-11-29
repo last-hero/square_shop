@@ -33,3 +33,6 @@ Credits
 -------
 
 * [Parsedown](http://parsedown.org/) Class by Emanuil Rusev
+* [babelfish](https://github.com/RexDude/babelfish) AddOn by RexDude
+
+

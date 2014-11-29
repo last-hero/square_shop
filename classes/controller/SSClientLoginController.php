@@ -53,7 +53,7 @@ class SSClientLoginController {
 	public function loginHandler(){
 		switch($this->formPropertiesAndValues['action']){
 			case self::ACTION_LOGIN:
-				if(SSHelper::isEmailValid($this->formPropertiesAndValues[self::FN_EMAIL])){
+				if(SSHelper::isTypeOf('email', $this->formPropertiesAndValues[self::FN_EMAIL])){
 					$client = new SSClient();
 					if($client->loadClientByEmailAndPassword($this->formPropertiesAndValues[self::FN_EMAIL], $this->formPropertiesAndValues[self::FN_PASSWORD])){
 						$this->loginUser($client->get('id'));

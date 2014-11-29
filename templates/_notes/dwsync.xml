@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="client.logout.form.tmpl.php" server="p2.ibog.biz" local="130613405019866084" remote="130613404800000000" Dst="1" />
-<file name="client.login.form.tmpl.php" server="p2.ibog.biz" local="130615035917988467" remote="130615035600000000" Dst="1" />
-<file name="client.register.form.tmpl.php" server="p2.ibog.biz" local="130616421212636206" remote="130616421000000000" Dst="1" />
+<file name="client.logout.form.tmpl.php" server="p2.ibog.biz" local="130616777915306559" remote="130616777400000000" Dst="1" />
+<file name="client.login.form.tmpl.php" server="p2.ibog.biz" local="130616778112312831" remote="130616778000000000" Dst="1" />
+<file name="client.register.form.tmpl.php" server="p2.ibog.biz" local="130617357948157388" remote="130617357600000000" Dst="1" />
+<file name="errors.tmpl.php" server="p2.ibog.biz" local="130617331172396119" remote="130617330600000000" Dst="1" />
+<file name="client.register.success.tmpl.php" server="p2.ibog.biz" local="130617336953687741" remote="130617336600000000" Dst="1" />
 </dwsync>

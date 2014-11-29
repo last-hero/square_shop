@@ -8,8 +8,15 @@ class SSClientRegisterController {
 	// POST Var Daten
 	private $formPropertiesAndValues;
 	
+	// POST Var Daten -> korrekt eingegebene von User
+	private $formPropertyValueErrors;
 	
+	
+	// Client Objekt
 	private $client;
+	
+	// ClientRegisterView Objekt
+	private $clientRegisterView;
 	
 	
 	/*
@@ -22,6 +29,8 @@ class SSClientRegisterController {
 		
 		$this->client = new SSClient();
 		
+		$this->clientRegisterView = new SSClientRegisterView();
+		
 		// Form Post Vars (User input) holen
 		$this->formPropertiesAndValues = SSHelper::getPostByFormId(SSClientRegisterView::FORM_ID);
     }
@@ -30,40 +39,46 @@ class SSClientRegisterController {
 	* Login/Logout Funktion starten
 	*/
 	public function invoke(){
-		// wenn User nicht angemeldet ist
-		if(!$this->isUserLoggedIn()){
+		if(($this->formPropertiesAndValues['action']) == self::ACTION_REGISTER){
 			if($this->isInputValid()){
-				$this->handleRegister();
+				$this->handleRegisterLogic();
+				$this->clientRegisterView->displaySuccess();
 			}else{
+				$this->clientRegisterView->displayErrors($this->formPropertyValueErrors);
 				$this->displayView();
 			}
+		}else{
+			$this->displayView();
 		}
 	}
 	
 	/*
 	* Formular wird abgearbeitet
 	*/
-	public function handleRegister(){
+	public function handleRegisterLogic(){
 		switch($this->formPropertiesAndValues['action']){
 			case self::ACTION_REGISTER:
+				if($this->isUserRequestUnique()){
 					$clearedUserInputs = $this->client->getClearedUnknownProperties($this->formPropertiesAndValues);
 					$this->client->set($clearedUserInputs);
 					$this->client->save();
+					$this->setUserRequestNoMoreUnique();
+				}
 				break;
 		}
 	}
 	
-	/*
-	* Formular wird abgearbeitet
-	*/
 	public function isInputValid(){
+		$this->formPropertyValueErrors = SSHelper::checkFromInputs(SSClient::TABLE, 'register'
+												, $this->formPropertiesAndValues);
+		
 		if($this->client->isEmailAlreadyExists($this->formPropertiesAndValues['email'])){
-			return false;	
+			$this->formPropertyValueErrors['email']['exists'] = 1;
 		}
-		if($this->formPropertiesAndValues['action'] == self::ACTION_REGISTER){
-			return true;
+		if(sizeof($this->formPropertyValueErrors) > 0){
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	/*
@@ -85,14 +100,27 @@ class SSClientRegisterController {
 	*/
 	public function displayView(){
 		// User ist nicht angemeldet
-		$SSClientRegisterView = new SSClientRegisterView();
-		$param = array();
-		$param['label_submit'] = SSHelper::i18l('Abschicken');
-		$param['action'] = self::ACTION_REGISTER;
-		$param['message_success'] = SSHelper::i18l('RegisterSuccess');
+		$params = array();
+		$params['label_submit'] = SSHelper::i18l('Abschicken');
+		$params['action'] = self::ACTION_REGISTER;
+		$params['message_success'] = SSHelper::i18l('RegisterSuccess');
 		
-		$param['formPropertiesAndValues'] = $this->formPropertiesAndValues;
+		$params['formPropertiesAndValues'] = $this->formPropertiesAndValues;
 		
-		$SSClientRegisterView->displayRegisterHtml($param);
+		$params['formPropertyValueErrors'] = $this->formPropertyValueErrors;
+		
+		$params['fields'] = SSHelper::getFormProperties(SSClientRegisterView::FORM_ID, SSClient::TABLE, 'register');
+		
+		$this->clientRegisterView->displayRegisterHtml($params);
+	}
+	
+	public function isUserRequestUnique(){
+		if($this->session->get(self::ACTION_REGISTER.'SuccessUniqueId') != $this->formPropertiesAndValues['uniqueId']){
+			return true;
+		}
+		return false;
+	}
+	public function setUserRequestNoMoreUnique(){
+		$this->session->set(self::ACTION_REGISTER.'SuccessUniqueId', $this->formPropertiesAndValues['uniqueId']);
 	}
 }

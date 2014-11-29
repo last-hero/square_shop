@@ -151,7 +151,10 @@ class SSDBSchema {
 				, array(
 					'name' => 'title'
 					, 'input' => 'select'
-					, 'input_constraint_vals' => array('m','w')
+					, 'input_settings' => array(
+							'values' => array('m','w')
+							, 'required' => true
+						)
 					, 'sql' => 'VARCHAR(20) NULL'
 					, 'sql_constraint_vals' => array('m','w')
 					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
@@ -160,56 +163,107 @@ class SSDBSchema {
 				, array(
 					'name' => 'company'
 					, 'input' => 'text'
-					, 'sql' => 'VARCHAR(20) NULL'
+					, 'input_settings' => array(
+							'required' => false
+							, 'min' => 3
+							, 'max' => 60
+						)
+					, 'sql' => 'VARCHAR(60) NULL'
 					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
 				)
 				, array(
 					'name' => 'firstname'
 					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 2
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
 					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
 				)
 				, array(
 					'name' => 'lastname'
 					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 2
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
 					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
 				)
 				, array(
 					'name' => 'street'
 					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
 					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
 				)
 				, array(
 					'name' => 'zip'
 					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 20
+							//, 'type' => 'int'
+						)
 					, 'sql' => 'VARCHAR(20) NULL'
 					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
 				)
 				, array(
 					'name' => 'city'
 					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
 					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
 				)
 				, array(
 					'name' => 'telephone'
 					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
 					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
 				)
 				, array(
 					'name' => 'email'
 					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'type' => 'email'
+							, 'max' => 90
+						)
 					, 'sql' => 'VARCHAR(90) NULL'
 					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
 				)
 				, array(
 					'name' => 'password'
 					, 'input' => 'password'
-					, 'sql' => 'VARCHAR(16) NULL'
-					, 'show_in' => array('empty', 'register')
+					, 'input_settings' => array(
+							'required' => true
+							, 'type' => 'password'
+							, 'min' => 6
+							, 'max' => 16
+							, 'encrypt' => 'md5'
+						)
+					, 'sql' => 'VARCHAR(32) NULL'
+					, 'sql_settings' => array(
+							'encrypt' => 'md5'
+						)
+					, 'show_in' => array('empty', 'register', 'list')
 				)
 				, array(
 					'name' => 'status'
@@ -450,7 +504,7 @@ class SSDBSchema {
 						if(is_array($fv)){
 							// to do
 						}elseif(is_array($fields[$i][$fk])){
-							if(!in_array($fv, $fields[$i][$fk])){
+							if(!in_array($fv, $fields[$i][$fk]) and !array_key_exists($fv, $fields[$i][$fk])){
 								unset($fields_new[$i]);
 							}
 						}elseif($fields[$i][$fk] != $fv){

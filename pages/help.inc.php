@@ -7,7 +7,7 @@ $func = rex_request('func', 'string');
 
 // include markdwon parser
 if (!class_exists('Parsedown')) {
-	require($REX['INCLUDE_PATH'] . '/addons/square_shop/classes/class.parsedown.inc.php');
+	require($REX['INCLUDE_PATH'] . '/addons/square_shop/classes/helper/parsedown.php');
 }
 
 // chapters
