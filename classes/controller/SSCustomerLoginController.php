@@ -65,10 +65,9 @@ class SSCustomerLoginController {
 		switch($this->formPropertiesAndValues['action']){
 			case self::ACTION_LOGIN:
 				if($this->isInputValid()){
-					$customer = new SSCustomer();
-					if($customer->loadCustomerByEmailAndPassword($this->formPropertiesAndValues[self::FN_EMAIL], $this->formPropertiesAndValues[self::FN_PASSWORD])){
-						$this->loginUser($customer->get('id'), $customer->get('firstname').' '.$customer->get('lastname'));
-					}
+					$userId = $this->customer->get('id');
+					$userName = $this->customer->get('firstname').' '.$this->customer->get('lastname');
+					$this->loginUser($userId, $userName);
 				}
 				break;
 			case self::ACTION_LOGOUT:
@@ -78,16 +77,26 @@ class SSCustomerLoginController {
 	}
 	
 	/*
-	* Formular Input Dateon vom User auf Richtigkeit überpürfen
-	* return bool
+	* Formular Input Daten vom User auf Richtigkeit überpürfen
+	* loginError Variable auf true setzen, falls username + pw falsch
+	* return bool  true = user+pw korrekt     false = user+pw falsch
 	*/
 	public function isInputValid(){
-		if(SSHelper::isTypeOf('email', $this->formPropertiesAndValues[self::FN_EMAIL])){
-			$this->loginError = false;
-			return true;
+		$error = 0;
+		
+		if(!SSHelper::isTypeOf('email', $this->formPropertiesAndValues[self::FN_EMAIL])){
+			$error++;
 		}
-		$this->loginError = true;
-		return false;
+		
+		$email = $this->formPropertiesAndValues[self::FN_EMAIL];
+		$password = $this->formPropertiesAndValues[self::FN_PASSWORD];
+		if(!$this->customer->loadCustomerByEmailAndPassword($email, $password)){
+			$error++;
+		}
+		
+		$this->loginError = $error > 0 ? true : false;
+		
+		return !$this->loginError;
 	}
 	
 	/*

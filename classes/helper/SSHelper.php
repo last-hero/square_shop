@@ -23,12 +23,23 @@ class SSHelper{
 	}
 	
 	/**
-	* überprüft ob (1)Array Keys in (2)Array vorhanden sind
-	* param string $_str
-	* param $array2: 2. Array
+	* liefert text in aktuelle sprache
+	* param string $str
+	* param string: übersetzte text
 	*/
-	public static function i18l($_str){
-		return $_str;
+	public static function i18l($str){
+		$str = str_replace('register_label_', '', $str);
+		return $str;
+	}
+	
+	/**
+	* liefert Backend Setting Value vom Shop-Betreiber
+	* param string $str
+	*/
+	public static function getSetting($str){
+		global $REX;
+		
+		return $REX['ADDON']['square_shop']['settings'][$str];
 	}
 	
 	/**
@@ -83,42 +94,6 @@ class SSHelper{
 			return $value;
 			return mysql_real_escape_string(strip_tags(trim($value)), $link);
 		}
-	}
-	
-	/**
-	* überprüft ob Email Valid ist
-	* param string $email
-	* return bool
-	*/
-	public static function isEmailValid($email){
-		if(!ereg("^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$",$email))
-			return false;
-		else
-			return true;
-	}
-	
-	/**
-	* 
-	* param  
-	* return bool
-	*/
-	public static function isEqual($string, $string2){
-		if(!ereg("^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$",$email))
-			return false;
-		else
-			return true;
-	}
-	
-	/**
-	* 
-	* param  
-	* return bool
-	*/
-	public static function isEmpty($string){
-		if(!ereg("^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$",$email))
-			return false;
-		else
-			return true;
 	}
 	
 	/**

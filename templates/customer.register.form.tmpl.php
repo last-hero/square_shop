@@ -1,4 +1,4 @@
-        <form action="" method="post" name="ss-form-register" class="ss-form-register">
+        <form action="" method="post" name="ss-form-register" class="ss-form ss-form-register">
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][action]" value="<?=$action?>" />
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][uniqueId]" value="<?=microtime(true)?>" />
 <?
@@ -17,7 +17,7 @@ foreach($fields as $f):
 				$css_class .= ' error';
 			}
 ?>
-            <p class="ss-<?=$fname?>">
+            <p class="<?=$css_class?>">
                 <label for="ss-<?=$fname?>"><?=$label?></label>
                 <input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][<?=$fname?>]" 
                 	maxlength="<?=$max?>" type="text" class="<?=trim($css_class)?>" value="<?=$post_data?>" />
@@ -36,7 +36,7 @@ foreach($fields as $f):
 				$css_class .= ' error';
 			}
 ?>
-            <p class="ss-<?=$fname?>">
+            <p class="<?=$css_class?>">
                 <label for="ss-<?=$fname?>"><?=$label?></label>
                 <input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][<?=$fname?>]" 
                 	maxlength="<?=$max?>" type="password" 
@@ -46,7 +46,7 @@ foreach($fields as $f):
             $fname = $f['name'].'_re';
             $label = '&nbsp;';
 ?>
-            <p class="ss-<?=$fname?>">
+            <p class="<?=$css_class?>">
                 <label for="ss-<?=$fname?>"><?=$label?></label>
                 <input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][<?=$fname?>]"
                 	maxlength="<?=$max?>" type="password" 
@@ -67,7 +67,7 @@ foreach($fields as $f):
 				$css_class .= ' error';
 			}
 ?>
-            <p class="ss-<?=$fname?>">
+            <p class="<?=$css_class?>">
                 <label for="ss-<?=$fname?>"><?=$label?></label>
                 <select id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][<?=$fname?>]" class="<?=trim($css_class)?>" size="1">
                     <option value="" selected="selected">-</option>

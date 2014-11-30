@@ -1,9 +1,9 @@
-			<form action="" method="post" name="ss-form-login">
+			<form action="" method="post" name="ss-form-login" class="ss-form ss-form-login">
             	<input type="hidden" name="SSForm[<?=$FORM_ID?>][action]" value="<?=$action?>" />
 <?
 			if($login_error):
 ?> 
-                <p class="ss-login_error"><?=$login_error?></p>
+                <p class="ss-error ss-error-login"><?=$login_error?></p>
 <?
 			endif;
 ?>

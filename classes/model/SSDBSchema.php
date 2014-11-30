@@ -45,7 +45,7 @@ class SSDBSchema {
 					, 'show_in' => array('detail', 'list', 'search') // Woüberall soll dieses Feld angezeigt werden
 				)
 				, array(
-					'name' => 'cat_id'
+					'name' => 'category_id'
 					, 'input' => 'select_sql'
 					, 'sql' => 'INT UNSIGNED NOT NULL'
 					, 'sql_index' => true
