@@ -1,4 +1,4 @@
-        <form action="" method="post" name="ss-form-register" class="ss-form ss-form-register">
+        <form action="" method="post" name="ss-form-<?=$FORM_ID?>" class="ss-form ss-form-<?=$FORM_ID?>">
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][action]" value="<?=$action?>" />
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][uniqueId]" value="<?=microtime(true)?>" />
 <?
@@ -10,6 +10,7 @@ foreach($fields as $f):
             $required = $f['required']?'required':'';
             $value_type = $f['value_type']?$f['value_type']:'';
             $max = $f['max']?$f['max']:255;
+            $min = $f['min']?$f['min']:'';
             $post_data = $formPropertiesAndValues[$fname];
 			$errors = $formPropertyValueErrors[$fname];
 			$css_class = 'ss-'.$fname.' '.$required.' '.$value_type;
@@ -21,6 +22,14 @@ foreach($fields as $f):
                 <label for="ss-<?=$fname?>"><?=$label?></label>
                 <input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][<?=$fname?>]" 
                 	maxlength="<?=$max?>" type="text" class="<?=trim($css_class)?>" value="<?=$post_data?>" />
+<?
+			if($formPropertyValueErrors[$fname]):
+				$label_error = $label_errors[key($formPropertyValueErrors[$fname])];
+?>
+                <label for="ss-<?=$fname?>" class="error"><?=$label_error?></label>
+<?
+			endif;
+?>
             </p>
 <?
             break;
@@ -41,6 +50,14 @@ foreach($fields as $f):
                 <input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][<?=$fname?>]" 
                 	maxlength="<?=$max?>" type="password" 
                     class="<?=trim($css_class)?>" value="" />
+<?
+			if($formPropertyValueErrors[$fname]):
+				$label_error = $label_errors[key($formPropertyValueErrors[$fname])];
+?>
+                <label for="ss-<?=$fname?>" class="error"><?=$label_error?></label>
+<?
+			endif;
+?>
             </p>
 <?
             $fname = $f['name'].'_re';
@@ -79,6 +96,14 @@ foreach($fields as $f):
                 endfor;
 ?>
                 </select>
+<?
+			if($formPropertyValueErrors[$fname]):
+				$label_error = $label_errors[key($formPropertyValueErrors[$fname])];
+?>
+                <label for="ss-<?=$fname?>" class="error"><?=$label_error?></label>
+<?
+			endif;
+?>
             </p>
 <?
             break;

@@ -1,39 +1,35 @@
 <?php
+#
+#
+# SSArticle
+# https://github.com/last-hero/square_shop
+#
+# (c) Gobi Selva
+# http://www.square.ch
+#
+# Diese Klasse dient für das Modellieren von
+# Artikel Daten
+#
+#
+
 class SSArticle extends SSObjectTable{
+	// Tabellenname
 	const TABLE = 'article';
-	const ERROR_TABLE_ATTR_DIFF = '7001';
-	
 	protected $TABLE = self::TABLE;
+	
+	// Fehlermeldungs ID für falsche Feldername
+	// die nicht in der DB Tabelle vorhanden
+	// oder nicht erlaubt sind zu manipulieren
+	const ERROR_TABLE_ATTR_DIFF = '7001';
 	protected $ERROR_TABLE_ATTR_DIFF = self::ERROR_TABLE_ATTR_DIFF;
 	
 	
-	
 	/*
-	* Customer nach ID laden
-	* param $id: Customer ID
-	* return boolean
+	* Preis formatieren
+	* param $price
+	* return string
 	*/
-	public function getByCategoryId($id){
-		//$query = SSDBSQL::_getSqlDmlQuery("id = $id", $this->TABLE, SSDBSchema::SHOW_IN_DETAIL);
-		//$res = SSDBSQL::executeSql($query);
-		$tablePropertyNames = SSDBSchema::_getFieldsAsSingleArray($this->TABLE, array('name'), array('sql_join' => 'table'));
-		if(sizeof($tablePropertyNames) == 1){
-			$propertyName = $tablePropertyNames[0];
-		}else{
-			return false;	
-		}
-		$tableData = SSDBSchema::_getTable($this->TABLE, true);
-		$table = $tableData['name'];
-		$res = $this->_getWhere($table.".".$propertyName." = $id");
-		if(count($res) > 0){
-			try{
-				$result = $this->getClearedUnknownProperties($res[0]);
-				return $res;
-			}catch(SSException $e) {
-				echo $e;
-			}
-		}
-		return false;
+	public function formatPrice($price){
+		return number_format($price, 2, ',', ' ');
 	}
 }
-

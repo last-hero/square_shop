@@ -137,6 +137,15 @@ class SSGUI {
 						$query = 'SELECT '.$f['sql_join']['field_label'].' as title, id FROM '.SSDBSchema::_getTableAttr($f['sql_join']['table'], 'name', true).'';
 						$select->addSqlOptions($query);
 						break;
+					case 'select':
+						$field = &$form->addSelectField($name);
+						$field->setLabel(ss_utils::i18l('label_'.$name));
+						$select = &$field->getSelect();
+						foreach($f['input_settings']['values'] as $val){
+							$select->addOption($val,$val);
+						}
+						$select->setSize(1);
+						break;
 				}
 			}
 		}

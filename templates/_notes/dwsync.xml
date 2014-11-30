@@ -4,9 +4,9 @@
 <file name="order.detail.tmpl.php" server="p2.ibog.biz" local="130592558400000000" remote="130617412200000000" Dst="1" />
 <file name="search.form.tmpl.php" server="p2.ibog.biz" local="130592558400000000" remote="130617412200000000" Dst="1" />
 <file name="customer.logout.form.tmpl.php" server="p2.ibog.biz" local="130618253923247863" remote="130618253400000000" Dst="1" />
-<file name="customer.register.form.tmpl.php" server="p2.ibog.biz" local="130618259407662842" remote="130618259400000000" Dst="1" />
+<file name="customer.register.form.tmpl.php" server="p2.ibog.biz" local="130618531134292893" remote="130618530600000000" Dst="1" />
 <file name="customer.register.success.tmpl.php" server="p2.ibog.biz" local="130617336953687741" remote="130617412200000000" Dst="1" />
-<file name="customer.login.form.tmpl.php" server="p2.ibog.biz" local="130618255762522625" remote="130618255200000000" Dst="1" />
-<file name="article.detail.tmpl.php" server="p2.ibog.biz" local="130618346768961171" remote="130618346400000000" Dst="1" />
-<file name="article.list.tmpl.php" server="p2.ibog.biz" local="130618347036796279" remote="130618347000000000" Dst="1" />
+<file name="customer.login.form.tmpl.php" server="p2.ibog.biz" local="130618499192204564" remote="130618498800000000" Dst="1" />
+<file name="article.detail.tmpl.php" server="p2.ibog.biz" local="130618427231119225" remote="130618426800000000" Dst="1" />
+<file name="article.list.tmpl.php" server="p2.ibog.biz" local="130618544734091505" remote="130618544400000000" Dst="1" />
 </dwsync>

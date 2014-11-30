@@ -1,8 +1,19 @@
 <?php
+#
+#
+# SSCustomerLoginController
+# https://github.com/last-hero/square_shop
+#
+# (c) Gobi Selva
+# http://www.square.ch
+#
+# Mit dieser Klasse wird das Login- / Logout-Verfahren
+# vewaltet
+#
+#
+
 class SSCustomerLoginController {
-	const FN_EMAIL = 'email';
-	const FN_PASSWORD = 'password';
-	
+	// Form Action Variablen	
 	const ACTION_LOGIN = 'login';
 	const ACTION_LOGOUT = 'logout';
 	
@@ -82,19 +93,21 @@ class SSCustomerLoginController {
 	* return bool  true = user+pw korrekt     false = user+pw falsch
 	*/
 	public function isInputValid(){
-		$error = 0;
+		$this->loginError = false;
 		
-		if(!SSHelper::isTypeOf('email', $this->formPropertiesAndValues[self::FN_EMAIL])){
-			$error++;
-		}
 		
-		$email = $this->formPropertiesAndValues[self::FN_EMAIL];
-		$password = $this->formPropertiesAndValues[self::FN_PASSWORD];
+		
+		$this->formPropertyValueErrors = SSHelper::checkFromInputs(SSCustomer::TABLE, 'login'
+											, $this->formPropertiesAndValues);
+												
+		$email = $this->formPropertiesAndValues['email'];
+		$password = $this->formPropertiesAndValues['password'];
 		if(!$this->customer->loadCustomerByEmailAndPassword($email, $password)){
-			$error++;
+			$this->formPropertyValueErrors['auth']['incorrect'] = 1;
 		}
-		
-		$this->loginError = $error > 0 ? true : false;
+		if(sizeof($this->formPropertyValueErrors) > 0){
+			$this->loginError = true;
+		}
 		
 		return !$this->loginError;
 	}
@@ -104,28 +117,22 @@ class SSCustomerLoginController {
 	* Falls User angemeldet: Logout-Maske anzeigen
 	*/
 	public function displayView(){
-		$param = array();
+		$params = array();
+		
 		
 		if($this->isUserLoggedIn()){
-			// User ist angemeldet
-			$param['action'] = self::ACTION_LOGOUT;
-			$param['label_submit'] = SSHelper::i18l('Logout');
-			$param['label_customer'] = $this->getLoggedInUserName();
-			
-			$this->customerLoginView->displayLogoutHtml($param);
+			$params['action'] = self::ACTION_LOGOUT;
+			$params['label_submit'] = SSHelper::i18l('label_logout');
+			$params['label_customer'] = $this->getLoggedInUserName();
+			$this->customerLoginView->displayLogoutHtml($params);
 		}else{
-			// User ist nicht angemeldet
-			$param['action'] = self::ACTION_LOGIN;
-			$param['label_email'] = SSHelper::i18l('E-Mail');
-			$param['label_submit'] = SSHelper::i18l('Login');
-			$param['label_password'] = SSHelper::i18l('Password');
-			$param['fn_email'] = self::FN_EMAIL;
-			$param['fn_password'] = self::FN_PASSWORD;
+			$params['action'] = self::ACTION_LOGIN;
+			$params['fields'] = SSHelper::getFormProperties(SSCustomerLoginView::FORM_ID, SSCustomer::TABLE, 'login');
+			$params['label_submit'] = SSHelper::i18l('label_login');
 			if($this->loginError){
-				$param['login_error'] = SSHelper::i18l(self::ACTION_LOGIN.'_error');
+				$params['login_error'] = SSHelper::i18l(self::ACTION_LOGIN.'_error');
 			}
-			
-			$this->customerLoginView->displayLoginHtml($param);
+			$this->customerLoginView->displayLoginHtml($params);
 		}
 	}
 	

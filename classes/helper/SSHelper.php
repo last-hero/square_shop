@@ -1,4 +1,17 @@
 <?php
+#
+#
+# SSCustomerLoginController
+# https://github.com/last-hero/square_shop
+#
+# (c) Gobi Selva
+# http://www.square.ch
+#
+# Diese Klasse dient als Helper Klasse für
+# allgemeine Funktionen
+#
+#
+
 class SSHelper{
 	/**
 	* Konstruktor
@@ -29,6 +42,9 @@ class SSHelper{
 	*/
 	public static function i18l($str){
 		$str = str_replace('register_label_', '', $str);
+		$str = str_replace('login_label_', '', $str);
+		$str = str_replace('label_', '', $str);
+		$str = '#'.$str;
 		return $str;
 	}
 	
@@ -97,8 +113,10 @@ class SSHelper{
 	}
 	
 	/**
-	* 
-	* param  
+	* Überprüft ob die angegebene $Value
+	* dem Typ enstpricht
+	* param string $type
+	* param string $value
 	* return bool
 	*/
 	public static function isTypeOf($type, $value){
@@ -239,7 +257,9 @@ class SSHelper{
 			$min = $settings['min'];
 			$max = $settings['max'];
 			if(!empty($type) and $type == 'password'){
-				if($value != $values[$name.'_re']){
+				// To Do -> eine bessere lösung
+				if($values[$name.'_re'] and $value != $values[$name.'_re']){
+				//if($show_in == 'register' and $value != $values[$name.'_re']){
 					$errors[$name]['equal'] = true;
 				}
 			}elseif(!empty($type) and !SSHelper::isTypeOf($type, $value)){

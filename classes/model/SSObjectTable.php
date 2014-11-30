@@ -1,21 +1,43 @@
 <?php
+#
+#
+# SSObjectTable
+# https://github.com/last-hero/square_shop
+#
+# (c) Gobi Selva
+# http://www.square.ch
+#
+# Diese Klasse dient als Parent für alle Subklassen
+# die Daten aus DB modellieren
+#
+#
+
 class SSObjectTable {
+	// Datenbank Felder mit Values (User Input) 
 	protected $propertiesAndValues;
+	
+	// alle (erlaubten) Datenbank Felder und deren Eigenschaften
 	protected $properties;
 	
+	// Tabellenname
 	protected $TABLE = 'SSObjectTable';
+	
+	// Fehlermeldungs ID für falsche Attribute
+	// die nicht in der DB Tabelle vorhanden
+	// oder nicht erlaubt sind zum manipulieren
 	protected $ERROR_TABLE_ATTR_DIFF;
 	
-	/*
+	/**
 	* Konstruktor
+	* initialisiert die DB Table Felder
 	*/
     function __construct(){
 		$this->loadPropertiesAndNames();
 		if(is_array($array)) $this->set($propertiesAndValues);
     }
 	
-	/*
-	* Keys (Attribute) holen von SSDBSchema
+	/**
+	* DB Tabellenfelder vom DB-Schema holen
 	*/
 	public function loadPropertiesAndNames(){
 		//$this->properties = SSDBSchema::_getFields($this->TABLE, 'name');
@@ -26,8 +48,11 @@ class SSObjectTable {
 		}
 	}
 	
-	/*
-	* Formular wird abgearbeitet
+	/**
+	* Felder raus kicken, die nicht erlaubt oder
+	* in der DB-Schema definiert sind
+	* param $propertiesAndValues: Felder und Values
+	* return $propertiesAndValuesNew
 	*/
 	public function getClearedUnknownProperties($propertiesAndValues){
 		$propertyNames = SSDBSchema::_getFieldsAsSingleArray($this->TABLE, array('name'));
@@ -40,9 +65,10 @@ class SSObjectTable {
 		return $propertiesAndValuesNew;
 	}
 	
-	/*
-	* Prüfen nach Existenz von Key(s)
+	/**
+	* Prüfen nach Existenz von DB-Table Felder
 	* param $keys: Attributname(n) [string|array]
+	* return bool: mind. 1 Feld nicht existiert dann false
 	*/
 	public function doPropertiesExist($keys){
 		if(is_string($keys))$keys = array($keys=>$keys);
@@ -53,9 +79,10 @@ class SSObjectTable {
 	}
 	
 	
-	/*
-	* Customer Daten holen
-	* param $key: Attributname
+	/**
+	* Getter für DB-Table Felder Value
+	* param $key: Feldname
+	* return string
 	*/
 	public function get($key){
 		if($this->doPropertiesExist($key)){
@@ -64,9 +91,9 @@ class SSObjectTable {
 		return null;
 	}
 	
-	/*
-	* Customer Daten setzen
-	* param $key: Attributname
+	/**
+	* Setter für DB-Table Felder Value
+	* param $key: DB-Table Feldname
 	* param $val: Wert
 	*/
 	public function set($keyOrData, $val = ''){
@@ -87,8 +114,8 @@ class SSObjectTable {
 		}
 	}
 	
-	/*
-	* Customer wird in DB gespeichert
+	/**
+	* Die DB-Table Felder-Values in DB speichern
 	*/
 	public function save(){
 		if((int)$this->get('id') > 0){
@@ -96,7 +123,7 @@ class SSObjectTable {
 		}else{
 			
 			// Verschlüsseln --> z.B. Passwort
-			$dbProperties = SSDBSchema::_getFields(SSCustomer::TABLE, null, array('sql_settings' => 'encrypt'));
+			$dbProperties = SSDBSchema::_getFields($this->TABLE, null, array('sql_settings' => 'encrypt'));
 			foreach($this->propertiesAndValues as $name => $value){
 				foreach($dbProperties as $dbProperty){
 					if($name == $dbProperty['name']){
@@ -113,9 +140,10 @@ class SSObjectTable {
 		}
 	}
 	
-	/*
-	* Customer nach ID laden
-	* param $id: Customer ID
+	/**
+	* Eintrag aus der DB nach ID holen
+	* und zum Objekt zuweisen mit $this->set
+	* param $id
 	* return boolean
 	*/
 	public function loadById($id){
@@ -137,10 +165,38 @@ class SSObjectTable {
 	}
 	
 	/*
-	* Artikel Daten aus Datenbank holen
+	* Einträge aus der DB nach ForeignID holen
+	*  -> funktioniert nur wenn ein ForeignId in
+	*     der Tabelle vorhanden ist
+	* param $foreignId
+	* return array|bool: Datensätze oder false
+	*/
+	public function getByForeignId($foreignId){
+		$tablePropertyNames = SSDBSchema::_getFieldsAsSingleArray($this->TABLE, array('name'), array('sql_join' => 'table'));
+		if(sizeof($tablePropertyNames) == 1){
+			$propertyName = $tablePropertyNames[0];
+		}else{
+			return false;	
+		}
+		$tableData = SSDBSchema::_getTable($this->TABLE, true);
+		$table = $tableData['name'];
+		$res = $this->_getWhere($table.".".$propertyName." = $foreignId");
+		if(count($res) > 0){
+			try{
+				$result = $this->getClearedUnknownProperties($res[0]);
+				return $res;
+			}catch(SSException $e) {
+				echo $e;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	* Datensätze aus der DB holen
 	* param $where: Where Klausel
 	* param $show_in: 
-	* return (Array) $res: Customers oder Customer Einträge aus Datenbank
+	* return (Array) $res: 1 oder mehrere Einträge aus Datenbank
 	*/
 	protected function _getWhere($where, $show_in = null){
 		if(!$show_in){
@@ -151,4 +207,3 @@ class SSObjectTable {
 		return $res;
 	}
 }
-

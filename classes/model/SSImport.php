@@ -1,8 +1,20 @@
 <?php
-	/**
-	*  TODO
-	*  Importieren von Daten über CSV Dateien
-	*/
+#
+#
+# SSImport
+# https://github.com/last-hero/square_shop
+#
+# (c) Gobi Selva
+# http://www.square.ch
+#
+# Mit Hilfe von dieser Klasse kann man die Sample-Daten in DB importieren.
+#
+#
+# TODO
+# Importieren von Daten über CSV Dateien
+#
+#
+
 class SSImport {	
 	/**
 	* Test Daten importieren
@@ -15,8 +27,10 @@ class SSImport {
 			$file = $REX['INCLUDE_PATH'].'/addons/square_shop/test/'.$files[$i];
 			if(is_file($file)){
 				$query[] = file_get_contents($file);
+				//$query[] = file_get_contents(utf8_encode($file));
 			}
 		}
+		
 		
 		SSDBSQL::executeSql($query, false);
 		
@@ -46,6 +60,28 @@ class SSImport {
 				$q .= '("'.$order_id.'", "'.implode('", "', $res[0]).'"), ';
 			}
 			$q = array(substr($q, 0, -2));
+			$res = SSDBSQL::executeSql($q, false);
+		}
+		
+		
+		$query = 'SELECT id FROM rex_square_shop_article';
+		// Bilder zum Artikel einfügen
+		$resarticle = SSDBSQL::executeSql($query, false);
+		$counter = 1;
+		foreach($resarticle as $art){
+			/*
+				sprintf('%0.2f', 2.5699);
+				sprintf ("%03d\n", 26);
+			*/
+			$art_id = $art['id'];
+			$imgs = 'model'.sprintf ("%03d\n", $counter).'.jpg';
+			$counter++;
+			$imgs .= ',model'.sprintf ("%03d\n", $counter).'.jpg';
+			$counter++;
+			if($counter > 145){
+				$counter = 1;
+			}
+			$q = 'UPDATE rex_square_shop_article SET images = "'.$imgs.'" where id = '.$art_id.'';
 			$res = SSDBSQL::executeSql($q, false);
 		}
 		// to do exeption

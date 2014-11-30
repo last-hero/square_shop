@@ -1,4 +1,17 @@
 <?php
+#
+#
+# SSDBSchema
+# https://github.com/last-hero/square_shop
+#
+# (c) Gobi Selva
+# http://www.square.ch
+#
+# In dieser Klasse wird das Datenbank Schema definiert
+# Die Formulare werden von dieser Schema-Klasse aus
+# generiert. Somit sind alle Settings hier in einem Ort.
+#
+
 class SSDBSchema {
 	const FOREIGN_KEY		= 'FOREIGN KEY';
 	const PRIMARY_KEY		= 'PRIMARY KEY';
@@ -6,25 +19,14 @@ class SSDBSchema {
 	const SHOW_IN_LIST	   = 'list';
 	const SHOW_IN_ADD		= 'add';
 	const SHOW_IN_EDIT	   = 'edit';
-	const SHOW_IN_REGISTER = 'register';
+	const SHOW_IN_REGISTER   = 'register';
+	const SHOW_IN_LOGIN      = 'login';
 	
-	const ERROR_FIELDS_NOT_FOUND = 1000;
-	const ERROR_TABLE_NOT_FOUND = 1001;
-	const ERROR_TABLE_ATTR_NOT_FOUND = 1003;
+	const ERROR_FIELDS_NOT_FOUND 	   = 1000;
+	const ERROR_TABLE_NOT_FOUND 		= 1001;
+	const ERROR_TABLE_ATTR_NOT_FOUND   = 1003;
 	
 	
-	
-	public static function _getFieldsAsSingleArray($table, array $attributes=null, $filter=null){
-		$properties = self::_getFields($table, $attributes, $filter);
-		if(is_array($attributes) and count($attributes) == 1){
-			$_propertiesNew = array();
-			for($x=0; $x<sizeof($properties); $x++){
-				$_propertiesNew[$x] = $properties[$x]['name'];
-			}
-			return $_propertiesNew;
-		}
-		return $properties;
-	}
 	/**
 	* Enthält alle Felder
 	* param $attributes --> es werden nur diese attribute zurückgegeben
@@ -532,6 +534,25 @@ class SSDBSchema {
 	}
 	
 	/**
+	* siehe function _getFields(..)
+	* Diese Klasse bereinigt, das Array in Array Value mit einem Wert
+	* z.B. array(array('email')) wird zu array('email')
+	* @return array
+	* 
+	*/
+	public static function _getFieldsAsSingleArray($table, array $attributes=null, $filter=null){
+		$properties = self::_getFields($table, $attributes, $filter);
+		if(is_array($attributes) and count($attributes) == 1){
+			$_propertiesNew = array();
+			for($x=0; $x<sizeof($properties); $x++){
+				$_propertiesNew[$x] = $properties[$x]['name'];
+			}
+			return $_propertiesNew;
+		}
+		return $properties;
+	}
+	
+	/**
 	* Enthält alle Tabellen
 	* param $table tabellenname (shortform)
 	* param $prefix: mit oder ohne Redaxo-Prefix für Tabellenname
@@ -614,4 +635,3 @@ class SSDBSchema {
 		return false;
 	}
 }
-

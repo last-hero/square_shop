@@ -1,4 +1,16 @@
 <?php
+#
+#
+# SSCustomerRegisterController
+# https://github.com/last-hero/square_shop
+#
+# (c) Gobi Selva
+# http://www.square.ch
+#
+# Mit dieser Klasse wird das Registrieren ermöglicht
+# 
+#
+
 class SSCustomerRegisterController {
 	const ACTION_REGISTER = 'register';
 	
@@ -41,7 +53,7 @@ class SSCustomerRegisterController {
     }
 	
 	/*
-	* Login/Logout Funktion starten
+	* Registrieren Starten
 	*/
 	public function invoke(){
 		if($this->customerLoginController->isUserLoggedIn()){
@@ -52,7 +64,7 @@ class SSCustomerRegisterController {
 					$this->registerHandler();
 					$this->customerRegisterView->displaySuccess();
 				}else{
-					$this->customerRegisterView->displayErrors($this->formPropertyValueErrors);
+					//$this->customerRegisterView->displayErrors($this->formPropertyValueErrors);
 					$this->displayView();
 				}
 			}else{
@@ -63,6 +75,7 @@ class SSCustomerRegisterController {
 	
 	/*
 	* Formular wird abgearbeitet
+	* Benutzer speichern falls alle User-Inputs valid
 	*/
 	public function registerHandler(){
 		switch($this->formPropertiesAndValues['action']){
@@ -71,7 +84,7 @@ class SSCustomerRegisterController {
 					$clearedUserInputs = $this->customer->getClearedUnknownProperties($this->formPropertiesAndValues);
 					$this->customer->set($clearedUserInputs);
 					$this->customer->save();
-					$this->setUserRequestNoMoreUnique();
+					$this->userRequestIsNotMoreUnique();
 				}
 				break;
 		}
@@ -116,11 +129,18 @@ class SSCustomerRegisterController {
 		$params = array();
 		$params['label_submit'] = SSHelper::i18l('Abschicken');
 		$params['action'] = self::ACTION_REGISTER;
-		$params['message_success'] = SSHelper::i18l('RegisterSuccess');
 		
 		$params['formPropertiesAndValues'] = $this->formPropertiesAndValues;
 		
 		$params['formPropertyValueErrors'] = $this->formPropertyValueErrors;
+		
+		
+		$params['label_errors'] = array();
+		foreach($params['formPropertyValueErrors'] as $f){
+			foreach($f as $name => $val){
+				$params['label_errors'][$name] = SSHelper::i18l('label_error_'.$name);
+			}
+		}
 		
 		$params['fields'] = SSHelper::getFormProperties(SSCustomerRegisterView::FORM_ID, SSCustomer::TABLE, 'register');
 		
@@ -142,7 +162,7 @@ class SSCustomerRegisterController {
 	/*
 	* Speichert From unique id in Session
 	*/
-	public function setUserRequestNoMoreUnique(){
+	public function userRequestIsNotMoreUnique(){
 		$this->session->set(self::ACTION_REGISTER.'SuccessUniqueId', $this->formPropertiesAndValues['uniqueId']);
 	}
 }

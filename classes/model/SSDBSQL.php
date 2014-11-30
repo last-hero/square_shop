@@ -1,4 +1,16 @@
 <?php
+#
+#
+# SSDBSQL
+# https://github.com/last-hero/square_shop
+#
+# (c) Gobi Selva
+# http://www.square.ch
+#
+# Mit dieser Klasse werden die ganze SQL Scripts generiert
+# und ausgeführt
+#
+
 class SSDBSQL {
 	const FOREIGN_KEY		= 'FOREIGN KEY';
 	const PRIMARY_KEY		= 'PRIMARY KEY';
