@@ -2,12 +2,12 @@
 <dwsync>
 <file name="SSCart.php" server="p2.ibog.biz" local="130610605691459756" remote="130617412200000000" Dst="1" />
 <file name="SSDBSQL.php" server="p2.ibog.biz" local="130618510168849525" remote="130618509600000000" Dst="1" />
-<file name="SSDBSchema.php" server="p2.ibog.biz" local="130618514119676360" remote="130618513800000000" Dst="1" />
+<file name="SSDBSchema.php" server="p2.ibog.biz" local="130619446702681132" remote="130619446200000000" Dst="1" />
 <file name="SSException.php" server="p2.ibog.biz" local="130618512487626136" remote="130618512000000000" Dst="1" />
 <file name="SSImport.php" server="p2.ibog.biz" local="130618573339054341" remote="130618573200000000" Dst="1" />
 <file name="SSSession.php" server="p2.ibog.biz" local="130618512089123594" remote="130618512000000000" Dst="1" />
 <file name="SSCustomer.php" server="p2.ibog.biz" local="130618465297853535" remote="130618465200000000" Dst="1" />
-<file name="SSArticle.php" server="p2.ibog.biz" local="130618457131945585" remote="130618456800000000" Dst="1" />
-<file name="SSObjectTable.php" server="p2.ibog.biz" local="130618457104096115" remote="130618456800000000" Dst="1" />
+<file name="SSArticle.php" server="p2.ibog.biz" local="130619475314257608" remote="130619475000000000" Dst="1" />
+<file name="SSObjectTable.php" server="p2.ibog.biz" local="130619452218125564" remote="130619452200000000" Dst="1" />
 <file name="SSCategory.php" server="p2.ibog.biz" local="130618458329842781" remote="130618458000000000" Dst="1" />
 </dwsync>

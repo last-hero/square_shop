@@ -30,6 +30,8 @@ class SSArticle extends SSObjectTable{
 	* return string
 	*/
 	public function formatPrice($price){
-		return number_format($price, 2, ',', ' ');
+		return sprintf('%0.2f', $price);
+		//sprintf ("%03d\n", 26);		
+		//return number_format($price, 2, ',', ' ');
 	}
 }

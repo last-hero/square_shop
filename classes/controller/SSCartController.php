@@ -79,12 +79,59 @@ class SSCartController {
 	}
 	
 	/*
+	* Alle Artikel ID + Menge vom Warenkorb holen
+	*/
+	public function getCartItems(){
+		return $this->session->get('cartItems');
+	}
+	
+	/*
+	* Alle Artikel IDs vom Warenkorb holen
+	*/
+	public function getCartItemIds(){
+		$items = $this->session->get('cartItems');
+		$ids = array();
+		for($i=0; $i<sizeof($items); $i++){
+			$ids[] = $items[$i]['id'];
+		}
+		return $ids;
+	}
+	
+	/*
+	* Menge vom Artikel nach ID holen
+	*/
+	public function getItemQtyById($id){
+		$items = $this->session->get('cartItems');
+		for($i=0; $i<sizeof($items); $i++){
+			if((int)$items[$i]['id'] == $id){
+				return (int)$items[$i]['qty'];
+			}
+		}
+		return 0;
+	}
+	
+	/*
+	* (REX_ARTICLE_ID) ID der Seite,
+	* auf dem sich der Artikel befindet
+	*/
+	public function getItemPageIdById($id){
+		$items = $this->session->get('cartItems');
+		for($i=0; $i<sizeof($items); $i++){
+			if((int)$items[$i]['id'] == $id){
+				return (int)$items[$i]['pageId'];
+			}
+		}
+		return 0;
+	}
+	
+	/*
 	* Artikel zum Warenkorb hinzufügen
 	* Dabei werden ID, Qty in Session gespeichert
 	* param int $artId: Artikel ID
 	* param int $qty: Menge
 	*/
 	public function addToCart($artId, $qty){
+		global $REX;
 		$items = $this->session->get('cartItems');
 		$updated = false;
 		for($i=0; $i<sizeof($items); $i++){
@@ -94,7 +141,7 @@ class SSCartController {
 			}
 		}
 		if(!$updated){
-			$items[] = array('id' => $artId, 'qty' => $qty);
+			$items[] = array('id' => $artId, 'qty' => $qty, 'pageId' => $REX['ARTICLE_ID']);
 		}
 		$this->session->set('cartItems', $items);
 	}
@@ -129,6 +176,52 @@ class SSCartController {
 	/*
 	*/
 	public function displayView(){
+		$currency = SSHelper::getSetting('currency');
+		$mwst = SSHelper::getSetting('mwst');
+		
+		$ids = $this->getCartItemIds();
+		$articles = $this->article->getByIds($ids);
+		
+		$params = array();
+		$params['currency'] = $currency;
+		$params['mwst'] = $mwst;
+		//$params['action'] = self::ACTION_ADD_TO_CART;
+		/*
+		
+            	<th class="ss-img"><?=$label_bild?></th>
+            	<th class="ss-artno"><?=$label_artno?></th>
+            	<th class="ss-title"><?=$label_bezeichnung?></th>
+            	<th class="ss-price"><?=$label_price?></th>
+            	<th class="ss-qty"><?=$label_qty?></th>
+            	<th class="ss-subtotal"><?=$label_subtotal?></th>
+		*/
+		
+		$params['label_bild'] = SSHelper::i18l('label_bild');
+		$params['label_artno'] = SSHelper::i18l('label_artno');
+		$params['label_bezeichnung'] = SSHelper::i18l('label_bezeichnung');
+		$params['label_price'] = SSHelper::i18l('label_price');
+		$params['label_qty'] = SSHelper::i18l('label_qty');
+		$params['label_subtotal'] = SSHelper::i18l('label_subtotal');
+		
+		$params['articles'] = array();
+		foreach($articles as $art){
+			$tmpArt = $art;
+			$tmpArt['qty'] = $this->getItemQtyById($tmpArt['id']);
+			$tmpArt['subtotal'] = (int)$tmpArt['price'] * (int)$tmpArt['qty'];
+			
+			
+			$tmpArt['price'] = $this->article->formatPrice($tmpArt['price']);
+			$tmpArt['subtotal'] = $this->article->formatPrice($tmpArt['subtotal']);
+			
+			$tmpArt['imgs'] = explode(',', $tmpArt['images']);
+			$tmpArt['url'] = rex_getUrl($this->getItemPageIdById($tmpArt['id']), $REX['CLANG_ID']);
+			
+			$pageId = $this->getItemPageIdById($tmpArt['id']);
+			$urlQueryArray = array(SSArticleController::VAR_NAME_ARTILEID=>$tmpArt['id']);
+			$tmpArt['url'] = rex_getUrl($pageId, $REX['CLANG_ID'], $urlQueryArray);
+					
+			$params['articles'][] = $tmpArt;
+		}
 		$this->cartView->displayCartHtml($params);
 	}
 	

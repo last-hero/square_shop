@@ -530,7 +530,7 @@ class SSDBSchema {
 				unset($fields_new);
 			}
 		}
-		return $fields;	
+		return $fields;
 	}
 	
 	/**
@@ -551,6 +551,48 @@ class SSDBSchema {
 		}
 		return $properties;
 	}
+	
+	/**
+	* Liefert ForeignKeys einer Tabelle zurück
+	* @param $table
+	* @param $foreignTable
+	* @return array
+	* 
+	*/
+	public static function _getForeignKeyNamesByForeignTable($table, $foreignTable){
+		$foreinKeyNames = array();
+		$properties = self::_getFields($table, null, null);
+		foreach($properties as $property){
+			if(isset($property['sql_join']['table']) and $property['sql_join']['table'] == $foreignTable){
+				$foreinKeyNames[] = $property['name'];
+			}
+		}
+		return $foreinKeyNames;
+	}
+	/*
+	public static function search($array, $key, $value){ 
+		$results = array(); 
+	
+		if (is_array($array)){ 
+			if (isset($array[$key]) && $array[$key] == $value) 
+				$results[] = $array; 
+	
+			foreach ($array as $subarray) 
+				$results = array_merge($results, self::search($subarray, $key, $value)); 
+		} 
+	
+		return $results; 
+	} 
+	public static function recursive_array_search($needle,$haystack){
+		foreach($haystack as $key=>$value) {
+			$current_key=$key;
+			if($needle===$value OR (is_array($value) && self::recursive_array_search($needle,$value) !== false)) {
+				return $current_key;
+			}
+		}
+		return false;
+	}
+	*/
 	
 	/**
 	* Enthält alle Tabellen

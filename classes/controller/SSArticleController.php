@@ -74,7 +74,7 @@ class SSArticleController {
 			$this->article->loadById($this->articleId);
 		}elseif((int)$this->categoryId > 0){
 			// Daten nach Kategorie ID holen
-			$articles = $this->article->getByForeignId($this->categoryId);
+			$articles = $this->article->getByForeignId($this->categoryId, SSCategory::TABLE);
 			foreach($articles as $article){
 				$artObj = new SSArticle();
 				$artObj->set($artObj->getClearedUnknownProperties($article));

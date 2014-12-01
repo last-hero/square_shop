@@ -27,6 +27,10 @@ class SSObjectTable {
 	// oder nicht erlaubt sind zum manipulieren
 	protected $ERROR_TABLE_ATTR_DIFF;
 	
+	protected $ERROR_TO_MANY_FOREIGN_KEYS;
+	
+	protected $ERROR_NO_FOREIGN_KEYS;
+	
 	/**
 	* Konstruktor
 	* initialisiert die DB Table Felder
@@ -149,9 +153,13 @@ class SSObjectTable {
 	public function loadById($id){
 		//$query = SSDBSQL::_getSqlDmlQuery("id = $id", $this->TABLE, SSDBSchema::SHOW_IN_DETAIL);
 		//$res = SSDBSQL::executeSql($query);
+		
 		$tableData = SSDBSchema::_getTable($this->TABLE, true);
 		$table = $tableData['name'];
-		$res = $this->_getWhere($table.".id = $id");
+		
+		$where = $table.".id = $id";
+		
+		$res = $this->_getWhere($where);
 		if(count($res) == 1){
 			try{
 				$result = $this->getClearedUnknownProperties($res[0]);
@@ -164,20 +172,50 @@ class SSObjectTable {
 		return false;
 	}
 	
+	/**
+	* Eintrag aus der DB nach ID holen
+	* und zum Objekt zuweisen mit $this->set
+	* param $id
+	* return boolean
+	*/
+	public function getByIds($ids){
+		$tableData = SSDBSchema::_getTable($this->TABLE, true);
+		$table = $tableData['name'];
+		
+		$ids = !is_array($ids)?array($ids):$ids;
+		$where = $table.".id IN (".implode(',', $ids).")";
+		
+		$res = $this->_getWhere($where);
+		if(count($res) > 0){
+			try{
+				return $res;
+			}catch(SSException $e) {
+				echo $e;
+			}
+		}
+		return false;
+	}
+	
 	/*
 	* Einträge aus der DB nach ForeignID holen
 	*  -> funktioniert nur wenn ein ForeignId in
 	*     der Tabelle vorhanden ist
 	* param $foreignId
+	* param $foreignTable
 	* return array|bool: Datensätze oder false
 	*/
-	public function getByForeignId($foreignId){
-		$tablePropertyNames = SSDBSchema::_getFieldsAsSingleArray($this->TABLE, array('name'), array('sql_join' => 'table'));
-		if(sizeof($tablePropertyNames) == 1){
-			$propertyName = $tablePropertyNames[0];
+	public function getByForeignId($foreignId, $foreignTable){
+		// Foreign Keys holen
+		$foreignKeyNames = SSDBSchema::_getForeignKeyNamesByForeignTable($this->TABLE, $foreignTable);
+		
+		if(sizeof($foreignKeyNames) == 1){
+			$propertyName = $foreignKeyNames[0];
+		}elseif(sizeof($foreignKeyNames) > 1){
+			throw new SSException('Too many Foreign Keys for Table '.$this->TABLE.'', $this->ERROR_TO_MANY_FOREIGN_KEYS);
 		}else{
-			return false;	
+			throw new SSException('No Foreign Keys for Table '.$this->TABLE.'', $this->ERROR_NO_FOREIGN_KEYS);
 		}
+		
 		$tableData = SSDBSchema::_getTable($this->TABLE, true);
 		$table = $tableData['name'];
 		$res = $this->_getWhere($table.".".$propertyName." = $foreignId");
