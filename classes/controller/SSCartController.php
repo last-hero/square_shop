@@ -21,6 +21,8 @@ class SSCartController {
 	// POST Var Daten -> korrekt eingegebene von User
 	private $formPropertiesAndValues;
 	
+	// SSCartView Object
+	private $cartView;
 	
 	/*
 	* Konstruktor: lädt Session Instanz (Singleton)
@@ -29,7 +31,10 @@ class SSCartController {
     public function __construct(){
 		// Session Objekt (Singleton) holen
 		$this->session = SSSession::getInstance();
+		
 		$this->article = new SSArticle();
+		
+		$this->cartView = new SSCartView();
 		
 		// Form Post Vars (User input) holen
 		$this->formPropertiesAndValues = SSHelper::getPostByFormId(SSArticleView::FORM_ID);
@@ -124,12 +129,12 @@ class SSCartController {
 	/*
 	*/
 	public function displayView(){
-		
+		$this->cartView->displayCartHtml($params);
 	}
 	
 	/*
 	*/
 	public function displayCart(){
-		
+		$this->cartView->displayCartHtml($params);
 	}
 }

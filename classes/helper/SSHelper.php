@@ -258,8 +258,8 @@ class SSHelper{
 			$max = $settings['max'];
 			if(!empty($type) and $type == 'password'){
 				// To Do -> eine bessere lösung
-				if($values[$name.'_re'] and $value != $values[$name.'_re']){
-				//if($show_in == 'register' and $value != $values[$name.'_re']){
+				//if($values[$name.'_re'] and $value != $values[$name.'_re']){
+				if($show_in == SSDBSchema::SHOW_IN_REGISTER and $value != $values[$name.'_re']){
 					$errors[$name]['equal'] = true;
 				}
 			}elseif(!empty($type) and !SSHelper::isTypeOf($type, $value)){

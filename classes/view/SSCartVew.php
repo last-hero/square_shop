@@ -19,7 +19,7 @@ class SSCartView {
 	* Warenkorb Anzeige
 	*   --> Full
 	*/
-	public function displayCart($params = array()){
+	public function displayCartHtml($params = array()){
 		$params['FORM_ID'] = self::FORM_ID;
 		try{			
 			echo SSGUI::parse(self::FORM_ID.'.complete.tmpl.php', $params);
@@ -32,7 +32,7 @@ class SSCartView {
 	* Warenkorb Anzeige
 	*   --> Short
 	*/
-	public function displayCartShort($params = array()){
+	public function displayCartShortHtml($params = array()){
 		$params['FORM_ID'] = self::FORM_ID;
 		try{			
 			echo SSGUI::parse(self::FORM_ID.'.short.tmpl.php', $params);
