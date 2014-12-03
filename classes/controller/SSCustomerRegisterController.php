@@ -97,10 +97,6 @@ class SSCustomerRegisterController {
 	public function isInputValid(){
 		$this->formPropertyValueErrors = SSHelper::checkFromInputs(SSCustomer::TABLE, 'register'
 												, $this->formPropertiesAndValues);
-		
-		if($this->customer->isEmailAlreadyExists($this->formPropertiesAndValues['email'])){
-			$this->formPropertyValueErrors['email']['exists'] = 1;
-		}
 		if(sizeof($this->formPropertyValueErrors) > 0){
 			return false;
 		}

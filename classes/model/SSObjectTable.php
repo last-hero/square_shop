@@ -35,7 +35,7 @@ class SSObjectTable {
 	* Konstruktor
 	* initialisiert die DB Table Felder
 	*/
-    function __construct(){
+    function __construct($table = null){
 		$this->loadPropertiesAndNames();
 		if(is_array($array)) $this->set($propertiesAndValues);
     }

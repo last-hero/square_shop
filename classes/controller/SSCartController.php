@@ -12,8 +12,9 @@
 #
 
 class SSCartController {
+	const TABLE_ORDER_ITEM = 'order_item';
 	// Form Action Code
-	const ACTION_DEL_FROM_CART	 = 'del_from_cart';
+	const ACTION_DEL_FROM_CART	 	= 'del_from_cart';
 	const ACTION_UPDATE_ART_QTY 	= 'update_art_qty';
 	const ACTION_EMPTY_CART 		= 'empty_cart';
 	
@@ -25,6 +26,9 @@ class SSCartController {
 	
 	// POST Var Daten -> korrekt eingegebene von User
 	private $formPropertiesAndValues;
+	
+	// Fehler
+	private $formPropertyValueErrors;
 	
 	// SSCartView Object
 	private $cartView;
@@ -58,16 +62,15 @@ class SSCartController {
 	*/
 	public function cartHandler(){
 		$artId = (int)$this->formPropertiesAndValues['id'];
+		$qty = (int)$this->formPropertiesAndValues['qty'];
 		switch($this->formPropertiesAndValues['action']){
 			case SSArticleController::ACTION_ADD_TO_CART:
-				$qty = (int)$this->formPropertiesAndValues['qty'];
-				if($qty > 0 and $this->isArticleExists($artId)){
+				if($this->isInputValid()){
 					$this->addToCart($artId, $qty);
 				}
 				break;
 			case self::ACTION_UPDATE_ART_QTY:
-				$qty = (int)$this->formPropertiesAndValues['qty'];
-				if($this->isArticleExists($artId)){
+				if($this->isInputValid()){
 					if($qty > 0){
 						$this->updateQty($artId, $qty);
 					}elseif($qty == 0){
@@ -76,7 +79,7 @@ class SSCartController {
 				}
 				break;
 			case self::ACTION_DEL_FROM_CART:
-				if($this->isArticleExists($artId)){
+				if($this->isInputValid()){
 					$this->removeFromCart($artId);
 				}
 				break;
@@ -86,6 +89,31 @@ class SSCartController {
 			case 'null':
 				break;
 		}
+	}
+	
+	
+	
+	/*
+	* Formular Input Dateon vom User auf Richtigkeit überpürfen
+	* return bool
+	*/
+	public function isInputValid(){
+		$errorsOrderItem1 = SSHelper::checkFromInputs(self::TABLE_ORDER_ITEM, SSDBSchema::SHOW_IN_CART_ITEM
+												, $this->formPropertiesAndValues);
+		$errorsOrderItem2 = SSHelper::checkFromInputs(SSArticle::TABLE, SSDBSchema::SHOW_IN_CART_ITEM
+												, $this->formPropertiesAndValues);
+												
+		$this->formPropertyValueErrors = array_merge($errorsOrderItem1, $errorsOrderItem2);
+		
+		d($this->formPropertyValueErrors);
+		
+		if(!$this->isArticleExists($this->formPropertiesAndValues['id'])){
+			$this->formPropertyValueErrors['id']['notfound'] = 1;
+		}
+		if(sizeof($this->formPropertyValueErrors) > 0){
+			return false;
+		}
+		return true;
 	}
 	
 	/*

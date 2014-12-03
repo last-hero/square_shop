@@ -41,6 +41,7 @@
                     <form action="" method="post" name="ss-form-delfromcart" class="ss-form ss-form-delfromcart">
                         <input type="hidden" name="SSForm[<?=$FORM_ID?>][action]" value="<?=$action_del_from_cart?>" />
                         <input type="hidden" name="SSForm[<?=$FORM_ID?>][id]" value="<?=$art['id']?>" />
+                        <input type="hidden" name="SSForm[<?=$FORM_ID?>][qty]" value="0" />
                         <input id="ss-submit" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-submit" value="<?=$label_entfernen?>" />
                     </form>
                 </td>

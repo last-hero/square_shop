@@ -250,12 +250,17 @@ class SSHelper{
 		}
 		foreach($fields as $property){
 			$settings = $property['input_settings'];
+			$settingsByShowIn = $property['input_settings_by_show_in'][$show_in];
+			$settingsByShowIn = is_array($settingsByShowIn)?$settingsByShowIn:array($settingsByShowIn);
+			$settings = array_merge($settings, $settingsByShowIn);
 			$name = $property['name'];
 			$value = $values[$name];
 			$type = $settings['type'];
 			$required = $settings['required'];
 			$min = $settings['min'];
 			$max = $settings['max'];
+			$notexists = $settings['notexists'];
+			$exists = $settings['exists'];
 			if(!empty($type) and $type == 'password'){
 				// To Do -> eine bessere lösung
 				//if($values[$name.'_re'] and $value != $values[$name.'_re']){
@@ -272,6 +277,23 @@ class SSHelper{
 				$errors[$name]['min'] = true;
 			}elseif((int)$max and strlen($value) > (int)$max){
 				$errors[$name]['max'] = true;
+			}
+			if($exists or $notexists){
+				$tableData = SSDBSchema::_getTable($table, true);
+				$table_fullname = $tableData['name'];
+				$where = $table_fullname.".".$name." = '".$value."' ";
+				$query = SSDBSQL::_getSqlDmlQuery($where, $table, $show_in);
+				$res = SSDBSQL::executeSql($query);
+				if($notexists){
+					if(count($res) < 1){
+						$errors[$name]['notexists'] = true;
+					}
+				}
+				if($exists){
+					if(!empty($res)){
+						$errors[$name]['exists'] = true;
+					}
+				}
 			}
 		}
 		return $errors;

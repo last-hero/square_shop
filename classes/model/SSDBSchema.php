@@ -21,10 +21,11 @@ class SSDBSchema {
 	const SHOW_IN_EDIT	   = 'edit';
 	const SHOW_IN_REGISTER   = 'register';
 	const SHOW_IN_LOGIN      = 'login';
+	const SHOW_IN_CART_ITEM     = 'cart_item'; // add to cart  |  remove from cart  |  change qty
 	
-	const ERROR_FIELDS_NOT_FOUND 	   = 1000;
+	const ERROR_FIELDS_NOT_FOUND 	    = 1000;
 	const ERROR_TABLE_NOT_FOUND 		= 1001;
-	const ERROR_TABLE_ATTR_NOT_FOUND   = 1003;
+	const ERROR_TABLE_ATTR_NOT_FOUND    = 1003;
 	
 	
 	/**
@@ -44,7 +45,17 @@ class SSDBSchema {
 					'name' => 'id' // Feldname
 					, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT' // SQL-Script
 					, 'type' => self::PRIMARY_KEY // Feld-Typ [Foreign-Key|Primary-Key]
-					, 'show_in' => array('detail', 'list', 'search') // Woüberall soll dieses Feld angezeigt werden
+					, 'show_in' => array('detail', 'list', 'search', 'cart_item') // Woüberall soll dieses Feld angezeigt werden
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'integer' => true
+						)
+					, 'input_settings_by_show_in' => array(
+							'cart_item' => array(
+								'notexists' => true
+							)
+						)
 				)
 				, array(
 					'name' => 'category_id'
@@ -247,6 +258,11 @@ class SSDBSchema {
 							'required' => true
 							, 'type' => 'email'
 							, 'max' => 90
+						)
+					, 'input_settings_by_show_in' => array(
+							'register' => array(
+								'exists' => true
+							)
 						)
 					, 'sql' => 'VARCHAR(90) NULL'
 					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register', 'login')
@@ -474,7 +490,13 @@ class SSDBSchema {
 				, array(
 					'name' => 'qty'
 					, 'sql' => 'INT NULL DEFAULT 0'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'cart_item')
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 1 // anzahl Zeichen
+							, 'max' => 2 // anzahl Zeichen
+						)
 				)
 				, array(
 					'name' => 'status'
