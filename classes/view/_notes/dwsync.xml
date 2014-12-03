@@ -4,5 +4,6 @@
 <file name="SSCustomerLoginView.php" server="p2.ibog.biz" local="130617409790052817" remote="130617412200000000" Dst="1" />
 <file name="SSCustomerRegisterView.php" server="p2.ibog.biz" local="130617409791318862" remote="130617412200000000" Dst="1" />
 <file name="SSArticleView.php" server="p2.ibog.biz" local="130620280359791351" remote="130620280200000000" Dst="1" />
-<file name="SSCartView.php" server="p2.ibog.biz" local="130619391275635261" remote="130619392800000000" Dst="1" />
+<file name="SSCartView.php" server="p2.ibog.biz" local="130620959170887004" remote="130620958800000000" Dst="1" />
+<file name="SSCheckoutView.php" server="p2.ibog.biz" local="130621122153302294" remote="130621122000000000" Dst="1" />
 </dwsync>

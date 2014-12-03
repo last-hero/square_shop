@@ -33,6 +33,10 @@ class SSCartController {
 	// SSCartView Object
 	private $cartView;
 	
+	private $showMessage;
+	
+	private $checkoutPageId;
+	
 	/*
 	* Konstruktor: lädt Session Instanz (Singleton)
 	* Falls POST Request abgeschickt wurde, dann daten laden
@@ -47,6 +51,8 @@ class SSCartController {
 		
 		// Form Post Vars (User input) holen
 		$this->formPropertiesAndValues = SSHelper::getPostByFormId(SSCartView::FORM_ID);
+		
+		$this->checkoutPageId = $REX['ARTICLE_ID'];
     }
 	
 	/*
@@ -54,7 +60,16 @@ class SSCartController {
 	*/
 	public function invoke(){
 		$this->cartHandler();
-		$this->displayView();
+		$this->messageHandler();
+		if($this->isCartEmpty()){
+			if(!$this->showMessage){
+				$params['msg_type'] = 'success';
+				$params['label_text'] = SSHelper::i18l('cart_is_empty');
+				$this->cartView->displayCartMessageHtml($params);
+			}
+		}else{
+			$this->displayView();
+		}
 	}
 	
 	/*
@@ -68,25 +83,29 @@ class SSCartController {
 				if($this->isInputValid()){
 					$this->addToCart($artId, $qty);
 				}
+				$this->showMessage = true;
 				break;
 			case self::ACTION_UPDATE_ART_QTY:
 				if($this->isInputValid()){
 					if($qty > 0){
 						$this->updateQty($artId, $qty);
-					}elseif($qty == 0){
-						$this->removeFromCart($artId);
+					//}elseif($qty == 0){
+						//$this->removeFromCart($artId);
 					}
 				}
+				$this->showMessage = true;
 				break;
 			case self::ACTION_DEL_FROM_CART:
-				if($this->isInputValid()){
+				if($this->isInputValidDelCartItem()){
 					$this->removeFromCart($artId);
+					$this->showMessage = true;
 				}
 				break;
 			case self::ACTION_EMPTY_CART:
 				$this->clearCart();
+				$this->showMessage = true;
 				break;
-			case 'null':
+			default:
 				break;
 		}
 	}
@@ -105,11 +124,36 @@ class SSCartController {
 												
 		$this->formPropertyValueErrors = array_merge($errorsOrderItem1, $errorsOrderItem2);
 		
-		d($this->formPropertyValueErrors);
-		
+		/*
 		if(!$this->isArticleExists($this->formPropertiesAndValues['id'])){
 			$this->formPropertyValueErrors['id']['notfound'] = 1;
 		}
+		*/
+		if(sizeof($this->formPropertyValueErrors) > 0){
+			return false;
+		}
+		return true;
+	}
+	
+	
+	
+	/*
+	* Formular Input Dateon vom User auf Richtigkeit überpürfen
+	* return bool
+	*/
+	public function isInputValidDelCartItem(){
+		$errorsOrderItem1 = SSHelper::checkFromInputs(self::TABLE_ORDER_ITEM, SSDBSchema::SHOW_IN_CART_ITEM_DEL
+												, $this->formPropertiesAndValues);
+		$errorsOrderItem2 = SSHelper::checkFromInputs(SSArticle::TABLE, SSDBSchema::SHOW_IN_CART_ITEM_DEL
+												, $this->formPropertiesAndValues);
+												
+		$this->formPropertyValueErrors = array_merge($errorsOrderItem1, $errorsOrderItem2);
+		
+		/*
+		if(!$this->isArticleExists($this->formPropertiesAndValues['id'])){
+			$this->formPropertyValueErrors['id']['notfound'] = 1;
+		}
+		*/
 		if(sizeof($this->formPropertyValueErrors) > 0){
 			return false;
 		}
@@ -176,7 +220,7 @@ class SSCartController {
 	
 	/*
 	* (REX_ARTICLE_ID) ID der Seite,
-	* auf dem sich der Artikel befindet
+	* auf dem sich der Artikel befindet 
 	*/
 	public function getItemPageIdById($id){
 		$items = $this->session->get('cartItems');
@@ -256,9 +300,20 @@ class SSCartController {
 	}
 	
 	/*
+	*/
+	public function isCartEmpty(){
+		$items = $this->session->get('cartItems');
+		if(sizeof($items)){
+			return false;
+		}
+		return true;
+	}
+	
+	/*
 	* berechnet Total + Subtotal neu
 	*/
-	public function calcTotal(){
+	public function setCheckoutPageId($id){
+		$this->checkoutPageId = $id;
 	}
 	
 	/*
@@ -330,6 +385,9 @@ class SSCartController {
 			$params['articles'][] = $tmpArticles[$id];
 		}
 			
+		$params['url_checkout'] = rex_getUrl($this->checkoutPageId, $REX['CLANG_ID'], array('ss-cart'=>'checkout'));
+		$params['label_checkout'] = SSHelper::i18l('label_checkout');
+		
 		$this->cartView->displayCartHtml($params);
 	}
 	
@@ -337,5 +395,30 @@ class SSCartController {
 	*/
 	public function displayCart(){
 		$this->cartView->displayCartHtml($params);
+	}
+	public function messageHandler(){
+		if($this->showMessage){
+			$params = array();
+			$params['msg_type'] = 'success';
+			if(sizeof($this->formPropertyValueErrors) > 0){
+				$params['msg_type'] = 'error';
+			}
+			/*
+			$params['formPropertyValueErrors'] = $this->formPropertyValueErrors;
+			$params['label_errors'] = array();
+			foreach($params['formPropertyValueErrors'] as $propertyName => $f){
+				$tmp = array();
+				$tmp['label'] = SSHelper::i18l('label_'.$propertyName);
+				foreach($f as $name => $val){
+					$tmp['label_errors'][$name] = SSHelper::i18l('label_error_'.$name);
+				}
+				$params['label_errors'][] = $tmp;
+			}
+			*/
+		
+			$params['label_text'] = SSHelper::i18l($this->formPropertiesAndValues['action'].'_'.$params['msg_type']);
+			
+			$this->cartView->displayCartMessageHtml($params);
+		}
 	}
 }

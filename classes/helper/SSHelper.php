@@ -45,7 +45,16 @@ class SSHelper{
 		$str = str_replace('login_label_', '', $str);
 		$str = str_replace('label_', '', $str);
 		$str = '#'.$str;
+		
 		return $str;
+		
+		global $REX;
+		
+		return rex_string_table::getString(
+			$key = $str
+			, $fillEmpty = false
+			, $clang = $REX['CLANG_ID']
+		);
 	}
 	
 	/**
@@ -261,6 +270,10 @@ class SSHelper{
 			$max = $settings['max'];
 			$notexists = $settings['notexists'];
 			$exists = $settings['exists'];
+			
+			$min_value = (float)$settings['min_value'];
+			$max_value = (float)$settings['max_value'];
+			
 			if(!empty($type) and $type == 'password'){
 				// To Do -> eine bessere lösung
 				//if($values[$name.'_re'] and $value != $values[$name.'_re']){
@@ -277,6 +290,12 @@ class SSHelper{
 				$errors[$name]['min'] = true;
 			}elseif((int)$max and strlen($value) > (int)$max){
 				$errors[$name]['max'] = true;
+			}
+			if($min_value and (float)$value < $min_value){
+				$errors[$name]['min_value'] = true;
+			}
+			if($max_value and (float)$value > $max_value){
+				$errors[$name]['max_value'] = true;
 			}
 			if($exists or $notexists){
 				$tableData = SSDBSchema::_getTable($table, true);

@@ -1,6 +1,6 @@
 		<table class="ss-cart" width="100%">
         	<tr>
-            	<th class="ss-img"><?=$label_bild?></th>
+            	<th class="ss-img"></th>
             	<th class="ss-artno"><?=$label_artno?></th>
             	<th class="ss-title"><?=$label_bezeichnung?></th>
             	<th class="ss-price" align="right"><?=$label_price?></th>
@@ -49,7 +49,6 @@
 <?
 		endforeach;
 ?>
-        	<tr><th colspan="7">&nbsp;</th></tr>
         	<tr>
             	<th colspan="2" class="ss-empty_cart">
                     <form action="" method="post" name="ss-form-empty_cart" class="ss-form ss-form-empty_cart">
@@ -57,7 +56,7 @@
                         <input id="ss-submit" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-submit" value="<?=$label_empty_cart?>" />
                     </form>
                 </th>
-            	<th colspan="3" class="ss-label-total" align="right"><?=$label_total?></th>
-            	<th colspan="3" class="ss-total" align="right"><?=$currency?> <?=$total?></th>
+            	<th colspan="4" class="ss-total" align="right"><?=$label_total?> <?=$currency?> <?=$total?></th>
+            	<th align="right"><a href="<?=$url_checkout?>"><?=$label_checkout?></a></th>
             </tr>
         </table>

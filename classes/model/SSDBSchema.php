@@ -13,15 +13,16 @@
 #
 
 class SSDBSchema {
-	const FOREIGN_KEY		= 'FOREIGN KEY';
-	const PRIMARY_KEY		= 'PRIMARY KEY';
-	const SHOW_IN_DETAIL	 = 'detail';
-	const SHOW_IN_LIST	   = 'list';
-	const SHOW_IN_ADD		= 'add';
-	const SHOW_IN_EDIT	   = 'edit';
-	const SHOW_IN_REGISTER   = 'register';
-	const SHOW_IN_LOGIN      = 'login';
-	const SHOW_IN_CART_ITEM     = 'cart_item'; // add to cart  |  remove from cart  |  change qty
+	const FOREIGN_KEY			   = 'FOREIGN KEY';
+	const PRIMARY_KEY			   = 'PRIMARY KEY';
+	const SHOW_IN_DETAIL	 		= 'detail';
+	const SHOW_IN_LIST	   		  = 'list';
+	const SHOW_IN_ADD			   = 'add';
+	const SHOW_IN_EDIT	  		  = 'edit';
+	const SHOW_IN_REGISTER   		  = 'register';
+	const SHOW_IN_LOGIN      		 = 'login';
+	const SHOW_IN_CART_ITEM    	 = 'cart_item'; // add to cart  |  change qty
+	const SHOW_IN_CART_ITEM_DEL     = 'cart_item_del'; // remove from cart
 	
 	const ERROR_FIELDS_NOT_FOUND 	    = 1000;
 	const ERROR_TABLE_NOT_FOUND 		= 1001;
@@ -45,7 +46,7 @@ class SSDBSchema {
 					'name' => 'id' // Feldname
 					, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT' // SQL-Script
 					, 'type' => self::PRIMARY_KEY // Feld-Typ [Foreign-Key|Primary-Key]
-					, 'show_in' => array('detail', 'list', 'search', 'cart_item') // Woüberall soll dieses Feld angezeigt werden
+					, 'show_in' => array('detail', 'list', 'search', 'cart_item', 'cart_item_del') // Woüberall soll dieses Feld angezeigt werden
 					, 'input' => 'text'
 					, 'input_settings' => array(
 							'required' => true
@@ -53,6 +54,9 @@ class SSDBSchema {
 						)
 					, 'input_settings_by_show_in' => array(
 							'cart_item' => array(
+								'notexists' => true
+							)
+							, 'cart_item_del' => array(
 								'notexists' => true
 							)
 						)
@@ -490,12 +494,20 @@ class SSDBSchema {
 				, array(
 					'name' => 'qty'
 					, 'sql' => 'INT NULL DEFAULT 0'
-					, 'show_in' => array('detail', 'cart_item')
+					, 'show_in' => array('detail', 'cart_item', 'cart_item_del')
 					, 'input' => 'text'
 					, 'input_settings' => array(
 							'required' => true
 							, 'min' => 1 // anzahl Zeichen
 							, 'max' => 2 // anzahl Zeichen
+							, 'min_value' => 1
+							, 'max_value' => 99
+						)
+					, 'input_settings_by_show_in' => array(
+							'cart_item_del' => array(
+								'min_value' => 0
+								, 'max_value' => 0
+							)
 						)
 				)
 				, array(

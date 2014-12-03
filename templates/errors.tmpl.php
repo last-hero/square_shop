@@ -1,4 +1,4 @@
-		<ul class="ss-errors ">
+	<ul class="ss-error">
 <?
 	// $formErrors
 	// $errorLabels
@@ -19,4 +19,4 @@
 <?
 	endforeach;
 ?>
-        </ul>
+	</ul>
