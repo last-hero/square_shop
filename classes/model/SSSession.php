@@ -1,39 +1,58 @@
 <?php
-#
-#
-# SSSession
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Diese Klasse dient für das Session Handling
-# + fungiert als Singleton
-#
-#
+/** @file SSSession.php
+ *  @brief Session Handling
+ *
+ *  Diese Klasse dient für das Session Handling
+ *  + fungiert als Singleton
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ *  @bug No known bugs.
+ */
 
 class SSSession {
+	/**
+	 * Singleton-Objekt wird in dieser Variable abgelegt.
+	 *
+	 */
 	protected static $objInstance;
 	
+	/**
+	 * Enthält alle geladenen Properties und Values.
+	 *
+	 */
 	protected $data;
 	
-	/**
-	* Konstruktor --> holt alle Session Variable
-	*/
+	/** @brief Konstruktor
+	 *
+	 *  Lädt alle Session Variablen von dieses AddOn 
+	 *  aus $_SESSION
+	 *
+	 */
 	protected function __construct(){
 		$this->data = (array) $_SESSION['CUSTOM']['square_shop'];
 	}
 	
-	/**
-	* Destruktor --> speichert alle Variable in Session
-	*/
+	/** @brief Destruktor
+	 *
+	 *  Speichert alle Session Variablen von dieses AddOn 
+	 *  in $_SESSION
+	 *
+	 */
 	public function __destruct(){
 		$_SESSION['CUSTOM']['square_shop'] = $this->data;
 	}
 	
-	/**
-	* Singleton --> holt das Objekt
-	*/
+	/** @brief Instanz holen - Singleton
+	 *
+	 *  Gibt die aktuelle Instanz zurück,
+	 *  falls keine existiert, dann wird sie
+	 *  erstellt.
+	 *
+	 *  @return SSSession Object
+	 *
+	 */
 	public static function getInstance()
 	{
 		if (static::$objInstance === null)
@@ -43,27 +62,43 @@ class SSSession {
 		return static::$objInstance;
 	}
 	
-	/**
-	* Variable aus Session holen
-	* param string $key  Variable Name
-	*/
+	/** @brief Wert holen
+	 *
+	 *  Gibt einen Wert nach Propertyname zurück.
+	 *  
+	 *  @param (string) $key
+	 *  @return (mixed) $value
+     *  @see set()
+     *  @see remove()
+	 *
+	 */
 	public function get($key){
 		return $this->data[$key];
 	}
 	
-	/**
-	* Session Variable erstellen und Wert setzen
-	* param string $key  Variable Name
-	* param mixed  $val  Wert
-	*/
+	/** @brief Wert setzen
+	 *
+	 *  Setzt einen Wert nach Propertyname.
+	 *  
+	 *  @param (string) $key
+	 *  @param (mixed) $val
+     *  @see get()
+     *  @see remove()
+	 *
+	 */
 	public function set($key, $val){
 		$this->data[$key] = $val;
 	}
 	
-	/**
-	* Variable aus Session löschen
-	* param string $key  Variable Name
-	*/
+	/** @brief Wert löschen
+	 *
+	 *  Löscht einen Wert nach Propertyname.
+	 *  
+	 *  @param (string) $key
+     *  @see set()
+     *  @see get()
+	 *
+	 */
 	public function remove($key){
 		unset($this->data[$key]);
 	}
