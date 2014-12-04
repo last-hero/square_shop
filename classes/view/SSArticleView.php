@@ -1,4 +1,20 @@
 <?php
+/** @file SSArticleView.php
+ *  @brief View Klasse
+ *
+ *  Diese Klasse dient zum Erstellen von
+ *  Masken für Artikeln
+ *
+ *  Die Templates welche benötigt werden sind
+ *  im Verzeichnis /templates vorhanden.
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ *
+ *  @bug Keine Bugs bekannt.
+ */
+ 
 class SSArticleView {
 	// Form Array Key Name
 	const FORM_ID = 'article';

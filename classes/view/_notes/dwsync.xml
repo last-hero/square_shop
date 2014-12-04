@@ -1,1 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?><dwsync><file name="SSGUI.php" server="p2.ibog.biz" local="130618577452077123" remote="130618577400000000" Dst="1" /><file name="SSCustomerLoginView.php" server="p2.ibog.biz" local="3500544779" remote="319783739144409808" Dst="1" /><file name="SSCustomerRegisterView.php" server="p2.ibog.biz" local="3500545239" remote="319783739144410288" Dst="1" /><file name="SSArticleView.php" server="p2.ibog.biz" local="130620280359791351" remote="130620280200000000" Dst="1" /><file name="SSCartView.php" server="p2.ibog.biz" local="130620959170887004" remote="130620958800000000" Dst="1" /><file name="SSCheckoutView.php" server="p2.ibog.biz" local="3500540305" remote="319783739144405368" Dst="1" /><file name="SSObjectView.php" server="p2.ibog.biz" local="3500545575" remote="319783739144410648" Dst="-1" /></dwsync>
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="SSGUI.php" server="p2.ibog.biz" local="130618577452077123" remote="130618577400000000" Dst="1" />
+<file name="SSCustomerLoginView.php" server="p2.ibog.biz" local="130622036783107755" remote="130622036400000000" Dst="1" />
+<file name="SSCustomerRegisterView.php" server="p2.ibog.biz" local="130622038181190296" remote="130622037600000000" Dst="1" />
+<file name="SSArticleView.php" server="p2.ibog.biz" local="130622034209688271" remote="130622034000000000" Dst="1" />
+<file name="SSCartView.php" server="p2.ibog.biz" local="130620959170887004" remote="130620958800000000" Dst="1" />
+<file name="SSCheckoutView.php" server="p2.ibog.biz" local="3500540305" remote="319783739144405368" Dst="1" />
+<file name="SSObjectView.php" server="p2.ibog.biz" local="130622034487842813" remote="130622034000000000" Dst="1" />
+</dwsync>

@@ -1,32 +1,33 @@
 <?php
-#
-#
-# SSDBSQL
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Mit dieser Klasse werden die ganze SQL Scripts generiert
-# und ausgeführt
-#
+/** @file SSDBSQL.php
+ *  @brief SQL Scripts erstellen und ausführen
+ *
+ *  Mit dieser Klasse werden die ganze SQL Scripts generiert
+ *  und ausgeführt
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ *
+ *  @bug Keine Bugs bekannt.
+ */
 
 class SSDBSQL {
 	const FOREIGN_KEY		= 'FOREIGN KEY';
 	const PRIMARY_KEY		= 'PRIMARY KEY';
-	const SHOW_IN_DETAIL	= 'detail';
-	const SHOW_IN_LIST	    = 'list';
-	const SHOW_IN_ADD		= 'add';
-	const SHOW_IN_EDIT	    = 'edit';
 	const ERROR_SQL_QUERY_NOT_GIVEN = 2000;
 	
-	/**
-	* Liefert SQL Query zum Selectieren von Tabellen und Attribute (Data Manipulation Language)
-	* param $where
-	* param $table
-	* param $type_show_in: siehe const SHOW_IN_XXX
-	* @return string
-	*/
+	/** @brief SQL Select Query generieren
+	 *
+	 *  Liefert SQL Query zum Selektieren 
+	 *  von Tabellen und Attribute 
+	 *  (Data Manipulation Language)
+	 *
+	 *  @param $where: Where Klausel
+	 *  @param $table: Tabellenname
+	 *  @param $type_show_in: siehe SSSchema
+	 *  @return (string) $query: SQL Select Query
+	 */
 	public static function _getSqlDmlQuery($where, $table, $type_show_in){
         global $REX;
 		
@@ -80,13 +81,16 @@ class SSDBSQL {
 		return '';
     }
 	
-	/**
-	* Liefert SQL Query zum Selectieren von Tabellen und Attribute (Data Manipulation Language)
-	* param $where
-	* param $table
-	* param $type_show_in: siehe const SHOW_IN_XXX
-	* @return string
-	*/
+	/** @brief SQL Insert Query generieren
+	 *
+	 *  Liefert SQL Query zum Hinzufügen 
+	 *  von Datensätzen
+	 *  (Data Manipulation Language)
+	 *
+	 *  @param $attrAndValues: Attribute und Values
+	 *  @param $table: Tabellenname
+	 *  @return (string) $query: SQL Insert Query
+	 */
 	public static function _getSqlInsertQuery($attrAndValues, $table){
         global $REX;
 		
@@ -121,10 +125,14 @@ class SSDBSQL {
 		return '';
     }
 	
-	/**
-	* Liefer SQL Query zum Erstellen von Tabellen und Attribute (Data Definition Language)
-	* @return string <-- sql query
-	*/
+	/** @brief SQL Create Query generieren
+	 *
+	 *  Liefert SQL Query zum Erstellen 
+	 *  von Tabellen und Attribute
+	 *  (Data Definition Language)
+	 *
+	 *  @return (string) $query: SQL Create Query
+	 */
 	public static function _getSqlCreateTables(){
 		//$fields = SSDBSchema::_getFields(null, null, array('show_in'=>$type_show_in));
 		$tables = SSDBSchema::_getTables();
@@ -182,10 +190,14 @@ class SSDBSQL {
 		return $query;
 	}
 	
-	/**
-	* Liefert SQL Query zum Löschen von Tabellen und Attribute
-	* @return string <-- sql query
-	*/
+	/** @brief SQL Delete Query generieren
+	 *
+	 *  Liefert SQL Query zum Löschen 
+	 *  von Tabellen und Attribute
+	 *  (Data Manipulation Language)
+	 *
+	 *  @return (string) $query: SQL Delete Query
+	 */
 	public static function _getSqlDeleteTables(){
 		$tables = SSDBSchema::_getTables();
 		$structure = array();
@@ -219,6 +231,15 @@ class SSDBSQL {
 	* param $debug
 	* @return array <- Results als Array
 	*/
+	
+	/** @brief SQL Query ausführen
+	 *
+	 *  Führt einen SQL Script mittels rex_sql aus
+	 *
+	 *  @param $query: SQL Query
+	 *  @param $debug: Fehlermeldungen anzeigen oder nicht
+	 *  @return (array) $res: DB Results
+	 */
 	public static function executeSql($query, $debug=false){
 		if(is_string($query)){
 			$q = explode(';', $query);

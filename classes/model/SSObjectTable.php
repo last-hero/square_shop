@@ -1,48 +1,65 @@
 <?php
-#
-#
-# SSObjectTable
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Diese Klasse dient als Parent für alle Subklassen
-# die Daten aus DB modellieren
-#
-#
+/** @file SSObjectTable.php
+ *  @brief Daten modellieren
+ *
+ *  Diese Klasse dient als Parent für alle Subklassen
+ *  die Daten aus DB modellieren
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ *
+ *  @bug Keine Bugs bekannt.
+ */
 
 class SSObjectTable {
-	// Datenbank Felder mit Values (User Input) 
+	/**
+	 * Enthält Daten, die vom Formular via
+	 * Submit betätigt wurden.
+	 */
 	protected $propertiesAndValues;
 	
-	// alle (erlaubten) Datenbank Felder und deren Eigenschaften
+	/**
+	 * Enthält alle Datenbank Felder (der Tabelle) und deren Eigenschaften,
+	 * die in der SSDBSchema definiert sind.
+	 */
 	protected $properties;
 	
-	// Tabellenname
-	protected $TABLE = 'SSObjectTable';
-	
-	// Fehlermeldungs ID für falsche Attribute
-	// die nicht in der DB Tabelle vorhanden
-	// oder nicht erlaubt sind zum manipulieren
-	protected $ERROR_TABLE_ATTR_DIFF;
-	
-	protected $ERROR_TO_MANY_FOREIGN_KEYS;
-	
-	protected $ERROR_NO_FOREIGN_KEYS;
+	/**
+	 * Datenbank Tabellenname
+	 */
+	protected $TABLE = null;
 	
 	/**
-	* Konstruktor
-	* initialisiert die DB Table Felder
-	*/
-    function __construct($table = null){
+	 * Exception ID für falsche Attribute
+	 * die nicht in der DB Tabelle vorhanden sind
+	 * oder keinen Zugriff von dieser Klasse aus haben
+	 */
+	protected $ERROR_TABLE_ATTR_DIFF;
+	
+	/**
+	 * Exception ID für zu viele ForeignKeys als erwaret
+	 */
+	protected $ERROR_TO_MANY_FOREIGN_KEYS;
+	
+	/**
+	 * Exception ID für keine ForeingKeys gefunden
+	 */
+	protected $ERROR_NO_FOREIGN_KEYS;
+	
+	/** @brief Konstruktor
+	 *
+	 *  Initialisiert die DB Tabellenfelder
+	 */
+    function __construct(){
 		$this->loadPropertiesAndNames();
 		if(is_array($array)) $this->set($propertiesAndValues);
     }
 	
-	/**
-	* DB Tabellenfelder vom DB-Schema holen
-	*/
+	/** @brief Tabellenfelder laden
+	 *
+	 *  DB Tabellenfelder vom DB-Schema holen
+	 */
 	public function loadPropertiesAndNames(){
 		//$this->properties = SSDBSchema::_getFields($this->TABLE, 'name');
 		$this->properties = SSDBSchema::_getFields($this->TABLE);
@@ -52,12 +69,15 @@ class SSObjectTable {
 		}
 	}
 	
-	/**
-	* Felder raus kicken, die nicht erlaubt oder
-	* in der DB-Schema definiert sind
-	* param $propertiesAndValues: Felder und Values
-	* return $propertiesAndValuesNew
-	*/
+	/** @brief Tabellenfelder reinigen
+	 *
+	 *  Felder raus kicken, die nicht erlaubt oder
+	 *  in der DB-Schema definiert sind.
+	 *  Die bereinigten Felder zurückgeben.
+	 *
+	 *  @param $propertiesAndValues: Felder und Values
+	 *  @return $propertiesAndValuesNew: bereinigte Felder und Values
+	 */
 	public function getClearedUnknownProperties($propertiesAndValues){
 		$propertyNames = SSDBSchema::_getFieldsAsSingleArray($this->TABLE, array('name'));
 		$propertiesAndValuesNew = array();
@@ -69,11 +89,13 @@ class SSObjectTable {
 		return $propertiesAndValuesNew;
 	}
 	
-	/**
-	* Prüfen nach Existenz von DB-Table Felder
-	* param $keys: Attributname(n) [string|array]
-	* return bool: mind. 1 Feld nicht existiert dann false
-	*/
+	/** @brief Existenzprüfung von Felder
+	 *
+	 *  Prüfen nach Existenz von DB Tabellenfelder
+	 *
+	 *  @param (string|array) $keys: Tabellenfeld(er)
+	 *  @return bool: Falls 1 Feld nicht existiert false, ansonsten true
+	 */
 	public function doPropertiesExist($keys){
 		if(is_string($keys))$keys = array($keys=>$keys);
 		if(SSHelper::array_keys_exists($keys, $this->propertiesAndValues)){
@@ -82,12 +104,13 @@ class SSObjectTable {
 		return false;
 	}
 	
-	
-	/**
-	* Getter für DB-Table Felder Value
-	* param $key: Feldname
-	* return string
-	*/
+	/** @brief Wert holen
+	 *
+	 *  Wert nach Propertyname holen
+	 *
+	 *  @param (string) $key: Tabellenfeld
+	 *  @return (mixed) $value: Tabellenfeld Wert
+	 */
 	public function get($key){
 		if($this->doPropertiesExist($key)){
 			return $this->propertiesAndValues[$key];
@@ -95,11 +118,13 @@ class SSObjectTable {
 		return null;
 	}
 	
-	/**
-	* Setter für DB-Table Felder Value
-	* param $key: DB-Table Feldname
-	* param $val: Wert
-	*/
+	/** @brief Wert setzen
+	 *
+	 *  Wert nach Propertyname setzen
+	 *
+	 *  @param (string|array) $keyOrData: Tabellenfeld(er)
+	 *  @return (mixed) $val: Tabellenfeld Wert
+	 */
 	public function set($keyOrData, $val = ''){
 		if(is_array($keyOrData)){
 			$data = $keyOrData;
@@ -118,9 +143,11 @@ class SSObjectTable {
 		}
 	}
 	
-	/**
-	* Die DB-Table Felder-Values in DB speichern
-	*/
+	/** @brief Speichern in DB
+	 *
+	 *  Alle Property-Values (dieses Objektes) in DB speichern.
+	 *  Falls kein Eintrag extistiert, wird neu erstellt.
+	 */
 	public function save(){
 		if((int)$this->get('id') > 0){
 			echo 'called: save() FOR UPDATE;';
@@ -144,12 +171,14 @@ class SSObjectTable {
 		}
 	}
 	
-	/**
-	* Eintrag aus der DB nach ID holen
-	* und zum Objekt zuweisen mit $this->set
-	* param $id
-	* return boolean
-	*/
+	/** @brief Datensatz laden
+	 *
+	 *  Eintrag aus der DB nach ID holen
+	 *  und zum Objekt zuweisen mit $this->set
+	 *
+	 *  @param (string) $id: PrimaryKey Value
+	 *  @return bool
+	 */
 	public function loadById($id){
 		//$query = SSDBSQL::_getSqlDmlQuery("id = $id", $this->TABLE, SSDBSchema::SHOW_IN_DETAIL);
 		//$res = SSDBSQL::executeSql($query);
@@ -172,12 +201,17 @@ class SSObjectTable {
 		return false;
 	}
 	
-	/**
-	* Eintrag aus der DB nach ID holen
-	* und zum Objekt zuweisen mit $this->set
-	* param $id
-	* return boolean
-	*/
+	/** @brief Datensatz holen
+	 *
+	 *  Eintrag oder Einträge aus der DB nach ID(s) holen
+	 *  und zurückgeben.
+	 *
+	 *  @param (string|array) $ids: PrimaryKey Value(s)
+	 *  @return bool
+	 *  
+	 *  @see getByForeignId()
+	 *  @see _getWhere()
+	 */
 	public function getByIds($ids){
 		$tableData = SSDBSchema::_getTable($this->TABLE, true);
 		$table = $tableData['name'];
@@ -196,14 +230,20 @@ class SSObjectTable {
 		return false;
 	}
 	
-	/*
-	* Einträge aus der DB nach ForeignID holen
-	*  -> funktioniert nur wenn ein ForeignId in
-	*     der Tabelle vorhanden ist
-	* param $foreignId
-	* param $foreignTable
-	* return array|bool: Datensätze oder false
-	*/
+	/** @brief Datensatz nach FK holen
+	 *
+	 *  Einträge aus der DB nach ForeignID holen.
+	 *  Funktioniert nur wenn ein ForeignId in
+	 *  der Tabelle vorhanden ist.
+	 *
+	 *  @param (string) $foreignId: ForeignKey Value
+	 *  @param (string) $foreignTable: Foreign Tabellenname
+	 *
+	 *  @return (array|bool) $res: Datensätze oder false
+	 *  
+	 *  @see getByIds()
+	 *  @see _getWhere()
+	 */
 	public function getByForeignId($foreignId, $foreignTable){
 		// Foreign Keys holen
 		$foreignKeyNames = SSDBSchema::_getForeignKeyNamesByForeignTable($this->TABLE, $foreignTable);
@@ -230,12 +270,19 @@ class SSObjectTable {
 		return false;
 	}
 	
-	/**
-	* Datensätze aus der DB holen
-	* param $where: Where Klausel
-	* param $show_in: 
-	* return (Array) $res: 1 oder mehrere Einträge aus Datenbank
-	*/
+	/** @brief Datensätze aus der DB holen
+	 *
+	 *  Mit Where-Klausel Datensätze aus der
+	 *  Datenbank holen.
+	 *
+	 *  @param (string) $where: z.B. email = "example@domain.com"
+	 *  @param (string) $show_in: DB-Tabellenfelder Filter (siehe in SSDBSchema)
+	 *
+	 *  @return (array) $res: Datensätze
+	 *  
+	 *  @see getByIds()
+	 *  @see getByForeignId()
+	 */
 	protected function _getWhere($where, $show_in = null){
 		if(!$show_in){
 			$show_in = SSDBSchema::SHOW_IN_DETAIL;

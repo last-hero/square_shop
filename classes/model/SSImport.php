@@ -1,24 +1,22 @@
 <?php
-#
-#
-# SSImport
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Mit Hilfe von dieser Klasse kann man die Sample-Daten in DB importieren.
-#
-#
-# TODO
-# Importieren von Daten über CSV Dateien
-#
-#
+/** @file SSImport.php
+ *  @brief Importieren von Daten in DB
+ *
+ *  Diese Klasse ermöglicht das Importieren von Daten in Datenbank.
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ *
+ *  @bug Keine Bugs bekannt.
+ *  @todo Importieren von Daten über CSV Dateien
+ */
 
-class SSImport {	
-	/**
-	* Test Daten importieren
-	*/
+class SSImport {
+	/** @brief Test Daten importieren
+	 *
+	 *  Importiert die Test-Daten welche im /test Ordner vorhanden sind.
+	 */
 	public static function importSamples(){
 		global $REX;
 		$query = array();

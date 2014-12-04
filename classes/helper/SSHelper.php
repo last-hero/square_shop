@@ -1,31 +1,26 @@
 <?php
-#
-#
-# SSCustomerLoginController
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Diese Klasse dient als Helper Klasse für
-# allgemeine Funktionen
-#
-#
+/** @file SSHelper.php
+ *  @brief Daten modellieren
+ *
+ *  Diese Klasse dient als Helper Klasse für
+ *  allgemeine Funktionen
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ *
+ *  @bug Keine Bugs bekannt.
+ */
 
 class SSHelper{
-	/**
-	* Konstruktor
-	*/
-    function __construct(){
-		
-    }
-	
-	/**
-	* überprüft ob (1)Array Keys in (2)Array vorhanden sind
-	* param $array1: 1. Array
-	* param $array2: 2. Array
-	* return bool: true = alle vorhande
-	*/
+	/** @brief Array-Keys vergleichen
+	 *
+	 *  Überprüft ob 1. Array Keys in 2. Array vorhanden sind
+	 *
+	 *  @param $array1: 1. Array
+	 *  @param $array2: 2. Array
+	 *  @return boolean
+	 */
 	function array_keys_exists(array $array1, array $array2){
 		foreach($array1 as $k => $v){
 			if(!array_key_exists($k, $array2)){
@@ -35,11 +30,13 @@ class SSHelper{
 		return true;
 	}
 	
-	/**
-	* liefert text in aktuelle sprache
-	* param string $str
-	* param string: übersetzte text
-	*/
+	/** @brief Internationalization and localization
+	 *
+	 *  Liefert String in aktuelle Sprache
+	 *
+	 *  @param (string) $str: String zum übersetzen
+	 *  @return (string) $str
+	 */
 	public static function i18l($str){
 		$str = str_replace('register_label_', '', $str);
 		$str = str_replace('login_label_', '', $str);
@@ -57,36 +54,28 @@ class SSHelper{
 		);
 	}
 	
-	/**
-	* liefert Backend Setting Value vom Shop-Betreiber
-	* param string $str
-	*/
-	public static function getSetting($str){
+	/** @brief Shop-Betreiber Setting Value
+	 *
+	 *  Liefert Backend Setting Value vom Shop-Betreiber
+	 *  die er unter dem Register "Einstellungen" gespeichert hat
+	 *
+	 *  @param (string) $key
+	 *  @return (string) $value
+	 */
+	public static function getSetting($key){
 		global $REX;
 		
-		return $REX['ADDON']['square_shop']['settings'][$str];
+		return $REX['ADDON']['square_shop']['settings'][$key];
 	}
 	
-	/**
-	* überprüft ob (1)Array Keys in (2)Array vorhanden sind
-	* param string $_str
-	*/
-	public static function cleanVars($vars){
-	   $input = mysql_real_escape_string($input);
-	   $input = htmlspecialchars($input, ENT_IGNORE, 'utf-8');
-	   $input = strip_tags($input);
-	   $input = stripslashes($input);
-	   return $input;
-   
-		return $_str;
-	}
-	
-	/**
-	* überprüft ob $_POST Array für die gewünschte FormId 
-	* vorhanden ist und liefert sie zurück
-	* param string $formId
-	* return array
-	*/
+	/** @brief Formular Daten holen
+	 *
+	 *  Überprüft ob $_POST Array für die gewünschte FormId
+	 *  vorhanden ist und liefert sie zurück
+	 *
+	 *  @param (string) $formId
+	 *  @return (array) User Inputs von einem Formular
+	 */
 	public static function getPostByFormId($formId){
 		if($_POST['SSForm'][$formId]){
 			return SSHelper::cleanInput($_POST['SSForm'][$formId]);
@@ -94,11 +83,13 @@ class SSHelper{
 		return null;
 	}
 	
-	/**
-	* bereinigt $value Array und liefert sie zurück
-	* param array $value
-	* return array
-	*/
+	/** @brief User Input Values bereinigen
+	 *
+	 *  Bereinigt $value und liefert sie zurück
+	 *
+	 *  @param (string|array) $value
+	 *  @return (string|array): bereinigte Value(s)
+	 */
 	public static function cleanInput($value){
 		//if the variable is an array, recurse into it
 		if(is_array($value)){
@@ -117,17 +108,19 @@ class SSHelper{
 			$value = strip_tags($value);
 			$value = stripslashes($value);
 			return $value;
-			return mysql_real_escape_string(strip_tags(trim($value)), $link);
+			//return mysql_real_escape_string(strip_tags(trim($value)), $link);
 		}
 	}
 	
-	/**
-	* Überprüft ob die angegebene $Value
-	* dem Typ enstpricht
-	* param string $type
-	* param string $value
-	* return bool
-	*/
+	/** @brief Value nach Typ überprüfen
+	 *
+	 *  Überprüft ob die angegebene $Value
+	 *  dem Typ enstpricht
+	 *
+	 *  @param (string) $type: z.B. email
+	 *  @param (string) $value: z.B. example@domain.com
+	 *  @return bool
+	 */
 	public static function isTypeOf($type, $value){
 		switch (trim($type)) {
 			case 'int':
@@ -202,13 +195,16 @@ class SSHelper{
 		return true;
 	}
 	
-	/*
-	* Formular Input Daten werden auf Richtigkeit geprüft
-	* und liefert alle Felder mit Fehler zurück
-	* param $formProperties
-	* param $values
-	* return array $errors
-	*/
+	/** @brief Formular Felder Setting generien
+	 *
+	 *  Formular Input Felder Einstellungen werden generiert
+	 *  um aus diese Einstellungen Formular-Felder (Html) zu generieren.
+	 *
+	 *  @param (string) $formId: Form ID
+	 *  @param (string) $table: Tabellenname
+	 *  @param (string) $show_in: siehe SSSchema
+	 *  @return bool
+	 */
 	public static function getFormProperties($formId, $table, $show_in){
 		try{
 			$fields = SSDBSchema::_getFields($table, null, array('show_in'=>$show_in));
@@ -246,14 +242,17 @@ class SSHelper{
 		return $properties;
 	}
 	
-	/*
-	* Formular Input Daten werden auf Richtigkeit geprüft
-	* und liefert alle Felder mit Fehler zurück
-	* param $table
-	* param $show_in
-	* param $values
-	* return array $errors
-	*/
+	/** @brief Formular Inputs überprüfen
+	 *
+	 *  Die vom Käufer eingegebene Daten werden auf Richtigkeit
+	 *  überprüft und Fehler zurückgegeben.
+	 *
+	 *  @param (string) $formId: Form ID
+	 *  @param (string) $table: Tabellenname
+	 *  @param (string) $show_in: siehe SSSchema
+	 *  @param (string) $values: Werte die der Käufer eingegeben hat
+	 *  @return bool
+	 */
 	public static function checkFromInputs($table, $show_in, $values){
 		$errors = array();
 		try{

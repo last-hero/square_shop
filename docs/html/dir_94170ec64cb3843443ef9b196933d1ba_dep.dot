@@ -1,0 +1,6 @@
+digraph "B:/p2/redaxo/include/addons/square_shop/files" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  dir_94170ec64cb3843443ef9b196933d1ba [shape=box, label="files", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_94170ec64cb3843443ef9b196933d1ba.html"];
+}

@@ -8,19 +8,18 @@
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
- *  @bug No known bugs.
+ *
+ *  @bug Keine Bugs bekannt.
  */
 
 class SSSession {
 	/**
 	 * Singleton-Objekt wird in dieser Variable abgelegt.
-	 *
 	 */
 	protected static $objInstance;
 	
 	/**
 	 * Enthält alle geladenen Properties und Values.
-	 *
 	 */
 	protected $data;
 	
@@ -28,7 +27,6 @@ class SSSession {
 	 *
 	 *  Lädt alle Session Variablen von dieses AddOn 
 	 *  aus $_SESSION
-	 *
 	 */
 	protected function __construct(){
 		$this->data = (array) $_SESSION['CUSTOM']['square_shop'];
@@ -38,7 +36,6 @@ class SSSession {
 	 *
 	 *  Speichert alle Session Variablen von dieses AddOn 
 	 *  in $_SESSION
-	 *
 	 */
 	public function __destruct(){
 		$_SESSION['CUSTOM']['square_shop'] = $this->data;
@@ -51,7 +48,6 @@ class SSSession {
 	 *  erstellt.
 	 *
 	 *  @return SSSession Object
-	 *
 	 */
 	public static function getInstance()
 	{
@@ -68,9 +64,9 @@ class SSSession {
 	 *  
 	 *  @param (string) $key
 	 *  @return (mixed) $value
-     *  @see set()
-     *  @see remove()
-	 *
+	 *  
+	 *  @see set()
+	 *  @see remove()
 	 */
 	public function get($key){
 		return $this->data[$key];
@@ -82,9 +78,9 @@ class SSSession {
 	 *  
 	 *  @param (string) $key
 	 *  @param (mixed) $val
-     *  @see get()
-     *  @see remove()
-	 *
+	 *  
+	 *  @see get()
+	 *  @see remove()
 	 */
 	public function set($key, $val){
 		$this->data[$key] = $val;
@@ -95,9 +91,9 @@ class SSSession {
 	 *  Löscht einen Wert nach Propertyname.
 	 *  
 	 *  @param (string) $key
-     *  @see set()
-     *  @see get()
-	 *
+	 *  
+	 *  @see set()
+	 *  @see get()
 	 */
 	public function remove($key){
 		unset($this->data[$key]);

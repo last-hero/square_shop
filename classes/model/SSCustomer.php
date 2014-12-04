@@ -1,34 +1,50 @@
 <?php
-#
-#
-# SSCustomer
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Diese Klasse dient für das Modellieren von
-# Käufer Daten
-#
-#
+/** @file SSCustomer.php
+ *  @brief Käufer modellieren
+ *
+ *  Diese Klasse dient für das Modellieren von
+ *  Käufer Daten
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ *
+ *  @bug Keine Bugs bekannt.
+ */
 
 class SSCustomer extends SSObjectTable{
-	// Tabellenname
+	/**
+	 * @see parent
+	 */
 	const TABLE = 'customer';
 	protected $TABLE = self::TABLE;
 	
-	// Fehlermeldungs ID für falsche Feldername
-	// die nicht in der DB Tabelle vorhanden
-	// oder nicht erlaubt sind zu manipulieren
+	/**
+	 * @see parent
+	 */
 	const ERROR_TABLE_ATTR_DIFF = '6001';
 	protected $ERROR_TABLE_ATTR_DIFF = self::ERROR_TABLE_ATTR_DIFF;
 	
-	/*
-	* Customer nach E-Mail und Passwort laden
-	* param $email string: Email
-	* param $password string: Passwort
-	* return boolean
-	*/
+	/**
+	 * @see parent
+	 */
+	const ERROR_TO_MANY_FOREIGN_KEYS = '6002';
+	protected $ERROR_TO_MANY_FOREIGN_KEYS;
+	
+	/**
+	 * @see parent
+	 */
+	const ERROR_NO_FOREIGN_KEYS = '6003';
+	protected $ERROR_NO_FOREIGN_KEYS;
+	
+	/** @brief Authetifizierung
+	 *
+	 *  Customer nach E-Mail und Passwort laden
+	 *
+	 *  @param (string) $email: Email
+	 *  @param (string) $password: Passwort
+	 *  @return bool
+	 */
 	public function loadCustomerByEmailAndPassword($email, $password){
 		// Passwort verschlüsseln
 		$dbProperties = SSDBSchema::_getFields(SSCustomer::TABLE, null, array('sql_settings' => 'encrypt'));
@@ -49,20 +65,6 @@ class SSCustomer extends SSObjectTable{
 			}catch(SSException $e) {
 				echo $e;
 			}
-		}
-		return false;
-	}
-	
-	/*
-	* Überprüft in der DB, ob Email Adresse bereits
-	* vergeben ist
-	* param $email: 
-	* return bool
-	*/
-	public function isEmailAlreadyExists($email){
-		$res = $this->_getWhere("email = '$email'");
-		if(!empty($res)){
-			return true;
 		}
 		return false;
 	}

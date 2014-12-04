@@ -1,33 +1,48 @@
 <?php
-#
-#
-# SSCategory
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Diese Klasse dient für das Modellieren von
-# Kategorie Daten
-#
-#
+/** @file SSCategory.php
+ *  @brief Kategorien modellieren
+ *
+ *  Diese Klasse dient für das Modellieren von
+ *  Kategorie Daten
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ *
+ *  @bug Keine Bugs bekannt.
+ */
 
 class SSCategory extends SSObjectTable{
-	// Tabellenname
+	/**
+	 * @see parent
+	 */
 	const TABLE = 'category';
 	protected $TABLE = self::TABLE;
 	
-	// Fehlermeldungs ID für falsche Feldername
-	// die nicht in der DB Tabelle vorhanden
-	// oder nicht erlaubt sind zu manipulieren
+	/**
+	 * @see parent
+	 */
 	const ERROR_TABLE_ATTR_DIFF = '8001';
 	protected $ERROR_TABLE_ATTR_DIFF = self::ERROR_TABLE_ATTR_DIFF;
 	
+	/**
+	 * @see parent
+	 */
+	const ERROR_TO_MANY_FOREIGN_KEYS = '8002';
+	protected $ERROR_TO_MANY_FOREIGN_KEYS;
 	
-	/*
-	* alle Kategorien holen
-	* return array
-	*/
+	/**
+	 * @see parent
+	 */
+	const ERROR_NO_FOREIGN_KEYS = '8003';
+	protected $ERROR_NO_FOREIGN_KEYS;
+	
+	/** @brief Kategorien holen
+	 *
+	 *  Alle erfassten Kategorien holen
+	 *
+	 *  @return array $res
+	 */
 	public function getCategories(){
 		$res = $this->_getWhere("1=1");
 		if(count($res) > 0){

@@ -1,0 +1,9 @@
+digraph "B:/p2/redaxo/include/addons/square_shop/pages/help" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_208d2690607c4e3d3fabfa1d18673d36 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="pages" fontname="Helvetica", fontsize="10", URL="dir_208d2690607c4e3d3fabfa1d18673d36.html"]
+  dir_8f1786216a14af886216a925c12f0a8a [shape=box, label="help", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_8f1786216a14af886216a925c12f0a8a.html"];
+  }
+}
