@@ -3,5 +3,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node1 [label="SSCustomerLoginController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_customer_login_controller.html"];
+  Node1 [label="SSDBSchema",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_schema.html"];
 }

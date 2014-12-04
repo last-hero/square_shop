@@ -1,61 +1,76 @@
 <?php
-#
-#
-# SSCustomerLoginController
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Mit dieser Klasse wird das Login- / Logout-Verfahren
-# vewaltet
-#
-#
+/** @file SSCustomerLoginController.php
+ *  @brief Login/Logout Verwalten
+ *
+ *  Mit dieser Klasse wird das Login- / Logout-Verfahren
+ *  vewaltet
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ *  @bug No known bugs.
+ */
 
-class SSCustomerLoginController {
-	// Form Action Variablen	
+class SSCustomerLoginController extends SSController{
+	/**
+	 * siehe Parent
+	 */
+	protected $FORM_ID = SSCustomerLoginView::FORM_ID;
+	/**
+	 * siehe Parent
+	 */
+	protected $TABLE = SSCustomer::TABLE;
+	/**
+	 * siehe Parent
+	 */
+	protected $SHOW_IN = SSDBSchema::SHOW_IN_LOGIN;
+	
+	/**
+	 * Formular Action Variable:
+	 * Der User versucht anzumelden.
+	 */
 	const ACTION_LOGIN = 'login';
+	
+	/**
+	 * Formular Action Variable:
+	 * Der User versucht abzumelden.
+	 */
 	const ACTION_LOGOUT = 'logout';
 	
-	// Singleton --> Session Objekt
-	private $session;
-	
-	// POST Var Daten -> korrekt eingegebene von User
-	private $formPropertiesAndValues;
-	
-	// Fehler
-	private $formPropertyValueErrors;
-	
-	// Login / Logout View
+	/**
+	 * Login / Logout View
+	 */
 	private $customerLoginView;
 	
-	// SSCustomer
+	/**
+	 * SSCustomer
+	 */
 	private $customer;
 	
-	// bool: Fehler beim Anmeldung true / false
+	/**
+	 * bool: Fehler beim Anmeldung true / false
+	 */
 	private $loginError;
 	
-	
-	/*
-	* Konstruktor: lädt Session Instanz (Singleton)
-	* Falls POST Request abgeschickt wurde, dann daten laden
-	*/
-    public function __construct(){
-		// Session Objekt (Singleton) holen
-		$this->session = SSSession::getInstance();
-		
+	/** @brief Initialisierung
+	 *
+	 *  Wird von der Parent Konstruktor
+	 *  aufgerufen.
+	 *
+	 *  Benötigte Objekte erstellen.
+	 *
+	 */
+    protected function init(){
 		$this->customer = new SSCustomer();
-		
 		// Objekt Login-View erstellen
 		$this->customerLoginView = new SSCustomerLoginView();
-		
-		// Form Post Vars (User input) holen
-		$this->formPropertiesAndValues = SSHelper::getPostByFormId(SSCustomerLoginView::FORM_ID);
     }
 	
-	/*
-	* Login/Logout Funktion starten
-	*/
+	/** @brief Start
+	 *
+	 *  Login/Logout Funktion starten
+	 *
+	 */
 	public function invoke(){
 		// Login Logik
 		$this->loginLogoutHandler();
@@ -64,14 +79,17 @@ class SSCustomerLoginController {
 		$this->displayView();
 	}
 	
-	/*
-	* Benutzer anmelden oder abmelden
-	* Falls Post Request durch Login-Maske ausgelöst wurde:
-	* 	dann Benutzer daten in der DB abgleichen 
-	* 	und in Session speichern und einloggen
-	* Falls Post Request durch Logout-Maske:
-	* 	dann Benutzer in Session löschen und ausloggen
-	*/
+	/** @brief Login / Logout Logik
+	 *
+	 *  Benutzer anmelden oder abmelden!
+	 *
+	 *  Falls Post Request durch Login-Maske ausgelöst wurde:
+	 *  	dann Benutzer daten in der DB abgleichen
+	 *  	und in Session speichern und einloggen
+	 *
+	 *  Falls Post Request durch Logout-Maske:
+	 *  	dann Benutzer in Session löschen und ausloggen
+	 */
 	public function loginLogoutHandler(){
 		switch($this->formPropertiesAndValues['action']){
 			case self::ACTION_LOGIN:
@@ -87,15 +105,16 @@ class SSCustomerLoginController {
 		}
 	}
 	
-	/*
-	* Formular Input Daten vom User auf Richtigkeit überpürfen
-	* loginError Variable auf true setzen, falls username + pw falsch
-	* return bool  true = user+pw korrekt     false = user+pw falsch
-	*/
+	/** @brief Benutzereingabe überprüfen
+	 *
+	 *  Formular Input Dateon vom User auf Richtigkeit überprüfen
+	 *
+	 *  loginError Variable auf true setzen, falls username + pw falsch
+	 *
+	 *  @return bool  true = user+pw korrekt     false = user+pw falsch
+	 */
 	public function isInputValid(){
 		$this->loginError = false;
-		
-		
 		
 		$this->formPropertyValueErrors = SSHelper::checkFromInputs(SSCustomer::TABLE, 'login'
 											, $this->formPropertiesAndValues);
@@ -108,14 +127,15 @@ class SSCustomerLoginController {
 		if(sizeof($this->formPropertyValueErrors) > 0){
 			$this->loginError = true;
 		}
-		
 		return !$this->loginError;
 	}
 	
-	/*
-	* Falls User nicht angemeldet: Login-Maske anzeigen
-	* Falls User angemeldet: Logout-Maske anzeigen
-	*/
+	/** @brief Login / Logout Maske anzeigen
+	 *
+	 *  Falls User nicht angemeldet: Login-Maske anzeigen
+	 *
+	 *  Falls User angemeldet: Logout-Maske anzeigen
+	 */
 	public function displayView(){
 		$params = array();
 		
@@ -130,18 +150,20 @@ class SSCustomerLoginController {
 			$params['fields'] = SSHelper::getFormProperties(SSCustomerLoginView::FORM_ID, SSCustomer::TABLE, 'login');
 			$params['label_submit'] = SSHelper::i18l('label_login');
 			if($this->loginError){
-				$this->customerLoginView->displayErrorMessageHtml(array(
-					'label_text' => SSHelper::i18l(self::ACTION_LOGIN.'_error')
-				));
+				$this->customerLoginView->displayErrorMessage(
+					SSHelper::i18l(self::ACTION_LOGIN.'_error')
+				);
 			}
 			$this->customerLoginView->displayFormHtml($params);
 		}
 	}
 	
-	/*
-	* Prüfen ob User angemeldet ist oder nicht
-	* return bool
-	*/
+	/** @brief Ist Benutzer angemeldet
+	 *
+	 *  Prüfen ob User angemeldet ist oder nicht
+	 *
+	 *  @return bool
+	 */
 	public function isUserLoggedIn(){
 		$userId = (int)$this->session->get('UserID');
 		if($userId > 0){
@@ -151,28 +173,30 @@ class SSCustomerLoginController {
 		}
 	}
 	
-	/*
-	* Speichert User ID in Session
-	* param $userId
-	* param $userName
-	*/
+	/** @brief Benutzer anmelden
+	 *
+	 *  Speichert User ID in Session
+	 */
 	public function loginUser($userId, $userName){
 		$this->session->set('UserID', $userId);
 		$this->session->set('UserName', $userName);
 	}
 	
-	/*
-	* löscht User ID aus dem Session
-	*/
+	/** @brief Benutzer abmelden
+	 *
+	 *  löscht User ID aus dem Session
+	 */
 	public function logoutUser(){
 		$this->session->remove('UserID');
 		$this->session->remove('UserName');
 	}
 	
-	/*
-	* Liefert Username vom eingelogten Customer 
-	* return string Username
-	*/
+	/** @brief Name vom User
+	 *
+	 *  Liefert Vorname/Name vom eingelogten Customer 
+	 *
+	 *  @return string
+	 */
 	public function getLoggedInUserName(){
 		return $this->session->get('UserName');
 	}

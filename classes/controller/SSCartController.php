@@ -1,34 +1,39 @@
 <?php
-#
-#
-# SSCartController
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Diese Klasse verwaltet den ganzen Warenkorb
-#
-#
+/** @file SSCartController.php
+ *  @brief Warenkorb Verwalten
+ *
+ *  iese Klasse verwaltet den ganzen Warenkorb
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ *  @bug No known bugs.
+ */
 
-class SSCartController {
+class SSCartController extends SSController{
+	protected $FORM_ID = SSCartView::FORM_ID;
+	
+	protected $TABLE = SSArticle::TABLE;
+	
+	protected $SHOW_IN = SSDBSchema::SHOW_IN_CART_ITEM;
+	
 	const TABLE_ORDER_ITEM = 'order_item';
 	// Form Action Code
-	const ACTION_DEL_FROM_CART	 	= 'del_from_cart';
+	const ACTION_DEL_FROM_CART	 = 'del_from_cart';
 	const ACTION_UPDATE_ART_QTY 	= 'update_art_qty';
 	const ACTION_EMPTY_CART 		= 'empty_cart';
 	
 	// Singleton --> Session Objekt
-	private $session;
+	//private $session;
 	
 	// Array of SSArticle Objects
 	private $articlelist;
 	
 	// POST Var Daten -> korrekt eingegebene von User
-	private $formPropertiesAndValues;
+	//private $formPropertiesAndValues;
 	
 	// Fehler
-	private $formPropertyValueErrors;
+	//private $formPropertyValueErrors;
 	
 	// SSCartView Object
 	private $cartView;
@@ -37,21 +42,9 @@ class SSCartController {
 	
 	private $checkoutPageId;
 	
-	/*
-	* Konstruktor: lädt Session Instanz (Singleton)
-	* Falls POST Request abgeschickt wurde, dann daten laden
-	*/
-    public function __construct(){
-		// Session Objekt (Singleton) holen
-		$this->session = SSSession::getInstance();
-		
+    protected function init(){
 		$this->article = new SSArticle();
-		
 		$this->cartView = new SSCartView();
-		
-		// Form Post Vars (User input) holen
-		$this->formPropertiesAndValues = SSHelper::getPostByFormId(SSCartView::FORM_ID);
-		
 		$this->checkoutPageId = $REX['ARTICLE_ID'];
     }
 	
@@ -63,9 +56,7 @@ class SSCartController {
 		$this->messageHandler();
 		if($this->isCartEmpty()){
 			if(!$this->showMessage){
-				$params['msg_type'] = 'success';
-				$params['label_text'] = SSHelper::i18l('cart_is_empty');
-				$this->cartView->displayCartMessageHtml($params);
+				$this->cartView->displaySuccessMessage(SSHelper::i18l('cart_is_empty'));
 			}
 		}else{
 			$this->displayView();
@@ -398,27 +389,16 @@ class SSCartController {
 	}
 	public function messageHandler(){
 		if($this->showMessage){
-			$params = array();
-			$params['msg_type'] = 'success';
 			if(sizeof($this->formPropertyValueErrors) > 0){
 				$params['msg_type'] = 'error';
+				$this->cartView->displayErrorMessage(
+					$this->formPropertiesAndValues['action'].'_error'
+				);
+			}else{
+				$this->cartView->displaySuccessMessage(
+					$this->formPropertiesAndValues['action'].'_success'
+				);
 			}
-			/*
-			$params['formPropertyValueErrors'] = $this->formPropertyValueErrors;
-			$params['label_errors'] = array();
-			foreach($params['formPropertyValueErrors'] as $propertyName => $f){
-				$tmp = array();
-				$tmp['label'] = SSHelper::i18l('label_'.$propertyName);
-				foreach($f as $name => $val){
-					$tmp['label_errors'][$name] = SSHelper::i18l('label_error_'.$name);
-				}
-				$params['label_errors'][] = $tmp;
-			}
-			*/
-		
-			$params['label_text'] = SSHelper::i18l($this->formPropertiesAndValues['action'].'_'.$params['msg_type']);
-			
-			$this->cartView->displayCartMessageHtml($params);
 		}
 	}
 }

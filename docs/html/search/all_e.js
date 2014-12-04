@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['save',['save',['../class_s_s_object_table.html#afc8a3c62679cf00ade9f15fb2a6d6132',1,'SSObjectTable']]],
-  ['set',['set',['../class_s_s_object_table.html#a99d2c747a3521243d4e180cabc8cb106',1,'SSObjectTable\set()'],['../class_s_s_session.html#ac8d8012023e560c81f55a629022cb65a',1,'SSSession\set()']]],
+  ['save',['save',['../class_s_s_model.html#afc8a3c62679cf00ade9f15fb2a6d6132',1,'SSModel']]],
+  ['set',['set',['../class_s_s_model.html#a99d2c747a3521243d4e180cabc8cb106',1,'SSModel\set()'],['../class_s_s_session.html#ac8d8012023e560c81f55a629022cb65a',1,'SSSession\set()']]],
   ['setcategoryid',['setCategoryId',['../class_s_s_article_controller.html#a3d73dac30a3a9483a1b250fe8cff5fbb',1,'SSArticleController']]],
   ['ss_5futils',['ss_utils',['../classss__utils.html',1,'']]],
   ['ssarticle',['SSArticle',['../class_s_s_article.html',1,'']]],
@@ -12,13 +12,17 @@ var searchData=
   ['ssarticleview_2ephp',['SSArticleView.php',['../_s_s_article_view_8php.html',1,'']]],
   ['sscartcontroller',['SSCartController',['../class_s_s_cart_controller.html',1,'']]],
   ['sscartview',['SSCartView',['../class_s_s_cart_view.html',1,'']]],
+  ['sscartview_2ephp',['SSCartView.php',['../_s_s_cart_view_8php.html',1,'']]],
   ['sscategory',['SSCategory',['../class_s_s_category.html',1,'']]],
   ['sscategory_2ephp',['SSCategory.php',['../_s_s_category_8php.html',1,'']]],
   ['sscheckoutcontroller',['SSCheckoutController',['../class_s_s_checkout_controller.html',1,'']]],
   ['sscheckoutview',['SSCheckoutView',['../class_s_s_checkout_view.html',1,'']]],
+  ['sscontroller',['SSController',['../class_s_s_controller.html',1,'']]],
+  ['sscontroller_2ephp',['SSController.php',['../_s_s_controller_8php.html',1,'']]],
   ['sscustomer',['SSCustomer',['../class_s_s_customer.html',1,'']]],
   ['sscustomer_2ephp',['SSCustomer.php',['../_s_s_customer_8php.html',1,'']]],
   ['sscustomerlogincontroller',['SSCustomerLoginController',['../class_s_s_customer_login_controller.html',1,'']]],
+  ['sscustomerlogincontroller_2ephp',['SSCustomerLoginController.php',['../_s_s_customer_login_controller_8php.html',1,'']]],
   ['sscustomerloginview',['SSCustomerLoginView',['../class_s_s_customer_login_view.html',1,'']]],
   ['sscustomerloginview_2ephp',['SSCustomerLoginView.php',['../_s_s_customer_login_view_8php.html',1,'']]],
   ['sscustomerregistercontroller',['SSCustomerRegisterController',['../class_s_s_customer_register_controller.html',1,'']]],
@@ -34,10 +38,10 @@ var searchData=
   ['sshelper_2ephp',['SSHelper.php',['../_s_s_helper_8php.html',1,'']]],
   ['ssimport',['SSImport',['../class_s_s_import.html',1,'']]],
   ['ssimport_2ephp',['SSImport.php',['../_s_s_import_8php.html',1,'']]],
-  ['ssobjecttable',['SSObjectTable',['../class_s_s_object_table.html',1,'']]],
-  ['ssobjecttable_2ephp',['SSObjectTable.php',['../_s_s_object_table_8php.html',1,'']]],
-  ['ssobjectview',['SSObjectView',['../class_s_s_object_view.html',1,'']]],
-  ['ssobjectview_2ephp',['SSObjectView.php',['../_s_s_object_view_8php.html',1,'']]],
+  ['ssmodel',['SSModel',['../class_s_s_model.html',1,'']]],
+  ['ssmodel_2ephp',['SSModel.php',['../_s_s_model_8php.html',1,'']]],
   ['sssession',['SSSession',['../class_s_s_session.html',1,'']]],
-  ['sssession_2ephp',['SSSession.php',['../_s_s_session_8php.html',1,'']]]
+  ['sssession_2ephp',['SSSession.php',['../_s_s_session_8php.html',1,'']]],
+  ['ssview',['SSView',['../class_s_s_view.html',1,'']]],
+  ['ssview_2ephp',['SSView.php',['../_s_s_view_8php.html',1,'']]]
 ];

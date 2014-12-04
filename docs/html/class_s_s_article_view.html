@@ -86,24 +86,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Data Fields</a>  </div>
+<a href="#pub-attribs">Data Fields</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">SSArticleView Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for SSArticleView:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_s_s_article_view__inherit__graph.png" border="0" usemap="#_s_s_article_view_inherit__map" alt="Inheritance graph"/></div>
+<map name="_s_s_article_view_inherit__map" id="_s_s_article_view_inherit__map">
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for SSArticleView:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_s_s_article_view__coll__graph.png" border="0" usemap="#_s_s_article_view_coll__map" alt="Collaboration graph"/></div>
+<map name="_s_s_article_view_coll__map" id="_s_s_article_view_coll__map">
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab010b81a22917149a013768ee3b5e180"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_article_view.html#ab010b81a22917149a013768ee3b5e180">displayDetailHtml</a> ($params=array())</td></tr>
+<tr class="memdesc:ab010b81a22917149a013768ee3b5e180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detailansicht.  <a href="#ab010b81a22917149a013768ee3b5e180">More...</a><br /></td></tr>
 <tr class="separator:ab010b81a22917149a013768ee3b5e180"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4acab8de77713ba660c82a8a658f37ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_article_view.html#a4acab8de77713ba660c82a8a658f37ab">displayListHtml</a> ($params=array())</td></tr>
+<tr class="memdesc:a4acab8de77713ba660c82a8a658f37ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listenansicht.  <a href="#a4acab8de77713ba660c82a8a658f37ab">More...</a><br /></td></tr>
 <tr class="separator:a4acab8de77713ba660c82a8a658f37ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:aeca189a7edc29987e472d008eb9208b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeca189a7edc29987e472d008eb9208b3"></a>
-const&#160;</td><td class="memItemRight" valign="bottom"><b>FORM_ID</b> = 'article'</td></tr>
+<tr class="memitem:aeca189a7edc29987e472d008eb9208b3"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_article_view.html#aeca189a7edc29987e472d008eb9208b3">FORM_ID</a> = 'article'</td></tr>
 <tr class="separator:aeca189a7edc29987e472d008eb9208b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a505c5e4c4c2337be5c68ab3b00953861"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a505c5e4c4c2337be5c68ab3b00953861"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>$FORM_ID</b> = self::FORM_ID</td></tr>
+<tr class="separator:a505c5e4c4c2337be5c68ab3b00953861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ab010b81a22917149a013768ee3b5e180"></a>
@@ -119,7 +141,17 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>FORM_ID</b> = 'artic
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Artikel Detail Anzeige </p>
+
+<p>Detailansicht. </p>
+<p>Artikel Detail AnzeigeDetailansicht generieren und anzeigen</p>
+<p>Benötigte Dateien: /templates/article.detail.tmpl.php</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$params</td><td><a class="el" href="class_s_s_helper.html#af67d5c1052dd07c445391b85cfa3dd8e" title="Formular Felder Setting generien. ">SSHelper::getFormProperties</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_helper.html#af67d5c1052dd07c445391b85cfa3dd8e" title="Formular Felder Setting generien. ">SSHelper::getFormProperties</a> </dd></dl>
 
 </div>
 </div>
@@ -136,7 +168,31 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>FORM_ID</b> = 'artic
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Artikel Liste Anzeige </p>
+
+<p>Listenansicht. </p>
+<p>Listenansicht generieren und anzeigen</p>
+<p>Benötigte Dateien: /templates/article.list.tmpl.php</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$params</td><td><a class="el" href="class_s_s_helper.html#af67d5c1052dd07c445391b85cfa3dd8e" title="Formular Felder Setting generien. ">SSHelper::getFormProperties</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_helper.html#af67d5c1052dd07c445391b85cfa3dd8e" title="Formular Felder Setting generien. ">SSHelper::getFormProperties</a> </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="aeca189a7edc29987e472d008eb9208b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const FORM_ID = 'article'</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>siehe Parent </p>
 
 </div>
 </div>
@@ -146,7 +202,7 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>FORM_ID</b> = 'artic
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 4 2014 22:58:07 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 5 2014 00:46:00 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

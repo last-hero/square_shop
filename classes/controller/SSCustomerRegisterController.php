@@ -62,7 +62,9 @@ class SSCustomerRegisterController {
 			if(($this->formPropertiesAndValues['action']) == self::ACTION_REGISTER){
 				if($this->isInputValid()){
 					$this->registerHandler();
-					$this->customerRegisterView->displaySuccessMessage();
+					$this->customerRegisterView->displaySuccessMessage(
+						SSHelper::i18l(SSCustomerRegisterView::FORM_ID.'_success_text')
+					);
 				}else{
 					$this->displayView();
 				}

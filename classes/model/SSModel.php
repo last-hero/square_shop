@@ -1,5 +1,5 @@
 <?php
-/** @file SSObjectTable.php
+/** @file SSModel.php
  *  @brief Daten modellieren
  *
  *  Diese Klasse dient als Parent für alle Subklassen
@@ -12,7 +12,7 @@
  *  @bug Keine Bugs bekannt.
  */
 
-class SSObjectTable {
+class SSModel {
 	/**
 	 * Enthält Daten, die vom Formular via
 	 * Submit betätigt wurden.

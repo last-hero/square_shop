@@ -104,12 +104,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab7647ffef2497c797370d12a82299324"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_object_view.html#ab7647ffef2497c797370d12a82299324">displayFormHtml</a> ($params=array())</td></tr>
 <tr class="memdesc:ab7647ffef2497c797370d12a82299324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formular anzeigen.  <a href="#ab7647ffef2497c797370d12a82299324">More...</a><br /></td></tr>
 <tr class="separator:ab7647ffef2497c797370d12a82299324"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2646861b03d7bf8f4c584cfa95ba414"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_object_view.html#af2646861b03d7bf8f4c584cfa95ba414">displaySuccessMessageHtml</a> ($params=array())</td></tr>
-<tr class="memdesc:af2646861b03d7bf8f4c584cfa95ba414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Success-Meldung anzeigen.  <a href="#af2646861b03d7bf8f4c584cfa95ba414">More...</a><br /></td></tr>
-<tr class="separator:af2646861b03d7bf8f4c584cfa95ba414"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab57f83378269815073cbc571cb7f62e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_object_view.html#ab57f83378269815073cbc571cb7f62e8">displayErrorMessageHtml</a> ($params=array())</td></tr>
-<tr class="memdesc:ab57f83378269815073cbc571cb7f62e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Failure-Meldung anzeigen.  <a href="#ab57f83378269815073cbc571cb7f62e8">More...</a><br /></td></tr>
-<tr class="separator:ab57f83378269815073cbc571cb7f62e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac884cc2475c77e19694e04a0d7309a5c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_object_view.html#ac884cc2475c77e19694e04a0d7309a5c">displaySuccessMessage</a> ($message)</td></tr>
+<tr class="memdesc:ac884cc2475c77e19694e04a0d7309a5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Success-Meldung anzeigen.  <a href="#ac884cc2475c77e19694e04a0d7309a5c">More...</a><br /></td></tr>
+<tr class="separator:ac884cc2475c77e19694e04a0d7309a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb1a7de30865bdb51d14c67f509510bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_object_view.html#abb1a7de30865bdb51d14c67f509510bc">displayErrorMessage</a> ($message)</td></tr>
+<tr class="memdesc:abb1a7de30865bdb51d14c67f509510bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Failure-Meldung anzeigen.  <a href="#abb1a7de30865bdb51d14c67f509510bc">More...</a><br /></td></tr>
+<tr class="separator:abb1a7de30865bdb51d14c67f509510bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae84e18348de1a78bb481462078acfab7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_object_view.html#ae84e18348de1a78bb481462078acfab7">displayMessage</a> ($message)</td></tr>
+<tr class="memdesc:ae84e18348de1a78bb481462078acfab7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Einfache Meldung anzeigen.  <a href="#ae84e18348de1a78bb481462078acfab7">More...</a><br /></td></tr>
+<tr class="separator:ae84e18348de1a78bb481462078acfab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -117,15 +120,15 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a505c5e4c4c2337be5c68ab3b00953861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ab57f83378269815073cbc571cb7f62e8"></a>
+<a class="anchor" id="abb1a7de30865bdb51d14c67f509510bc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">displayErrorMessageHtml </td>
+          <td class="memname">displayErrorMessage </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$params</em> = <code>array()</code></td><td>)</td>
+          <td class="paramname"><em>$message</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -135,13 +138,17 @@ Protected Attributes</h2></td></tr>
 <p>Eine Failure-Meldung (Html-Code) anzeigen</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$params</td><td></td></tr>
+    <tr><td class="paramname">$message</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd>displayMessageHtml() </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_object_view.html#ae84e18348de1a78bb481462078acfab7" title="Einfache Meldung anzeigen. ">displayMessage()</a> </dd>
 <dd>
-<a class="el" href="class_s_s_object_view.html#af2646861b03d7bf8f4c584cfa95ba414" title="Success-Meldung anzeigen. ">displaySuccessMessageHtml()</a> </dd></dl>
+<a class="el" href="class_s_s_object_view.html#ac884cc2475c77e19694e04a0d7309a5c" title="Success-Meldung anzeigen. ">displaySuccessMessage()</a> </dd>
+<dd>
+<a class="el" href="class_s_s_object_view.html#abb1a7de30865bdb51d14c67f509510bc" title="Failure-Meldung anzeigen. ">displayErrorMessage()</a> </dd>
+<dd>
+displayMessageHtml() </dd></dl>
 
 </div>
 </div>
@@ -172,15 +179,47 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af2646861b03d7bf8f4c584cfa95ba414"></a>
+<a class="anchor" id="ae84e18348de1a78bb481462078acfab7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">displaySuccessMessageHtml </td>
+          <td class="memname">displayMessage </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$params</em> = <code>array()</code></td><td>)</td>
+          <td class="paramname"><em>$message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Einfache Meldung anzeigen. </p>
+<p>Eine einfache Meldung (Html-Code) anzeigen</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$message</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_object_view.html#ae84e18348de1a78bb481462078acfab7" title="Einfache Meldung anzeigen. ">displayMessage()</a> </dd>
+<dd>
+<a class="el" href="class_s_s_object_view.html#ac884cc2475c77e19694e04a0d7309a5c" title="Success-Meldung anzeigen. ">displaySuccessMessage()</a> </dd>
+<dd>
+<a class="el" href="class_s_s_object_view.html#abb1a7de30865bdb51d14c67f509510bc" title="Failure-Meldung anzeigen. ">displayErrorMessage()</a> </dd>
+<dd>
+displayMessageHtml() </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac884cc2475c77e19694e04a0d7309a5c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">displaySuccessMessage </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$message</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -190,13 +229,17 @@ Protected Attributes</h2></td></tr>
 <p>Eine Success-Meldung (Html-Code) anzeigen</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$params</td><td></td></tr>
+    <tr><td class="paramname">$message</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd>displayMessageHtml() </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_object_view.html#ae84e18348de1a78bb481462078acfab7" title="Einfache Meldung anzeigen. ">displayMessage()</a> </dd>
 <dd>
-<a class="el" href="class_s_s_object_view.html#ab57f83378269815073cbc571cb7f62e8" title="Failure-Meldung anzeigen. ">displayErrorMessageHtml()</a> </dd></dl>
+<a class="el" href="class_s_s_object_view.html#ac884cc2475c77e19694e04a0d7309a5c" title="Success-Meldung anzeigen. ">displaySuccessMessage()</a> </dd>
+<dd>
+<a class="el" href="class_s_s_object_view.html#abb1a7de30865bdb51d14c67f509510bc" title="Failure-Meldung anzeigen. ">displayErrorMessage()</a> </dd>
+<dd>
+displayMessageHtml() </dd></dl>
 
 </div>
 </div>
@@ -228,7 +271,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 4 2014 22:58:08 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 4 2014 23:33:43 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

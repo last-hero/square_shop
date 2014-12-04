@@ -1,41 +1,38 @@
 <?php
-#
-#
-# SSCartView
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Dies Klasse enthält alle Views für den Warenkorb
-#
-#
+/** @file SSCartView.php
+ *  @brief View Klasse
+ *
+ *  Dies Klasse enthält alle Views für den Warenkorb
+ *
+ *  Die Templates welche benötigt werden sind
+ *  im Verzeichnis /templates vorhanden.
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ *
+ *  @bug Keine Bugs bekannt.
+ */
 
-class SSCartView {
-	// Form Array Key Name
-	const FORM_ID = 'cart';
-	
+class SSCartView extends SSObjectView{
 	/**
-	* Warenkorb Anzeige
-	*   --> Full
+	* siehe Parent
 	*/
+	const FORM_ID = 'cart';
+	protected $FORM_ID = self::FORM_ID;
+	
+	/** @brief Warenkorb anzeigen
+	 *
+	 *  Warenkorb mit Artikeln (Menge anpassen, Artikel entfernen, Warenkorb leeren, Zur Kasse gehen)
+	 *
+	 *  Benötigte Dateien: /templates/cart.complete.tmpl.php
+	 *
+	 *  @param $params
+	 */
 	public function displayCartHtml($params = array()){
 		$params['FORM_ID'] = self::FORM_ID;
 		try{			
 			echo SSGUI::parse(self::FORM_ID.'.complete.tmpl.php', $params);
-		}catch(SSException $e) {
-			echo $e;
-		}
-	}
-	
-	/**
-	* Warenkorb Anzeige
-	*   --> Short
-	*/
-	public function displayCartShortHtml($params = array()){
-		$params['FORM_ID'] = self::FORM_ID;
-		try{			
-			echo SSGUI::parse(self::FORM_ID.'.short.tmpl.php', $params);
 		}catch(SSException $e) {
 			echo $e;
 		}

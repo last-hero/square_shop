@@ -129,17 +129,4 @@ class SSCheckoutController {
 		$params['step_active'] = $this->step;
 		$this->checkoutView->displayCheckoutStepHtml($params);
 	}
-	public function messageHandler(){
-		if($this->showMessage){
-			$params = array();
-			$params['msg_type'] = 'success';
-			if(sizeof($this->formPropertyValueErrors) > 0){
-				$params['msg_type'] = 'error';
-			}
-			
-			$params['label_text'] = SSHelper::i18l($this->formPropertiesAndValues['action'].'_'.$params['msg_type']);
-			
-			$this->cartView->displayCartMessageHtml($params);
-		}
-	}
 }

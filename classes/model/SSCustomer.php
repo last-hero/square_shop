@@ -12,7 +12,7 @@
  *  @bug Keine Bugs bekannt.
  */
 
-class SSCustomer extends SSObjectTable{
+class SSCustomer extends SSModel{
 	/**
 	 * @see parent
 	 */

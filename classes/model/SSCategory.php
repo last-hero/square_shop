@@ -12,7 +12,7 @@
  *  @bug Keine Bugs bekannt.
  */
 
-class SSCategory extends SSObjectTable{
+class SSCategory extends SSModel{
 	/**
 	 * @see parent
 	 */

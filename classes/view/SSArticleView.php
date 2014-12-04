@@ -15,13 +15,27 @@
  *  @bug Keine Bugs bekannt.
  */
  
-class SSArticleView {
-	// Form Array Key Name
+class SSArticleView extends SSObjectView{
+	/**
+	* siehe Parent
+	*/
 	const FORM_ID = 'article';
+	protected $FORM_ID = self::FORM_ID;
 	
 	/**
 	* Artikel Detail Anzeige
 	*/
+	
+	/** @brief Detailansicht
+	 *
+	 *  Detailansicht generieren und anzeigen
+	 *
+	 *  Benötigte Dateien: /templates/article.detail.tmpl.php
+	 *
+	 *  @param $params: SSHelper::getFormProperties
+	 *
+	 *  @see SSHelper::getFormProperties
+	 */
 	public function displayDetailHtml($params = array()){
 		$params['FORM_ID'] = SSCartView::FORM_ID;
 		try{			
@@ -31,9 +45,16 @@ class SSArticleView {
 		}
 	}
 	
-	/**
-	* Artikel Liste Anzeige
-	*/
+	/** @brief Listenansicht
+	 *
+	 *  Listenansicht generieren und anzeigen
+	 *
+	 *  Benötigte Dateien: /templates/article.list.tmpl.php
+	 *
+	 *  @param $params: SSHelper::getFormProperties
+	 *
+	 *  @see SSHelper::getFormProperties
+	 */
 	public function displayListHtml($params = array()){
 		$params['FORM_ID'] = self::FORM_ID;
 		try{			

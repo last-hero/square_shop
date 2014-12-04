@@ -12,7 +12,7 @@
  *  @bug Keine Bugs bekannt.
  */
 
-class SSArticle extends SSObjectTable{
+class SSArticle extends SSModel{
 	/**
 	 * @see parent
 	 */

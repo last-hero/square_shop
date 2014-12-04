@@ -1,5 +1,5 @@
 <?php
-/** @file SSObjectView.php
+/** @file SSView.php
  *  @brief View Klasse
  *
  *  Diese Klasse dient als Parent für alle Subklassen
@@ -15,7 +15,7 @@
  *  @bug Keine Bugs bekannt.
  */
  
-class SSObjectView {
+class SSView {
 	/**
 	 * Formular ID die hier eingesetzt wird: $_POST[SSForm][[FORM_ID]
 	 */
@@ -51,10 +51,12 @@ class SSObjectView {
 	 *
 	 *  @param $params
 	 *
-	 *  @see displaySuccessMessageHtml()
-	 *  @see displayErrorMessageHtml()
+	 *  @see displayMessage()
+	 *  @see displaySuccessMessage()
+	 *  @see displayErrorMessage()
+	 *  @see displayMessageHtml()
 	 */
-	private function displayMessageHtml($params = array()){
+	protected function displayMessageHtml($params = array()){
 		$params['FORM_ID'] = $this->FORM_ID;
 		try{			
 			echo SSGUI::parse('message.tmpl.php', $params);
@@ -67,14 +69,17 @@ class SSObjectView {
 	 *
 	 *  Eine Success-Meldung (Html-Code) anzeigen
 	 *
-	 *  @param $params
+	 *  @param $message
 	 *
+	 *  @see displayMessage()
+	 *  @see displaySuccessMessage()
+	 *  @see displayErrorMessage()
 	 *  @see displayMessageHtml()
-	 *  @see displayErrorMessageHtml()
 	 */
-	public function displaySuccessMessageHtml($params = array()){
+	public function displaySuccessMessage($message){
 		$params['msg_type'] = 'success';
-		if(!isset($params['label_text'])){
+		$params['label_text'] = $message;
+		if(empty($params['label_text'])){
 			$params['label_text'] = SSHelper::i18l($this->FORM_ID.'_success_text');
 		}
 		$this->displayMessageHtml($params);
@@ -84,14 +89,37 @@ class SSObjectView {
 	 *
 	 *  Eine Failure-Meldung (Html-Code) anzeigen
 	 *
-	 *  @param $params
+	 *  @param $message
 	 *
+	 *  @see displayMessage()
+	 *  @see displaySuccessMessage()
+	 *  @see displayErrorMessage()
 	 *  @see displayMessageHtml()
-	 *  @see displaySuccessMessageHtml()
 	 */
-	public function displayErrorMessageHtml($params = array()){
+	public function displayErrorMessage($message){
 		$params['msg_type'] = 'error';
-		if(!isset($params['label_text'])){
+		$params['label_text'] = $message;
+		if(empty($params['label_text'])){
+			$params['label_text'] = SSHelper::i18l($this->FORM_ID.'_failure_text');
+		}
+		$this->displayMessageHtml($params);
+	}
+	
+	/** @brief Einfache Meldung anzeigen
+	 *
+	 *  Eine einfache Meldung (Html-Code) anzeigen
+	 *
+	 *  @param $message
+	 *
+	 *  @see displayMessage()
+	 *  @see displaySuccessMessage()
+	 *  @see displayErrorMessage()
+	 *  @see displayMessageHtml()
+	 */
+	public function displayMessage($message){
+		$params['msg_type'] = 'normal';
+		$params['label_text'] = $message;
+		if(empty($params['label_text'])){
 			$params['label_text'] = SSHelper::i18l($this->FORM_ID.'_failure_text');
 		}
 		$this->displayMessageHtml($params);

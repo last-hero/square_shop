@@ -90,7 +90,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_p"><span>p</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
-      <li class="current"><a href="#index_t"><span>t</span></a></li>
+      <li><a href="#index_t"><span>t</span></a></li>
+      <li class="current"><a href="#index_u"><span>u</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -116,28 +117,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_s_s_session.html#a6efc15b5a2314dd4b5aaa556a375c6d6">SSSession</a>
 </li>
 <li>$ERROR_NO_FOREIGN_KEYS
-: <a class="el" href="class_s_s_object_table.html#a01370ad0946802d48988eb203cb3a606">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#a01370ad0946802d48988eb203cb3a606">SSModel</a>
 </li>
 <li>$ERROR_TABLE_ATTR_DIFF
-: <a class="el" href="class_s_s_object_table.html#a354f858a16c3b1147b3d65b0efb38aae">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#a354f858a16c3b1147b3d65b0efb38aae">SSModel</a>
 </li>
 <li>$ERROR_TO_MANY_FOREIGN_KEYS
-: <a class="el" href="class_s_s_object_table.html#a2d228671995fcf8aa9736de56f64517c">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#a2d228671995fcf8aa9736de56f64517c">SSModel</a>
 </li>
 <li>$FORM_ID
-: <a class="el" href="class_s_s_object_view.html#a505c5e4c4c2337be5c68ab3b00953861">SSObjectView</a>
+: <a class="el" href="class_s_s_controller.html#a505c5e4c4c2337be5c68ab3b00953861">SSController</a>
+, <a class="el" href="class_s_s_customer_login_controller.html#a505c5e4c4c2337be5c68ab3b00953861">SSCustomerLoginController</a>
+, <a class="el" href="class_s_s_view.html#a505c5e4c4c2337be5c68ab3b00953861">SSView</a>
+</li>
+<li>$formPropertiesAndValues
+: <a class="el" href="class_s_s_controller.html#a1cfbc2a55aef0ab0468f02d7d7612845">SSController</a>
+</li>
+<li>$formPropertyValueErrors
+: <a class="el" href="class_s_s_controller.html#a5a52ca608ca949d1f72a1acdcf6ad4ee">SSController</a>
 </li>
 <li>$objInstance
 : <a class="el" href="class_s_s_session.html#a917d057900327b25608ed26c927eac3b">SSSession</a>
 </li>
 <li>$properties
-: <a class="el" href="class_s_s_object_table.html#a7f675de4b5983d7e84f6573b7d4d453d">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#a7f675de4b5983d7e84f6573b7d4d453d">SSModel</a>
 </li>
 <li>$propertiesAndValues
-: <a class="el" href="class_s_s_object_table.html#a2177c239969472a06ecbce46973c0e08">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#a2177c239969472a06ecbce46973c0e08">SSModel</a>
+</li>
+<li>$session
+: <a class="el" href="class_s_s_controller.html#abefb3c26429d514777313e9a63d7cbac">SSController</a>
+</li>
+<li>$SHOW_IN
+: <a class="el" href="class_s_s_controller.html#a53d38442fc9ff3bde4acd5e485690fc2">SSController</a>
+, <a class="el" href="class_s_s_customer_login_controller.html#a53d38442fc9ff3bde4acd5e485690fc2">SSCustomerLoginController</a>
 </li>
 <li>$TABLE
-: <a class="el" href="class_s_s_object_table.html#a2ec22d00799255f58733484eede8a941">SSObjectTable</a>
+: <a class="el" href="class_s_s_controller.html#a2ec22d00799255f58733484eede8a941">SSController</a>
+, <a class="el" href="class_s_s_customer_login_controller.html#a2ec22d00799255f58733484eede8a941">SSCustomerLoginController</a>
+, <a class="el" href="class_s_s_model.html#a2ec22d00799255f58733484eede8a941">SSModel</a>
 </li>
 </ul>
 
@@ -145,7 +163,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index__"></a>- _ -</h3><ul>
 <li>__construct()
 : <a class="el" href="class_s_s_article_controller.html#a095c5d389db211932136b53f25f39685">SSArticleController</a>
-, <a class="el" href="class_s_s_object_table.html#a095c5d389db211932136b53f25f39685">SSObjectTable</a>
+, <a class="el" href="class_s_s_controller.html#a095c5d389db211932136b53f25f39685">SSController</a>
+, <a class="el" href="class_s_s_model.html#a095c5d389db211932136b53f25f39685">SSModel</a>
 , <a class="el" href="class_s_s_session.html#a095c5d389db211932136b53f25f39685">SSSession</a>
 </li>
 <li>__destruct()
@@ -185,12 +204,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_s_s_d_b_schema.html#aedce4e3ba5def563bd5c0051616e997e">SSDBSchema</a>
 </li>
 <li>_getWhere()
-: <a class="el" href="class_s_s_object_table.html#a35c6e2a29ed76d4c79418c0a3e1ca3f5">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#a35c6e2a29ed76d4c79418c0a3e1ca3f5">SSModel</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>ACTION_LOGIN
+: <a class="el" href="class_s_s_customer_login_controller.html#ac0869b5d786dfef927f1c483ff58c23e">SSCustomerLoginController</a>
+</li>
+<li>ACTION_LOGOUT
+: <a class="el" href="class_s_s_customer_login_controller.html#ae6356e7acf41a3accd27cd475c7015f6">SSCustomerLoginController</a>
+</li>
 <li>array_keys_exists()
 : <a class="el" href="class_s_s_helper.html#a096c538159975131963b7dd547982a4e">SSHelper</a>
 </li>
@@ -214,9 +239,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>displayCartMessageHtml()
 : <a class="el" href="class_s_s_cart_view.html#a7ca16c1bf6f3dd4f471968bdaeb4092e">SSCartView</a>
 </li>
-<li>displayCartShortHtml()
-: <a class="el" href="class_s_s_cart_view.html#a48cc2202c5c9e333044ef15fb7943c40">SSCartView</a>
-</li>
 <li>displayDetail()
 : <a class="el" href="class_s_s_g_u_i.html#a749260a7c5dcca9e6e7ed078fe282088">SSGUI</a>
 </li>
@@ -226,14 +248,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>displayDetailView()
 : <a class="el" href="class_s_s_article_controller.html#afab87894a16fc2caaf028e7a92ddd1a6">SSArticleController</a>
 </li>
-<li>displayErrorMessageHtml()
-: <a class="el" href="class_s_s_object_view.html#ab57f83378269815073cbc571cb7f62e8">SSObjectView</a>
+<li>displayErrorMessage()
+: <a class="el" href="class_s_s_view.html#abb1a7de30865bdb51d14c67f509510bc">SSView</a>
 </li>
 <li>displayFormAddEdit()
 : <a class="el" href="class_s_s_g_u_i.html#aa5eeb5a1670567016f90a4d405ba64ac">SSGUI</a>
 </li>
 <li>displayFormHtml()
-: <a class="el" href="class_s_s_object_view.html#ab7647ffef2497c797370d12a82299324">SSObjectView</a>
+: <a class="el" href="class_s_s_view.html#ab7647ffef2497c797370d12a82299324">SSView</a>
 </li>
 <li>displayFormSearch()
 : <a class="el" href="class_s_s_g_u_i.html#adb1c40bbd9561a931b1505fd756fe2d4">SSGUI</a>
@@ -250,14 +272,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>displayLogoutHtml()
 : <a class="el" href="class_s_s_customer_login_view.html#a44a0c8be402b297e04e753bb82b520cd">SSCustomerLoginView</a>
 </li>
-<li>displaySuccessMessageHtml()
-: <a class="el" href="class_s_s_object_view.html#af2646861b03d7bf8f4c584cfa95ba414">SSObjectView</a>
+<li>displayMessage()
+: <a class="el" href="class_s_s_view.html#ae84e18348de1a78bb481462078acfab7">SSView</a>
+</li>
+<li>displayMessageHtml()
+: <a class="el" href="class_s_s_view.html#a7528716d1e0c476cc15d15937b0e8e91">SSView</a>
+</li>
+<li>displaySuccessMessage()
+: <a class="el" href="class_s_s_view.html#ac884cc2475c77e19694e04a0d7309a5c">SSView</a>
 </li>
 <li>displayView()
 : <a class="el" href="class_s_s_article_controller.html#aca04b3e313abfb913efaacdfb7d5d3d7">SSArticleController</a>
+, <a class="el" href="class_s_s_customer_login_controller.html#aca04b3e313abfb913efaacdfb7d5d3d7">SSCustomerLoginController</a>
 </li>
 <li>doPropertiesExist()
-: <a class="el" href="class_s_s_object_table.html#a069b2c7c8caad29b856ce83c0b77f946">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#a069b2c7c8caad29b856ce83c0b77f946">SSModel</a>
 </li>
 </ul>
 
@@ -286,7 +315,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
 <li>FORM_ID
-: <a class="el" href="class_s_s_customer_login_view.html#aeca189a7edc29987e472d008eb9208b3">SSCustomerLoginView</a>
+: <a class="el" href="class_s_s_article_view.html#aeca189a7edc29987e472d008eb9208b3">SSArticleView</a>
+, <a class="el" href="class_s_s_cart_view.html#aeca189a7edc29987e472d008eb9208b3">SSCartView</a>
+, <a class="el" href="class_s_s_customer_login_view.html#aeca189a7edc29987e472d008eb9208b3">SSCustomerLoginView</a>
 , <a class="el" href="class_s_s_customer_register_view.html#aeca189a7edc29987e472d008eb9208b3">SSCustomerRegisterView</a>
 </li>
 <li>formatPrice()
@@ -297,26 +328,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
 <li>get()
-: <a class="el" href="class_s_s_object_table.html#a24a9bf83a1002d46ece83a93d14bd921">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#a24a9bf83a1002d46ece83a93d14bd921">SSModel</a>
 , <a class="el" href="class_s_s_session.html#a24a9bf83a1002d46ece83a93d14bd921">SSSession</a>
 </li>
 <li>getByForeignId()
-: <a class="el" href="class_s_s_object_table.html#a41c010a33856bd19a7629cfeb22cd7ee">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#a41c010a33856bd19a7629cfeb22cd7ee">SSModel</a>
 </li>
 <li>getByIds()
-: <a class="el" href="class_s_s_object_table.html#ab004368ffff7ccf403178e68458b42be">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#ab004368ffff7ccf403178e68458b42be">SSModel</a>
 </li>
 <li>getCategories()
 : <a class="el" href="class_s_s_category.html#a8729ba486702e7e12a3fff08965e1e7f">SSCategory</a>
 </li>
 <li>getClearedUnknownProperties()
-: <a class="el" href="class_s_s_object_table.html#afa9876e2892d3614019baf239d6fb817">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#afa9876e2892d3614019baf239d6fb817">SSModel</a>
 </li>
 <li>getFormProperties()
 : <a class="el" href="class_s_s_helper.html#af67d5c1052dd07c445391b85cfa3dd8e">SSHelper</a>
 </li>
 <li>getInstance()
 : <a class="el" href="class_s_s_session.html#ac93fbec81f07e5d15f80db907e63dc10">SSSession</a>
+</li>
+<li>getLoggedInUserName()
+: <a class="el" href="class_s_s_customer_login_controller.html#aa682ffa862eb49bba5131c5df3503b81">SSCustomerLoginController</a>
 </li>
 <li>getPostByFormId()
 : <a class="el" href="class_s_s_helper.html#a428243c74c0e83bd79079777bb03aa69">SSHelper</a>
@@ -337,24 +371,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>importSamples()
 : <a class="el" href="class_s_s_import.html#a265e477a5cc3d73227671d1a77ed17d2">SSImport</a>
 </li>
+<li>init()
+: <a class="el" href="class_s_s_controller.html#a4be4055f3361d4800e16bc2e2e38cda6">SSController</a>
+, <a class="el" href="class_s_s_customer_login_controller.html#a4be4055f3361d4800e16bc2e2e38cda6">SSCustomerLoginController</a>
+</li>
 <li>invoke()
 : <a class="el" href="class_s_s_article_controller.html#a969cad912937b1e2e6e66b49d8148738">SSArticleController</a>
+, <a class="el" href="class_s_s_customer_login_controller.html#a969cad912937b1e2e6e66b49d8148738">SSCustomerLoginController</a>
+</li>
+<li>isInputValid()
+: <a class="el" href="class_s_s_controller.html#a9798c65d2a3254277e5b7943c4e289fd">SSController</a>
+, <a class="el" href="class_s_s_customer_login_controller.html#a9798c65d2a3254277e5b7943c4e289fd">SSCustomerLoginController</a>
 </li>
 <li>isTypeOf()
 : <a class="el" href="class_s_s_helper.html#a252971d168d1c2644a9c9c1d3a0bcefc">SSHelper</a>
+</li>
+<li>isUserLoggedIn()
+: <a class="el" href="class_s_s_customer_login_controller.html#aeb08814a3b11252c66e465a868da3ea7">SSCustomerLoginController</a>
+</li>
+<li>isUserRequestUnique()
+: <a class="el" href="class_s_s_controller.html#a8197ec4c543771b0c99b9830f6bf3647">SSController</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
 <li>loadById()
-: <a class="el" href="class_s_s_object_table.html#aaa52c32cdc5298be8f8b86d8b8fc16e5">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#aaa52c32cdc5298be8f8b86d8b8fc16e5">SSModel</a>
 </li>
 <li>loadCustomerByEmailAndPassword()
 : <a class="el" href="class_s_s_customer.html#ae0f3b1ea3b543491631868d3beb9880f">SSCustomer</a>
 </li>
 <li>loadPropertiesAndNames()
-: <a class="el" href="class_s_s_object_table.html#a3ba49e7eb11518d49bee9b8342275618">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#a3ba49e7eb11518d49bee9b8342275618">SSModel</a>
+</li>
+<li>loginLogoutHandler()
+: <a class="el" href="class_s_s_customer_login_controller.html#a1ec48b325777925c936a89a25214cb92">SSCustomerLoginController</a>
+</li>
+<li>loginUser()
+: <a class="el" href="class_s_s_customer_login_controller.html#ad6bf242fc31bbc73cee1fff7621d46f5">SSCustomerLoginController</a>
+</li>
+<li>logoutUser()
+: <a class="el" href="class_s_s_customer_login_controller.html#ad4c5f502195f1c8b6f7bfb0a101958c2">SSCustomerLoginController</a>
 </li>
 </ul>
 
@@ -375,10 +433,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
 <li>save()
-: <a class="el" href="class_s_s_object_table.html#afc8a3c62679cf00ade9f15fb2a6d6132">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#afc8a3c62679cf00ade9f15fb2a6d6132">SSModel</a>
 </li>
 <li>set()
-: <a class="el" href="class_s_s_object_table.html#a99d2c747a3521243d4e180cabc8cb106">SSObjectTable</a>
+: <a class="el" href="class_s_s_model.html#a99d2c747a3521243d4e180cabc8cb106">SSModel</a>
 , <a class="el" href="class_s_s_session.html#ac8d8012023e560c81f55a629022cb65a">SSSession</a>
 </li>
 <li>setCategoryId()
@@ -394,10 +452,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="class_s_s_customer.html#adf62e2b172196282218b1ece3d200fa1">SSCustomer</a>
 </li>
 </ul>
+
+
+<h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
+<li>userRequestIsNotMoreUnique()
+: <a class="el" href="class_s_s_controller.html#a69589381f9521974590b912d68793575">SSController</a>
+</li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 4 2014 22:58:12 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 5 2014 00:46:08 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

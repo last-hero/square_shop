@@ -9,6 +9,7 @@ var searchData=
   ['sscategory',['SSCategory',['../class_s_s_category.html',1,'']]],
   ['sscheckoutcontroller',['SSCheckoutController',['../class_s_s_checkout_controller.html',1,'']]],
   ['sscheckoutview',['SSCheckoutView',['../class_s_s_checkout_view.html',1,'']]],
+  ['sscontroller',['SSController',['../class_s_s_controller.html',1,'']]],
   ['sscustomer',['SSCustomer',['../class_s_s_customer.html',1,'']]],
   ['sscustomerlogincontroller',['SSCustomerLoginController',['../class_s_s_customer_login_controller.html',1,'']]],
   ['sscustomerloginview',['SSCustomerLoginView',['../class_s_s_customer_login_view.html',1,'']]],
@@ -20,7 +21,7 @@ var searchData=
   ['ssgui',['SSGUI',['../class_s_s_g_u_i.html',1,'']]],
   ['sshelper',['SSHelper',['../class_s_s_helper.html',1,'']]],
   ['ssimport',['SSImport',['../class_s_s_import.html',1,'']]],
-  ['ssobjecttable',['SSObjectTable',['../class_s_s_object_table.html',1,'']]],
-  ['ssobjectview',['SSObjectView',['../class_s_s_object_view.html',1,'']]],
-  ['sssession',['SSSession',['../class_s_s_session.html',1,'']]]
+  ['ssmodel',['SSModel',['../class_s_s_model.html',1,'']]],
+  ['sssession',['SSSession',['../class_s_s_session.html',1,'']]],
+  ['ssview',['SSView',['../class_s_s_view.html',1,'']]]
 ];
