@@ -62,9 +62,8 @@ class SSCustomerRegisterController {
 			if(($this->formPropertiesAndValues['action']) == self::ACTION_REGISTER){
 				if($this->isInputValid()){
 					$this->registerHandler();
-					$this->customerRegisterView->displaySuccess();
+					$this->customerRegisterView->displaySuccessMessage();
 				}else{
-					//$this->customerRegisterView->displayErrors($this->formPropertyValueErrors);
 					$this->displayView();
 				}
 			}else{
@@ -140,7 +139,7 @@ class SSCustomerRegisterController {
 		
 		$params['fields'] = SSHelper::getFormProperties(SSCustomerRegisterView::FORM_ID, SSCustomer::TABLE, 'register');
 		
-		$this->customerRegisterView->displayRegisterHtml($params);
+		$this->customerRegisterView->displayFormHtml($params);
 	}
 	
 	/*

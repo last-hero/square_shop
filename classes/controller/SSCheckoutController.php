@@ -91,7 +91,8 @@ class SSCheckoutController {
 			case 1:
 				if(!$this->customerLoginController->isUserLoggedIn()){
 					$this->customerLoginController->displayView();
-					$this->customerRegisterController->displayView();
+					//$this->customerRegisterController->displayView();
+					$this->displayViewByStep();
 				}
 				break;
 			case 1:
@@ -110,6 +111,15 @@ class SSCheckoutController {
 			$params['label_steps'][$x] = SSHelper::i18l('label_step'.$x);
 		}
 		$params['step_active'] = $this->step;
+	}
+	public function displayViewByStep(){
+		
+		$params = array();
+		for($x=1; $x<=5; $x++){
+			$params['label_steps'][$x] = SSHelper::i18l('label_step'.$x);
+		}
+		$params['step_active'] = $this->step;
+		$this->checkoutView->displayCheckoutByStepHtml($this->step, $params);
 	}
 	public function displayStepView(){
 		$params = array();

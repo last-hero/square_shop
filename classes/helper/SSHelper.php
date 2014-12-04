@@ -222,6 +222,9 @@ class SSHelper{
 			$name = $f['name'];
 			if(isset($f['input'])){
 				$settings = $f['input_settings'];
+				$settingsByShowIn = $f['input_settings_by_show_in'][$show_in];
+				$settingsByShowIn = is_array($settingsByShowIn)?$settingsByShowIn:array($settingsByShowIn);
+				$settings = array_merge($settings, $settingsByShowIn);
 				$label_values = array();
 				foreach($settings['values'] as $v){
 					$label_values[] = self::i18l($formId.'_label_'.$name.'_'.$v);
@@ -236,6 +239,7 @@ class SSHelper{
 					, 'max' => $settings['max']
 					, 'min' => $settings['min']
 					, 'type' => $f['input']
+					, 'equalto' => $settings['equalto']
 				);
 			}
 		}

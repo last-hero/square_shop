@@ -130,9 +130,11 @@ class SSCustomerLoginController {
 			$params['fields'] = SSHelper::getFormProperties(SSCustomerLoginView::FORM_ID, SSCustomer::TABLE, 'login');
 			$params['label_submit'] = SSHelper::i18l('label_login');
 			if($this->loginError){
-				$params['login_error'] = SSHelper::i18l(self::ACTION_LOGIN.'_error');
+				$this->customerLoginView->displayErrorMessageHtml(array(
+					'label_text' => SSHelper::i18l(self::ACTION_LOGIN.'_error')
+				));
 			}
-			$this->customerLoginView->displayLoginHtml($params);
+			$this->customerLoginView->displayFormHtml($params);
 		}
 	}
 	

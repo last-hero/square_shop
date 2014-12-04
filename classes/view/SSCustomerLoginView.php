@@ -1,7 +1,8 @@
 <?php
-class SSCustomerLoginView {	
+class SSCustomerLoginView extends SSObjectView{
 	// Form Array Key Name
 	const FORM_ID = 'login';
+	protected $FORM_ID = self::FORM_ID;
 	
 	/**
 	* Login Maske anzeigen

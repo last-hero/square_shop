@@ -281,6 +281,11 @@ class SSDBSchema {
 							, 'max' => 16
 							, 'encrypt' => 'md5'
 						)
+					, 'input_settings_by_show_in' => array(
+							'register' => array(
+								'equalto' => 'password_re'
+							)
+						)
 					, 'sql' => 'VARCHAR(32) NULL'
 					, 'sql_settings' => array(
 							'encrypt' => 'md5'
