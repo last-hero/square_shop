@@ -2,12 +2,11 @@
 /** @file SSCartController.php
  *  @brief Warenkorb Verwalten
  *
- *  iese Klasse verwaltet den ganzen Warenkorb
+ *  Diese Klasse verwaltet den ganzen Warenkorb
  *
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
- *  @bug No known bugs.
  */
 
 class SSCartController extends SSController{

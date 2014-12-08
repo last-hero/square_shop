@@ -8,58 +8,84 @@
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
- *  @bug No known bugs.
  */
-class SSArticleController {
-	// GET Variable Name
+class SSArticleController extends SSController {
+	/**
+	 * Variable Name für Artikel ID in der URL 
+	 * -> $_GET[VAR_NAME_ARTILEID]
+	 */
 	const VAR_NAME_ARTILEID = 'artid';
 	
-	// Form Action Code
+	/**
+	 * Jedes Formular hat ein Action
+	 * zum identifizieren, um welche
+	 * Aktion ausgeführt werden soll.
+	 * Hier wird "Add To Cart", ein
+	 * Artikel zum Warenkorb hinzufügen.
+	 */
 	const ACTION_ADD_TO_CART = 'addtocart';
 	
-	// Singleton --> Session Objekt
-	private $session;
+	/**
+	 * @see SSArticleView::FORM_ID
+	 */
+	protected $FORM_ID = SSArticleView::FORM_ID;
 	
-	// SSArticle Object
+	/**
+	 * @see SSArticle::TABLE
+	 */
+	protected $TABLE = SSArticle::TABLE;
+	
+	/**
+	 * @see SSDBSchema::SHOW_IN_DETAIL
+	 */
+	protected $SHOW_IN = SSDBSchema::SHOW_IN_DETAIL;
+	
+	/**
+	 * Ein Artikel-Objekt für die Detailansicht
+	 * @see SSArticle
+	 */
 	private $article;
 	
-	// Array of SSArticle Objects
+	/**
+	 * Ein Array für Artikel-Objekte für Listenansicht
+	 * @see SSArticle
+	 */
 	private $articlelist;
-	
-	// SSArticleView Object
+		
+	/**
+	 * Ein Artikel View für Detail-/Listenansicht
+	 * @see SSArticleView
+	 */
 	private $articleView;
 	
-	// Kategorie ID
+	/**
+	 * Kategorie Id, nach dem die Artikeln
+	 * gefiltert werden (Listenansicht).
+	 */
 	private $categoryId;
-	
-	// Artikel ID
+		
+	/**
+	 * Artikel Id für die Detailansicht
+	 * eines Artikel.
+	 */
 	private $articleId;
 	
-	// Form Felder mit Values (User Input)
-	private $formPropertiesAndValues;
-	
-	/** @brief Konstruktor
+	/** @brief Initialisierung
 	 *
-	 *  Lädt Session Instanz (Singleton).
-	 *  Falls POST Request gesendet wurde, 
-	 *  dann daten aus der POST Variable laden
-	 *
+	 *  Erstellen der benötigten Objekte.
+	 *  Dazu zählen Artikel, Artikel-View und
+	 *  ein Array für die Artikelliste.
+	 *  Zudem wird ein ArtikelID gesetzt, 
+	 *  Falls die Detailansicht von einer
+	 *  Artikel erwünscht wird.
 	 */
-    public function __construct(){
-		// Session Objekt (Singleton) holen
-		$this->session = SSSession::getInstance();
+    protected function init(){
 		$this->article = new SSArticle();
 		$this->articleView = new SSArticleView();
-		
 		$this->articlelist = array();
 		if(isset($_GET[self::VAR_NAME_ARTILEID])){
 			$this->articleId = $_GET[self::VAR_NAME_ARTILEID];
 		}
-		
-		// Form Felder mit Values (User Input) laden aus POST Variable
-		// Die Daten werden nach FORM_ID filtriert, damit Daten von
-		// diese Formular geladen werden
-		$this->formPropertiesAndValues = SSHelper::getPostByFormId(SSArticleView::FORM_ID);
     }
 	
 	/** @brief Starter
@@ -94,6 +120,15 @@ class SSArticleController {
 	 */
 	public function setCategoryId($categoryId){
 		$this->categoryId = $categoryId;
+	}
+	
+	/** @brief Artikel ID setzen
+	 *
+	 *  Artikle ID für Detailansicht setzen
+	 *  @param $articleId
+	 */
+	public function setArticleId($articleId){
+		$this->articleId = $articleId;
 	}
 	
 	/** @brief Artikel oder Artikeln anzeigen

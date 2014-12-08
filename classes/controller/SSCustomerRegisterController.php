@@ -1,55 +1,69 @@
 <?php
-#
-#
-# SSCustomerRegisterController
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Mit dieser Klasse wird das Registrieren ermöglicht
-# 
-#
-
-class SSCustomerRegisterController {
+/** @file SSCustomerRegisterController.php
+ *  @brief Registrieren - Controller
+ *
+ *  Mit dieser Klasse wird das Registrieren ermöglicht
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ */
+class SSCustomerRegisterController extends SSController{
+	/**
+	 * Jedes Formular hat ein Action
+	 * zum identifizieren, um welche
+	 * Aktion ausgeführt werden soll.
+	 * Hier wird "register" d.h. ein
+	 * Benutzer schickt ein Request, 
+	 * um sich anzumelden.
+	 */
 	const ACTION_REGISTER = 'register';
 	
-	// Singleton --> Session Objekt
-	private $session;
+	/**
+	 * @see SSCustomerRegisterView::FORM_ID
+	 */
+	protected $FORM_ID = SSCustomerRegisterView::FORM_ID;
 	
-	// POST Var Daten -> korrekt eingegebene von User
-	private $formPropertiesAndValues;
+	/**
+	 * @see SSArticle::TABLE
+	 */
+	protected $TABLE = SSCustomer::TABLE;
 	
-	// Fehler
-	private $formPropertyValueErrors;
+	/**
+	 * @see SSDBSchema::SHOW_IN_REGISTER
+	 */
+	protected $SHOW_IN = SSDBSchema::SHOW_IN_REGISTER;
 	
-	
-	// Customer Objekt
+	/**
+	 * Ein Customer-Objekt
+	 * @see Customer
+	 */
 	private $customer;
 	
-	// CustomerRegisterView Objekt
+	/**
+	 * Ein CustomerRegisterView-Objekt
+	 * @see CustomerRegisterView
+	 */
 	private $customerRegisterView;
 	
-	// SSCustomerLoginController Objekt
+	/**
+	 * Ein SSCustomerLoginController-Objekt
+	 * @see SSCustomerLoginController
+	 */
 	private $customerLoginController;
 	
-	
-	/*
-	* Konstruktor: lädt Session Instanz (Singleton)
-	* Falls POST Request abgeschickt wurde, dann daten laden
-	*/
-    public function __construct(){
-		// Session Objekt (Singleton) holen
-		$this->session = SSSession::getInstance();
-		
+	/** @brief Initialisierung
+	 *
+	 *  Erstellen der benötigten Objekte.
+	 *  Customer Daten, RegistrierungsMaske
+	 *  und Login/Logout Maske.
+	 */
+    protected function init(){
 		$this->customer = new SSCustomer();
 		
 		$this->customerRegisterView = new SSCustomerRegisterView();
 		
 		$this->customerLoginController = new SSCustomerLoginController();
-		
-		// Form Post Vars (User input) holen
-		$this->formPropertiesAndValues = SSHelper::getPostByFormId(SSCustomerRegisterView::FORM_ID);
     }
 	
 	/*
@@ -92,19 +106,6 @@ class SSCustomerRegisterController {
 	}
 	
 	/*
-	* Formular Input Dateon vom User auf Richtigkeit überpürfen
-	* return bool
-	*/
-	public function isInputValid(){
-		$this->formPropertyValueErrors = SSHelper::checkFromInputs(SSCustomer::TABLE, 'register'
-												, $this->formPropertiesAndValues);
-		if(sizeof($this->formPropertyValueErrors) > 0){
-			return false;
-		}
-		return true;
-	}
-	
-	/*
 	* Prüfen ob User angemeldet ist oder nicht
 	* return bool
 	*/
@@ -142,24 +143,5 @@ class SSCustomerRegisterController {
 		$params['fields'] = SSHelper::getFormProperties(SSCustomerRegisterView::FORM_ID, SSCustomer::TABLE, 'register');
 		
 		$this->customerRegisterView->displayFormHtml($params);
-	}
-	
-	/*
-	* überprüft ob From-Post nicht durch einen Browswer-Refresh
-	* generiert worden ist.
-	* return bool: true = nicht generiert    false = generiert durch Browser-Refresh
-	*/
-	public function isUserRequestUnique(){
-		if($this->session->get(self::ACTION_REGISTER.'SuccessUniqueId') != $this->formPropertiesAndValues['uniqueId']){
-			return true;
-		}
-		return false;
-	}
-	
-	/*
-	* Speichert From unique id in Session
-	*/
-	public function userRequestIsNotMoreUnique(){
-		$this->session->set(self::ACTION_REGISTER.'SuccessUniqueId', $this->formPropertiesAndValues['uniqueId']);
 	}
 }

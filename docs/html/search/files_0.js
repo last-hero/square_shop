@@ -3,6 +3,7 @@ var searchData=
   ['ssarticle_2ephp',['SSArticle.php',['../_s_s_article_8php.html',1,'']]],
   ['ssarticlecontroller_2ephp',['SSArticleController.php',['../_s_s_article_controller_8php.html',1,'']]],
   ['ssarticleview_2ephp',['SSArticleView.php',['../_s_s_article_view_8php.html',1,'']]],
+  ['sscartcontroller_2ephp',['SSCartController.php',['../_s_s_cart_controller_8php.html',1,'']]],
   ['sscartview_2ephp',['SSCartView.php',['../_s_s_cart_view_8php.html',1,'']]],
   ['sscategory_2ephp',['SSCategory.php',['../_s_s_category_8php.html',1,'']]],
   ['sscontroller_2ephp',['SSController.php',['../_s_s_controller_8php.html',1,'']]],

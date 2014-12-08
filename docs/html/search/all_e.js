@@ -11,6 +11,7 @@ var searchData=
   ['ssarticleview',['SSArticleView',['../class_s_s_article_view.html',1,'']]],
   ['ssarticleview_2ephp',['SSArticleView.php',['../_s_s_article_view_8php.html',1,'']]],
   ['sscartcontroller',['SSCartController',['../class_s_s_cart_controller.html',1,'']]],
+  ['sscartcontroller_2ephp',['SSCartController.php',['../_s_s_cart_controller_8php.html',1,'']]],
   ['sscartview',['SSCartView',['../class_s_s_cart_view.html',1,'']]],
   ['sscartview_2ephp',['SSCartView.php',['../_s_s_cart_view_8php.html',1,'']]],
   ['sscategory',['SSCategory',['../class_s_s_category.html',1,'']]],

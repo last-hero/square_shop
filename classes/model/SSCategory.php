@@ -14,25 +14,25 @@
 
 class SSCategory extends SSModel{
 	/**
-	 * @see parent
+	 * @see SSModel::$TABLE
 	 */
 	const TABLE = 'category';
 	protected $TABLE = self::TABLE;
 	
 	/**
-	 * @see parent
+	 * @see SSModel::$ERROR_TABLE_ATTR_DIFF
 	 */
 	const ERROR_TABLE_ATTR_DIFF = '8001';
 	protected $ERROR_TABLE_ATTR_DIFF = self::ERROR_TABLE_ATTR_DIFF;
 	
 	/**
-	 * @see parent
+	 * @see SSModel::$ERROR_TO_MANY_FOREIGN_KEYS
 	 */
 	const ERROR_TO_MANY_FOREIGN_KEYS = '8002';
 	protected $ERROR_TO_MANY_FOREIGN_KEYS;
 	
 	/**
-	 * @see parent
+	 * @see SSModel::$ERROR_NO_FOREIGN_KEYS
 	 */
 	const ERROR_NO_FOREIGN_KEYS = '8003';
 	protected $ERROR_NO_FOREIGN_KEYS;

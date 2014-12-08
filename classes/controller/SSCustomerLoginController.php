@@ -8,7 +8,6 @@
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
- *  @bug No known bugs.
  */
 
 class SSCustomerLoginController extends SSController{

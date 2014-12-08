@@ -7,7 +7,6 @@
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
- *  @bug No known bugs.
  */
 class SSController {
 	/**
@@ -21,7 +20,9 @@ class SSController {
 	protected $TABLE;
 	
 	/**
-	 * siehe SSSchema
+	 *@see SSSchema::SHOW_IN_DETAIL
+	 *@see SSSchema::SHOW_IN_LIST
+	 *@see SSSchema::SHOW_IN_X
 	 */
 	protected $SHOW_IN;
 	
@@ -94,7 +95,7 @@ class SSController {
 	
 	/** @brief Is Benutzereingabe Unique
 	 *
-	 *  Überprüft ob From-Post nicht durch einen Browswer-Refresh
+	 *  Überprüft ob From-Post nicht durch einen Browser-Refresh
 	 *  generiert worden ist.
 	 *
 	 *  @param (string) $action: Formular Action 
