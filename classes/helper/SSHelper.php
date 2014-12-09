@@ -8,8 +8,6 @@
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
- *
- *  @bug Keine Bugs bekannt.
  */
 
 class SSHelper{
@@ -38,6 +36,8 @@ class SSHelper{
 	 *  @return (string) $str
 	 */
 	public static function i18l($str){
+		SSHelper::seti18l($str, $str);
+		
 		$str = str_replace('register_label_', '', $str);
 		$str = str_replace('login_label_', '', $str);
 		$str = str_replace('label_', '', $str);
@@ -52,6 +52,15 @@ class SSHelper{
 			, $fillEmpty = false
 			, $clang = $REX['CLANG_ID']
 		);
+	}
+	public static function seti18l($_k, $_v){
+		global $REX;
+		$file = $REX['INCLUDE_PATH'] . '/addons/square_shop/lang/fe_de_de_utf8.lang';
+		if(substr_count(file_get_contents($file),$_k) == false) {
+			$fp = fopen($file, 'a+');
+			fwrite($fp, "\n$_k = $_v");
+			fclose ( $fp );
+		}
 	}
 	
 	/** @brief Shop-Betreiber Setting Value

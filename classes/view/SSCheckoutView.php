@@ -1,15 +1,16 @@
 <?php
-#
-#
-# SSCheckoutView
-# https://github.com/last-hero/square_shop
-#
-# (c) Gobi Selva
-# http://www.square.ch
-#
-# Dies Klasse enthält alle Views für das Checkout
-#
-#
+/** @file SSCheckoutView.php
+ *  @brief Checkout View Klasse
+ *
+ *  Dies Klasse enthält alle Views für das Checkout
+ *
+ *  Die Templates welche benötigt werden sind
+ *  im Verzeichnis /templates vorhanden.
+ *
+ *  @author Gobi Selva
+ *  @author http://www.square.ch
+ *  @author https://github.com/last-hero/square_shop
+ */
 
 class SSCheckoutView {
 	// Form Array Key Name

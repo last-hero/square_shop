@@ -12,20 +12,26 @@
 #
 #
 
-class SSCheckoutController {	
+class SSCheckoutController extends SSController{
 	const ACTION_STEP1 = 'checkout_step1';
 	const ACTION_STEP2 = 'checkout_step2';
 	const ACTION_STEP3 = 'checkout_step3';
 	const ACTION_STEP4 = 'checkout_step4';
 	
-	// Singleton --> Session Objekt
-	private $session;
+	/**
+	 * @see SSArticleView::FORM_ID
+	 */
+	protected $FORM_ID = SSCartView::FORM_ID;
 	
-	// POST Var Daten -> korrekt eingegebene von User
-	private $formPropertiesAndValues;
+	/**
+	 * @see SSArticle::TABLE
+	 */
+	protected $TABLE = SSArticle::TABLE;
 	
-	// Fehler
-	private $formPropertyValueErrors;
+	/**
+	 * @see SSDBSchema::SHOW_IN_DETAIL
+	 */
+	protected $SHOW_IN = SSDBSchema::SHOW_IN_CART_ITEM;
 	
 	// SSCartView Object
 	private $cartView;
@@ -33,13 +39,14 @@ class SSCheckoutController {
 	// SSCheckoutView Object
 	private $checkoutView;
 	
+	// SSCustomer Object
+	private $customer;
+	
 	// SSCustomerLoginController Object
 	private $customerLoginController;
 	
 	// SSCustomerRegisterController Object
 	private $customerRegisterController;
-	
-	private $showMessage;
 	
 	private $step = 1;
 	
@@ -47,20 +54,17 @@ class SSCheckoutController {
 	* Konstruktor: lädt Session Instanz (Singleton)
 	* Falls POST Request abgeschickt wurde, dann daten laden
 	*/
-    public function __construct(){
-		// Session Objekt (Singleton) holen
-		$this->session = SSSession::getInstance();
+    public function init(){
 		
 		$this->cartView = new SSCartView();
 		
 		$this->customerLoginController = new SSCustomerLoginController();
 		
+		$this->customer = new SSCustomer();
+		
 		$this->customerRegisterController = new SSCustomerRegisterController();
 		
 		$this->checkoutView = new SSCheckoutView();
-		
-		// Form Post Vars (User input) holen
-		$this->formPropertiesAndValues = SSHelper::getPostByFormId(SSCartView::FORM_ID);
     }
 	
 	/*
@@ -76,11 +80,33 @@ class SSCheckoutController {
 	* Warenkorb Handler: Add to Cart, Remove from Cart, Menge ändern
 	*/
 	public function checkoutHandler(){
+		if($this->customerLoginController->isUserLoggedIn()){
+			$this->step = 2;
+		}
 		switch($this->step){
 			case 1:
-				if($this->customerLoginController->isUserLoggedIn()){
-					$this->step = 2;
+				$this->customerLoginController->loginLogoutHandler();
+				$this->customerRegisterController->registerHandler();
+				
+				/*
+				if($this->customerRegisterController->isInputValid()){
+					$email = $this->customerRegisterController
+									->formPropertiesAndValues['email'];
+					$password = $this->customerRegisterController
+									->formPropertiesAndValues['password'];
+									
+					if($this->customer->loadCustomerByEmailAndPassword($email, $password)){
+						$userId = $this->customer->get('id');
+						$userName = $this->customer->get('firstname').' '.$this->customer->get('lastname');
+						$this->customerLoginController->loginUser($userId, $userName);
+						
+						$this->step = 2;
+					}
 				}
+				*/
+				break;
+			case 2:
+				echo 'LOGIK STEP 2';
 				break;
 			default:
 				break;
@@ -90,16 +116,25 @@ class SSCheckoutController {
 		switch($this->step){
 			case 1:
 				if(!$this->customerLoginController->isUserLoggedIn()){
+					$this->cartView->displayMessage(
+						SSHelper::i18l(self::ACTION_STEP1.'_text')
+					);
 					$this->customerLoginController->displayView();
-					//$this->customerRegisterController->displayView();
+					/*
+					$this->customerRegisterController->displayView();
+					*/
+					
+					
+					$this->customerRegisterController->messageHandler();
+					$this->customerRegisterController->viewHandler();
+					
 					$this->displayViewByStep();
 				}
 				break;
-			case 1:
-				if(!$this->customerLoginController->isUserLoggedIn()){
-					$this->customerLoginController->displayView();
-					$this->customerRegisterController->displayView();
-				}
+			case 2:
+				$this->cartView->displayMessage(
+					SSHelper::i18l(self::ACTION_STEP2.'_text')
+				);
 				break;
 			default:
 				break;

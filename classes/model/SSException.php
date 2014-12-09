@@ -8,8 +8,6 @@
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
- *
- *  @bug Keine Bugs bekannt.
  *  @todo Exceptions verfeinern
  */
 

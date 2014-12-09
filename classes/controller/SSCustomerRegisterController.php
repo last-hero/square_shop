@@ -4,6 +4,11 @@
  *
  *  Mit dieser Klasse wird das Registrieren ermöglicht
  *
+ *  @todo Registrierung verifizieren: So
+ *  dass der User sich erst duch öffne der Besätitungsurl,
+ *  welche per Mail an User verschickt wurde,
+ *  sich auf der Seite anmelden kann.
+ *
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
@@ -52,6 +57,12 @@ class SSCustomerRegisterController extends SSController{
 	 */
 	private $customerLoginController;
 	
+	/**
+	 * Eine Hilfsvariable (Boolean) um das
+	 * Registrierungsformular anzuzeigen.
+	 */
+	protected $showRegisterForm;
+	
 	/** @brief Initialisierung
 	 *
 	 *  Erstellen der benötigten Objekte.
@@ -64,51 +75,63 @@ class SSCustomerRegisterController extends SSController{
 		$this->customerRegisterView = new SSCustomerRegisterView();
 		
 		$this->customerLoginController = new SSCustomerLoginController();
+		
+		$this->showRegisterForm = true;
     }
 	
-	/*
-	* Registrieren Starten
-	*/
+	/** @brief Registrieren Starten
+	 *
+	 *  Registrierungsmaske wird eingeblendet.
+	 *  Sobald das Formular ausgefüllt und abgeschickt
+	 *  wird, werden die eingegebene Daten überprüft
+	 *  (z.B. ob die E-Mail Adresse den Norm entspricht)
+	 *  und in der DB gespeichert. Am Schluss erscheint
+	 *  eine Bestätigungsmeldung.
+	 */
 	public function invoke(){
 		if($this->customerLoginController->isUserLoggedIn()){
 			$this->customerLoginController->displayView();
 		}else{
-			if(($this->formPropertiesAndValues['action']) == self::ACTION_REGISTER){
-				if($this->isInputValid()){
-					$this->registerHandler();
-					$this->customerRegisterView->displaySuccessMessage(
-						SSHelper::i18l(SSCustomerRegisterView::FORM_ID.'_success_text')
-					);
-				}else{
-					$this->displayView();
-				}
-			}else{
-				$this->displayView();
-			}
+			$this->registerHandler();
+			$this->messageHandler();
+			$this->viewHandler();
 		}
 	}
 	
-	/*
-	* Formular wird abgearbeitet
-	* Benutzer speichern falls alle User-Inputs valid
-	*/
+	/** @brief Formular Daten speichern
+	 *
+	 *  Die Benutzerdaten, welche mit dem 
+	 *  Registrierungsformular ausgefüllt wurden,
+	 *  werden in der Datenbank gespeichert.
+	 *
+	 *  Es wird vorher noch überprüft ob der
+	 *  POST-Request durch Browser-Refresh oder
+	 *  durch Betätigen der Submit-Button
+	 *  abgeschickt wurde.
+	 */
 	public function registerHandler(){
 		switch($this->formPropertiesAndValues['action']){
 			case self::ACTION_REGISTER:
 				if($this->isUserRequestUnique()){
-					$clearedUserInputs = $this->customer->getClearedUnknownProperties($this->formPropertiesAndValues);
-					$this->customer->set($clearedUserInputs);
-					$this->customer->save();
-					$this->userRequestIsNotMoreUnique();
+					if($this->isInputValid()){
+						$clearedUserInputs = $this->customer->getClearedUnknownProperties($this->formPropertiesAndValues);
+						$this->customer->set($clearedUserInputs);
+						$this->customer->save();
+						$this->userRequestIsNotMoreUnique();
+						$this->showRegisterForm = false;
+					}
+				}else{
+					$this->showRegisterForm = false;
 				}
+				$this->showMessage = true;
 				break;
 		}
 	}
-	
-	/*
-	* Prüfen ob User angemeldet ist oder nicht
-	* return bool
-	*/
+		
+	/** @brief Prüfen ob User eingeloggt ist
+	 *
+	 *  @return bool
+	 */
 	public function isUserLoggedIn(){
 		$this->customerLoginController = new SSCustomerLoginController();
 		$this->customerLoginController->isUserLoggedIn();
@@ -117,15 +140,14 @@ class SSCustomerRegisterController extends SSController{
 		}
 		return false;
 	}
-	
-	/*
-	* Falls User nicht angemeldet: Login-Maske anzeigen
-	* Falls User angemeldet: Logout-Maske anzeigen
-	*/
+		
+	/** @brief Registrierungsmaske anzeigen
+	 *
+	 *  Das Formular für das Registrieren anzeigen
+	 */
 	public function displayView(){
-		// User ist nicht angemeldet
 		$params = array();
-		$params['label_submit'] = SSHelper::i18l('Abschicken');
+		$params['label_submit'] = SSHelper::i18l('label_submit');
 		$params['action'] = self::ACTION_REGISTER;
 		
 		$params['formPropertiesAndValues'] = $this->formPropertiesAndValues;
@@ -143,5 +165,15 @@ class SSCustomerRegisterController extends SSController{
 		$params['fields'] = SSHelper::getFormProperties(SSCustomerRegisterView::FORM_ID, SSCustomer::TABLE, 'register');
 		
 		$this->customerRegisterView->displayFormHtml($params);
+	}
+	
+	/** @brief Formular-Anzeige-Handler
+	 *
+	 *  Das RegistrierungsFomrular wird angezeigt
+	 */
+	public function viewHandler(){
+		if($this->showRegisterForm){
+			$this->displayView();
+		}
 	}
 }

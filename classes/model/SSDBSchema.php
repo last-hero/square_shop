@@ -23,6 +23,7 @@ class SSDBSchema {
 	const SHOW_IN_LOGIN      		 = 'login';
 	const SHOW_IN_CART_ITEM    	 = 'cart_item'; // add to cart  |  change qty
 	const SHOW_IN_CART_ITEM_DEL     = 'cart_item_del'; // remove from cart
+	const SHOW_IN_CKOUT_ADDRESS  	 = 'checkout_address'; // remove from cart
 	
 	const ERROR_FIELDS_NOT_FOUND 	    = 1000;
 	const ERROR_TABLE_NOT_FOUND 		= 1001;
@@ -344,94 +345,94 @@ class SSDBSchema {
 				, array(
 					'name' => 'billing_title'
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'billing_company'
 					, 'input' => 'text'
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'billing_firstname'
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'billing_lastname'
 					, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'billing_street'
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'billing_zip'
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'billing_city'
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'billing_telephone'
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'billing_email'
 					, 'sql' => 'VARCHAR(90) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'delivery_title'
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'delivery_company'
 					, 'input' => 'text'
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'delivery_firstname'
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'delivery_lastname'
 					, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'delivery_street'
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'delivery_zip'
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'delivery_city'
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'delivery_telephone'
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'delivery_email'
 					, 'sql' => 'VARCHAR(90) NULL'
-					, 'show_in' => array('detail')
+					, 'show_in' => array('detail', 'checkout_address')
 				)
 				, array(
 					'name' => 'status'

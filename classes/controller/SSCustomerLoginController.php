@@ -137,8 +137,6 @@ class SSCustomerLoginController extends SSController{
 	 */
 	public function displayView(){
 		$params = array();
-		
-		
 		if($this->isUserLoggedIn()){
 			$params['action'] = self::ACTION_LOGOUT;
 			$params['label_submit'] = SSHelper::i18l('label_logout');

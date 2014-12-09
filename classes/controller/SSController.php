@@ -43,6 +43,18 @@ class SSController {
 	 */
 	protected $formPropertyValueErrors;
 	
+	/**
+	 * Eine Hilfsvariable (Boolean) um Meldungen
+	 * anzuzeigen.
+	 */
+	protected $showMessage;
+		
+	/**
+	 * Ein Objekt für das View
+	 * @see SSView
+	 */
+	protected $view;
+	
 	/** @brief Konstruktor
 	 *
 	 *  Lädt Session Instanz (Singleton).
@@ -59,6 +71,8 @@ class SSController {
 		// Die Daten werden nach FORM_ID filtriert, damit Daten von
 		// diese Formular geladen werden
 		$this->formPropertiesAndValues = SSHelper::getPostByFormId($this->FORM_ID);
+		
+		$this->view = new SSView();
 		
 		$this->init();
     }
@@ -79,6 +93,8 @@ class SSController {
 	 *
 	 *  Formular Input Dateon vom User auf Richtigkeit überprüfen
 	 *
+	 *
+	 *  @see SSHelper::checkFromInputs
 	 *  @return bool
 	 */
 	public function isInputValid(){
@@ -91,6 +107,29 @@ class SSController {
 			return false;
 		}
 		return true;
+	}
+	
+	/** @brief Meldungs-Handler
+	 *
+	 *  Die Meldungen je nach Aktionen, werden
+	 *  mit dieser Methode gehandlet.
+	 *  Die Zusammensetzung aus Aktionsname und
+	 *  error oder success ergibt den Platzhalter für
+	 *  die Meldung.
+	 */
+	public function messageHandler(){
+		if($this->showMessage){
+			if(sizeof($this->formPropertyValueErrors) > 0){
+				$params['msg_type'] = 'error';
+				$this->view->displayErrorMessage(
+					$this->formPropertiesAndValues['action'].'_error'
+				);
+			}else{
+				$this->view->displaySuccessMessage(
+					$this->formPropertiesAndValues['action'].'_success'
+				);
+			}
+		}
 	}
 	
 	/** @brief Is Benutzereingabe Unique

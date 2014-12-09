@@ -8,8 +8,6 @@
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
- *
- *  @bug Keine Bugs bekannt.
  */
 
 class SSCustomer extends SSModel{
@@ -56,7 +54,6 @@ class SSCustomer extends SSModel{
 				}
 			}
 		}
-		
 		$res = $this->_getWhere("email = '$email' AND password = '$password'");
 		if(count($res) == 1){
 			try{

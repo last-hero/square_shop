@@ -10,46 +10,70 @@
  */
 
 class SSCartController extends SSController{
-	protected $FORM_ID = SSCartView::FORM_ID;
-	
-	protected $TABLE = SSArticle::TABLE;
-	
-	protected $SHOW_IN = SSDBSchema::SHOW_IN_CART_ITEM;
-	
 	const TABLE_ORDER_ITEM = 'order_item';
 	// Form Action Code
 	const ACTION_DEL_FROM_CART	 = 'del_from_cart';
 	const ACTION_UPDATE_ART_QTY 	= 'update_art_qty';
 	const ACTION_EMPTY_CART 		= 'empty_cart';
 	
-	// Singleton --> Session Objekt
-	//private $session;
+	/**
+	 * @see SSArticleView::FORM_ID
+	 */
+	protected $FORM_ID = SSCartView::FORM_ID;
 	
-	// Array of SSArticle Objects
+	/**
+	 * @see SSArticle::TABLE
+	 */
+	protected $TABLE = SSArticle::TABLE;
+	
+	/**
+	 * @see SSDBSchema::SHOW_IN_DETAIL
+	 */
+	protected $SHOW_IN = SSDBSchema::SHOW_IN_CART_ITEM;
+	
+	/**
+	 * Ein Array für Artikel-Objekte
+	 * die zum Warenkorb hinzugefügt werden
+	 * 
+	 * @see SSArticle
+	 */
 	private $articlelist;
-	
-	// POST Var Daten -> korrekt eingegebene von User
-	//private $formPropertiesAndValues;
-	
-	// Fehler
-	//private $formPropertyValueErrors;
-	
-	// SSCartView Object
+		
+	/**
+	 * Ein Objekt für das Warenkorb-View
+	 * @see SSCartView
+	 */
 	private $cartView;
 	
-	private $showMessage;
-	
+	/**
+	 * Redaxo Seiten ID zum Weiterleitein
+	 * um Checkout durchzuführen.
+	 */
 	private $checkoutPageId;
 	
+	
+	/** @brief Initialisierung
+	 *
+	 *  Erstellen der benötigten
+	 *  Objekte (Artikle und Warenkorb-View).
+	 *  Zuweisen der Redaxo Seiten ID von
+	 *  der Redaxo Variable $REX.
+	 */
     protected function init(){
 		$this->article = new SSArticle();
 		$this->cartView = new SSCartView();
 		$this->checkoutPageId = $REX['ARTICLE_ID'];
     }
 	
-	/*
-	* Warenkorb starten
-	*/
+	/** @brief Starter
+	 *
+	 *  Hier wird die ganze Warenkorb-Geschichte
+	 *  in Gang gesetzt. Dazu zählen das logische
+	 *  Teil (Artikel add, remove, change-qty) und
+	 *  das Message-Handling um Meldungen anzuzeigen,
+	 *  die den jeweiligen Aktion bestätigen. Und
+	 *  der Warenkorb wird angezeigt.
+	 */
 	public function invoke(){
 		$this->cartHandler();
 		$this->messageHandler();
@@ -62,9 +86,14 @@ class SSCartController extends SSController{
 		}
 	}
 	
-	/*
-	* Warenkorb Handler: Add to Cart, Remove from Cart, Menge ändern
-	*/
+	/** @brief Warenkorb Handler
+	 *
+	 *  Hier geschieht die ganze Warenkorb Aktionen:
+	 *  Add to Cart, Remove from Cart, Menge ändern
+	 *  und den Warenkorb leeren.
+	 *  Mit einem Switch-Case wird die Aktion abgefangen,
+	 *  welche das Formular per POST-Variable mit verschickt.
+	 */
 	public function cartHandler(){
 		$artId = (int)$this->formPropertiesAndValues['id'];
 		$qty = (int)$this->formPropertiesAndValues['qty'];
@@ -100,12 +129,16 @@ class SSCartController extends SSController{
 		}
 	}
 	
-	
-	
-	/*
-	* Formular Input Dateon vom User auf Richtigkeit überpürfen
-	* return bool
-	*/
+	/** @brief Überprüfen der Formular Daten
+	 *
+	 *  Die abgeschickte Formulare (add to cart
+	 *  , empty carte, change qty)
+	 *  werden auf Richtigkeit überprüft (z.B. ob die 
+	 *  Menge korrekt angegeben ist).
+	 *
+	 *  @return bool  true = Eingabe korrekt     false = Eingabe falsch
+	 *  @see SSHelper::checkFromInputs
+	 */
 	public function isInputValid(){
 		$errorsOrderItem1 = SSHelper::checkFromInputs(self::TABLE_ORDER_ITEM, SSDBSchema::SHOW_IN_CART_ITEM
 												, $this->formPropertiesAndValues);
@@ -114,23 +147,19 @@ class SSCartController extends SSController{
 												
 		$this->formPropertyValueErrors = array_merge($errorsOrderItem1, $errorsOrderItem2);
 		
-		/*
-		if(!$this->isArticleExists($this->formPropertiesAndValues['id'])){
-			$this->formPropertyValueErrors['id']['notfound'] = 1;
-		}
-		*/
 		if(sizeof($this->formPropertyValueErrors) > 0){
 			return false;
 		}
 		return true;
 	}
 	
-	
-	
-	/*
-	* Formular Input Dateon vom User auf Richtigkeit überpürfen
-	* return bool
-	*/
+	/** @brief Überprüfen der Eingabe zum Artikel entfernen
+	 *
+	 *  Prüft ob der Artikel aus dem Artikel entfernt werden kann.
+	 *
+	 *  @return bool  true = Eingabe korrekt     false = Eingabe falsch
+	 *  @see SSCartController::checkFromInputs
+	 */
 	public function isInputValidDelCartItem(){
 		$errorsOrderItem1 = SSHelper::checkFromInputs(self::TABLE_ORDER_ITEM, SSDBSchema::SHOW_IN_CART_ITEM_DEL
 												, $this->formPropertiesAndValues);
@@ -139,53 +168,28 @@ class SSCartController extends SSController{
 												
 		$this->formPropertyValueErrors = array_merge($errorsOrderItem1, $errorsOrderItem2);
 		
-		/*
-		if(!$this->isArticleExists($this->formPropertiesAndValues['id'])){
-			$this->formPropertyValueErrors['id']['notfound'] = 1;
-		}
-		*/
 		if(sizeof($this->formPropertyValueErrors) > 0){
 			return false;
 		}
 		return true;
 	}
 	
-	/*
-	* überprüfen ob Artikel in DB vorhanden
-	*/
-	public function isArticleExists($artId){
-		$article = new SSArticle();
-		if($article->loadById($artId)){
-			return true;
-		}
-		return false;
-	}
-	
-	/*
-	* überprüfen ob Artikel in DB vorhanden
-	*/
-	public function ssssssisArticleExists($artId){
-		$artId = (int)$this->formPropertiesAndValues['id'];
-		$qty = (int)$this->formPropertiesAndValues['qty'];
-		if($qty > 0){
-			$article = new SSArticle();
-			if($article->loadById($artId)){
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/*
-	* Alle Artikel ID + Menge vom Warenkorb holen
-	*/
+	/** @brief Alle Artikeln holen
+	 *
+	 *  Alle Artikel ID + Menge vom Warenkorb holen
+	 *
+	 *  @return array
+	 */
 	public function getCartItems(){
 		return $this->session->get('cartItems');
 	}
 	
-	/*
-	* Alle Artikel IDs vom Warenkorb holen
-	*/
+	/** @brief Artikel IDs holen
+	 *
+	 *  Alle IDs der Artikeln vom Warenkorb holen
+	 *
+	 *  @return array
+	 */
 	public function getCartItemIds(){
 		$items = $this->session->get('cartItems');
 		$ids = array();
@@ -195,9 +199,13 @@ class SSCartController extends SSController{
 		return $ids;
 	}
 	
-	/*
-	* Menge vom Artikel nach ID holen
-	*/
+	/** @brief Menge nach Artikel ID
+	 *
+	 *  Menge eines Artikels, nach ID
+	 *  gefiltert, holen
+	 *
+	 *  @return int
+	 */
 	public function getItemQtyById($id){
 		$items = $this->session->get('cartItems');
 		for($i=0; $i<sizeof($items); $i++){
@@ -208,10 +216,15 @@ class SSCartController extends SSController{
 		return 0;
 	}
 	
-	/*
-	* (REX_ARTICLE_ID) ID der Seite,
-	* auf dem sich der Artikel befindet 
-	*/
+	/** @brief Seite der Artikel
+	 *
+	 *  (REX_ARTICLE_ID) ID der Seite,
+	 *  auf dem sich der Artikel befindet,
+	 *  um eine direkte Url zum Artikel zu
+	 *  bilden.
+	 *
+	 *  @return int
+	 */
 	public function getItemPageIdById($id){
 		$items = $this->session->get('cartItems');
 		for($i=0; $i<sizeof($items); $i++){
@@ -222,12 +235,15 @@ class SSCartController extends SSController{
 		return 0;
 	}
 	
-	/*
-	* Artikel zum Warenkorb hinzufügen
-	* Dabei werden ID, Qty in Session gespeichert
-	* param int $artId: Artikel ID
-	* param int $qty: Menge
-	*/
+	/** @brief Artikel zum Warenkorb hinzufügen
+	 *
+	 *  Dabei werden ID, Qty in Session gespeichert
+	 *  auf dem sich der Artikel befindet,
+	 *  um eine direkte Url zum Artikel zu
+	 *
+	 *  @param int $artId: Artikel ID
+	 *  @param int $qty: Menge
+	 */
 	public function addToCart($artId, $qty){
 		global $REX;
 		$items = $this->session->get('cartItems');
@@ -244,11 +260,13 @@ class SSCartController extends SSController{
 		$this->session->set('cartItems', $items);
 	}
 	
-	/*
-	* Artikel Menge setzen
-	* param int $artId: Artikel ID
-	* param int $qty: Menge
-	*/
+	/** @brief Artikel Menge setzen
+	 *
+	 *  Artikelmenge im Warenkorb ändern.
+	 *
+	 *  @param int $artId: Artikel ID
+	 *  @param int $qty: Menge
+	 */
 	public function updateQty($artId, $qty){
 		global $REX;
 		$items = $this->session->get('cartItems');
@@ -265,9 +283,13 @@ class SSCartController extends SSController{
 		$this->session->set('cartItems', $items);
 	}
 	
-	/*
-	* Artikel vom Warenkorb löschen
-	*/
+	/** @brief Artikel vom Warenkorb löschen
+	 *
+	 *  Der gewünschte Artikel wird vom
+	 *  Warenkorb (aus der Session) gelöscht.
+	 *
+	 *  @param int $artId: Artikel ID
+	 */
 	public function removeFromCart($artId){
 		$items = $this->session->get('cartItems');
 		for($i=0; $i<sizeof($items); $i++){
@@ -281,16 +303,22 @@ class SSCartController extends SSController{
 		$this->session->set('cartItems', $items);
 	}
 	
-	/*
-	* Artikel zum Warenkorb hinzufügen
-	* Dabei werden ID, Qty in Session gespeichert
-	*/
+	/** @brief Warenkorb leeren
+	 *
+	 *  Session Variable wird gelöscht,
+	 *  dabei werden alle Daten betreffend
+	 *  Warenkorb gelöscht.
+	 */
 	public function clearCart(){
 		$this->session->remove('cartItems');
 	}
 	
-	/*
-	*/
+	/** @brief Is Warenkorb leer?
+	 *
+	 *  Überprüfen ob Warenkorb leer ist
+	 *
+	 *  @return bool
+	 */
 	public function isCartEmpty(){
 		$items = $this->session->get('cartItems');
 		if(sizeof($items)){
@@ -299,15 +327,25 @@ class SSCartController extends SSController{
 		return true;
 	}
 	
-	/*
-	* berechnet Total + Subtotal neu
-	*/
+	/** @brief Seiten ID für Checkout setzen
+	 *
+	 *  Die Redaxo Seiten ID, auf dem
+	 *  die ganze Checkout-Geschichte gehandlet
+	 *  wird, gesetzt.
+	 *
+	 *  @return bool
+	 */
 	public function setCheckoutPageId($id){
 		$this->checkoutPageId = $id;
 	}
 	
-	/*
-	*/
+	/** @brief Warenkorb Ansicht
+	 *
+	 *  Warenkorb View wird zusammengestellt
+	 *  und angezeigt.
+	 *
+	 *  @return bool
+	 */
 	public function displayView(){
 		$currency = SSHelper::getSetting('currency');
 		$mwst = SSHelper::getSetting('mwst');
@@ -379,25 +417,5 @@ class SSCartController extends SSController{
 		$params['label_checkout'] = SSHelper::i18l('label_checkout');
 		
 		$this->cartView->displayCartHtml($params);
-	}
-	
-	/*
-	*/
-	public function displayCart(){
-		$this->cartView->displayCartHtml($params);
-	}
-	public function messageHandler(){
-		if($this->showMessage){
-			if(sizeof($this->formPropertyValueErrors) > 0){
-				$params['msg_type'] = 'error';
-				$this->cartView->displayErrorMessage(
-					$this->formPropertiesAndValues['action'].'_error'
-				);
-			}else{
-				$this->cartView->displaySuccessMessage(
-					$this->formPropertiesAndValues['action'].'_success'
-				);
-			}
-		}
 	}
 }
