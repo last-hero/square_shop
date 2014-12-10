@@ -16,6 +16,9 @@ class SSCheckoutView {
 	// Form Array Key Name
 	const FORM_ID = 'checkout';
 	
+	// Form Array Key Name
+	const FORM_ID_ADDRESS = 'checkout_address';
+	
 	/**
 	*
 	*/
@@ -40,10 +43,13 @@ class SSCheckoutView {
 		}
 	}
 	
-	public function displayCheckoutMessageHtml($params = array()){
+	/**
+	*
+	*/ 
+	public function displayBillingAddressForm($step, $params = array()){
 		$params['FORM_ID'] = self::FORM_ID;
-		try{			
-			echo SSGUI::parse('message.tmpl.php', $params);
+		try{
+			echo SSGUI::parse(self::FORM_ID.'.step'.$step.'.tmpl.php', $params);
 		}catch(SSException $e) {
 			echo $e;
 		}

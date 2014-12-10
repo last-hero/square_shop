@@ -21,12 +21,12 @@ class SSCheckoutController extends SSController{
 	/**
 	 * @see SSArticleView::FORM_ID
 	 */
-	protected $FORM_ID = SSCartView::FORM_ID;
+	protected $FORM_ID = SSCheckoutView::FORM_ID;
 	
 	/**
 	 * @see SSArticle::TABLE
 	 */
-	protected $TABLE = SSArticle::TABLE;
+	protected $TABLE = 'order';
 	
 	/**
 	 * @see SSDBSchema::SHOW_IN_DETAIL
@@ -80,7 +80,12 @@ class SSCheckoutController extends SSController{
 	* Warenkorb Handler: Add to Cart, Remove from Cart, Menge ändern
 	*/
 	public function checkoutHandler(){
-		if($this->customerLoginController->isUserLoggedIn()){
+		if(!$this->customerLoginController->isUserLoggedIn()){
+			$this->dropBillDeliverAddrFromSession();
+		}elseif($this->customerLoginController->isUserLoggedIn()
+			and $this->isBillDeliverAddrInSession()){
+				$this->step = 3;
+		}elseif($this->customerLoginController->isUserLoggedIn()){
 			$this->step = 2;
 		}
 		switch($this->step){
@@ -106,7 +111,27 @@ class SSCheckoutController extends SSController{
 				*/
 				break;
 			case 2:
-				echo 'LOGIK STEP 2';
+				if($this->formPropertiesAndValues['action'] == self::ACTION_STEP2){
+					$errorsBillAddr = SSHelper::checkFromInputs(
+						$this->TABLE
+						, SSDBSchema::SHOW_IN_BILL_ADDRESS
+						, $this->formPropertiesAndValues
+					);
+					$errorsDeliverAddr = SSHelper::checkFromInputs(
+						$this->TABLE
+						, SSDBSchema::SHOW_IN_BILL_ADDRESS
+						, $this->formPropertiesAndValues
+					);
+					$this->formPropertyValueErrors = array_merge($errorsBillAddr, $errorsDeliverAddr);
+					if(sizeof($this->formPropertyValueErrors) < 1){
+						$this->storeBillDeliverAddrInSession($this->formPropertiesAndValues);
+					}
+				}else{
+					if($this->isBillDeliverAddrInSession()){
+						$this->formPropertiesAndValues = $this->getBillDeliverAddrFromSession();
+					}
+				}
+				
 				break;
 			default:
 				break;
@@ -116,6 +141,7 @@ class SSCheckoutController extends SSController{
 		switch($this->step){
 			case 1:
 				if(!$this->customerLoginController->isUserLoggedIn()){
+					
 					$this->cartView->displayMessage(
 						SSHelper::i18l(self::ACTION_STEP1.'_text')
 					);
@@ -135,6 +161,64 @@ class SSCheckoutController extends SSController{
 				$this->cartView->displayMessage(
 					SSHelper::i18l(self::ACTION_STEP2.'_text')
 				);
+				
+				
+				$userId = $this->customerLoginController->getLoggedInUserId();
+				$this->customer->loadById($userId);
+				
+				/*
+				$this->customer->propertiesAndValues
+				d($this->customer->propertiesAndValues);
+				*/
+				
+				$params['label_submit'] = SSHelper::i18l('label_next');
+				$params['action'] = self::ACTION_STEP2;
+				$params['label_billing_address'] = SSHelper::i18l('label_billing_address');
+				$params['label_delivery_address'] = SSHelper::i18l('label_delivery_address');
+				
+				
+				
+				
+				// Billing Adresse: Formular Felder holen
+				$params['fields_bill'] = SSHelper::getFormProperties(
+					SSCheckoutView::FORM_ID
+					, 'order'
+					, SSDBSchema::SHOW_IN_BILL_ADDRESS
+				);
+				
+				// Delivery Adresse: Formular Felder holen
+				$params['fields_deliver'] = SSHelper::getFormProperties(
+					SSCheckoutView::FORM_ID
+					, 'order'
+					, SSDBSchema::SHOW_IN_DELIVER_ADDRESS
+				);
+				
+				/*
+				// Default Values setzen: Delivery Adresse = Benuzter Adresse
+				foreach($params['fields_deliver'] as $field){
+					$params['formPropertiesAndValues'][$field['name']]
+						= $this->customer->get(str_replace('delivery_', '', $field['name']));
+				}
+				*/
+				
+				if($this->isBillDeliverAddrInSession()){
+					$params['formPropertiesAndValues'] = $this->getBillDeliverAddrFromSession();
+				}else{
+					// Billing Adresse: Default Values = Benuzter Adresse
+					foreach($params['fields_bill'] as $field){
+						$params['formPropertiesAndValues'][$field['name']]
+							= $this->customer->get(str_replace('billing_', '', $field['name']));
+					}
+					
+					// Delivery Adresse: Default Values = Benuzter Adresse
+					foreach($params['fields_deliver'] as $field){
+						$params['formPropertiesAndValues'][$field['name']]
+							= $this->customer->get(str_replace('delivery_', '', $field['name']));
+					}
+				}
+				
+				// Fromular für Billing + Delivery Adresse anzeigen
+				$this->checkoutView->displayBillingAddressForm($this->step, $params);
 				break;
 			default:
 				break;
@@ -163,5 +247,22 @@ class SSCheckoutController extends SSController{
 		}
 		$params['step_active'] = $this->step;
 		$this->checkoutView->displayCheckoutStepHtml($params);
+	}
+	public function storeBillDeliverAddrInSession($address){
+		$this->session->set('UserBillDeliverAddress', $address);
+	}
+	public function getBillDeliverAddrFromSession(){
+		return $this->session->get('UserBillDeliverAddress');
+	}
+	public function dropBillDeliverAddrFromSession(){
+		$this->session->remove('UserBillDeliverAddress');
+	}
+	public function isBillDeliverAddrInSession(){
+		$array = $this->session->get('UserBillDeliverAddress');
+		if(count($array)>5){
+			return true;
+		}else{
+			return false;	
+		}
 	}
 }

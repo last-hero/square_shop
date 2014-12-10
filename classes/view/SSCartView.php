@@ -35,17 +35,5 @@ class SSCartView extends SSObjectView{
 			echo $e;
 		}
 	}
-	
-	/**
-	* Warenkorb Anzeige
-	*/
-	public function displayCartMessageHtml($params = array()){
-		$params['FORM_ID'] = self::FORM_ID;
-		try{			
-			echo SSGUI::parse('message.tmpl.php', $params);
-		}catch(SSException $e) {
-			echo $e;
-		}
-	}
 }
 

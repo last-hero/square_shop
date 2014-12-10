@@ -155,6 +155,17 @@ class SSCustomerLoginController extends SSController{
 		}
 	}
 	
+	/** @brief User ID holen
+	 *
+	 *  User ID vom angemeldeten Benutzer holen
+	 *
+	 *  @return bool
+	 */
+	public function getLoggedInUserId(){
+		$userId = (int)$this->session->get('UserID');
+		return $userId;
+	}
+	
 	/** @brief Ist Benutzer angemeldet
 	 *
 	 *  Prüfen ob User angemeldet ist oder nicht

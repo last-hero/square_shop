@@ -9,10 +9,9 @@
 <file name="cart.complete.tmpl.php" server="p2.ibog.biz" local="130621135373195030" remote="130621135200000000" Dst="1" />
 <file name="message.tmpl.php" server="p2.ibog.biz" local="130621019025307773" remote="130621018800000000" Dst="1" />
 <file name="checkout.step.navi.tmpl.php" server="p2.ibog.biz" local="130621112356028297" remote="130621122000000000" Dst="1" />
-<file name="checkout.step1.tmpl.php" server="p2.ibog.biz" local="3500542058" remote="319783739144407108" Dst="-1" />
 <file name="form.field.text.tmpl.php" server="p2.ibog.biz" local="3500541244" remote="319783739144406328" Dst="-1" />
 <file name="form.field.select.tmpl.php" server="p2.ibog.biz" local="3500541602" remote="319783739144406688" Dst="-1" />
 <file name="form.field.password.tmpl.php" server="p2.ibog.biz" local="3500544743" remote="319783739144409808" Dst="-1" />
 <file name="form.tmpl.php" server="p2.ibog.biz" local="130626378201904996" remote="130626378000000000" Dst="1" />
-<file name="customer.register.form.tmpl.php" server="p2.ibog.biz" local="130626377921750425" remote="130626377400000000" Dst="1" />
+<file name="checkout.step2.tmpl.php" server="p2.ibog.biz" local="130626399230524351" remote="130626399000000000" Dst="1" />
 </dwsync>

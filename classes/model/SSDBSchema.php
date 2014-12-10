@@ -23,7 +23,8 @@ class SSDBSchema {
 	const SHOW_IN_LOGIN      		 = 'login';
 	const SHOW_IN_CART_ITEM    	 = 'cart_item'; // add to cart  |  change qty
 	const SHOW_IN_CART_ITEM_DEL     = 'cart_item_del'; // remove from cart
-	const SHOW_IN_CKOUT_ADDRESS  	 = 'checkout_address'; // remove from cart
+	const SHOW_IN_BILL_ADDRESS  	  = 'billing_address'; // Billing Address
+	const SHOW_IN_DELIVER_ADDRESS   = 'delivery_address'; // Delivery Address
 	
 	const ERROR_FIELDS_NOT_FOUND 	    = 1000;
 	const ERROR_TABLE_NOT_FOUND 		= 1001;
@@ -344,95 +345,203 @@ class SSDBSchema {
 				)
 				, array(
 					'name' => 'billing_title'
+					, 'input' => 'select'
+					, 'input_settings' => array(
+							'values' => array('m','w')
+							, 'required' => true
+						)
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'sql_constraint_vals' => array('m','w')
+					, 'show_in' => array('detail', 'billing_address')
 				)
 				, array(
 					'name' => 'billing_company'
 					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => false
+							, 'min' => 3
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'billing_address')
 				)
 				, array(
 					'name' => 'billing_firstname'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 2
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'billing_address')
 				)
 				, array(
 					'name' => 'billing_lastname'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 2
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'billing_address')
 				)
 				, array(
 					'name' => 'billing_street'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'billing_address')
 				)
 				, array(
 					'name' => 'billing_zip'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 20
+							//, 'type' => 'int'
+						)
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'billing_address')
 				)
 				, array(
 					'name' => 'billing_city'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'billing_address')
 				)
 				, array(
 					'name' => 'billing_telephone'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'billing_address')
 				)
 				, array(
 					'name' => 'billing_email'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'type' => 'email'
+							, 'max' => 90
+						)
 					, 'sql' => 'VARCHAR(90) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'billing_address')
 				)
 				, array(
 					'name' => 'delivery_title'
+					, 'input' => 'select'
+					, 'input_settings' => array(
+							'values' => array('m','w')
+							, 'required' => true
+						)
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'sql_constraint_vals' => array('m','w')
+					, 'show_in' => array('detail', 'delivery_address')
 				)
 				, array(
 					'name' => 'delivery_company'
 					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => false
+							, 'min' => 3
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'delivery_address')
 				)
 				, array(
 					'name' => 'delivery_firstname'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 2
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'delivery_address')
 				)
 				, array(
 					'name' => 'delivery_lastname'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 2
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'delivery_address')
 				)
 				, array(
 					'name' => 'delivery_street'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'delivery_address')
 				)
 				, array(
 					'name' => 'delivery_zip'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 20
+							//, 'type' => 'int'
+						)
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'delivery_address')
 				)
 				, array(
 					'name' => 'delivery_city'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'delivery_address')
 				)
 				, array(
 					'name' => 'delivery_telephone'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'min' => 3
+							, 'max' => 60
+						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'delivery_address')
 				)
 				, array(
 					'name' => 'delivery_email'
+					, 'input' => 'text'
+					, 'input_settings' => array(
+							'required' => true
+							, 'type' => 'email'
+							, 'max' => 90
+						)
 					, 'sql' => 'VARCHAR(90) NULL'
-					, 'show_in' => array('detail', 'checkout_address')
+					, 'show_in' => array('detail', 'delivery_address')
 				)
 				, array(
 					'name' => 'status'
