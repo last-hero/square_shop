@@ -132,6 +132,36 @@ class SSController {
 		}
 	}
 	
+	/** @brief Form Action Name holen
+	 *
+	 *  Action-Name aus dem Formular, welche abgeschickt wurde
+	 *  holen
+	 *
+	 *  @return $actionName
+	 */
+	public function getFormActionName(){
+		if(isset($this->formPropertiesAndValues['action'])){
+			return $this->formPropertiesAndValues['action'];
+		}
+		return '';
+	}
+	
+	/** @brief compare Form Action Name
+	 *
+	 *  Vergleicht Action-Name vom Formular, welche abgeschickt wurde
+	 *
+	 *  @param ActioName zum vergleichen
+	 *  @return bool
+	 */
+	public function isFormActionName($action){
+		if(isset($this->formPropertiesAndValues['action'])){
+			if($this->formPropertiesAndValues['action'] == $action){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/** @brief Is Benutzereingabe Unique
 	 *
 	 *  Überprüft ob From-Post nicht durch einen Browser-Refresh

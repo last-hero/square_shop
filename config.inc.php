@@ -1,6 +1,5 @@
 <?php
 
-
 // init addon
 $mypage = 'square_shop';
 $REX['ADDON']['name'][$mypage] = 'Online Shop';

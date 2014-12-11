@@ -13,7 +13,7 @@
  *  @author https://github.com/last-hero/square_shop
  */
  
-class SSArticleView extends SSObjectView{
+class SSArticleView extends SSView{
 	/**
 	* siehe Parent
 	*/

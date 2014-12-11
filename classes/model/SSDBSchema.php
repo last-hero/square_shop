@@ -347,7 +347,8 @@ class SSDBSchema {
 					'name' => 'billing_title'
 					, 'input' => 'select'
 					, 'input_settings' => array(
-							'values' => array('m','w')
+							'label' => 'title'
+							, 'values' => array('m','w')
 							, 'required' => true
 						)
 					, 'sql' => 'VARCHAR(20) NULL'
@@ -358,7 +359,8 @@ class SSDBSchema {
 					'name' => 'billing_company'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => false
+							'label' => 'company'
+							, 'required' => false
 							, 'min' => 3
 							, 'max' => 60
 						)
@@ -369,7 +371,8 @@ class SSDBSchema {
 					'name' => 'billing_firstname'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'firstname'
+							, 'required' => true
 							, 'min' => 2
 							, 'max' => 60
 						)
@@ -380,7 +383,8 @@ class SSDBSchema {
 					'name' => 'billing_lastname'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'lastname'
+							, 'required' => true
 							, 'min' => 2
 							, 'max' => 60
 						)
@@ -391,7 +395,8 @@ class SSDBSchema {
 					'name' => 'billing_street'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'street'
+							, 'required' => true
 							, 'min' => 3
 							, 'max' => 60
 						)
@@ -402,7 +407,8 @@ class SSDBSchema {
 					'name' => 'billing_zip'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'zip'
+							, 'required' => true
 							, 'min' => 3
 							, 'max' => 20
 							//, 'type' => 'int'
@@ -414,7 +420,8 @@ class SSDBSchema {
 					'name' => 'billing_city'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'city'
+							, 'required' => true
 							, 'min' => 3
 							, 'max' => 60
 						)
@@ -425,7 +432,8 @@ class SSDBSchema {
 					'name' => 'billing_telephone'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'telephone'
+							, 'required' => true
 							, 'min' => 3
 							, 'max' => 60
 						)
@@ -436,7 +444,8 @@ class SSDBSchema {
 					'name' => 'billing_email'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'email'
+							, 'required' => true
 							, 'type' => 'email'
 							, 'max' => 90
 						)
@@ -447,7 +456,8 @@ class SSDBSchema {
 					'name' => 'delivery_title'
 					, 'input' => 'select'
 					, 'input_settings' => array(
-							'values' => array('m','w')
+							'label' => 'title'
+							, 'values' => array('m','w')
 							, 'required' => true
 						)
 					, 'sql' => 'VARCHAR(20) NULL'
@@ -458,7 +468,8 @@ class SSDBSchema {
 					'name' => 'delivery_company'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => false
+							'label' => 'company'
+							, 'required' => false
 							, 'min' => 3
 							, 'max' => 60
 						)
@@ -469,7 +480,8 @@ class SSDBSchema {
 					'name' => 'delivery_firstname'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'firstname'
+							, 'required' => true
 							, 'min' => 2
 							, 'max' => 60
 						)
@@ -480,7 +492,8 @@ class SSDBSchema {
 					'name' => 'delivery_lastname'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'lastname'
+							, 'required' => true
 							, 'min' => 2
 							, 'max' => 60
 						)
@@ -491,7 +504,8 @@ class SSDBSchema {
 					'name' => 'delivery_street'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'street'
+							, 'required' => true
 							, 'min' => 3
 							, 'max' => 60
 						)
@@ -502,7 +516,8 @@ class SSDBSchema {
 					'name' => 'delivery_zip'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'zip'
+							, 'required' => true
 							, 'min' => 3
 							, 'max' => 20
 							//, 'type' => 'int'
@@ -514,7 +529,8 @@ class SSDBSchema {
 					'name' => 'delivery_city'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'city'
+							, 'required' => true
 							, 'min' => 3
 							, 'max' => 60
 						)
@@ -525,7 +541,8 @@ class SSDBSchema {
 					'name' => 'delivery_telephone'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'telephone'
+							, 'required' => false
 							, 'min' => 3
 							, 'max' => 60
 						)
@@ -536,7 +553,8 @@ class SSDBSchema {
 					'name' => 'delivery_email'
 					, 'input' => 'text'
 					, 'input_settings' => array(
-							'required' => true
+							'label' => 'email'
+							, 'required' => false
 							, 'type' => 'email'
 							, 'max' => 90
 						)

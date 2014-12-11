@@ -10,7 +10,6 @@
  */
 
 class SSCartController extends SSController{
-	const TABLE_ORDER_ITEM = 'order_item';
 	// Form Action Code
 	const ACTION_DEL_FROM_CART	 = 'del_from_cart';
 	const ACTION_UPDATE_ART_QTY 	= 'update_art_qty';
@@ -50,6 +49,12 @@ class SSCartController extends SSController{
 	 * um Checkout durchzuführen.
 	 */
 	private $checkoutPageId;
+	
+	/**
+	 * Flag für einfache 
+	 * Warenkorbansicht
+	 */
+	public $simpleView;
 	
 	
 	/** @brief Initialisierung
@@ -140,7 +145,7 @@ class SSCartController extends SSController{
 	 *  @see SSHelper::checkFromInputs
 	 */
 	public function isInputValid(){
-		$errorsOrderItem1 = SSHelper::checkFromInputs(self::TABLE_ORDER_ITEM, SSDBSchema::SHOW_IN_CART_ITEM
+		$errorsOrderItem1 = SSHelper::checkFromInputs(SSCheckout::TABLE_ORDER_ITEM, SSDBSchema::SHOW_IN_CART_ITEM
 												, $this->formPropertiesAndValues);
 		$errorsOrderItem2 = SSHelper::checkFromInputs(SSArticle::TABLE, SSDBSchema::SHOW_IN_CART_ITEM
 												, $this->formPropertiesAndValues);
@@ -161,7 +166,7 @@ class SSCartController extends SSController{
 	 *  @see SSCartController::checkFromInputs
 	 */
 	public function isInputValidDelCartItem(){
-		$errorsOrderItem1 = SSHelper::checkFromInputs(self::TABLE_ORDER_ITEM, SSDBSchema::SHOW_IN_CART_ITEM_DEL
+		$errorsOrderItem1 = SSHelper::checkFromInputs(SSCheckout::TABLE_ORDER_ITEM, SSDBSchema::SHOW_IN_CART_ITEM_DEL
 												, $this->formPropertiesAndValues);
 		$errorsOrderItem2 = SSHelper::checkFromInputs(SSArticle::TABLE, SSDBSchema::SHOW_IN_CART_ITEM_DEL
 												, $this->formPropertiesAndValues);
@@ -357,6 +362,10 @@ class SSCartController extends SSController{
 		$articles = $this->article->getByIds($ids);
 		
 		$params = array();
+		
+		if($this->simpleView){
+			$params['simpleView'] = 1;
+		}
 		
 		// Währung
 		$params['currency'] = $currency;

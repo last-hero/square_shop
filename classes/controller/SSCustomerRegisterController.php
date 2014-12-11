@@ -162,7 +162,11 @@ class SSCustomerRegisterController extends SSController{
 			}
 		}
 		
-		$params['fields'] = SSHelper::getFormProperties(SSCustomerRegisterView::FORM_ID, SSCustomer::TABLE, 'register');
+		$params['fields'] = SSHelper::getFormProperties(
+			SSCustomerRegisterView::FORM_ID
+			, SSCustomer::TABLE
+			, SSDBSchema::SHOW_IN_REGISTER
+		);
 		
 		$this->customerRegisterView->displayFormHtml($params);
 	}

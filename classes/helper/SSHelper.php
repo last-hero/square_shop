@@ -234,9 +234,14 @@ class SSHelper{
 				foreach($settings['values'] as $v){
 					$label_values[] = self::i18l($formId.'_label_'.$name.'_'.$v);
 				}
+				
+				$label = self::i18l($formId.'_label_'.$name);
+				if(isset($settings['label']) and strlen($settings['label'])){
+					$label = self::i18l($formId.'_label_'.$settings['label']);
+				}
 				$properties[] = array(
 					'name' => $name
-					, 'label' => self::i18l($formId.'_label_'.$name)
+					, 'label' => $label
 					, 'values' => $settings['values']
 					, 'value_type' => $settings['type']
 					, 'label_values' => $label_values
@@ -250,6 +255,43 @@ class SSHelper{
 		}
 		return $properties;
 	}
+	
+	/** @brief Formular Inputs überprüfen
+	 *
+	 *  Die vom Käufer eingegebene Daten werden auf Richtigkeit
+	 *  überprüft und Fehler zurückgegeben.
+	 *
+	 *  @param (string) $formId: Form ID
+	 *  @param (string) $table: Tabellenname
+	 *  @param (string) $show_in: siehe SSSchema
+	 *  @param (string) $values: Werte die der Käufer eingegeben hat
+	 *  @return bool
+	 */
+	 /*
+	public static function getFormPropertySettings($formId, $show_in, $field){
+		$name = $f['name'];
+		$settings = $f['input_settings'];
+		$settingsByShowIn = $f['input_settings_by_show_in'][$show_in];
+		$settingsByShowIn = is_array($settingsByShowIn)?$settingsByShowIn:array($settingsByShowIn);
+		$settings = array_merge($settings, $settingsByShowIn);
+		$label_values = array();
+		foreach($settings['values'] as $v){
+			$label_values[] = self::i18l($formId.'_label_'.$name.'_'.$v);
+		}
+		$properties[] = array(
+			'name' => $name
+			, 'label' => self::i18l($formId.'_label_'.$name)
+			, 'values' => $settings['values']
+			, 'value_type' => $settings['type']
+			, 'label_values' => $label_values
+			, 'required' => $settings['required']
+			, 'max' => $settings['max']
+			, 'min' => $settings['min']
+			, 'type' => $f['input']
+			, 'equalto' => $settings['equalto']
+		);
+	}
+	*/
 	
 	/** @brief Formular Inputs überprüfen
 	 *
@@ -286,43 +328,46 @@ class SSHelper{
 			$min_value = (float)$settings['min_value'];
 			$max_value = (float)$settings['max_value'];
 			
-			if(!empty($type) and $type == 'password'){
-				// To Do -> eine bessere lösung
-				//if($values[$name.'_re'] and $value != $values[$name.'_re']){
-				if($show_in == SSDBSchema::SHOW_IN_REGISTER and $value != $values[$name.'_re']){
-					$errors[$name]['equal'] = true;
-				}
-			}elseif(!empty($type) and !SSHelper::isTypeOf($type, $value)){
-				$errors[$name][$type] = true;
-			}
+			
 			if($required and strlen(trim($value)) == 0){
-				$errors[$name]['required'] = true;
-			}
-			if((int)$min and strlen($value) < (int)$min){
-				$errors[$name]['min'] = true;
-			}elseif((int)$max and strlen($value) > (int)$max){
-				$errors[$name]['max'] = true;
-			}
-			if($min_value and (float)$value < $min_value){
-				$errors[$name]['min_value'] = true;
-			}
-			if($max_value and (float)$value > $max_value){
-				$errors[$name]['max_value'] = true;
-			}
-			if($exists or $notexists){
-				$tableData = SSDBSchema::_getTable($table, true);
-				$table_fullname = $tableData['name'];
-				$where = $table_fullname.".".$name." = '".$value."' ";
-				$query = SSDBSQL::_getSqlDmlQuery($where, $table, $show_in);
-				$res = SSDBSQL::executeSql($query);
-				if($notexists){
-					if(count($res) < 1){
-						$errors[$name]['notexists'] = true;
+				if(!empty($type) and $type == 'password'){
+					// To Do -> eine bessere lösung
+					//if($values[$name.'_re'] and $value != $values[$name.'_re']){
+					if($show_in == SSDBSchema::SHOW_IN_REGISTER and $value != $values[$name.'_re']){
+						$errors[$name]['equal'] = true;
 					}
+				}elseif(!empty($type) and !SSHelper::isTypeOf($type, $value)){
+					$errors[$name][$type] = true;
 				}
-				if($exists){
-					if(!empty($res)){
-						$errors[$name]['exists'] = true;
+				if($required and strlen(trim($value)) == 0){
+					$errors[$name]['required'] = true;
+				}
+				if((int)$min and strlen($value) < (int)$min){
+					$errors[$name]['min'] = true;
+				}elseif((int)$max and strlen($value) > (int)$max){
+					$errors[$name]['max'] = true;
+				}
+				if($min_value and (float)$value < $min_value){
+					$errors[$name]['min_value'] = true;
+				}
+				if($max_value and (float)$value > $max_value){
+					$errors[$name]['max_value'] = true;
+				}
+				if($exists or $notexists){
+					$tableData = SSDBSchema::_getTable($table, true);
+					$table_fullname = $tableData['name'];
+					$where = $table_fullname.".".$name." = '".$value."' ";
+					$query = SSDBSQL::_getSqlDmlQuery($where, $table, $show_in);
+					$res = SSDBSQL::executeSql($query);
+					if($notexists){
+						if(count($res) < 1){
+							$errors[$name]['notexists'] = true;
+						}
+					}
+					if($exists){
+						if(!empty($res)){
+							$errors[$name]['exists'] = true;
+						}
 					}
 				}
 			}

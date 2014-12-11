@@ -144,7 +144,11 @@ class SSCustomerLoginController extends SSController{
 			$this->customerLoginView->displayLogoutHtml($params);
 		}else{
 			$params['action'] = self::ACTION_LOGIN;
-			$params['fields'] = SSHelper::getFormProperties(SSCustomerLoginView::FORM_ID, SSCustomer::TABLE, 'login');
+			$params['fields'] = SSHelper::getFormProperties(
+				SSCustomerLoginView::FORM_ID
+				, SSCustomer::TABLE
+				, SSDBSchema::SHOW_IN_LOGIN
+			);
 			$params['label_submit'] = SSHelper::i18l('label_login');
 			if($this->loginError){
 				$this->customerLoginView->displayErrorMessage(

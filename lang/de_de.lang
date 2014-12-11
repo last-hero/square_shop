@@ -19,6 +19,9 @@ square_shop_config_error = Einstellungen konnten nicht gespeichert werden!
 
 square_shop_settings_currency = Währung
 square_shop_settings_mwst = MwSt in %
+square_shop_settings_payment = Zahlungsart
+square_shop_shipping = Rechnung
+square_shop_paypal = PayPal
 square_shop_settings_save = Einstellungen speichern
 
 square_shop_label_id = ID

@@ -10,7 +10,7 @@
  *  @author https://github.com/last-hero/square_shop
  */
  
-class SSCustomerRegisterView extends SSObjectView{
+class SSCustomerRegisterView extends SSView{
 	/**
 	* siehe Parent
 	*/

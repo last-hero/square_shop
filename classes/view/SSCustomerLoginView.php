@@ -13,7 +13,7 @@
  *  @author https://github.com/last-hero/square_shop
  */
  
-class SSCustomerLoginView extends SSObjectView{
+class SSCustomerLoginView extends SSView{
 	/**
 	* siehe Parent
 	*/

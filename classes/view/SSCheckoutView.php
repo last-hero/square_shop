@@ -43,6 +43,15 @@ class SSCheckoutView {
 		}
 	}
 	
+	public function displayCheckoutByTmpl($tmpl, $params = array()){
+		$params['FORM_ID'] = self::FORM_ID;
+		try{			
+			echo SSGUI::parse(self::FORM_ID.'.step.'.$tmpl.'.tmpl.php', $params);
+		}catch(SSException $e) {
+			echo $e;
+		}
+	}
+	
 	/**
 	*
 	*/ 
