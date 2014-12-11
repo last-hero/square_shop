@@ -61,8 +61,8 @@ class SSDBSQL {
 						$_fields_string .= $_field_join_label_full.' as '.$_field_join_label_new_full.', ';
 					}
 					
-					$_fields_join_string .= 'LEFT JOIN '.$_table_join_full
-												.' ON '.$_field_join_full.' = '.$_table_fullname.'.'.$fk['name'];
+					$_fields_join_string .= ' LEFT JOIN '.$_table_join_full
+												.' ON '.$_field_join_full.' = '.$_table_fullname.'.'.$fk['name'].' ';
 				}else{
 					$_fields_string .= $_table_fullname.'.'.$fk['name'].', ';
 				}
@@ -222,29 +222,26 @@ class SSDBSQL {
 		return $query;
 	}
 	
-	
-	/**
-	* Führt einen SQL Script mittels rex_sql aus
-	* param $query
-	* param $debug
-	* @return array <- Results als Array
-	*/
-	
 	/** @brief SQL Query ausführen
 	 *
 	 *  Führt einen SQL Script mittels rex_sql aus
+	 *  
+	 *  Hier werden die Queries nach ; aufgeteilt
+	 *  und einzeln ausgeführt.
 	 *
 	 *  @param $query: SQL Query
 	 *  @param $debug: Fehlermeldungen anzeigen oder nicht
 	 *  @return (array) $res: DB Results
+	 *
+	 *  @see SSDBSQL::executeSqlQuery
 	 */
 	public static function executeSql($query, $debug=false){
+		
 		if(is_string($query)){
 			$q = explode(';', $query);
 		}elseif(is_array($query)){
 			$q = $query;
 		}
-		
 		
 		$res = array();
 		
@@ -259,6 +256,43 @@ class SSDBSQL {
 			}
 			
 			$res = array();
+			if($sql->last_insert_id){
+				$res['last_insert_id'] = $sql->last_insert_id;
+			}
+			for($i = 0; $i < $sql->getRows(); $i++){
+				$res[] = $sql->getRow();
+				$sql->next();
+			}
+			return $res;
+		}
+		throw new SSException('SQL Query not given', self::ERROR_SQL_QUERY_NOT_GIVEN);
+		
+		return $res;
+	}
+	
+	/** @brief SQL Query ausführen
+	 *
+	 *  Führt einen SQL Script mittels rex_sql aus
+	 *
+	 *  @param $query: SQL Query
+	 *  @param $debug: Fehlermeldungen anzeigen oder nicht
+	 *  @return (array) $res: DB Results
+	 *
+	 *  @see SSDBSQL::executeSql
+	 */
+	public static function executeSqlQuery($query, $debug=false){
+		
+		$res = array();
+		
+		if(strlen(trim($query))){
+			$sql = new rex_sql();
+			$sql->setDebug($debug);
+			$sql->setQuery($query);
+			
+			$res = array();
+			if($sql->last_insert_id){
+				$res['last_insert_id'] = $sql->last_insert_id;
+			}
 			for($i = 0; $i < $sql->getRows(); $i++){
 				$res[] = $sql->getRow();
 				$sql->next();

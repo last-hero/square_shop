@@ -145,7 +145,7 @@ class SSCartController extends SSController{
 	 *  @see SSHelper::checkFromInputs
 	 */
 	public function isInputValid(){
-		$errorsOrderItem1 = SSHelper::checkFromInputs(SSCheckout::TABLE_ORDER_ITEM, SSDBSchema::SHOW_IN_CART_ITEM
+		$errorsOrderItem1 = SSHelper::checkFromInputs(SSOrderItem::TABLE, SSDBSchema::SHOW_IN_CART_ITEM
 												, $this->formPropertiesAndValues);
 		$errorsOrderItem2 = SSHelper::checkFromInputs(SSArticle::TABLE, SSDBSchema::SHOW_IN_CART_ITEM
 												, $this->formPropertiesAndValues);
@@ -166,7 +166,7 @@ class SSCartController extends SSController{
 	 *  @see SSCartController::checkFromInputs
 	 */
 	public function isInputValidDelCartItem(){
-		$errorsOrderItem1 = SSHelper::checkFromInputs(SSCheckout::TABLE_ORDER_ITEM, SSDBSchema::SHOW_IN_CART_ITEM_DEL
+		$errorsOrderItem1 = SSHelper::checkFromInputs(SSOrderItem::TABLE, SSDBSchema::SHOW_IN_CART_ITEM_DEL
 												, $this->formPropertiesAndValues);
 		$errorsOrderItem2 = SSHelper::checkFromInputs(SSArticle::TABLE, SSDBSchema::SHOW_IN_CART_ITEM_DEL
 												, $this->formPropertiesAndValues);
@@ -316,6 +316,9 @@ class SSCartController extends SSController{
 	 */
 	public function clearCart(){
 		$this->session->remove('cartItems');
+		
+		$checkoutCtrl = new SSCheckoutController();
+		$checkoutCtrl->clearAll();
 	}
 	
 	/** @brief Is Warenkorb leer?

@@ -21,6 +21,7 @@ class SSDBSchema {
 	const SHOW_IN_EDIT	  		  = 'edit';
 	const SHOW_IN_REGISTER   		  = 'register';
 	const SHOW_IN_LOGIN      		 = 'login';
+	const SHOW_IN_ADDRESS      	   = 'address';
 	const SHOW_IN_CART_ITEM    	 = 'cart_item'; // add to cart  |  change qty
 	const SHOW_IN_CART_ITEM_DEL     = 'cart_item_del'; // remove from cart
 	const SHOW_IN_BILL_ADDRESS  	  = 'billing_address'; // Billing Address
@@ -176,7 +177,7 @@ class SSDBSchema {
 						)
 					, 'sql' => 'VARCHAR(20) NULL'
 					, 'sql_constraint_vals' => array('m','w')
-					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register', 'address')
 					, 'multilang' => true
 				)
 				, array(
@@ -188,7 +189,7 @@ class SSDBSchema {
 							, 'max' => 60
 						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
+					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register', 'address')
 				)
 				, array(
 					'name' => 'firstname'
@@ -199,7 +200,7 @@ class SSDBSchema {
 							, 'max' => 60
 						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register', 'address')
 				)
 				, array(
 					'name' => 'lastname'
@@ -210,7 +211,7 @@ class SSDBSchema {
 							, 'max' => 60
 						)
 					, 'sql' => 'VARCHAR(60) NULL DEFAULT 0'
-					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register', 'address')
 				)
 				, array(
 					'name' => 'street'
@@ -221,7 +222,7 @@ class SSDBSchema {
 							, 'max' => 60
 						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
+					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register', 'address')
 				)
 				, array(
 					'name' => 'zip'
@@ -233,7 +234,7 @@ class SSDBSchema {
 							//, 'type' => 'int'
 						)
 					, 'sql' => 'VARCHAR(20) NULL'
-					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
+					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register', 'address')
 				)
 				, array(
 					'name' => 'city'
@@ -244,7 +245,7 @@ class SSDBSchema {
 							, 'max' => 60
 						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register')
+					, 'show_in' => array('detail', 'edit', 'search', 'add', 'register', 'address')
 				)
 				, array(
 					'name' => 'telephone'
@@ -255,7 +256,7 @@ class SSDBSchema {
 							, 'max' => 60
 						)
 					, 'sql' => 'VARCHAR(60) NULL'
-					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register')
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register', 'address')
 				)
 				, array(
 					'name' => 'email'
@@ -271,7 +272,7 @@ class SSDBSchema {
 							)
 						)
 					, 'sql' => 'VARCHAR(90) NULL'
-					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register', 'login')
+					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register', 'login', 'address')
 				)
 				, array(
 					'name' => 'password'
@@ -591,6 +592,18 @@ class SSDBSchema {
 					, 'type' => self::FOREIGN_KEY
 					, 'sql_join' => array(
 							'table' => 'order'
+							, 'field' => 'id'
+							, 'on_delete' => 'RESTRICT'
+							, 'on_update' => 'CASCADE'
+						)
+					, 'show_in' => array('detail')
+				)
+				, array(
+					'name' => 'article_id'
+					, 'sql' => 'INT UNSIGNED NOT NULL'
+					, 'type' => self::FOREIGN_KEY
+					, 'sql_join' => array(
+							'table' => 'article'
 							, 'field' => 'id'
 							, 'on_delete' => 'RESTRICT'
 							, 'on_update' => 'CASCADE'

@@ -38,6 +38,7 @@ class SSGUI {
         }
 		
 		
+		
 		$_table = SSDBSchema::_getTable($table, true);
 		$_table_fullname = SSDBSchema::_getTableAttr($table, 'name', true);	
 		$sql_where = '';
@@ -50,6 +51,8 @@ class SSGUI {
         }
 		
 		$query = SSDBSQL::_getSqlDmlQuery($sql_where, $table, 'list');
+		
+		$query .= ' ORDER BY '.$_table_fullname.'.id DESC ';
 		
 		$list = rex_list::factory($query);
 		

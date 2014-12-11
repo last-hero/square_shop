@@ -61,6 +61,7 @@ class SSModel {
 	public function loadPropertiesAndNames(){
 		//$this->properties = SSDBSchema::_getFields($this->TABLE, 'name');
 		$this->properties = SSDBSchema::_getFields($this->TABLE);
+		
 		$this->propertiesAndValues = array();
 		foreach($this->properties as $field){
 			$this->propertiesAndValues[$field['name']] = null;
@@ -127,7 +128,9 @@ class SSModel {
 		if(is_array($keyOrData)){
 			$data = $keyOrData;
 			if($this->doPropertiesExist($data)){
-				$this->propertiesAndValues = $data;
+				foreach($data as $k => $v){
+					$this->propertiesAndValues[$k] = $v;
+				}
 			}else{
 				throw new SSException('Table '.$this->TABLE.' Attr is/are different', $this->ERROR_TABLE_ATTR_DIFF);
 			}
@@ -148,24 +151,30 @@ class SSModel {
 	 */
 	public function save(){
 		if((int)$this->get('id') > 0){
-			echo 'called: save() FOR UPDATE;';
+			d($this->TABLE.' called: save() FOR UPDATE;');
 		}else{
+			$propertiesAndValues = $this->propertiesAndValues;
 			
 			// Verschlüsseln --> z.B. Passwort
 			$dbProperties = SSDBSchema::_getFields($this->TABLE, null, array('sql_settings' => 'encrypt'));
-			foreach($this->propertiesAndValues as $name => $value){
+			foreach($propertiesAndValues as $name => $value){
 				foreach($dbProperties as $dbProperty){
 					if($name == $dbProperty['name']){
 						$encrypt = $dbProperty['sql_settings']['encrypt'];
 						if($encrypt){
-							$this->propertiesAndValues[$name] = hash($encrypt, $value);
+							$propertiesAndValues[$name] = hash($encrypt, $value);
 						}
 					}
 				}
 			}
+			unset($propertiesAndValues['id']);
 			
-			$query = SSDBSQL::_getSqlInsertQuery($this->propertiesAndValues, $this->TABLE);
-			$res = SSDBSQL::executeSql($query);
+			$query = SSDBSQL::_getSqlInsertQuery($propertiesAndValues, $this->TABLE);
+			
+			$res = SSDBSQL::executeSqlQuery($query, false);
+			if($res['last_insert_id']){
+				$this->set('id', $res['last_insert_id']);
+			}
 		}
 	}
 	
@@ -179,7 +188,7 @@ class SSModel {
 	 */
 	public function loadById($id){
 		//$query = SSDBSQL::_getSqlDmlQuery("id = $id", $this->TABLE, SSDBSchema::SHOW_IN_DETAIL);
-		//$res = SSDBSQL::executeSql($query);
+		//$res = SSDBSQL::executeSqlQuery($query);
 		
 		$tableData = SSDBSchema::_getTable($this->TABLE, true);
 		$table = $tableData['name'];
@@ -286,7 +295,8 @@ class SSModel {
 			$show_in = SSDBSchema::SHOW_IN_DETAIL;
 		}
 		$query = SSDBSQL::_getSqlDmlQuery($where, $this->TABLE, SSDBSchema::SHOW_IN_DETAIL);
-		$res = SSDBSQL::executeSql($query);
+		
+		$res = SSDBSQL::executeSqlQuery($query, false);
 		return $res;
 	}
 }

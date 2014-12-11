@@ -117,7 +117,7 @@ class SSCustomerLoginController extends SSController{
 		
 		$this->formPropertyValueErrors = SSHelper::checkFromInputs(SSCustomer::TABLE, 'login'
 											, $this->formPropertiesAndValues);
-												
+		
 		$email = $this->formPropertiesAndValues['email'];
 		$password = $this->formPropertiesAndValues['password'];
 		if(!$this->customer->loadCustomerByEmailAndPassword($email, $password)){

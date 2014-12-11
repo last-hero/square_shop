@@ -31,10 +31,10 @@
                    		<td>
                             <strong style="width:100px;display:inline-block;">BestellNr:</strong> <?=$res_order['no']?><br />
                             <strong style="width:100px;display:inline-block;">Zeit:</strong> <?=$res_order['date']?><br /><br />
-                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_client_id')?>:</strong> <?=$res_order['client_id']?><br />
-                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_client_title')?>:</strong> <?=$res_order['client_title']?><br />
-                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_client_firstname')?>:</strong> <?=$res_order['client_firstname']?><br />
-                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_client_lastname')?>:</strong> <?=$res_order['client_lastname']?><br />
+                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_customer_id')?>:</strong> <?=$res_order['customer_id']?><br />
+                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_customer_title')?>:</strong> <?=$res_order['customer_title']?><br />
+                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_customer_firstname')?>:</strong> <?=$res_order['customer_firstname']?><br />
+                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_customer_lastname')?>:</strong> <?=$res_order['customer_lastname']?><br />
                     	</td>
       				</tr>
                 </tbody>

@@ -54,7 +54,9 @@ class SSCustomer extends SSModel{
 				}
 			}
 		}
+		
 		$res = $this->_getWhere("email = '$email' AND password = '$password'");
+		
 		if(count($res) == 1){
 			try{
 				$this->set($res[0]);
@@ -64,5 +66,25 @@ class SSCustomer extends SSModel{
 			}
 		}
 		return false;
+	}
+	
+	/** @brief Adresse holen
+	 *
+	 *  Ganze Käufer-Adresse als array zurückgeben
+	 *
+	 *  @return array
+	 */
+	public function getAddress(){
+		// Passwort verschlüsseln
+		$properties = SSDBSchema::_getFieldsAsSingleArray(
+			SSCustomer::TABLE
+			, array('name')
+			, array('show_in' => SSDBSchema::SHOW_IN_ADDRESS)
+		);
+		$address = array();
+		foreach($properties as $prop){
+			$address[$prop] = $this->get($prop);
+		}
+		return $address;
 	}
 }

@@ -1,6 +1,6 @@
 <?php
-/** @file SSCheckout.php
- *  @brief Chekout modellieren
+/** @file SSOrderItem.php
+ *  @brief SSOrderItem modellieren
  *
  *  Diese Klasse dient für das Modellieren von
  *  Checkout Daten (order, order items, delivery, billing)
@@ -10,35 +10,28 @@
  *  @author https://github.com/last-hero/square_shop
  */
 
-class SSCheckout extends SSModel{
-	/**
-	 * Tabelle Order Items
-	 * 
-	 * @see SSSchema
-	 */
-	const TABLE_ORDER_ITEM = 'order_item';
-	
+class SSOrderItem extends SSModel{	
 	/**
 	 * @see SSModel::$TABLE
 	 */
-	const TABLE = 'order';
+	const TABLE = 'order_item';
 	protected $TABLE = self::TABLE;
 	
 	/**
 	 * @see SSModel::$ERROR_TABLE_ATTR_DIFF
 	 */
-	const ERROR_TABLE_ATTR_DIFF = '9001';
+	const ERROR_TABLE_ATTR_DIFF = '10001';
 	protected $ERROR_TABLE_ATTR_DIFF = self::ERROR_TABLE_ATTR_DIFF;
 	
 	/**
 	 * @see SSModel::$ERROR_TO_MANY_FOREIGN_KEYS
 	 */
-	const ERROR_TO_MANY_FOREIGN_KEYS = '9002';
+	const ERROR_TO_MANY_FOREIGN_KEYS = '10002';
 	protected $ERROR_TO_MANY_FOREIGN_KEYS;
 	
 	/**
 	 * @see SSModel::$ERROR_NO_FOREIGN_KEYS
 	 */
-	const ERROR_NO_FOREIGN_KEYS = '9003';
+	const ERROR_NO_FOREIGN_KEYS = '10003';
 	protected $ERROR_NO_FOREIGN_KEYS;
 }
