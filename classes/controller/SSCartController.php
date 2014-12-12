@@ -385,8 +385,8 @@ class SSCartController extends SSController{
 		$params['label_subtotal'] = SSHelper::i18n('label_subtotal');
 		$params['label_total'] = SSHelper::i18n('label_total');
 		$params['label_entfernen'] = SSHelper::i18n('label_entfernen');
-		$params['label_empty_cart'] = SSHelper::i18n('empty_cart');
-		$params['label_update_art'] = SSHelper::i18n('ok');
+		$params['label_empty_cart'] = SSHelper::i18n('label_empty_cart');
+		$params['label_update_art'] = SSHelper::i18n('label_update_art');
 		
 		$params['action_del_from_cart'] = self::ACTION_DEL_FROM_CART;
 		$params['action_update_art'] = self::ACTION_UPDATE_ART_QTY;

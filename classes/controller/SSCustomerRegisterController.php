@@ -154,19 +154,20 @@ class SSCustomerRegisterController extends SSController{
 		
 		$params['formPropertyValueErrors'] = $this->formPropertyValueErrors;
 		
-		
+		/*
 		$params['label_errors'] = array();
 		foreach($params['formPropertyValueErrors'] as $f){
 			foreach($f as $name => $val){
 				$params['label_errors'][$name] = SSHelper::i18n('label_error_'.$name);
 			}
 		}
+		*/
 		
 		$params['fields'] = SSHelper::getFormProperties(
 			SSCustomerRegisterView::FORM_ID
 			, SSCustomer::TABLE
 			, SSDBSchema::SHOW_IN_REGISTER
-		);
+		);		
 		
 		$this->customerRegisterView->displayFormHtml($params);
 	}

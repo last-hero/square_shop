@@ -8,6 +8,7 @@ if ($subpage == '') {
 	$subpage = 'start';
 }
 
+SSHelper::importTranslationsInStringTable();
 // layout top
 require($REX['INCLUDE_PATH'] . '/layout/top.php');
 

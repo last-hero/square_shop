@@ -25,7 +25,7 @@ endforeach;
             <? $fname = 'diff_delivery'; ?>
             <? $post_data = $formPropertiesAndValues[$fname]; ?>
 			<p class="ss-<?=$fname?> required">
-                <label for="ss-<?=$fname?>"><?=SSHelper::i18n('label_'.$FORM_ID.'_diff_delivery_address')?></label>
+                <label for="ss-<?=$fname?>"><?=SSHelper::i18n('label_diff_delivery_address')?></label>
                 <select id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][<?=$fname?>]" class="ss-<?=$fname?> required" size="1">
                     <option value=""><?=SSHelper::i18n('label_no')?></option>
                     <option value="yes" <?=$post_data=='yes'?'selected="selected"':''?> >

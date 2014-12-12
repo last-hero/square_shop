@@ -186,7 +186,7 @@ class SSArticleController extends SSController {
 		$params['action'] = self::ACTION_ADD_TO_CART;
 		
 		$params['articles'] = array();
-		$params['label_detail'] = SSHelper::i18n('detail');
+		$params['label_detail'] = SSHelper::i18n('label_detail');
 		foreach($this->articlelist as $article){
 			$params['articles'][] = array(
 				'title' => $article->get('title')

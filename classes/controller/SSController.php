@@ -122,11 +122,11 @@ class SSController {
 			if(sizeof($this->formPropertyValueErrors) > 0){
 				$params['msg_type'] = 'error';
 				$this->view->displayErrorMessage(
-					$this->formPropertiesAndValues['action'].'_error'
+					SSHelper::i18n('label_'.$this->formPropertiesAndValues['action'].'_error')
 				);
 			}else{
 				$this->view->displaySuccessMessage(
-					$this->formPropertiesAndValues['action'].'_success'
+					SSHelper::i18n('label_'.$this->formPropertiesAndValues['action'].'_success')
 				);
 			}
 		}

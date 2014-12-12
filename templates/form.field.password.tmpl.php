@@ -17,20 +17,21 @@
                     class="<?=trim($css_class)?>" value="" />
 <?
 			if($formPropertyValueErrors[$fname]):
-				$label_error = $label_errors[key($formPropertyValueErrors[$fname])];
+				$label_error = SSHelper::i18n('label_error_'.key($errors));
+				$label_error = sprintf($label_error,$f[key($errors)]);
 ?>
                 <label for="ss-<?=$fname?>" class="error"><?=$label_error?></label>
 <?
-		endif;
+			endif;
 ?>
             </p>
 <?
 		if(isset($f['equalto']) and $f['equalto'] ==  $f['name'].'_re'):
 			$fname = $f['name'].'_re';
-			$label = $f['label'].'_re';
+			$label = $f['label_equalto'];
 ?>	
             <p class="<?=$css_class?>">
-                <label for="ss-<?=$fname?>"><?=$label?><?=$required?' *':''?></label>
+                <label for="ss-<?=$fname?>"><?=$label?></label>
                 <input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][<?=$fname?>]"
                 	maxlength="<?=$max?>" type="password" 
                     class="<?=trim($css_class)?>" value="" />

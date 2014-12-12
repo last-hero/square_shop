@@ -22,11 +22,11 @@
 		*/
 		
 		
-        $pppayment = sprintf("%01.2f",$_SESSION[$thispage]['cart']['art_sumtotal']);
+        $pppayment = sprintf("%01.2f",$total);
         $pppayment = str_replace(",", ".", $pppayment);
 		
 		
-
+d($pppayment);
 
 			?>
       <!-- <form action="https://www.paypal.com/de/cgi-bin/webscr" target="_blank" method="post">

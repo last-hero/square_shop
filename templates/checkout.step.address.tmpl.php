@@ -1,7 +1,7 @@
         <form action="" method="post" name="ss-form-<?=$FORM_ID?>" class="ss-form ss-form-<?=$FORM_ID?>">
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][action]" value="<?=$action?>" />
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][uniqueId]" value="<?=hash('md5', microtime(true))?>" />
-			<h2><?=SSHelper::i18n('label_billing_address')?></h2>
+			<h2><?=SSHelper::i18n('label_'.$action.'_address')?></h2>
 <?
 foreach($fields as $f):
 	try{			
@@ -19,6 +19,8 @@ foreach($fields as $f):
 	}
 endforeach;
 ?>
+
+		<? if($show_diff_delivery_option): ?>
             <br /><br />
 			<h2><?=SSHelper::i18n('label_delivery_address')?></h2>
             <? $fname = 'diff_delivery'; ?>
@@ -32,6 +34,7 @@ endforeach;
                     </option>
                 </select>
             </p>
+		<? endif; ?>
             
             <? $fname = 'submit'; ?>
             <p class="ss-<?=$fname?>">

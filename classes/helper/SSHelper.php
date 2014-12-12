@@ -39,29 +39,30 @@ class SSHelper{
 	public static function i18n($str){
 		global $REX;
 		
+		// Eintrag in der lokale Language-Datei
+		// erfassen, falls nicht bereits eingetragen.
 		SSHelper::seti18l($str, $str);
-		/*
-		$searchpath = $REX['INCLUDE_PATH'] . '/addons/square_shop/lang/';
-		$i18n = new i18n($locale = 'fe_de_de_utf8', $searchpath);
 		
-		return $i18n->msg($str);
-		*/
-		
-		$str = str_replace('register_label_', '', $str);
-		$str = str_replace('login_label_', '', $str);
-		$str = str_replace('label_', '', $str);
-		$str = '#'.$str;
-		
-		return $str;
-		
-		global $REX;
-		
-		return rex_string_table::getString(
-			$key = $str
-			, $fillEmpty = false
-			, $clang = $REX['CLANG_ID']
-		);
+		//if(class_exists('rex_string_table')){
+		if(false){
+			$key = 'SQUARE_SHOP_'.$str;
+			if(!rex_string_table::keyExists($key)){
+				$key = 'SQUARE_SHOP_'.$key;
+				$query = 'INSERT INTO rex_string_table SET keyname="'.$key.'" , value_0="'.$str.'"';
+				SSDBSQL::executeSqlQuery($query, false);
+			}
+			return rex_string_table::getString($key, $fillEmpty = true);
+		}else{
+			$searchpath = $REX['INCLUDE_PATH'] . '/addons/square_shop/lang/';
+			$i18n = new i18n($locale = 'fe_de_de_utf8', $searchpath);
+			return $i18n->msg($str);
+		}
 	}
+	
+	/** @brief 
+	 *
+	 *  
+	 */
 	public static function seti18l($_k, $_v){
 		global $REX;
 		$file = $REX['INCLUDE_PATH'] . '/addons/square_shop/lang/fe_de_de_utf8.lang';
@@ -70,6 +71,35 @@ class SSHelper{
 			fwrite($fp, "\n$_k = $_v");
 			fclose ( $fp );
 		}
+	}
+	
+	/** @brief Add all Texts to String Table
+	 *
+	 *  Alle Texte in der String-Table Addon Tabelle
+	 *  importieren, damit Übersetzung in andere
+	 *  Sprachen möglich ist.
+	 */
+	public static function importTranslationsInStringTable(){
+		global $REX;
+		if(class_exists('rex_string_table')){
+			$searchpath = $REX['INCLUDE_PATH'] . '/addons/square_shop/lang/';
+			$i18n = new i18n($locale = 'fe_de_de_utf8', $searchpath);
+			$i18n->loadTexts();
+			
+			foreach($i18n->text as $key => $val){
+				$key = 'SQUARE_SHOP_'.$key;
+				if(!rex_string_table::keyExists($key)){
+					$query = 'INSERT INTO rex_string_table SET 
+						keyname="'.$key.'" 
+						, value_0="'.$val.'"
+						';
+					SSDBSQL::executeSqlQuery($query, false);
+				}else{
+					
+				}
+			}
+		}
+		
 	}
 	
 	/** @brief Shop-Betreiber Setting Value
@@ -241,16 +271,32 @@ class SSHelper{
 				$settings = array_merge($settings, $settingsByShowIn);
 				$label_values = array();
 				foreach($settings['values'] as $v){
-					$label_values[] = self::i18n($formId.'_label_'.$name.'_'.$v);
+					//$label_values[] = self::i18n($formId.'_label_'.$name.'_'.$v);
+					if(isset($settings['label']) and strlen($settings['label'])){
+						$label_values[] = self::i18n('label_'.$settings['label'].'_'.$v);
+					}else{
+						$label_values[] = self::i18n('label_'.$name.'_'.$v);
+					}
 				}
-				
+				/*
 				$label = self::i18n($formId.'_label_'.$name);
 				if(isset($settings['label']) and strlen($settings['label'])){
 					$label = self::i18n($formId.'_label_'.$settings['label']);
 				}
+				*/
+				if(isset($settings['label']) and strlen($settings['label'])){
+					$label = self::i18n('label_'.$settings['label']);
+				}else{
+					$label = self::i18n('label_'.$name);
+				}
+				$label_equalto = '';
+				if($settings['equalto']){
+					$label_equalto = self::i18n('label_'.$settings['equalto']);
+				}
 				$properties[] = array(
 					'name' => $name
 					, 'label' => $label
+					, 'label_equalto' => $label_equalto
 					, 'values' => $settings['values']
 					, 'value_type' => $settings['type']
 					, 'label_values' => $label_values
@@ -265,42 +311,19 @@ class SSHelper{
 		return $properties;
 	}
 	
-	/** @brief Formular Inputs überprüfen
+	/** @brief Hash
 	 *
-	 *  Die vom Käufer eingegebene Daten werden auf Richtigkeit
-	 *  überprüft und Fehler zurückgegeben.
+	 *  Hash Wert generieren
 	 *
-	 *  @param (string) $formId: Form ID
-	 *  @param (string) $table: Tabellenname
-	 *  @param (string) $show_in: siehe SSSchema
-	 *  @param (string) $values: Werte die der Käufer eingegeben hat
-	 *  @return bool
+	 *  @return string
 	 */
-	 /*
-	public static function getFormPropertySettings($formId, $show_in, $field){
-		$name = $f['name'];
-		$settings = $f['input_settings'];
-		$settingsByShowIn = $f['input_settings_by_show_in'][$show_in];
-		$settingsByShowIn = is_array($settingsByShowIn)?$settingsByShowIn:array($settingsByShowIn);
-		$settings = array_merge($settings, $settingsByShowIn);
-		$label_values = array();
-		foreach($settings['values'] as $v){
-			$label_values[] = self::i18n($formId.'_label_'.$name.'_'.$v);
-		}
-		$properties[] = array(
-			'name' => $name
-			, 'label' => self::i18n($formId.'_label_'.$name)
-			, 'values' => $settings['values']
-			, 'value_type' => $settings['type']
-			, 'label_values' => $label_values
-			, 'required' => $settings['required']
-			, 'max' => $settings['max']
-			, 'min' => $settings['min']
-			, 'type' => $f['input']
-			, 'equalto' => $settings['equalto']
-		);
+	function generateHash(){
+		$result = "";
+		$charPool = '0123456789abcdefghijklmnopqrstuvwxyz';
+		for($p = 0; $p<15; $p++)
+			$result .= $charPool[mt_rand(0,strlen($charPool)-1)];
+		return sha1(md5(sha1($result)));
 	}
-	*/
 	
 	/** @brief Formular Inputs überprüfen
 	 *

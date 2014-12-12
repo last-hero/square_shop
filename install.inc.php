@@ -11,6 +11,8 @@ foreach($classes as $class){
 $error = '';
 try{
 	SSDBSQL::executeSql(SSDBSQL::_getSqlCreateTables(), false);
+	
+	SSHelper::importTranslationsInStringTable();
 }catch(SSException $e) {
 	$error = $e;
 }

@@ -101,11 +101,7 @@ class SSCheckoutController extends SSController{
 	* Warenkorb Handler: Add to Cart, Remove from Cart, Menge ändern
 	*/
 	public function checkoutHandler(){
-		if($this->isOrderStepOK()){
-			$this->setStep(6);
-		}elseif($this->isConfirmStepOK()){
-			$this->setStep(6);
-		}elseif(!$this->isLoginStepOK()){
+		if(!$this->isLoginStepOK()){
 			$this->setStep(1);
 		}elseif(!$this->customerLoginCtrl->isUserLoggedIn()
 		and !$this->isAddressStepOK(self::ACTION_REGISTER)){
@@ -185,20 +181,20 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCartController::clearCart();
 	 */
 	public function clearAll(){
-		$this->removeSession('OrderId');
-		$this->removeSession('OrderDone');
-		$this->removeSession('Payment');
-		$this->removeSession('RegisterAddress');
-		$this->removeSession('BillingAddress');
-		$this->removeSession('DeliveryAddress');
-		$this->removeSession('LoginStepBy');
-		$this->removeSession('Step');
+		$this->session->remove('checkoutOrderId');
+		$this->session->remove('checkoutOrderDone');
+		$this->session->remove('checkoutPayment');
+		$this->session->remove('checkoutRegisterAddress');
+		$this->session->remove('checkoutBillingAddress');
+		$this->session->remove('checkoutDeliveryAddress');
+		$this->session->remove('checkoutLoginStepBy');
+		$this->session->remove('checkoutStep');
 	}
 	
 	public function displayStepView(){
 		$params = array();
 		for($x=1; $x<=5; $x++){
-			$params['label_steps'][$x] = SSHelper::i18n('label_step'.$x.'_title');
+			$params['label_steps'][$x] = SSHelper::i18n('label_step'.$x);
 		}
 		$params['step_active'] = $this->getStep();
 		$this->checkoutView->displayCheckoutStepHtml($params);
@@ -227,13 +223,9 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::isConfirmStepOK();
 	 */
 	public function displayConfirmStep(){
-		$order = new SSOrder();
-		if($order->loadById($this->getSession('OrderId'))){
-			$checkoutOrderDone = true;
-		}
-		$msg = SSHelper::i18n('checkout_order_success');
-		$msg = str_replace('%order_no%', $order->get('no'), $msg);
-		$this->view->displaySuccessMessage($msg);
+		$this->view->displaySuccessMessage(
+			SSHelper::i18n('checkout_order_success')
+		);
 	}
 	
 	/** @brief Title
@@ -244,13 +236,12 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::isConfirmStepOK();
 	 */
 	public function handleConfirmStep(){
-		/*
-		$orderId = $this->getSession('OrderId');
+		$orderId = $this->session->get('checkoutOrderId');
 		if($this->isOrderStepOK()){
 			$this->cartCtrl->clearCart();
 			$this->clearAll();
 		}
-		*/
+		$orderId = $this->session->set('confirmOrderId') = $orderId;
 	}
 	
 	/** @brief Prüfen ob Zahlungsart ausgewählt
@@ -261,7 +252,7 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::isOrderStepOK();
 	 */
 	public function isOrderStepOK(){
-		if($this->getSession('OrderDone')){
+		if($this->session->get('checkoutOrderDone')){
 			return true;
 		}
 		return false;
@@ -284,7 +275,7 @@ class SSCheckoutController extends SSController{
 		$cartCtrl->simpleView = 1;
 		$cartCtrl->displayView();
 		
-		$payment = $this->getSession('Payment');
+		$payment = $this->session->get('checkoutPayment');
 		
 		$params = array();
 		
@@ -305,28 +296,29 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::saveOrderToDb();
 	 */
 	public function handleOrderStep(){
-		$checkoutOrderDone = $this->getSession('OrderDone');
+		$checkoutOrderDone = $this->session->get('checkoutOrderDone');
 		if(!$checkoutOrderDone){
 			if($this->isFormActionName(self::ACTION_ORDER)){
-				$this->getSession('OrderDone');
-				$payment = $this->getSession('Payment');
+				$this->session->get('checkoutOrderDone');
+				$payment = $this->session->get('checkoutPayment');
 				if($payment == 'onbill'){
 					// Bestellung in DB ablegen
-					if(!$this->getSession('OrderId')){
+					if(!$this->session->get('checkoutOrderId')){
 						$this->saveOrderToDb();
 					}
 					$order = new SSOrder();
-					if($order->loadById($this->getSession('OrderId'))){
+					if($order->loadById($this->session->get('checkoutOrderId'))){
 						$checkoutOrderDone = true;
 					}
 				}elseif($payment == 'paypal'){
+					d('gass');
 					$paypal = new SSPayPalController();
 					$paypal->invoke();
 				}
 			}
 		}
 		if($checkoutOrderDone){
-			$this->setSession('OrderDone', $checkoutOrderDone);
+			$this->session->set('checkoutOrderDone', $checkoutOrderDone);
 			$this->nextStep();
 		}
 		return false;
@@ -343,7 +335,7 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::saveOrderToDb();
 	 */
 	public function saveOrderToDb(){
-		$payment = $this->getSession('Payment');
+		$payment = $this->session->get('checkoutPayment');
 				
 		/* --------------------------------------------------------------
 		// Käufer in DB speichern
@@ -360,12 +352,12 @@ class SSCheckoutController extends SSController{
 			$customer->loadById($customerId);
 		}else{
 			// Käufer in DB speichern
-			$registerData = $this->getSession('RegisterAddress');
+			$registerData = $this->session->get('checkoutRegisterAddress');
 			$customer = new SSCustomer();
 			$customer->set($customer->getClearedUnknownProperties($registerData));
 			$customer->save();
 			//$registerData['id'] = $customer->get('id');
-			//$this->setSession('BillingAddress', $registerData);
+			//$this->session->set('checkoutBillingAddress', $registerData);
 			$customerId = $customer->get('id');
 		}
 		/* ------------------------------------------------------------ */
@@ -381,12 +373,12 @@ class SSCheckoutController extends SSController{
 		// Rechnungs- & Lieferadresse vom Session zu Bestellung zuweisen
 		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 		// Rechnungsadresse
-		$billingAddress = $this->getSession('BillingAddress');
+		$billingAddress = $this->session->get('checkoutBillingAddress');
 		unset($billingAddress['id']);
 		$order->set($order->getClearedUnknownProperties($billingAddress));
 		
 		// Lieferadresse
-		$deliveryAddress = $this->getSession('DeliveryAddress');
+		$deliveryAddress = $this->session->get('checkoutDeliveryAddress');
 		unset($deliveryAddress['id']);
 		$order->set($order->getClearedUnknownProperties($deliveryAddress));
 		
@@ -434,7 +426,7 @@ class SSCheckoutController extends SSController{
 		}
 		/* ------------------------------------------------------------ */
 		
-		$this->setSession('OrderId', $order->get('id'));
+		$this->session->set('checkoutOrderId', $order->get('id'));
 	}
 	
 	
@@ -446,7 +438,7 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::isPaymentStepOK();
 	 */
 	public function isPaymentStepOK(){
-		$payment = $this->getSession('Payment');
+		$payment = $this->session->get('checkoutPayment');
 		if(strlen(trim($payment))){
 			$payments = SSHelper::getSetting('payment');
 			if(in_array($payment, $payments)){
@@ -490,7 +482,7 @@ class SSCheckoutController extends SSController{
 			if(strlen(trim($payment))){
 				$payments = SSHelper::getSetting('payment');
 				if(in_array($payment, $payments)){
-					$this->setSession('Payment', $payment);
+					$this->session->set('checkoutPayment', $payment);
 					$this->nextStep();
 				}
 			}
@@ -575,7 +567,7 @@ class SSCheckoutController extends SSController{
 		if(!$this->isFormActionName($_action)){
 			$params['formPropertiesAndValues'] = $_addressFromSession;
 			if($_action == self::ACTION_BILLING){
-				$billAddr = $this->getSession('BillingAddress');
+				$billAddr = $this->session->get('checkoutBillingAddress');
 				if(empty($billAddr) and $this->customerLoginCtrl->isUserLoggedIn()){
 					// Käufer Daten nach ID aus dem DB laden
 					$customer = new SSCustomer();
@@ -586,14 +578,12 @@ class SSCheckoutController extends SSController{
 			}
 		}
 		
-		/*
 		$params['label_errors'] = array();
 		foreach($params['formPropertyValueErrors'] as $f){
 			foreach($f as $name => $val){
 				$params['label_errors'][$name] = SSHelper::i18n('label_error_'.$name);
 			}
 		}
-		*/
 		// Formular
 		$params['fields'] = SSHelper::getFormProperties(
 			$_formId , $_table , $_showIn
@@ -651,33 +641,33 @@ class SSCheckoutController extends SSController{
 			//d($this->formPropertyValueErrors);
 			if(sizeof($this->formPropertyValueErrors) < 1){
 				if($_action == self::ACTION_REGISTER){
-					$this->setSession('RegisterAddress', $this->formPropertiesAndValues);
+					$this->session->set('checkoutRegisterAddress', $this->formPropertiesAndValues);
 					
 					$checkoutBillingAddress = SSOrder::convertCustomerAddrToBillingAddr($this->formPropertiesAndValues);
-					$this->setSession('BillingAddress', $checkoutBillingAddress);
+					$this->session->set('checkoutBillingAddress', $checkoutBillingAddress);
 					
 					if($this->formPropertiesAndValues['diff_delivery'] == 'yes'){
 						$this->nextStep();
 					}else{
 						$checkoutDeliveryAddress = SSOrder::convertCustomerAddrToDeliveryAddr($this->formPropertiesAndValues);
-						$this->setSession('DeliveryAddress', $checkoutDeliveryAddress);
+						$this->session->set('checkoutDeliveryAddress', $checkoutDeliveryAddress);
 						$this->nextStep();
 						$this->nextStep();
 					}
 				}elseif($_action == self::ACTION_BILLING){
-					$this->setSession('BillingAddress', $this->formPropertiesAndValues);
+					$this->session->set('checkoutBillingAddress', $this->formPropertiesAndValues);
 									
 					if($this->formPropertiesAndValues['diff_delivery'] == 'yes'){
 						$this->nextStep();
 					}else{
-						$billAddress = $this->getSession('BillingAddress');
+						$billAddress = $this->session->get('checkoutBillingAddress');
 						$deliveryAddress = SSOrder::convertBillAddrToDeliverAddr($billAddress);
-						$this->setSession('DeliveryAddress', $deliveryAddress);
+						$this->session->set('checkoutDeliveryAddress', $deliveryAddress);
 						$this->nextStep();
 						$this->nextStep();
 					}
 				}elseif($_action == self::ACTION_DELIVERY){
-					$this->setSession('DeliveryAddress', $this->formPropertiesAndValues);
+					$this->session->set('checkoutDeliveryAddress', $this->formPropertiesAndValues);
 					$this->nextStep();
 				}
 			}
@@ -700,8 +690,8 @@ class SSCheckoutController extends SSController{
 					, 'formId' => SSCustomerRegisterView::FORM_ID
 					, 'showIn' => SSDBSchema::SHOW_IN_REGISTER
 					, 'formPropertiesAndValues' => $this->formPropertiesAndValues
-					, 'addressFromSession' => $this->getSession('RegisterAddress')
-					//, 'addressFromSession' => $this->getSession('BillingAddress')
+					, 'addressFromSession' => $this->session->get('checkoutRegisterAddress')
+					//, 'addressFromSession' => $this->session->get('checkoutBillingAddress')
 					, 'action' => self::ACTION_REGISTER
 				);
 			case self::ACTION_BILLING:
@@ -710,7 +700,7 @@ class SSCheckoutController extends SSController{
 					, 'formId' => SSCheckoutView::FORM_ID
 					, 'showIn' => SSDBSchema::SHOW_IN_BILL_ADDRESS
 					, 'formPropertiesAndValues' => $this->formPropertiesAndValues
-					, 'addressFromSession' => $this->getSession('BillingAddress')
+					, 'addressFromSession' => $this->session->get('checkoutBillingAddress')
 					, 'action' => self::ACTION_BILLING
 				);
 			case self::ACTION_DELIVERY:
@@ -719,7 +709,7 @@ class SSCheckoutController extends SSController{
 					, 'formId' => SSCheckoutView::FORM_ID
 					, 'showIn' => SSDBSchema::SHOW_IN_DELIVER_ADDRESS
 					, 'formPropertiesAndValues' => $this->formPropertiesAndValues
-					, 'addressFromSession' => $this->getSession('DeliveryAddress')
+					, 'addressFromSession' => $this->session->get('checkoutDeliveryAddress')
 					, 'action' => self::ACTION_DELIVERY
 				);
 				break;
@@ -737,11 +727,11 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::handleLoginStep();
 	 */
 	public function isLoginStepOK(){
-		if($this->getSession('LoginStepBy') == self::ACTION_LOGIN){
+		if($this->session->get('checkoutLoginStepBy') == self::ACTION_LOGIN){
 			if($this->customerLoginCtrl->isUserLoggedIn()){
 				return true;
 			}
-		}elseif($this->getSession('LoginStepBy') == self::ACTION_GO_FOR_REGISTER){
+		}elseif($this->session->get('checkoutLoginStepBy') == self::ACTION_GO_FOR_REGISTER){
 			return true;
 		}
 		return false;
@@ -753,6 +743,7 @@ class SSCheckoutController extends SSController{
 	 *  ermöglicht zudem, falls sich
 	 *  der Käufer registrieren möchte,
 	 *  zur Registrierungsmaske zu gelanden.
+	 *  
 	 *  
 	 *  @see SSCheckoutController::isLoginStepOK();
 	 *  @see SSCheckoutController::handleLoginStep();
@@ -789,11 +780,11 @@ class SSCheckoutController extends SSController{
 		
 		if($this->customerLoginCtrl->isUserLoggedIn()){
 			$this->nextStep();
-			$this->setSession('LoginStepBy', self::ACTION_LOGIN);
+			$this->session->set('checkoutLoginStepBy', self::ACTION_LOGIN);
 		}
 		if($this->isFormActionName(self::ACTION_GO_FOR_REGISTER)){
 			$this->nextStep();
-			$this->setSession('LoginStepBy', self::ACTION_GO_FOR_REGISTER);
+			$this->session->set('checkoutLoginStepBy', self::ACTION_GO_FOR_REGISTER);
 		}
 	}
 	
@@ -809,7 +800,7 @@ class SSCheckoutController extends SSController{
 	 */
 	public function setStep($step){
 		$step = (int)$step < 1 ? 1 : (int)$step;
-		$this->setSession('Step', $step);
+		$this->session->set('checkoutStep', $step);
 		return $step;
 	}
 	
@@ -823,7 +814,7 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::nextStep
 	 */
 	public function getStep(){
-		$step = (int)$this->getSession('Step');
+		$step = (int)$this->session->get('checkoutStep');
 		$step = $step < 1 ? 1 : $step;
 		return $step;
 	}
@@ -838,10 +829,10 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::prevStep
 	 */
 	public function nextStep(){
-		$step = (int)$this->getSession('Step');
+		$step = (int)$this->session->get('checkoutStep');
 		$step = $step < 1 ? 1 : $step;
 		$step++;
-		$this->setSession('Step', $step);
+		$this->session->set('checkoutStep', $step);
 		return $step;
 	}
 	
@@ -855,69 +846,37 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::nextStep
 	 */
 	public function prevStep(){
-		$step = (int)$this->getSession('Step');
+		$step = (int)$this->session->get('checkoutStep');
 		$step--;
 		$step = $step < 1 ? 1 : $step;
-		$this->setSession('Step', $step);
+		$this->session->set('checkoutStep', $step);
 		return $step;
 	}
 	
-	/** @brief store Value in Session
+	/** @brief Previous Step
 	 *
-	 *  Session Funktion um Session innerhalb von
-	 *  Checkout zu verwalten.
+	 *  Zum vorherigen Schritt springen.
 	 *
-	 *  Key + Value in Session ablegen.
+	 *  @return $step
 	 *
-	 *  @return bool
-	 *
-	 *  @see SSCheckoutController::setSession
-	 *  @see SSCheckoutController::getSession
-	 *  @see SSCheckoutController::removeSession
+	 *  @see SSCheckoutController::getStep
+	 *  @see SSCheckoutController::nextStep
 	 */
 	public function setSession($key, $value){
-		$values = $this->session->get($key);
-		$values[$key] = $value;
-		$this->session->set($key, $values);
+		$session = $this->session->get('checkout');
+		$session[$key] = $value;
+		$this->session->set('checkout', $session);
 		return true;
 	}
-	
-	/** @brief get Value from Session
-	 *
-	 *  Session Funktion um Session innerhalb von
-	 *  Checkout zu verwalten.
-	 *
-	 *  Wert nach Key in Session holen.
-	 *
-	 *  @return mixed
-	 *
-	 *  @see SSCheckoutController::setSession
-	 *  @see SSCheckoutController::getSession
-	 *  @see SSCheckoutController::removeSession
-	 */
-	public function getSession($key){
-		$session = $this->session->get($key);
+	public function getSession(){
+		$session = $this->session->get('checkout');
 		return $session[$key];
 	}
-	
-	/** @brief remove Key + Value from Session
-	 *
-	 *  Session Funktion um Session innerhalb von
-	 *  Checkout zu verwalten.
-	 *
-	 *  Key + Value von der Session löschen.
-	 *
-	 *  @return bool
-	 *
-	 *  @see SSCheckoutController::setSession
-	 *  @see SSCheckoutController::getSession
-	 *  @see SSCheckoutController::removeSession
-	 */
 	public function removeSession($key){
-		$values = $this->session->get($key);
-		$values[$key] = null;
-		unset($values[$key]);
-		$this->session->set($key, $values);
+		$session = $this->session->get('checkout');
+		$session[$key] = null;
+		unset($session[$key]);
+		$this->session->set('checkout', $session);
 		return true;
 	}
 }

@@ -18,7 +18,8 @@
                 	maxlength="<?=$max?>" type="text" class="<?=trim($css_class)?>" value="<?=$post_data?>" />
 <?
 			if($formPropertyValueErrors[$fname]):
-				$label_error = $label_errors[key($formPropertyValueErrors[$fname])];
+				$label_error = SSHelper::i18n('label_error_'.key($errors));
+				$label_error = sprintf($label_error,$f[key($errors)]);
 ?>
                 <label for="ss-<?=$fname?>" class="error"><?=$label_error?></label>
 <?
