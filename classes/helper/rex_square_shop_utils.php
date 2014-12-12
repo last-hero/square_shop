@@ -41,6 +41,7 @@ class rex_square_shop_utils {
 				$content .= "\$REX['ADDON']['square_shop']['settings']['$key'] = " . var_export($value, true) . ";\n";
 			}
 
+
 			if (rex_put_file_contents($settingsFile, $content)) {
 				if ($REX['REDAXO'] && $showSuccessMsg) {
 					echo rex_info($I18N->msg('square_shop_config_ok'));
@@ -55,14 +56,15 @@ class rex_square_shop_utils {
 
 	public static function replaceSettings($settings) {
 		global $REX;
-
+		/*
 		// type conversion
 		foreach ($REX['ADDON']['square_shop']['settings'] as $key => $value) {
 			if (isset($settings[$key])) {
 				$settings[$key] = self::convertVarType($value, $settings[$key]);
 			}
 		}
-
+		*/
+		
 		$REX['ADDON']['square_shop']['settings'] = array_merge((array) $REX['ADDON']['square_shop']['settings'], $settings);
 	}
 

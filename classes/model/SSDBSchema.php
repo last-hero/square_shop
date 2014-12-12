@@ -335,6 +335,11 @@ class SSDBSchema {
 					, 'show_in' => array('detail', 'list', 'search')
 				)
 				, array(
+					'name' => 'payment'
+					, 'sql' => 'VARCHAR(45) NULL'
+					, 'show_in' => array('detail', 'list')
+				)
+				, array(
 					'name' => 'no'
 					, 'sql' => 'VARCHAR(45) NULL'
 					, 'show_in' => array('detail', 'list')

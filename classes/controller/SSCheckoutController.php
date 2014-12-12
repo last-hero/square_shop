@@ -128,8 +128,11 @@ class SSCheckoutController extends SSController{
 				$this->handleLoginStep();
 				break;
 			case 2:
-				$this->handleBillingStep();
-				$this->handleRegisterStep();
+				if($this->customerLoginCtrl->isUserLoggedIn()){
+					$this->handleBillingStep();
+				}else{
+					$this->handleRegisterStep();
+				}
 				break;
 			case 3:
 				$this->handleDeliveryStep();
@@ -258,7 +261,7 @@ class SSCheckoutController extends SSController{
 			if($this->isFormActionName(self::ACTION_ORDER)){
 				$this->session->get('checkoutOrderDone');
 				$payment = $this->session->get('checkoutPayment');
-				if($payment == 'shipping'){
+				if($payment == 'onbill'){
 					
 					/* --------------------------------------------------------------
 					// Käufer in DB speichern
@@ -313,6 +316,9 @@ class SSCheckoutController extends SSController{
 					
 					// Order Date
 					$order->set('date',time());
+					
+					// Payment
+					$order->set('payment', $payment);
 					
 					// Order in DB speichern
 					$order->save();
@@ -407,9 +413,6 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::isPaymentStepOK();
 	 */
 	public function handlePaymentStep(){
-		$this->view->displayMessage(
-			SSHelper::i18l(self::ACTION_STEP.'_'.self::ACTION_PAYMENT)
-		);
 		if($this->isFormActionName(self::ACTION_PAYMENT)){
 			$payment = $this->formPropertiesAndValues[self::ACTION_PAYMENT];
 			if(strlen(trim($payment))){

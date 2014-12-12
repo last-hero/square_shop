@@ -11,30 +11,28 @@ $myREX 			= $REX['ADDON'][$page];
 // save settings
 if ($func == 'update') {
 	$settings = (array) rex_post('settings', 'array', array());
-	
+				
 	rex_square_shop_utils::replaceSettings($settings);
 	rex_square_shop_utils::updateSettingsFile();
 }
-
-
-
-
 
 // payment select box
 $payment_select = new rex_select();
 $payment_select->setSize(5);
 $payment_select->setName('settings[payment][]');
 $payment_select->setMultiple(true);
-$payment_options = array('shipping', 'paypal');
+$payment_options = array('onbill', 'paypal');
 foreach($payment_options as $option){
 	$payment_select->addOption(ss_utils::i18l($option),$option);
 	if(in_array($option, $REX['ADDON']['square_shop']['settings']['payment'])){
 		$payment_select->setSelected($option);
 	}
 }
+/*
 if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
 	$payment_select->setSelected($payment_options[0]);
 }
+*/
 
   
 ?>

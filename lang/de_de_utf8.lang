@@ -20,7 +20,7 @@ square_shop_config_error = Einstellungen konnten nicht gespeichert werden!
 square_shop_settings_currency = Währung
 square_shop_settings_mwst = MwSt in %
 square_shop_settings_payment = Zahlungsart
-square_shop_shipping = Rechnung
+square_shop_onbill = auf Rechnung
 square_shop_paypal = PayPal
 square_shop_settings_save = Einstellungen speichern
 
@@ -61,6 +61,8 @@ square_shop_label_customer_title = Anrede
 square_shop_label_customer_firstname = Vorname
 square_shop_label_customer_lastname = Nachname
 square_shop_order_item = Belegposition
+
+square_shop_label_payment = Zahlungsart
 
 square_shop_billing = Rechnungsadresse
 square_shop_delivery = Lieferadresse
