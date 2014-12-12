@@ -30,7 +30,7 @@
 			$label = $f['label'].'_re';
 ?>	
             <p class="<?=$css_class?>">
-                <label for="ss-<?=$fname?>"><?=$label?></label>
+                <label for="ss-<?=$fname?>"><?=$label?><?=$required?' *':''?></label>
                 <input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][<?=$fname?>]"
                 	maxlength="<?=$max?>" type="password" 
                     class="<?=trim($css_class)?>" value="" />

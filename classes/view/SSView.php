@@ -78,7 +78,7 @@ class SSView {
 		$params['msg_type'] = 'success';
 		$params['label_text'] = $message;
 		if(empty($params['label_text'])){
-			$params['label_text'] = SSHelper::i18l($this->FORM_ID.'_success_text');
+			$params['label_text'] = SSHelper::i18n($this->FORM_ID.'_success_text');
 		}
 		$this->displayMessageHtml($params);
 	}
@@ -98,7 +98,7 @@ class SSView {
 		$params['msg_type'] = 'error';
 		$params['label_text'] = $message;
 		if(empty($params['label_text'])){
-			$params['label_text'] = SSHelper::i18l($this->FORM_ID.'_failure_text');
+			$params['label_text'] = SSHelper::i18n($this->FORM_ID.'_failure_text');
 		}
 		$this->displayMessageHtml($params);
 	}
@@ -118,7 +118,7 @@ class SSView {
 		$params['msg_type'] = 'normal';
 		$params['label_text'] = $message;
 		if(empty($params['label_text'])){
-			$params['label_text'] = SSHelper::i18l($this->FORM_ID.'_failure_text');
+			$params['label_text'] = SSHelper::i18n($this->FORM_ID.'_failure_text');
 		}
 		$this->displayMessageHtml($params);
 	}

@@ -84,7 +84,7 @@ class SSCartController extends SSController{
 		$this->messageHandler();
 		if($this->isCartEmpty()){
 			if(!$this->showMessage){
-				$this->cartView->displaySuccessMessage(SSHelper::i18l('cart_is_empty'));
+				$this->cartView->displaySuccessMessage(SSHelper::i18n('cart_is_empty'));
 			}
 		}else{
 			$this->displayView();
@@ -377,16 +377,16 @@ class SSCartController extends SSController{
 		$params['mwst'] = $mwst;
 		
 		// Labels
-		$params['label_bild'] = SSHelper::i18l('label_bild');
-		$params['label_artno'] = SSHelper::i18l('label_artno');
-		$params['label_bezeichnung'] = SSHelper::i18l('label_bezeichnung');
-		$params['label_price'] = SSHelper::i18l('label_price');
-		$params['label_qty'] = SSHelper::i18l('label_qty');
-		$params['label_subtotal'] = SSHelper::i18l('label_subtotal');
-		$params['label_total'] = SSHelper::i18l('label_total');
-		$params['label_entfernen'] = SSHelper::i18l('label_entfernen');
-		$params['label_empty_cart'] = SSHelper::i18l('empty_cart');
-		$params['label_update_art'] = SSHelper::i18l('ok');
+		$params['label_bild'] = SSHelper::i18n('label_bild');
+		$params['label_artno'] = SSHelper::i18n('label_artno');
+		$params['label_bezeichnung'] = SSHelper::i18n('label_bezeichnung');
+		$params['label_price'] = SSHelper::i18n('label_price');
+		$params['label_qty'] = SSHelper::i18n('label_qty');
+		$params['label_subtotal'] = SSHelper::i18n('label_subtotal');
+		$params['label_total'] = SSHelper::i18n('label_total');
+		$params['label_entfernen'] = SSHelper::i18n('label_entfernen');
+		$params['label_empty_cart'] = SSHelper::i18n('empty_cart');
+		$params['label_update_art'] = SSHelper::i18n('ok');
 		
 		$params['action_del_from_cart'] = self::ACTION_DEL_FROM_CART;
 		$params['action_update_art'] = self::ACTION_UPDATE_ART_QTY;
@@ -426,7 +426,7 @@ class SSCartController extends SSController{
 		}
 			
 		$params['url_checkout'] = rex_getUrl($this->checkoutPageId, $REX['CLANG_ID'], array('ss-cart'=>'checkout'));
-		$params['label_checkout'] = SSHelper::i18l('label_checkout');
+		$params['label_checkout'] = SSHelper::i18n('label_checkout');
 		
 		$this->cartView->displayCartHtml($params);
 	}

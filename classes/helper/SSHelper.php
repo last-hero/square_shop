@@ -35,8 +35,17 @@ class SSHelper{
 	 *  @param (string) $str: String zum übersetzen
 	 *  @return (string) $str
 	 */
-	public static function i18l($str){
+	 
+	public static function i18n($str){
+		global $REX;
+		
 		SSHelper::seti18l($str, $str);
+		/*
+		$searchpath = $REX['INCLUDE_PATH'] . '/addons/square_shop/lang/';
+		$i18n = new i18n($locale = 'fe_de_de_utf8', $searchpath);
+		
+		return $i18n->msg($str);
+		*/
 		
 		$str = str_replace('register_label_', '', $str);
 		$str = str_replace('login_label_', '', $str);
@@ -232,12 +241,12 @@ class SSHelper{
 				$settings = array_merge($settings, $settingsByShowIn);
 				$label_values = array();
 				foreach($settings['values'] as $v){
-					$label_values[] = self::i18l($formId.'_label_'.$name.'_'.$v);
+					$label_values[] = self::i18n($formId.'_label_'.$name.'_'.$v);
 				}
 				
-				$label = self::i18l($formId.'_label_'.$name);
+				$label = self::i18n($formId.'_label_'.$name);
 				if(isset($settings['label']) and strlen($settings['label'])){
-					$label = self::i18l($formId.'_label_'.$settings['label']);
+					$label = self::i18n($formId.'_label_'.$settings['label']);
 				}
 				$properties[] = array(
 					'name' => $name
@@ -276,11 +285,11 @@ class SSHelper{
 		$settings = array_merge($settings, $settingsByShowIn);
 		$label_values = array();
 		foreach($settings['values'] as $v){
-			$label_values[] = self::i18l($formId.'_label_'.$name.'_'.$v);
+			$label_values[] = self::i18n($formId.'_label_'.$name.'_'.$v);
 		}
 		$properties[] = array(
 			'name' => $name
-			, 'label' => self::i18l($formId.'_label_'.$name)
+			, 'label' => self::i18n($formId.'_label_'.$name)
 			, 'values' => $settings['values']
 			, 'value_type' => $settings['type']
 			, 'label_values' => $label_values
@@ -328,8 +337,7 @@ class SSHelper{
 			$min_value = (float)$settings['min_value'];
 			$max_value = (float)$settings['max_value'];
 			
-			
-			if($required and strlen(trim($value)) == 0){
+			if($required and strlen(trim($value)) == 0 or strlen(trim($value)) > 0){
 				if(!empty($type) and $type == 'password'){
 					// To Do -> eine bessere lösung
 					//if($values[$name.'_re'] and $value != $values[$name.'_re']){

@@ -89,7 +89,7 @@ class SSCheckoutController extends SSController{
 	*/
 	public function invoke(){
 		if($this->cartCtrl->isCartEmpty()){
-			$this->view->displaySuccessMessage(SSHelper::i18l('cart_is_empty'));
+			$this->view->displaySuccessMessage(SSHelper::i18n('cart_is_empty'));
 		}else{
 			$this->checkoutHandler();
 			$this->displayStepView();
@@ -173,7 +173,7 @@ class SSCheckoutController extends SSController{
 				break;
 			case 6:
 				$this->view->displaySuccessMessage(
-					SSHelper::i18l('checkout_order_success')
+					SSHelper::i18n('checkout_order_success')
 				);
 				break;
 			default:
@@ -202,7 +202,7 @@ class SSCheckoutController extends SSController{
 	public function displayStepView(){
 		$params = array();
 		for($x=1; $x<=5; $x++){
-			$params['label_steps'][$x] = SSHelper::i18l('label_step'.$x);
+			$params['label_steps'][$x] = SSHelper::i18n('label_step'.$x);
 		}
 		$params['step_active'] = $this->getStep();
 		$this->checkoutView->displayCheckoutStepHtml($params);
@@ -231,7 +231,7 @@ class SSCheckoutController extends SSController{
 	 */
 	public function displayOrderStep(){
 		$this->view->displayMessage(
-			SSHelper::i18l(self::ACTION_STEP.'_'.self::ACTION_ORDER)
+			SSHelper::i18n(self::ACTION_STEP.'_'.self::ACTION_ORDER)
 		);
 		$cartCtrl = new SSCartController();
 		$cartCtrl->simpleView = 1;
@@ -242,7 +242,7 @@ class SSCheckoutController extends SSController{
 		
 		$params = array();
 		
-		$params['label_submit'] = SSHelper::i18l('label_checkout_confirm');
+		$params['label_submit'] = SSHelper::i18n('label_checkout_confirm');
 		$params['action'] = self::ACTION_ORDER;
 		
 		$this->checkoutView->displayCheckoutByTmpl(self::ACTION_ORDER, $params);
@@ -399,7 +399,7 @@ class SSCheckoutController extends SSController{
 		$params['formPropertyValueErrors'] = $this->formPropertyValueErrors;
 		$params['payments'] = $payments;
 		
-		$params['label_submit'] = SSHelper::i18l('label_checkout_next');
+		$params['label_submit'] = SSHelper::i18n('label_checkout_next');
 		$params['action'] = self::ACTION_PAYMENT;
 		
 		$this->checkoutView->displayCheckoutByTmpl(self::ACTION_PAYMENT, $params);
@@ -464,7 +464,7 @@ class SSCheckoutController extends SSController{
 	 */
 	public function displayDeliveryStep(){
 		$this->view->displayMessage(
-			SSHelper::i18l(self::ACTION_STEP.'_'.self::ACTION_DELIVERY)
+			SSHelper::i18n(self::ACTION_STEP.'_'.self::ACTION_DELIVERY)
 		);
 		
 		$params = array();
@@ -477,7 +477,7 @@ class SSCheckoutController extends SSController{
 		$params['label_errors'] = array();
 		foreach($params['formPropertyValueErrors'] as $f){
 			foreach($f as $name => $val){
-				$params['label_errors'][$name] = SSHelper::i18l('label_error_'.$name);
+				$params['label_errors'][$name] = SSHelper::i18n('label_error_'.$name);
 			}
 		}
 		
@@ -488,7 +488,7 @@ class SSCheckoutController extends SSController{
 			, SSDBSchema::SHOW_IN_DELIVER_ADDRESS
 		);
 		
-		$params['label_submit'] = SSHelper::i18l('label_checkout_next');
+		$params['label_submit'] = SSHelper::i18n('label_checkout_next');
 		$params['action'] = self::ACTION_DELIVERY;
 		
 		$this->checkoutView->displayCheckoutByTmpl(self::ACTION_DELIVERY, $params);
@@ -571,7 +571,7 @@ class SSCheckoutController extends SSController{
 	public function displayBillingStep(){
 		
 		$this->view->displayMessage(
-			SSHelper::i18l(self::ACTION_STEP.'_'.self::ACTION_BILLING)
+			SSHelper::i18n(self::ACTION_STEP.'_'.self::ACTION_BILLING)
 		);
 		
 		$params = array();
@@ -599,7 +599,7 @@ class SSCheckoutController extends SSController{
 		$params['label_errors'] = array();
 		foreach($params['formPropertyValueErrors'] as $f){
 			foreach($f as $name => $val){
-				$params['label_errors'][$name] = SSHelper::i18l('label_error_'.$name);
+				$params['label_errors'][$name] = SSHelper::i18n('label_error_'.$name);
 			}
 		}
 		
@@ -610,7 +610,7 @@ class SSCheckoutController extends SSController{
 			, SSDBSchema::SHOW_IN_BILL_ADDRESS
 		);
 		
-		$params['label_submit'] = SSHelper::i18l('label_checkout_next');
+		$params['label_submit'] = SSHelper::i18n('label_checkout_next');
 		$params['action'] = self::ACTION_BILLING;
 		
 		$this->checkoutView->displayCheckoutByTmpl(self::ACTION_BILLING, $params);
@@ -690,7 +690,7 @@ class SSCheckoutController extends SSController{
 	 */
 	public function displayRegisterStep(){
 		$this->view->displayMessage(
-			SSHelper::i18l(self::ACTION_STEP.'_'.self::ACTION_REGISTER)
+			SSHelper::i18n(self::ACTION_STEP.'_'.self::ACTION_REGISTER)
 		);
 		
 		$params = array();
@@ -703,7 +703,7 @@ class SSCheckoutController extends SSController{
 		$params['label_errors'] = array();
 		foreach($params['formPropertyValueErrors'] as $f){
 			foreach($f as $name => $val){
-				$params['label_errors'][$name] = SSHelper::i18l('label_error_'.$name);
+				$params['label_errors'][$name] = SSHelper::i18n('label_error_'.$name);
 			}
 		}
 		// Register Formular
@@ -713,7 +713,7 @@ class SSCheckoutController extends SSController{
 			, SSDBSchema::SHOW_IN_REGISTER
 		);
 		
-		$params['label_submit'] = SSHelper::i18l('label_checkout_next');
+		$params['label_submit'] = SSHelper::i18n('label_checkout_next');
 		$params['action'] = self::ACTION_REGISTER;
 		
 		$this->checkoutView->displayCheckoutByTmpl(self::ACTION_REGISTER, $params);
@@ -792,17 +792,17 @@ class SSCheckoutController extends SSController{
 	 */
 	public function displayLoginStep(){
 		$this->view->displayMessage(
-			SSHelper::i18l(self::ACTION_STEP.'_'.self::ACTION_LOGIN)
+			SSHelper::i18n(self::ACTION_STEP.'_'.self::ACTION_LOGIN)
 		);
 		$this->customerLoginCtrl->displayView();
 		
 		
 		$this->view->displayMessage(
-			SSHelper::i18l(self::ACTION_STEP.'_go_for_register')
+			SSHelper::i18n(self::ACTION_STEP.'_go_for_register')
 		);
 
 		$params = array();
-		$params['label_submit'] = SSHelper::i18l('label_checkout_next');
+		$params['label_submit'] = SSHelper::i18n('label_checkout_next');
 		$params['action'] = self::ACTION_GO_FOR_REGISTER;
 		
 		$this->checkoutView->displayCheckoutByTmpl(self::ACTION_LOGIN, $params);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="SSCustomerLoginController.php" server="p2.ibog.biz" local="130628067255023081" remote="130628067000000000" Dst="1" />
-<file name="SSCustomerRegisterController.php" server="p2.ibog.biz" local="130627620630678347" remote="130627620600000000" Dst="1" />
-<file name="SSArticleController.php" server="p2.ibog.biz" local="130625533792700441" remote="130627159200000000" Dst="1" />
-<file name="SSCartController.php" server="p2.ibog.biz" local="130628002937496026" remote="130628002800000000" Dst="1" />
-<file name="SSCheckoutController.php" server="p2.ibog.biz" local="130628145871929232" remote="130628145600000000" Dst="1" />
+<file name="SSCustomerLoginController.php" server="p2.ibog.biz" local="130628521660149072" remote="130628521800000000" Dst="1" />
+<file name="SSCustomerRegisterController.php" server="p2.ibog.biz" local="130628521661167930" remote="130628521800000000" Dst="1" />
+<file name="SSArticleController.php" server="p2.ibog.biz" local="130628521656678070" remote="130628521800000000" Dst="1" />
+<file name="SSCartController.php" server="p2.ibog.biz" local="130628521658705865" remote="130628521800000000" Dst="1" />
+<file name="SSCheckoutController.php" server="p2.ibog.biz" local="130628521659668460" remote="130628521800000000" Dst="1" />
 <file name="SSController.php" server="p2.ibog.biz" local="130627656313289517" remote="130627656000000000" Dst="1" />
 </dwsync>

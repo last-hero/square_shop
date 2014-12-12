@@ -159,7 +159,7 @@ class SSArticleController extends SSController {
 		$params['mwst'] = $mwst;
 		$params['action'] = self::ACTION_ADD_TO_CART;
 		
-		$params['label_goback'] = SSHelper::i18l('label_goback');
+		$params['label_goback'] = SSHelper::i18n('label_goback');
 		$params['id'] = $this->article->get('id');
 		$params['no'] = $this->article->get('no');
 		$params['title'] = $this->article->get('title');
@@ -167,8 +167,8 @@ class SSArticleController extends SSController {
 		$params['price'] = $this->article->formatPrice($this->article->get('price'));
 		$params['url'] = rex_getUrl($REX['ARTICLE_ID'], $REX['CLANG_ID']);
 		$params['imgs'] = explode(',', $this->article->get('images'));
-		$params['label_submit'] = SSHelper::i18l('label_addtocart');
-		$params['label_qty'] = SSHelper::i18l('label_qty');
+		$params['label_submit'] = SSHelper::i18n('label_addtocart');
+		$params['label_qty'] = SSHelper::i18n('label_qty');
 		$this->articleView->displayDetailHtml($params);
 	}
 	
@@ -186,7 +186,7 @@ class SSArticleController extends SSController {
 		$params['action'] = self::ACTION_ADD_TO_CART;
 		
 		$params['articles'] = array();
-		$params['label_detail'] = SSHelper::i18l('detail');
+		$params['label_detail'] = SSHelper::i18n('detail');
 		foreach($this->articlelist as $article){
 			$params['articles'][] = array(
 				'title' => $article->get('title')

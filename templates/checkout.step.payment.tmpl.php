@@ -4,11 +4,11 @@
             <? $fname = $action; ?>
             <? $post_data = $formPropertiesAndValues[$fname]; ?>
 			<p class="ss-<?=$fname?> required">
-                <label for="ss-<?=$fname?>"><?=SSHelper::i18l('label_'.$FORM_ID.'_payment')?></label>
+                <label for="ss-<?=$fname?>"><?=SSHelper::i18n('label_'.$FORM_ID.'_payment')?></label>
                 <select id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][<?=$fname?>]" class="ss-<?=$fname?> required" size="<?=count($payments)+1?>">
                 <? foreach($payments as $payment): ?>
                     <option value="<?=$payment?>" <?=$post_data==$payment?' selected=selected ':''?>>
-						<?=SSHelper::i18l('label_'.$payment)?>
+						<?=SSHelper::i18n('label_'.$payment)?>
                     </option>
                 <? endforeach; ?>
                 </select>

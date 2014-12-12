@@ -147,7 +147,7 @@ class SSCustomerRegisterController extends SSController{
 	 */
 	public function displayView(){
 		$params = array();
-		$params['label_submit'] = SSHelper::i18l('label_submit');
+		$params['label_submit'] = SSHelper::i18n('label_submit');
 		$params['action'] = self::ACTION_REGISTER;
 		
 		$params['formPropertiesAndValues'] = $this->formPropertiesAndValues;
@@ -158,7 +158,7 @@ class SSCustomerRegisterController extends SSController{
 		$params['label_errors'] = array();
 		foreach($params['formPropertyValueErrors'] as $f){
 			foreach($f as $name => $val){
-				$params['label_errors'][$name] = SSHelper::i18l('label_error_'.$name);
+				$params['label_errors'][$name] = SSHelper::i18n('label_error_'.$name);
 			}
 		}
 		

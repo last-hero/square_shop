@@ -139,7 +139,7 @@ class SSCustomerLoginController extends SSController{
 		$params = array();
 		if($this->isUserLoggedIn()){
 			$params['action'] = self::ACTION_LOGOUT;
-			$params['label_submit'] = SSHelper::i18l('label_logout');
+			$params['label_submit'] = SSHelper::i18n('label_logout');
 			$params['label_customer'] = $this->getLoggedInUserName();
 			$this->customerLoginView->displayLogoutHtml($params);
 		}else{
@@ -149,10 +149,10 @@ class SSCustomerLoginController extends SSController{
 				, SSCustomer::TABLE
 				, SSDBSchema::SHOW_IN_LOGIN
 			);
-			$params['label_submit'] = SSHelper::i18l('label_login');
+			$params['label_submit'] = SSHelper::i18n('label_login');
 			if($this->loginError){
 				$this->customerLoginView->displayErrorMessage(
-					SSHelper::i18l(self::ACTION_LOGIN.'_error')
+					SSHelper::i18n(self::ACTION_LOGIN.'_error')
 				);
 			}
 			$this->customerLoginView->displayFormHtml($params);
