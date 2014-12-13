@@ -9,7 +9,7 @@
  *  @author https://github.com/last-hero/square_shop
  */
 
-class SSPayPalController extends SSController{
+class SSPayPalController extends SSController{	
 	public function init(){
 		if(strlen($this->session->get('paypal_sid')) < 5){
 			$this->session->set('paypal_sid', SSHelper::generateHash());
@@ -17,14 +17,32 @@ class SSPayPalController extends SSController{
 	}
 	
 	public function invoke(){
-		
+		$this->setSIDToOrder();
 	}
+	
+	public function setSIDToOrder(){
+		$checkoutCtrl = new SSCheckoutController();
+		$order = new SSOrder();
+		if($order->loadById($checkoutCtrl->getSession('OrderId'))
+		and strlen($this->session->get('paypal_sid')) > 10){
+			$order->set('sid', $this->session->get('paypal_sid'));
+			try{
+				$order->save();
+				return true;
+			}catch(SSException $e) {
+				echo $e;
+			}
+		}
+		return false;
+	}
+	
 	public function getConf(){
 		return array(
-			'business' 		=> 'gobiswiss@outlook.com'
-			, 'currency' 	  => SSHelper::getSetting('currency')
-			, 'sid' 		   => $this->session->get('paypal_sid')
-			, 'return_url'    => $_SERVER['HTTP_HOST'].rex_getUrl(
+			'business' 		 => 'gobiswiss@outlook.com'
+			, 'mail_errors_to' => 'gobi21@hotmail.com'
+			, 'currency' 	   => SSHelper::getSetting('currency')
+			, 'sid' 		    => $this->session->get('paypal_sid')
+			, 'return_url'     => $_SERVER['HTTP_HOST'].rex_getUrl(
 										REX_ARTICLE_ID, REX_CLANG_ID, 
 										array(
 											'ss-cart' => 'checkout'
@@ -32,7 +50,7 @@ class SSPayPalController extends SSController{
 											, 'sid' => $sid
 										)
 									)
-			, 'notify_url'    => $_SERVER['HTTP_HOST'].rex_getUrl(
+			, 'notify_url'     => $_SERVER['HTTP_HOST'].rex_getUrl(
 										REX_ARTICLE_ID, REX_CLANG_ID, 
 										array(
 											'ss-cart' => 'checkout'
@@ -41,52 +59,38 @@ class SSPayPalController extends SSController{
 											, 'sid' => $sid
 										)
 									)
-			, 'invoice' 	   => time().'_'.$sid
+			, 'invoice' 	    => time().'_'.$sid
 		);
 	}
 	public function getCartItems(){
 		$cartCtrl = new SSCartController();
-		$ids = $cartCtrl->getCartItemIds();
-		$article = new SSArticle();
-		$articles = $article->getByIds($ids);
-		
-		$items = array();
-		foreach($articles as $art){
-			$items[] = array(
-				'title' => $art['title']
-				, 'price' => $art['price']
-				, 'qty' => $cartCtrl->getItemQtyById($art['id'])
-			);	
-		}
-		return $items;
+		$itemOverview = $cartCtrl->getOverviewData();
+		return $itemOverview['items'];
 	}
 	public function handlePayment(){
 		global $REX;
+		$conf = $this->getConf();
+		/*
 		$mail_errors_to 	= 'gobi.selva@square.ch';
 		$receiver_email 	= 'gobiS_1349359007_biz@square.ch';
 		$mail_errors_to 	= 'gobi.selva@square.ch';
 		$receiver_email 	= 'nati@natalia-gianinazzi.ch';
-		$mc_currency 		= 'CHF';
+		*/
 		
-		// Shop ---------------------------------------------------------------------------------------------------------------
-		// Shop ---------------------------------------------------------------------------------------------------------------
-		$thispage			= "tvsshop";
+		$receiver_email 	= $conf['business'];
+		$mail_errors_to 	= $conf['mail_errors_to'];
+		$mc_currency 	   = $conf['currency'];
 		$sid				= rex_get('sid', 'string', '');
+		
+		/* --------------------------------------------------------------
+		// Bestellung: Total Preis holen
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 		$sql 				= new rex_sql();
-		
-		$sql->setQuery("SELECT * FROM rex_927_orders
-								WHERE sid = '".$sid."'
-								ORDER BY rex_927_orders.id DESC
-								LIMIT 0 , 30");
-		$_cart_total = 0;						
-		if($sql->getRows() > 0):
-		
-			$_cart_total = number_format($sql->getValue('cart_total'), 2, '.', ' ');
-			
-			$sql->next();
-		endif;//if($sql->getRows() > 0 )
-		// Shop ---------------------------------------------------------------------------------------------------------------
-		// Shop ---------------------------------------------------------------------------------------------------------------
+		$cartCtrl = new SSCartController();
+		$itemOverview = $cartCtrl->getOverviewData();
+		$_cart_total = number_format($itemOverview['total'], 2, '.', ' ');
+		/* --------------------------------------------------------------
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 		$listener = new IpnListener();
 		$listener->use_sandbox = true;
 		$listener->use_ssl = false;
@@ -132,6 +136,8 @@ class SSPayPalController extends SSController{
 			
 			// TODO: Check for duplicate txn_id ------------------------------
 			// 5. Ensure the transaction is not a duplicate.
+			
+			$order = new SSOrder();
 			
 		
 			$txn_id = mysql_real_escape_string($_POST['txn_id']);

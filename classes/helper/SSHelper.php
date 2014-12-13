@@ -133,7 +133,9 @@ class SSHelper{
 	
 	/** @brief User Input Values bereinigen
 	 *
-	 *  Bereinigt $value und liefert sie zurück
+	 *  Bereinigt $value und liefert sie zurück.
+	 *  Mit dieser Bereinigung wird eine
+	 *  mögliche SQL Injection Attack beseitigt.
 	 *
 	 *  @param (string|array) $value
 	 *  @return (string|array): bereinigte Value(s)

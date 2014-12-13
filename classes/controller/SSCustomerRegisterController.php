@@ -151,8 +151,8 @@ class SSCustomerRegisterController extends SSController{
 		$params['action'] = self::ACTION_REGISTER;
 		
 		$params['formPropertiesAndValues'] = $this->formPropertiesAndValues;
-		
 		$params['formPropertyValueErrors'] = $this->formPropertyValueErrors;
+		$params['show_required_fields_info'] = true;
 		
 		/*
 		$params['label_errors'] = array();

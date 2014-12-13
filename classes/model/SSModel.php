@@ -148,34 +148,44 @@ class SSModel {
 	 *
 	 *  Alle Property-Values (dieses Objektes) in DB speichern.
 	 *  Falls kein Eintrag extistiert, wird neu erstellt.
+	 *
+	 *  @return bool
 	 */
 	public function save(){
-		if((int)$this->get('id') > 0){
-			d($this->TABLE.' called: save() FOR UPDATE;');
-		}else{
-			$propertiesAndValues = $this->propertiesAndValues;
-			
-			// Verschlüsseln --> z.B. Passwort
-			$dbProperties = SSDBSchema::_getFields($this->TABLE, null, array('sql_settings' => 'encrypt'));
-			foreach($propertiesAndValues as $name => $value){
-				foreach($dbProperties as $dbProperty){
-					if($name == $dbProperty['name']){
-						$encrypt = $dbProperty['sql_settings']['encrypt'];
-						if($encrypt){
-							$propertiesAndValues[$name] = hash($encrypt, $value);
-						}
+		$propertiesAndValues = $this->propertiesAndValues;
+		
+		// Verschlüsseln --> z.B. Passwort
+		$dbProperties = SSDBSchema::_getFields($this->TABLE, null, array('sql_settings' => 'encrypt'));
+		foreach($propertiesAndValues as $name => $value){
+			foreach($dbProperties as $dbProperty){
+				if($name == $dbProperty['name']){
+					$encrypt = $dbProperty['sql_settings']['encrypt'];
+					if($encrypt){
+						$propertiesAndValues[$name] = hash($encrypt, $value);
 					}
 				}
 			}
-			unset($propertiesAndValues['id']);
-			
-			$query = SSDBSQL::_getSqlInsertQuery($propertiesAndValues, $this->TABLE);
-			
+		}
+		if((int)$this->get('id') > 0){
+			$query = SSDBSQL::_getSqlUpdateQuery($propertiesAndValues, $this->TABLE);
 			$res = SSDBSQL::executeSqlQuery($query, false);
-			if($res['last_insert_id']){
+			if((int)$res['rows'] == 1){
+				return true;
+			}else{
+				throw new SSException('Record could not update from Table: '.$this->TABLE.'', 12001);
+			}
+		}else{
+			unset($propertiesAndValues['id']);
+			$query = SSDBSQL::_getSqlInsertQuery($propertiesAndValues, $this->TABLE);
+			$res = SSDBSQL::executeSqlQuery($query, false);
+			if((int)$res['last_insert_id'] > 0){
 				$this->set('id', $res['last_insert_id']);
+				return true;
+			}else{
+				throw new SSException('Record could not insert to Table: '.$this->TABLE.'', 12002);
 			}
 		}
+		return false;
 	}
 	
 	/** @brief Datensatz laden
@@ -297,6 +307,6 @@ class SSModel {
 		$query = SSDBSQL::_getSqlDmlQuery($where, $this->TABLE, SSDBSchema::SHOW_IN_DETAIL);
 		
 		$res = SSDBSQL::executeSqlQuery($query, false);
-		return $res;
+		return $res['records'];
 	}
 }

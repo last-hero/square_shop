@@ -179,6 +179,34 @@ class SSCartController extends SSController{
 		return true;
 	}
 	
+	/** @brief Übersichtsdaten holen
+	 *
+	 *  Artikelbezeichnung, Preis, Menge und Total holen
+	 *
+	 *  @return array
+	 */
+	public function getOverviewData(){
+		$ids = $this->getCartItemIds();
+		$article = new SSArticle();
+		$articles = $article->getByIds($ids);
+		
+		$items = array();
+		$total = 0;
+		foreach($articles as $art){
+			$item = array(
+				'title' => $art['title']
+				, 'price' => $art['price']
+				, 'qty' => $cartCtrl->getItemQtyById($art['id'])
+			);	
+			$total += (int)$item['price'] * (int)$item['qty'];
+			$items[] = $item;
+		}
+		return array(
+			'items' => $items
+			, 'total' => $total
+		);
+	}
+	
 	/** @brief Alle Artikeln holen
 	 *
 	 *  Alle Artikel ID + Menge vom Warenkorb holen

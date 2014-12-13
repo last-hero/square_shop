@@ -12,7 +12,7 @@
 <file name="form.field.text.tmpl.php" server="p2.ibog.biz" local="130628825106527252" remote="130628824800000000" Dst="1" />
 <file name="form.field.select.tmpl.php" server="p2.ibog.biz" local="130628825353172652" remote="130628824800000000" Dst="1" />
 <file name="form.field.password.tmpl.php" server="p2.ibog.biz" local="130628885950978733" remote="130628885400000000" Dst="1" />
-<file name="form.tmpl.php" server="p2.ibog.biz" local="130626378201904996" remote="130627159200000000" Dst="1" />
+<file name="form.tmpl.php" server="p2.ibog.biz" local="130629103651955896" remote="130629103200000000" Dst="1" />
 <file name="checkout.step1.tmpl.php" server="p2.ibog.biz" local="130627623816668783" remote="130627623600000000" Dst="1" />
 <file name="checkout.step.login.tmpl.php" server="p2.ibog.biz" local="130627643775196365" remote="130627643400000000" Dst="1" />
 <file name="checkout.step.register.tmpl.php" server="p2.ibog.biz" local="130628842416264936" remote="130628842200000000" Dst="1" />
@@ -20,7 +20,8 @@
 <file name="checkout.step.payment.tmpl.php" server="p2.ibog.biz" local="130628536304943174" remote="130628536200000000" Dst="1" />
 <file name="checkout.step.billing.tmpl.php" server="p2.ibog.biz" local="130628842466794036" remote="130628842200000000" Dst="1" />
 <file name="checkout.step3.tmpl.php" server="p2.ibog.biz" local="130626399230524351" remote="130628536200000000" Dst="1" />
-<file name="checkout.step.address.tmpl.php" server="p2.ibog.biz" local="130628895054490540" remote="130628895000000000" Dst="1" />
+<file name="checkout.step.address.tmpl.php" server="p2.ibog.biz" local="130629104879512079" remote="130629104400000000" Dst="1" />
 <file name="checkout.step.order.onbill.tmpl.php" server="p2.ibog.biz" local="130628718746870612" remote="130628718600000000" Dst="1" />
 <file name="checkout.step.order.paypal.tmpl.php" server="p2.ibog.biz" local="130628756120796865" remote="130628755800000000" Dst="1" />
+<file name="checkout.step.order.tmpl.php" server="p2.ibog.biz" local="130629129037589474" remote="130629129000000000" Dst="1" />
 </dwsync>

@@ -123,6 +123,65 @@ class SSDBSQL {
 		return '';
     }
 	
+	/** @brief SQL Update Query generieren
+	 *
+	 *  Liefert SQL Query zum Aktualisieren 
+	 *  von Datensätzen
+	 *  (Data Manipulation Language)
+	 *
+	 *  @param $attrAndValues: Attribute und Values
+	 *  @param $table: Tabellenname
+	 *  @return (string) $query: SQL Update Query
+	 */
+	public static function _getSqlUpdateQuery($attrAndValues, $table){
+        global $REX;
+		
+		try{
+			$_table_fullname = SSDBSchema::_getTableAttr($table, 'name', true);
+		}catch(SSException $e) {
+			echo $e;
+		}
+		
+		try{
+			$fields = SSDBSchema::_getFieldsAsSingleArray($table, array('name'));
+		}catch(SSException $e) {
+			echo $e;
+		}
+		
+		$primaryKeys = SSDBSchema::_getFieldsAsSingleArray($table, array('name'), array('type' => self::PRIMARY_KEY));
+		
+		unset($attrAndValues['createdate']);
+		$attrAndValues['updatedate'] = time();
+		
+		$PK_ids = array();
+		
+		if(is_array($attrAndValues) and !empty($_table_fullname)
+		and SSHelper::array_keys_exists($attrAndValues, array_flip($fields))){
+			$_sql_sets = '';
+			foreach($attrAndValues as $key => $val){
+				if(!in_array($key, $primaryKeys)){
+					$_sql_sets .= ' '.$_table_fullname.'.'.$key.' = "'.$val.'", ';
+				}else{
+					$PK_ids[$key] = $val;
+				}
+			}
+			$_sql_sets = substr($_sql_sets, 0, -2);
+			if(count($PK_ids) > 0){
+				foreach($PK_ids as $key => $val){
+					$_sql_where .= ' '.$_table_fullname.'.'.$key.' = "'.$val.'" AND ';
+				}
+				$_sql_where = substr($_sql_where, 0, -4);
+				$query = '
+					UPDATE '.$_table_fullname.'
+					SET '.$_sql_sets.'
+					WHERE '.$_sql_where.'
+					';
+				return $query;
+			}
+		}
+		return '';
+    }
+	
 	/** @brief SQL Create Query generieren
 	 *
 	 *  Liefert SQL Query zum Erstellen 
@@ -289,12 +348,16 @@ class SSDBSQL {
 			$sql->setDebug($debug);
 			$sql->setQuery($query);
 			
-			$res = array();
-			if($sql->last_insert_id){
-				$res['last_insert_id'] = $sql->last_insert_id;
-			}
+			$res = array(
+				'rows' => $sql->rows
+				, 'last_insert_id' => $sql->last_insert_id
+				, 'result' => $sql->result
+				, 'error' => $sql->error
+				, 'errno' => $sql->errno
+			);
+			
 			for($i = 0; $i < $sql->getRows(); $i++){
-				$res[] = $sql->getRow();
+				$res['records'][] = $sql->getRow();
 				$sql->next();
 			}
 			return $res;

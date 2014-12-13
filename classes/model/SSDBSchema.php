@@ -340,6 +340,21 @@ class SSDBSchema {
 					, 'show_in' => array('detail', 'list')
 				)
 				, array(
+					'name' => 'sid'
+					, 'sql' => 'VARCHAR(255) NULL'
+					, 'show_in' => array('detail', 'list')
+				)
+				, array(
+					'name' => 'paypal_txn_id'
+					, 'sql' => 'VARCHAR(255) NULL'
+					, 'show_in' => array('detail', 'list')
+				)
+				, array(
+					'name' => 'payer_email'
+					, 'sql' => 'VARCHAR(255) NULL'
+					, 'show_in' => array('detail', 'list')
+				)
+				, array(
 					'name' => 'no'
 					, 'sql' => 'VARCHAR(45) NULL'
 					, 'show_in' => array('detail', 'list')
