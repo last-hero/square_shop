@@ -186,4 +186,63 @@ class SSController {
 	public function userRequestIsNotMoreUnique($action){
 		$this->session->set($action.'SuccessUniqueId', $this->formPropertiesAndValues['uniqueId']);
 	}
+	
+	/** @brief store Value in Session
+	 *
+	 *  Session Funktion um Session innerhalb von
+	 *  dieser Klasse zu verwalten.
+	 *
+	 *  Key + Value in Session ablegen.
+	 *
+	 *  @return bool
+	 *
+	 *  @see SSController::setSession
+	 *  @see SSController::getSession
+	 *  @see SSController::removeSession
+	 */
+	public function setSession($key, $value){
+		$values = $this->session->get($this->FORM_ID);
+		$values[$key] = $value;
+		$this->session->set($this->FORM_ID, $values);
+		return true;
+	}
+	
+	/** @brief get Value from Session
+	 *
+	 *  Session Funktion um Session innerhalb von
+	 *  dieser Klasse zu verwalten.
+	 *
+	 *  Wert nach Key in Session holen.
+	 *
+	 *  @return mixed
+	 *
+	 *  @see SSController::setSession
+	 *  @see SSController::getSession
+	 *  @see SSController::removeSession
+	 */
+	public function getSession($key){
+		$values = $this->session->get($this->FORM_ID);
+		return $values[$key];
+	}
+	
+	/** @brief remove Key + Value from Session
+	 *
+	 *  Session Funktion um Session innerhalb von
+	 *  dieser Klasse zu verwalten.
+	 *
+	 *  Key + Value von der Session löschen.
+	 *
+	 *  @return bool
+	 *
+	 *  @see SSController::setSession
+	 *  @see SSController::getSession
+	 *  @see SSController::removeSession
+	 */
+	public function removeSession($key){
+		$values = $this->session->get($this->FORM_ID);
+		$values[$key] = null;
+		unset($values[$key]);
+		$this->session->set($this->FORM_ID, $values);
+		return true;
+	}
 }

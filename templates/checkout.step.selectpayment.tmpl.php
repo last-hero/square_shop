@@ -22,11 +22,14 @@
             </p>
         </form>
         
+		<? if($showGoBackBtn): ?>
+        <? $jumpToStep = (int)$jumpToStep > 0 ? $jumpToStep : (int)$step -1; ?>
         <form action="" method="post" name="ss-form-<?=$FORM_ID?>" class="ss-form ss-form-goback ss-form-<?=$FORM_ID?>">
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][action]" value="<?=$action?>" />
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][uniqueId]" value="<?=hash('md5', microtime(true))?>" />
-            <input type="hidden" name="SSForm[<?=$FORM_ID?>][jumpTostep]" value="<?=(int)$step -1?>" />
+            <input type="hidden" name="SSForm[<?=$FORM_ID?>][jumpToStep]" value="<?=$jumpToStep?>" />
             <? $fname = 'submit'; ?>
 			<input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-<?=$fname?>" value="<?=SSHelper::i18n('label_goback')?>" />
         </form>
+		<? endif; ?>
 	</div>

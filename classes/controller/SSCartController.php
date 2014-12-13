@@ -56,6 +56,15 @@ class SSCartController extends SSController{
 	 */
 	public $simpleView;
 	
+	/**
+	 * Währung
+	 */
+	public $currency;
+	
+	/**
+	 * Mehrwert Steuersatz
+	 */
+	public $mwst;
 	
 	/** @brief Initialisierung
 	 *
@@ -68,6 +77,9 @@ class SSCartController extends SSController{
 		$this->article = new SSArticle();
 		$this->cartView = new SSCartView();
 		$this->checkoutPageId = $REX['ARTICLE_ID'];
+		
+		$this->currency = SSHelper::getSetting('currency');
+		$this->mwst = SSHelper::getSetting('mwst');
     }
 	
 	/** @brief Starter
@@ -204,12 +216,18 @@ class SSCartController extends SSController{
 				'title' => $art['title']
 				, 'price' => $art['price']
 				, 'qty' => $cartCtrl->getItemQtyById($art['id'])
-			);	
+			);
+			$item['subtotal'] = (int)$item['price'] * (int)$item['qty'];
+			$item['subtotal'] = $article->formatPrice($item['subtotal']);
+			
 			$total += (int)$item['price'] * (int)$item['qty'];
 			$items[] = $item;
 		}
+		$total = $article->formatPrice($total);
 		return array(
 			'items' => $items
+			, 'currency' => $this->currency
+			, 'mwst' => $this->mwst
 			, 'total' => $total
 		);
 	}
@@ -389,10 +407,7 @@ class SSCartController extends SSController{
 	 *
 	 *  @return bool
 	 */
-	public function displayView(){
-		$currency = SSHelper::getSetting('currency');
-		$mwst = SSHelper::getSetting('mwst');
-		
+	public function displayView(){		
 		// Artikel IDs aus Warenkorb
 		$ids = $this->getCartItemIds();
 		
@@ -406,10 +421,10 @@ class SSCartController extends SSController{
 		}
 		
 		// Währung
-		$params['currency'] = $currency;
+		$params['currency'] = $this->currency;
 		
 		// MwSt Satz
-		$params['mwst'] = $mwst;
+		$params['mwst'] = $this->mwst;
 		
 		// Labels
 		$params['label_bild'] = SSHelper::i18n('label_bild');

@@ -9,11 +9,16 @@
  *  @author https://github.com/last-hero/square_shop
  */
 
-class SSPayPalController extends SSController{	
+class SSPayPalController extends SSController{
+	private $orderId;
+	
 	public function init(){
-		if(strlen($this->session->get('paypal_sid')) < 5){
-			$this->session->set('paypal_sid', SSHelper::generateHash());
+		if(strlen($this->getSession('sid')) < 5){
+			$this->setSession('sid', SSHelper::generateHash());
 		}
+		
+		$checkoutCtrl = new SSCheckoutController();
+		$this->orderId = $checkoutCtrl->getSession('OrderId');
 	}
 	
 	public function invoke(){
@@ -21,11 +26,13 @@ class SSPayPalController extends SSController{
 	}
 	
 	public function setSIDToOrder(){
-		$checkoutCtrl = new SSCheckoutController();
+		$sid = $this->getSession('sid');
+		
+		
 		$order = new SSOrder();
-		if($order->loadById($checkoutCtrl->getSession('OrderId'))
-		and strlen($this->session->get('paypal_sid')) > 10){
-			$order->set('sid', $this->session->get('paypal_sid'));
+		if($order->loadById($this->orderId)
+		and strlen($this->getSession('sid')) > 10){
+			$order->set('sid', $this->getSession('sid'));
 			try{
 				$order->save();
 				return true;
@@ -33,39 +40,45 @@ class SSPayPalController extends SSController{
 				echo $e;
 			}
 		}
+		
 		return false;
 	}
 	
 	public function getConf(){
+		global $REX;
 		return array(
 			'business' 		 => 'gobiswiss@outlook.com'
 			, 'mail_errors_to' => 'gobi21@hotmail.com'
 			, 'currency' 	   => SSHelper::getSetting('currency')
-			, 'sid' 		    => $this->session->get('paypal_sid')
-			, 'return_url'     => $_SERVER['HTTP_HOST'].rex_getUrl(
+			, 'sid' 		    => $this->getSession('sid')
+			, 'return_url'     => $REX['SERVER'].rex_getUrl(
 										REX_ARTICLE_ID, REX_CLANG_ID, 
 										array(
 											'ss-cart' => 'checkout'
 											, 'payment' => 'paypal'
+											, 'handleExecutePaymentStep' => 1
 											, 'sid' => $sid
 										)
 									)
-			, 'notify_url'     => $_SERVER['HTTP_HOST'].rex_getUrl(
+			, 'notify_url'     => $REX['SERVER'].rex_getUrl(
 										REX_ARTICLE_ID, REX_CLANG_ID, 
 										array(
 											'ss-cart' => 'checkout'
 											, 'ajax' => 2
-											, 'handlePayPalPayment' => 1
+											, 'handlePaymentPerAPI' => 1
+											, 'payment' => 'paypal'
 											, 'sid' => $sid
 										)
 									)
 			, 'invoice' 	    => time().'_'.$sid
 		);
 	}
-	public function getCartItems(){
+	public function getOrderInfoAndItems(){
+		$orderItems = new SSOrderItem();
+		$orderItems->getByForeignId($this->orderId, SSOrder::TABLE);
+						
 		$cartCtrl = new SSCartController();
-		$itemOverview = $cartCtrl->getOverviewData();
-		return $itemOverview['items'];
+		return $cartCtrl->getOverviewData();
 	}
 	public function handlePayment(){
 		global $REX;
@@ -77,18 +90,35 @@ class SSPayPalController extends SSController{
 		$receiver_email 	= 'nati@natalia-gianinazzi.ch';
 		*/
 		
-		$receiver_email 	= $conf['business'];
-		$mail_errors_to 	= $conf['mail_errors_to'];
-		$mc_currency 	   = $conf['currency'];
+		$receiver_email 	 = $conf['business'];
+		$mail_errors_to 	 = $conf['mail_errors_to'];
+		$mc_currency 	    = $conf['currency'];
 		$sid				= rex_get('sid', 'string', '');
+		$orderId		    = 0;
+		$orderTotalPrice 		 = 0;
 		
 		/* --------------------------------------------------------------
-		// Bestellung: Total Preis holen
+		// Bestellungsinformationen aus DB holen
 		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-		$sql 				= new rex_sql();
-		$cartCtrl = new SSCartController();
-		$itemOverview = $cartCtrl->getOverviewData();
-		$_cart_total = number_format($itemOverview['total'], 2, '.', ' ');
+		$order = new SSOrder();
+		$orderDbData = $order->_getWhere('sid = "'.$sid.'"', SSDBSchema::SHOW_IN_PAYMENT);
+		if(count($orderDbData) == 1){
+			$orderId = (int)$orderDbData[0]['id'];
+		}
+		/* --------------------------------------------------------------
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+		
+		/* --------------------------------------------------------------
+		// Bestellung: Total Preis aus der DB holen
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+		if($orderId > 0){
+			$orderItems = new SSOrderItem();
+			$items = $orderItems->getByForeignId($orderId, SSOrder::TABLE);
+			foreach($items as $item){
+				$orderTotalPrice += (int)$item['price'] * (int)$item['qty'];
+			}
+			$orderTotalPrice = number_format($orderTotalPrice, 2, '.', '');
+		}
 		/* --------------------------------------------------------------
 		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 		$listener = new IpnListener();
@@ -121,11 +151,11 @@ class SSPayPalController extends SSController{
 			}
 			
 			// 3. Make sure the amount(s) paid match
-			if(intval($_POST['mc_gross']) <= (intval($_cart_total) - 2) and intval($_POST['mc_gross']) >= (intval($_cart_total) + 2)){
+			if(intval($_POST['mc_gross']) <= (intval($orderTotalPrice) - 2) and intval($_POST['mc_gross']) >= (intval($orderTotalPrice) + 2)){
 				$errmsg .= "'mc_gross' does not match: ";
 				$errmsg .= $_POST['mc_gross']."\n";
 				$errmsg .= " cart_total: "."\n";
-				$errmsg .= $_cart_total;
+				$errmsg .= $orderTotalPrice;
 			}
 			
 			// 4. Make sure the currency code matches
@@ -156,18 +186,39 @@ class SSPayPalController extends SSController{
 					mail($mail_errors_to, 'IPN Fraud Warning', $body);
 				}
 			}else{
+				/* --------------------------------------------------------------
+				// TODO: process order here
+				- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+				// add this order to a table of completed orders
+				$payer_email = mysql_real_escape_string($_POST['payer_email']);
+				$mc_gross = mysql_real_escape_string($_POST['mc_gross']);
+				
+				
+				// Update Order Infos
+				//$order->loadById($orderId);
+				$order->set('paypal_txn_id', $txn_id);
+				$order->set('payer_email', $payer_email);
+				$order->save();		
+				
+				
+				/* --------------------------------------------------------------
+				- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+		
 				// TODO: process order here -------------------------------
 				// add this order to a table of completed orders
+				/*
 				$payer_email = mysql_real_escape_string($_POST['payer_email']);
 				$mc_gross = mysql_real_escape_string($_POST['mc_gross']);
 				$q = "INSERT INTO paypal_orders VALUES 
 						(NULL, '$txn_id', '$payer_email', $mc_gross)";
 				$sql->setQuery($q);
+				*/
 							
 				// Update Order Infos
+				/*
 				$q = "UPDATE rex_927_orders SET paypal_txn_id = '$txn_id',  payer_email = '$payer_email' WHERE sid = '".$sid."';";
 				$sql->setQuery($q);
-				
+				*/
 				// send user an email with a link to their digital download
 				/*
 				$to = filter_var($_POST['payer_email'], FILTER_SANITIZE_EMAIL);

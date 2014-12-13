@@ -7,6 +7,34 @@
 		die();
 	endif;
 ?>
+<?
+		$cartOverview = $payPalCtrl->getOrderInfoAndItems();
+		$items = $cartOverview['items'];
+?>
+		<table class="ss-cart" width="100%">
+        	<tr>
+            	<th class="ss-title"><?=$label_bezeichnung?></th>
+            	<th class="ss-price" align="right"><?=$label_price?></th>
+            	<th class="ss-qty" align="right"><?=$label_qty?></th>
+            	<th class="ss-subtotal" align="right"><?=$label_subtotal?></th>
+            </tr>
+        	<tr>
+<?
+			for($x=0; $x<count($items); $x++):
+?>
+            	<td class="ss-title"><?=$items[$x]['title']?></td>
+            	<td class="ss-price" align="right"><?=$currency?> <?=$items[$x]['price']?></td>
+            	<td class="ss-qty" align="right"><?=$currency?> <?=$items[$x]['qty']?></td>
+            	<td class="ss-subtotal" align="right"><?=$cartOverview['currency']?> <?=$items[$x]['subtotal']?></td>
+            </tr>
+<?
+			endfor;
+?>
+        	<tr>
+            	<th colspan="4" class="ss-total" align="right"><?=$label_total?> <?=$cartOverview['currency']?> <?=$cartOverview['total']?></th>
+            </tr>
+        </table>
+        <br /><br />
         <!--<form class="paypalpaymentform" action="https://www.paypal.com/cgi-bin/webscr" method="post">-->
         <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" 
         method="post" name="ss-form-<?=$FORM_ID?>" class="ss-form ss-form-<?=$FORM_ID?> paypalpaymentform" method="post">
@@ -20,7 +48,6 @@
             <input type="hidden" name="rm" value="2" />
             <div class="paypalpaymentform_items">
 <?
-			$items = $payPalCtrl->getCartItems();
 			for($x=0; $x<count($items); $x++):
 ?>
                 <input type="hidden" name="item_name_<?=$x+1?>" value="<?=$items[$x]['title']?>" />

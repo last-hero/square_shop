@@ -26,6 +26,7 @@ class SSDBSchema {
 	const SHOW_IN_CART_ITEM_DEL     = 'cart_item_del'; // remove from cart
 	const SHOW_IN_BILL_ADDRESS  	  = 'billing_address'; // Billing Address
 	const SHOW_IN_DELIVER_ADDRESS   = 'delivery_address'; // Delivery Address
+	const SHOW_IN_PAYMENT   		   = 'payment'; // Payment
 	
 	const ERROR_FIELDS_NOT_FOUND 	    = 1000;
 	const ERROR_TABLE_NOT_FOUND 		= 1001;
@@ -318,7 +319,7 @@ class SSDBSchema {
 					'name' => 'id'
 					, 'sql' => 'INT UNSIGNED NOT NULL AUTO_INCREMENT'
 					, 'type' => self::PRIMARY_KEY
-					, 'show_in' => array('detail', 'list', 'search')
+					, 'show_in' => array('detail', 'list', 'search', 'payment')
 				)
 				, array(
 					'name' => 'customer_id'
@@ -337,22 +338,22 @@ class SSDBSchema {
 				, array(
 					'name' => 'payment'
 					, 'sql' => 'VARCHAR(45) NULL'
-					, 'show_in' => array('detail', 'list')
+					, 'show_in' => array('detail', 'list', 'payment')
 				)
 				, array(
 					'name' => 'sid'
 					, 'sql' => 'VARCHAR(255) NULL'
-					, 'show_in' => array('detail', 'list')
+					, 'show_in' => array('detail', 'list', 'payment')
 				)
 				, array(
 					'name' => 'paypal_txn_id'
 					, 'sql' => 'VARCHAR(255) NULL'
-					, 'show_in' => array('detail', 'list')
+					, 'show_in' => array('detail', 'list', 'payment')
 				)
 				, array(
 					'name' => 'payer_email'
 					, 'sql' => 'VARCHAR(255) NULL'
-					, 'show_in' => array('detail', 'list')
+					, 'show_in' => array('detail', 'list', 'payment')
 				)
 				, array(
 					'name' => 'no'

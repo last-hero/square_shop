@@ -11,25 +11,14 @@
 
 class SSCheckoutController extends SSController{
 	const ACTION_STEP  = 'checkout_step';
-	const ACTION_STEP1 = 'checkout_step1';
-	const ACTION_STEP2 = 'checkout_step2';
-	const ACTION_STEP3 = 'checkout_step3';
-	const ACTION_STEP4 = 'checkout_step4';
 	
 	const ACTION_LOGIN = 'login';
-	
 	const ACTION_GO_FOR_REGISTER = 'checkout_go_for_register';
-	
 	const ACTION_REGISTER = 'register';
-	
 	const ACTION_BILLING = 'billing';
-	
 	const ACTION_DELIVERY = 'delivery';
-	
 	const ACTION_SELECT_PAYMENT = 'selectpayment';
-	
 	const ACTION_EXE_PAYMENT = 'exe_payment';
-	
 	const ACTION_ORDER = 'order';
 	
 	const PAYMENT_ONBILL = 'onbill';
@@ -94,13 +83,23 @@ class SSCheckoutController extends SSController{
 	* Warenkorb starten
 	*/
 	public function invoke(){
-		if($this->cartCtrl->isCartEmpty()){
-			$this->view->displaySuccessMessage(SSHelper::i18n('cart_is_empty'));
+		$handlePaymentPerAPI	= rex_get('handlePaymentPerAPI', 'string', '');
+		$handleExecutePaymentStep	= rex_get('handleExecutePaymentStep', 'string', '');
+		if($handlePaymentPerAPI){
+			$this->handlePaymentPerAPI();
+			d('handlePaymentPerAPI');
+		}elseif($handleExecutePaymentStep){
+			d('handleExecutePaymentStep');
+			//$this->handleExecutePaymentStep();
 		}else{
-			$this->checkoutHandler();
-			if($this->getStep() < 6)
-				$this->displayStepView();
-			$this->checkoutViewHandler();
+			if($this->cartCtrl->isCartEmpty()){
+				$this->view->displaySuccessMessage(SSHelper::i18n('cart_is_empty'));
+			}else{
+				$this->checkoutHandler();
+				if($this->getStep() < 6)
+					$this->displayStepView();
+				$this->checkoutViewHandler();
+			}
 		}
 	}
 	
@@ -108,11 +107,10 @@ class SSCheckoutController extends SSController{
 	* Warenkorb Handler: Add to Cart, Remove from Cart, Menge ändern
 	*/
 	public function checkoutHandler(){
-		if((int)$this->formPropertiesAndValues['jumpTostep'] > 0){
-			$this->setStep($this->formPropertiesAndValues['jumpTostep']);
+		if((int)$this->formPropertiesAndValues['jumpToStep'] > 0){
+			$this->setStep($this->formPropertiesAndValues['jumpToStep']);
 		}
 		
-		d('checkoutHandler STEP '.$this->getStep());
 		if($this->isConfirmStepOK()){
 			$this->setStep(7);
 		}elseif($this->isExecutePaymentStepOK()
@@ -140,7 +138,6 @@ class SSCheckoutController extends SSController{
 		and $this->getStep() > 6){
 			$this->setStep(6);
 		}
-		d('checkoutHandler STEP '.$this->getStep());
 		
 		switch($this->getStep()){
 			case 1:
@@ -172,15 +169,14 @@ class SSCheckoutController extends SSController{
 					$this->handleConfirmStep();	
 				}
 				*/
+				break;
 			case 7:
-				$this->handleConfirmStep();
+				//$this->handleConfirmStep();
 			default:
 				break;
 		}
-		d('checkoutHandler STEP '.$this->getStep());
 	}
 	public function checkoutViewHandler(){
-		d('checkoutViewHandler STEP '.$this->getStep());
 		switch($this->getStep()){
 			case 1:
 				$this->displayLoginStep();
@@ -210,7 +206,6 @@ class SSCheckoutController extends SSController{
 			default:
 				break;
 		}
-		d('checkoutViewHandler STEP '.$this->getStep());
 	}
 	
 	/** @brief Daten vom Session löschen
@@ -243,13 +238,13 @@ class SSCheckoutController extends SSController{
 	public function isConfirmStepOK(){
 		$payment = $this->getSession('SelectPayment');
 		if($payment == self::PAYMENT_ONBILL){
-			if($this->getSession('OrderId') and $this->getSession('OrderDone')){
+			if($this->getSession('OrderId') and $this->getSession('OrderCompleted')){
 				return true;
 			}
 		}elseif(in_array($payment, $this->paymentsPerAPI)){
 			if($this->getSession('OrderId') 
-			and $this->getSession('OrderDone')
-			and $this->getSession('PayOrderDone')){
+			and $this->getSession('OrderCompleted')
+			and $this->getSession('OrderIsPaid')){
 				return true;
 			}
 		}
@@ -267,7 +262,7 @@ class SSCheckoutController extends SSController{
 		$orderId = $GLOBALS['checkout']['OrderId'];
 		$order = new SSOrder();
 		if($order->loadById($orderId)){
-			$checkoutOrderDone = true;
+			$orderCompleted = true;
 		}
 		$msg = SSHelper::i18n('checkout_order_success');
 		$msg = str_replace('%order_no%', $order->get('no'), $msg);
@@ -282,9 +277,10 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::isConfirmStepOK();
 	 */
 	public function handleConfirmStep(){
+		
 		$GLOBALS['checkout'] = array(
 			'OrderId' => $this->getSession('OrderId')
-			, 'OrderDone' => $this->getSession('OrderDone')
+			, 'OrderCompleted' => $this->getSession('OrderCompleted')
 			, 'SelectPayment' => $this->getSession('SelectPayment')
 			, 'Step' => $this->getStep()
 		);
@@ -315,16 +311,6 @@ class SSCheckoutController extends SSController{
 		if($order->loadById($this->getSession('OrderId'))){
 			$payment = $this->getSession('SelectPayment');
 			
-			
-			
-			
-			/*
-			// Warenkorb anzeigen
-			$cartCtrl = new SSCartController();
-			$cartCtrl->simpleView = 1;
-			$cartCtrl->displayView();
-			*/
-			
 			$this->view->displayMessage(
 				SSHelper::i18n(self::ACTION_STEP.'_'.self::ACTION_EXE_PAYMENT.'_'.$payment)
 			);
@@ -352,14 +338,27 @@ class SSCheckoutController extends SSController{
 	public function handleExecutePaymentStep(){
 		$payment = $this->getSession('SelectPayment');
 		if($payment == self::PAYMENT_ONBILL){
-			if($this->getSession('OrderId') and $this->getSession('OrderDone')){
+			if($this->getSession('OrderId') and $this->getSession('OrderCompleted')){
 				$this->nextStep();
 			}else{
 				$this->prevStep();
 			}
 		}elseif($payment == 'paypal'){
 			$paypal = new SSPayPalController();
-			$paypal->invoke();
+			$paypal->setSIDToOrder();
+		}
+	}
+	
+	/** @brief Title
+	 *
+	 */
+	public function handlePaymentPerAPI(){
+		$payment	= rex_get('payment', 'string', '');
+		$sid		= rex_get('sid', 'string', '');
+		
+		if($payment == 'paypal'){
+			$paypal = new SSPayPalController();
+			$paypal->handlePayment();
 		}
 	}
 	
@@ -372,7 +371,7 @@ class SSCheckoutController extends SSController{
 	 */
 	public function isOrderStepOK(){
 		$payment = $this->getSession('SelectPayment');
-		if($this->getSession('OrderId') and ($this->getSession('OrderDone') or in_array($payment, $this->paymentsPerAPI))){
+		if($this->getSession('OrderId') and ($this->getSession('OrderCompleted') or in_array($payment, $this->paymentsPerAPI))){
 			return true;
 		}
 		return false;
@@ -402,6 +401,7 @@ class SSCheckoutController extends SSController{
 		$params['label_submit'] = SSHelper::i18n('label_checkout_confirm');
 		$params['action'] = self::ACTION_ORDER;
 		$params['step'] = $this->getStep();
+		$params['showGoBackBtn'] = true;
 		
 		$params['payment'] = $payment;
 		//$this->checkoutView->displayCheckoutByTmpl(self::ACTION_ORDER.'.'.$payment, $params);
@@ -417,36 +417,35 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::saveOrderToDb();
 	 */
 	public function handleOrderStep(){
-		$checkoutOrderDone = $this->getSession('OrderDone');
-		if(!$checkoutOrderDone){
+		$orderCompleted = $this->getSession('OrderCompleted');
+		if(!$orderCompleted){
 			if($this->isFormActionName(self::ACTION_ORDER)){
-				$this->getSession('OrderDone');
 				$payment = $this->getSession('SelectPayment');
 				if($payment == self::PAYMENT_ONBILL){
 					// Bestellung in DB ablegen
 					if(!$this->getSession('OrderId')){
 						$this->saveOrderToDb();
-					}
-					$order = new SSOrder();
-					if($order->loadById($this->getSession('OrderId'))){
-						$checkoutOrderDone = true;
+						$order = new SSOrder();
+						if($order->loadById($this->getSession('OrderId'))){
+							$orderCompleted = true;
+							$this->nextStep();
+							$this->nextStep();
+						}
 					}
 				}elseif($payment == 'paypal'){
 					// Bestellung in DB ablegen
 					if(!$this->getSession('OrderId')){
 						$this->saveOrderToDb();
-					}
-					$order = new SSOrder();
-					if($order->loadById($this->getSession('OrderId'))){
-						$this->nextStep();
+						$order = new SSOrder();
+						if($order->loadById($this->getSession('OrderId'))){
+							$this->nextStep();
+						}
 					}
 				}
 			}
 		}
-		if($checkoutOrderDone){
-			$this->setSession('OrderDone', $checkoutOrderDone);
-			$this->nextStep();
-			$this->nextStep();
+		if($orderCompleted){
+			$this->setSession('OrderCompleted', $orderCompleted);
 		}
 		return false;
 	}
@@ -601,6 +600,10 @@ class SSCheckoutController extends SSController{
 		$params['label_submit'] = SSHelper::i18n('label_checkout_next');
 		$params['action'] = self::ACTION_SELECT_PAYMENT;
 		$params['step'] = $this->getStep();
+		$params['showGoBackBtn'] = true;
+		
+		if(!$this->getSession('DiffDelivery'))
+			$params['jumpToStep'] = $this->getStep() - 2;
 		
 		$this->checkoutView->displayCheckoutByTmpl(self::ACTION_SELECT_PAYMENT, $params);
 	}
@@ -642,8 +645,10 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::isAddressStepOK();
 	 *  @see SSCheckoutController::helperAddressConf();
 	 */
-	public function isAddressStepOK($type){
-		$conf = $this->helperAddressConf($type);
+	public function isAddressStepOK($action){
+		if($action == self::ACTION_DELIVERY and !$this->getSession('DiffDelivery'))
+			return true;
+		$conf = $this->helperAddressConf($action);
 		$_table = $conf['table'];
 		$_showIn = $conf['showIn'];
 		$_addressFromSession = $conf['addressFromSession'];
@@ -699,7 +704,7 @@ class SSCheckoutController extends SSController{
 		$params = array();
 		$params['formPropertiesAndValues'] = $this->formPropertiesAndValues;
 		$params['formPropertyValueErrors'] = $this->formPropertyValueErrors;
-		$params['show_required_fields_info'] = true;
+		$params['showRequiredFieldsInfo'] = true;
 		
 		if(!$this->isFormActionName($_action)){
 			$params['formPropertiesAndValues'] = $_addressFromSession;
@@ -732,10 +737,12 @@ class SSCheckoutController extends SSController{
 		$params['action'] = $_action;
 		$params['step'] = $this->getStep();
 		
-		$params['show_diff_delivery_option'] = false;
+		$params['showDiffDeliveryAddrOption'] = false;
 		if($action == self::ACTION_REGISTER or $_action == self::ACTION_BILLING)
-			$params['show_diff_delivery_option'] = true;
+			$params['showDiffDeliveryAddrOption'] = true;
 			
+		if($action != self::ACTION_BILLING)
+			$params['showGoBackBtn'] = true;
 		
 		//$this->checkoutView->displayCheckoutByTmpl($_action, $params);
 		$this->checkoutView->displayCheckoutByTmpl('address', $params);
@@ -787,8 +794,10 @@ class SSCheckoutController extends SSController{
 					$this->setSession('BillingAddress', $checkoutBillingAddress);
 					
 					if($this->formPropertiesAndValues['diff_delivery'] == 'yes'){
+						$this->setSession('DiffDelivery', true);
 						$this->nextStep();
 					}else{
+						$this->setSession('DiffDelivery', false);
 						$checkoutDeliveryAddress = SSOrder::convertCustomerAddrToDeliveryAddr($this->formPropertiesAndValues);
 						$this->setSession('DeliveryAddress', $checkoutDeliveryAddress);
 						$this->nextStep();
@@ -798,8 +807,10 @@ class SSCheckoutController extends SSController{
 					$this->setSession('BillingAddress', $this->formPropertiesAndValues);
 									
 					if($this->formPropertiesAndValues['diff_delivery'] == 'yes'){
+						$this->setSession('DiffDelivery', true);
 						$this->nextStep();
 					}else{
+						$this->setSession('DiffDelivery', false);
 						$billAddress = $this->getSession('BillingAddress');
 						$deliveryAddress = SSOrder::convertBillAddrToDeliverAddr($billAddress);
 						$this->setSession('DeliveryAddress', $deliveryAddress);

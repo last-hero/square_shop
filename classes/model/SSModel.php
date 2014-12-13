@@ -300,13 +300,14 @@ class SSModel {
 	 *  @see getByIds()
 	 *  @see getByForeignId()
 	 */
-	protected function _getWhere($where, $show_in = null){
+	public function _getWhere($where, $show_in = null){
 		if(!$show_in){
 			$show_in = SSDBSchema::SHOW_IN_DETAIL;
 		}
-		$query = SSDBSQL::_getSqlDmlQuery($where, $this->TABLE, SSDBSchema::SHOW_IN_DETAIL);
+		$query = SSDBSQL::_getSqlDmlQuery($where, $this->TABLE, $show_in);
 		
 		$res = SSDBSQL::executeSqlQuery($query, false);
+		
 		return $res['records'];
 	}
 }

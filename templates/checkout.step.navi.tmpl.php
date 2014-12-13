@@ -14,7 +14,7 @@
         <form action="" method="post" name="ss-form-<?=$FORM_ID?>" class="ss-form ss-form-<?=$FORM_ID?>">
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][action]" value="<?=$action?>" />
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][uniqueId]" value="<?=hash('md5', microtime(true))?>" />
-            <input type="hidden" name="SSForm[<?=$FORM_ID?>][jumpTostep]" value="<?=$x?>" />
+            <input type="hidden" name="SSForm[<?=$FORM_ID?>][jumpToStep]" value="<?=$x?>" />
             
 			<!--<h2><a href="<?=$url_steps[$x]?>" target="_self" title=""><span><?=$x?></span></a></h2>-->
             <? $fname = 'submit'; ?>

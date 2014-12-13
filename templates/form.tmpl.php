@@ -20,7 +20,7 @@ endforeach;
 ?>
             <? $fname = 'submit'; ?>
             <p class="ss-<?=$fname?>">
-            	<? if($show_required_fields_info): ?>
+            	<? if($showRequiredFieldsInfo): ?>
             	<span class="info"><?=SSHelper::i18n('label_required_fields_info')?></span>
                 <? endif; ?>
                 <input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-<?=$fname?>" value="<?=$label_submit?>" />

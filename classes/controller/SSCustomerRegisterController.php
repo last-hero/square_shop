@@ -152,7 +152,7 @@ class SSCustomerRegisterController extends SSController{
 		
 		$params['formPropertiesAndValues'] = $this->formPropertiesAndValues;
 		$params['formPropertyValueErrors'] = $this->formPropertyValueErrors;
-		$params['show_required_fields_info'] = true;
+		$params['showRequiredFieldsInfo'] = true;
 		
 		/*
 		$params['label_errors'] = array();
