@@ -71,3 +71,4 @@ label_required_fields_info = Hinweis: Fett markierte Felder sind Pflichtfelder!
 label_execute_payment = Jetzt bezahlen
 checkout_step_exe_payment = <h2>Bezahlung durchführen</h2>
 checkout_step_exe_payment_paypal = <h2>Bezahlung per PayPal durchführen</h2>Sie werden automatisch auf die Website von PayPal weitergeleitet. Um die Zahlung durchzuführen melden Sie sich mit Ihren PayPal Daten an. Die Zahlung wird Ihrem PayPal Konto unmittelbar nach der Bestellung belastet. Die Bearbeitung Ihrer Bestellung erfolgt somit rasch und ohne Wartezeit.
+checkout_step_selectpayment = Wählen Sie eine Zahlungsart aus

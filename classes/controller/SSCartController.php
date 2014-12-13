@@ -186,8 +186,15 @@ class SSCartController extends SSController{
 	 *  @return array
 	 */
 	public function getOverviewData(){
-		$ids = $this->getCartItemIds();
+		// Warenkorb Controller erzeugen, um Artikel IDs aus dem
+		// Session zu holen, die im Warenkorb hinzugefügt wurden.
+		$cartCtrl = new SSCartController();
+		// Artikel IDs aus Warenkorb
+		$ids = $cartCtrl->getCartItemIds();
+		// Artikel Objekt erzeugen um Artikel nach IDs
+		// aus dem DB zuholen.
 		$article = new SSArticle();
+		// Artikeln aus DB gefiltert nach PrimaryKeys (IDs)
 		$articles = $article->getByIds($ids);
 		
 		$items = array();
