@@ -1,5 +1,12 @@
 	<ul class="ss-message ss-<?=$msg_type?>">
 		<li>
+<?
+	if(strlen(trim($label_title))):
+?>
+        	<h2><?=$label_title?></h2>
+<?
+	endif;
+?>
         	<?=$label_text?>           
         </li>
 <?
@@ -18,5 +25,3 @@
 	endfor;
 ?> 
 	</ul>
-    
-   <!-- <ul class="messages"><li class="success-msg"><ul><li><span>Gut zum Druck auf Originalpapier wurde in den Warenkorb gelegt.</span></li></ul></li></ul>-->

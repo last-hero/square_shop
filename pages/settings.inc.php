@@ -66,6 +66,89 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
                             <?php echo $payment_select->get(); ?>
                         </p>
                     </div>
+                    
+					<div class="rex-form-row rex-form-element-v1">
+						<p class="rex-form-submit">
+							<input type="submit" class="rex-form-submit" name="sendit" value="<?=$I18N->msg('square_shop_settings_save'); ?>" />
+						</p>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+
+
+<div class="rex-addon-output">
+	<div class="rex-form">
+		<h2 class="rex-hl2"><?=ss_utils::i18l('settings_paypal_configuration')?></h2>
+		<form action="index.php" method="post">
+			<fieldset class="rex-form-col-1">
+				<div class="rex-form-wrapper">
+					<input type="hidden" name="page" value="<?=$page; ?>" />
+					<input type="hidden" name="subpage" value="<?=$subpage; ?>" />
+					<input type="hidden" name="func" value="update" />
+                    
+					<? $fname = 'paypal_business' ?>
+					<div class="rex-form-row rex-form-element-v1">
+						<p class="rex-form-text">
+							<label for="<?=$fname?>"><?=ss_utils::i18l('settings_'.$fname)?></label>
+							<input type="text" value="<?=$REX['ADDON']['square_shop']['settings'][$fname]?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
+						</p>
+					</div>
+                    
+					<? $fname = 'paypal_mail_errors_to' ?>
+					<div class="rex-form-row rex-form-element-v1">
+						<p class="rex-form-text">
+							<label for="<?=$fname?>"><?=ss_utils::i18l('settings_'.$fname)?></label>
+							<input type="text" value="<?=$REX['ADDON']['square_shop']['settings'][$fname]?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
+						</p>
+					</div>
+					<? $fname = 'paypal_debug' ?>
+                    <?
+						$paypal_select = new rex_select();
+						$paypal_select->setSize(1);
+						$paypal_select->setName('settings['.$fname.']');
+						$paypal_select->setMultiple(false);
+						$paypal_options = array('0', '1');
+						foreach($paypal_options as $option){
+							$paypal_select->addOption(ss_utils::i18l('settings_'.$fname.'_'.$option),$option);
+							if($option == $REX['ADDON']['square_shop']['settings'][$fname]){
+								$paypal_select->setSelected($option);
+							}
+						}
+					?>
+                    <div class="rex-form-row">
+                        <p class="rex-form-col-a rex-form-select">
+							<label for="<?=$fname?>"><?=ss_utils::i18l('settings_'.$fname)?></label>
+                            <?php echo $paypal_select->get(); ?>
+                            <br />
+                            data/addons/<?=$page?>/paypal.ipn.log<br>
+                        </p>
+                    </div>
+					<? $fname = 'paypal_use_sandbox' ?>
+                    <?
+						$paypal_select = new rex_select();
+						$paypal_select->setSize(1);
+						$paypal_select->setName('settings['.$fname.']');
+						$paypal_select->setMultiple(false);
+						$paypal_options = array('0', '1');
+						foreach($paypal_options as $option){
+							$paypal_select->addOption(ss_utils::i18l('settings_'.$fname.'_'.$option),$option);
+							if($option == $REX['ADDON']['square_shop']['settings'][$fname]){
+								$paypal_select->setSelected($option);
+							}
+						}
+					?>
+                    <div class="rex-form-row">
+                        <p class="rex-form-col-a rex-form-select">
+							<label for="<?=$fname?>"><?=ss_utils::i18l('settings_'.$fname)?></label>
+                            <?php echo $paypal_select->get(); ?>
+                        </p>
+                    </div>
+                    
+                    
 					<div class="rex-form-row rex-form-element-v1">
 						<p class="rex-form-submit">
 							<input type="submit" class="rex-form-submit" name="sendit" value="<?=$I18N->msg('square_shop_settings_save'); ?>" />

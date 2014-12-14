@@ -169,7 +169,7 @@ class SSModel {
 		if((int)$this->get('id') > 0){
 			$query = SSDBSQL::_getSqlUpdateQuery($propertiesAndValues, $this->TABLE);
 			$res = SSDBSQL::executeSqlQuery($query, false);
-			if((int)$res['rows'] == 1){
+			if((int)$res['result'] == 1){
 				return true;
 			}else{
 				throw new SSException('Record could not update from Table: '.$this->TABLE.'', 12001);
@@ -273,9 +273,12 @@ class SSModel {
 			throw new SSException('No Foreign Keys for Table '.$this->TABLE.'', $this->ERROR_NO_FOREIGN_KEYS);
 		}
 		
+		
 		$tableData = SSDBSchema::_getTable($this->TABLE, true);
 		$table = $tableData['name'];
+		
 		$res = $this->_getWhere($table.".".$propertyName." = $foreignId");
+		
 		if(count($res) > 0){
 			try{
 				$result = $this->getClearedUnknownProperties($res[0]);

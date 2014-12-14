@@ -11,46 +11,37 @@
 
 class SSPayPalController extends SSController{
 	private $orderId;
+	private $sid;
+	
+	private $debug = 0;
+	private $useSandbox = 0;
+	private $logfile;	
 	
 	public function init(){
-		if(strlen($this->getSession('sid')) < 5){
-			$this->setSession('sid', SSHelper::generateHash());
-		}
+		global $REX;
+		$this->logfile = SSHelper::getAddonDataPath() . '/paypal.ipn.log';
+		//$this->logfile = SSHelper::getAddonPath() . '/logs/paypal.ipn.log';
+		
+		$this->debug = (int)SSHelper::getSetting('paypal_debug');
+		$this->useSandbox = (int)SSHelper::getSetting('paypal_use_sandbox');
 		
 		$checkoutCtrl = new SSCheckoutController();
 		$this->orderId = $checkoutCtrl->getSession('OrderId');
 	}
 	
-	public function invoke(){
-		$this->setSIDToOrder();
-	}
-	
-	public function setSIDToOrder(){
-		$sid = $this->getSession('sid');
-		
-		
-		$order = new SSOrder();
-		if($order->loadById($this->orderId)
-		and strlen($this->getSession('sid')) > 10){
-			$order->set('sid', $this->getSession('sid'));
-			try{
-				$order->save();
-				return true;
-			}catch(SSException $e) {
-				echo $e;
-			}
-		}
-		
-		return false;
-	}
-	
 	public function getConf(){
 		global $REX;
+		
+		$order = new SSOrder();
+		if($order->loadById($this->orderId)){
+			$this->sid = $order->get('sid');
+		}
+		$sid = $this->sid;
 		return array(
-			'business' 		 => 'gobiswiss@outlook.com'
-			, 'mail_errors_to' => 'gobi21@hotmail.com'
+			'business' 		 => SSHelper::getSetting('paypal_business')
+			, 'mail_errors_to' => SSHelper::getSetting('paypal_mail_errors_to')
 			, 'currency' 	   => SSHelper::getSetting('currency')
-			, 'sid' 		    => $this->getSession('sid')
+			, 'sid' 		    => $sid
 			, 'return_url'     => $REX['SERVER'].rex_getUrl(
 										REX_ARTICLE_ID, REX_CLANG_ID, 
 										array(
@@ -83,19 +74,14 @@ class SSPayPalController extends SSController{
 	public function handlePayment(){
 		global $REX;
 		$conf = $this->getConf();
-		/*
-		$mail_errors_to 	= 'gobi.selva@square.ch';
-		$receiver_email 	= 'gobiS_1349359007_biz@square.ch';
-		$mail_errors_to 	= 'gobi.selva@square.ch';
-		$receiver_email 	= 'nati@natalia-gianinazzi.ch';
-		*/
 		
 		$receiver_email 	 = $conf['business'];
 		$mail_errors_to 	 = $conf['mail_errors_to'];
 		$mc_currency 	    = $conf['currency'];
 		$sid				= rex_get('sid', 'string', '');
 		$orderId		    = 0;
-		$orderTotalPrice 		 = 0;
+		$mc_gross 		   = 0;
+		$payment_status 	 = 0;		
 		
 		/* --------------------------------------------------------------
 		// Bestellungsinformationen aus DB holen
@@ -104,6 +90,10 @@ class SSPayPalController extends SSController{
 		$orderDbData = $order->_getWhere('sid = "'.$sid.'"', SSDBSchema::SHOW_IN_PAYMENT);
 		if(count($orderDbData) == 1){
 			$orderId = (int)$orderDbData[0]['id'];
+		}
+		if($order->loadById($orderId)){
+			//$order->set('payment_response', serialize($_POST));
+			//$order->save();
 		}
 		/* --------------------------------------------------------------
 		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -118,16 +108,12 @@ class SSPayPalController extends SSController{
 				$orderTotalPrice += (int)$item['price'] * (int)$item['qty'];
 			}
 			$orderTotalPrice = number_format($orderTotalPrice, 2, '.', '');
+			$mc_gross = number_format($orderTotalPrice, 2, '.', '');
 		}
 		/* --------------------------------------------------------------
 		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-		$listener = new IpnListener();
-		$listener->use_sandbox = true;
-		$listener->use_ssl = false;
-		
 		try{
-			$listener->requirePostMethod();
-			$verified = $listener->processIpn();
+			$verified = $this->isIPNOK();
 		}catch(Exception $e){
 			if(!empty($mail_errors_to)){
 				mail($mail_errors_to, 'error', $e->getMessage());
@@ -136,110 +122,238 @@ class SSPayPalController extends SSController{
 		}
 		
 		if($verified){
-			$errmsg = '';   // stores errors from fraud checks
+			$_RESP = array();
+			$_RESPONSE['payment_status']	 = rex_post('payment_status', 'string', '');
+			$_RESPONSE['receiver_email']	 = rex_post('receiver_email', 'string', '');
+			$_RESPONSE['mc_gross']		   = rex_post('mc_gross', 'string', '');
+			$_RESPONSE['mc_currency']		= rex_post('mc_currency', 'string', '');
+			$_RESPONSE['txn_id']			 = rex_post('txn_id', 'string', '');
+			$_RESPONSE['payer_email']		= rex_post('payer_email', 'string', '');
 			
-			// 1. Make sure the payment status is "Completed" 
-			if($_POST['payment_status'] != 'Completed'){ 
-				// simply ignore any IPN that is not completed
+			$_RESP = SSHelper::cleanInput($_POST);
+		
+			$error = 0;   // Error Counter
+			
+			// 1. Überprüfen ob Zahlungsstatus "Completed" ist
+			if($_RESPONSE['payment_status'] != 'Completed'){ 
+				// Falls nicht, dann IPN ignorieren
 				exit(0); 
 			}
 		
-			// 2. Make sure seller email matches your primary account email.
-			if($_POST['receiver_email'] != $receiver_email){
-				$errmsg .= "'receiver_email' does not match: ";
-				$errmsg .= $_POST['receiver_email']."\n";
-			}
-			
-			// 3. Make sure the amount(s) paid match
-			if(intval($_POST['mc_gross']) <= (intval($orderTotalPrice) - 2) and intval($_POST['mc_gross']) >= (intval($orderTotalPrice) + 2)){
-				$errmsg .= "'mc_gross' does not match: ";
-				$errmsg .= $_POST['mc_gross']."\n";
-				$errmsg .= " cart_total: "."\n";
-				$errmsg .= $orderTotalPrice;
-			}
-			
-			// 4. Make sure the currency code matches
-			if($_POST['mc_currency'] != $mc_currency){
-				$errmsg .= "'mc_currency' does not match: ";
-				$errmsg .= $_POST['mc_currency']."\n";
-			}
-			
-			// TODO: Check for duplicate txn_id ------------------------------
-			// 5. Ensure the transaction is not a duplicate.
-			
-			$order = new SSOrder();
-			
-		
-			$txn_id = mysql_real_escape_string($_POST['txn_id']);
-			$q = "SELECT COUNT(*) as anzahl FROM paypal_orders WHERE txn_id = '$txn_id'";
-			$sql->setQuery($q);
-			if($sql->getValue('anzahl') > 0){
-				$errmsg .= "'txn_id' has already been processed: ".$_POST['txn_id']."\n";
-			}
-			// TODO: Check for duplicate txn_id ------------------------------
-			
-			if(!empty($errmsg)){
-				// manually investigate errors from the fraud checking
-				$body = "IPN failed fraud checks: \n$errmsg\n\n";
-				$body .= $listener->getTextReport();
-				if(!empty($mail_errors_to)){
-					mail($mail_errors_to, 'IPN Fraud Warning', $body);
+			// 2. Verkäufer E-Mail überprüfen
+			if($_RESPONSE['receiver_email'] != $receiver_email){
+				if(DEBUG == true){
+					$this->errorLog("Verkäufer 'receiver_email' stimmt nicht überein: ".$_RESPONSE['mc_currency'] ."(Shop: Verkäufer: ".$receiver_email.")");
 				}
+				$error++;
+			}
+			
+			// 3. Bestellungstotal überprüfen
+			if(intval($_RESPONSE['mc_gross']) <= (intval($orderTotalPrice) - 2) and intval($_RESPONSE['mc_gross']) >= (intval($orderTotalPrice) + 2)){
+				if(DEBUG == true){
+					$this->errorLog("Total: 'mc_gross' stimmt nicht überein: ".$_RESPONSE['mc_gross'] ."(Shop: Total: ".$orderTotalPrice.")");
+				}
+				$error++;
+			}
+			
+			// 4. Währung überprüfen
+			if($_RESPONSE['mc_currency'] != $mc_currency){
+				if(DEBUG == true){
+					$this->errorLog("Curreny: 'mc_currency' stimmt nicht überein: ".$_RESPONSE['mc_currency'] ."(Shop: Curreny: ".$mc_currency.")");
+				}
+				$error++;
+			}
+			
+			// 5. Überprüfen ob die Transaktions ID bereits verwendet wurde
+			$txn_id = mysql_real_escape_string($_RESPONSE['txn_id']);
+			$orderDbData = $order->_getWhere('paypal_txn_id = "'.$txn_id.'"', SSDBSchema::SHOW_IN_PAYMENT);
+			if(count($orderDbData) > 0){
+				if(DEBUG == true){
+					$this->errorLog("'txn_id' has already been processed: ".$_RESPONSE['txn_id']);
+				}
+				$error++;
+			}
+			
+			if($error > 0){
+				/* --------------------------------------------------------------
+				// Bezahlung fehlgeschlagen
+				// Zahlungsstatus auf -1 setzen
+				- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+				if($order->loadById($orderId)){
+					$order->set('payment_status', "-1");
+					$order->save();
+				}
+				/* --------------------------------------------------------------
+				- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 			}else{
 				/* --------------------------------------------------------------
-				// TODO: process order here
+				// Bezahlung erfoglreich
 				- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-				// add this order to a table of completed orders
-				$payer_email = mysql_real_escape_string($_POST['payer_email']);
-				$mc_gross = mysql_real_escape_string($_POST['mc_gross']);
+				$payer_email = mysql_real_escape_string($_RESPONSE['payer_email']);
+				$mc_gross = mysql_real_escape_string($_RESPONSE['mc_gross']);
 				
-				
-				// Update Order Infos
-				//$order->loadById($orderId);
-				$order->set('paypal_txn_id', $txn_id);
-				$order->set('payer_email', $payer_email);
-				$order->save();		
-				
-				
+				// Bezahlungs-Info zur Bestellung hinzufügen
+				if($order->loadById($orderId)){
+					$order->set('paypal_txn_id', $txn_id);
+					$order->set('payer_email', $payer_email);
+					$order->set('payment_status', 1);
+					$order->save();
+				}
 				/* --------------------------------------------------------------
 				- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-		
-				// TODO: process order here -------------------------------
-				// add this order to a table of completed orders
-				/*
-				$payer_email = mysql_real_escape_string($_POST['payer_email']);
-				$mc_gross = mysql_real_escape_string($_POST['mc_gross']);
-				$q = "INSERT INTO paypal_orders VALUES 
-						(NULL, '$txn_id', '$payer_email', $mc_gross)";
-				$sql->setQuery($q);
-				*/
-							
-				// Update Order Infos
-				/*
-				$q = "UPDATE rex_927_orders SET paypal_txn_id = '$txn_id',  payer_email = '$payer_email' WHERE sid = '".$sid."';";
-				$sql->setQuery($q);
-				*/
-				// send user an email with a link to their digital download
-				/*
-				$to = filter_var($_POST['payer_email'], FILTER_SANITIZE_EMAIL);
-				$subject = "Your digital download is ready";
-				mail($to, "2 Thank you for your order", "Download URL: ...");
-				*/
-				// TODO: process order here -------------------------------
-			}
-			if(!empty($mail_errors_to)){
-				mail($mail_errors_to, 'Verified IPN', $listener->getTextReport());
 			}
 		}else{
-			/*
-			An Invalid IPN *may* be caused by a fraudulent transaction attempt. It's
-			a good idea to have a developer or sys admin manually investigate any 
-			invalid IPN.
-			*/
-			if(!empty($mail_errors_to)){
-				mail($mail_errors_to, 'Invalid IPN', $listener->getTextReport());
-			}
 		}
 		die();
+	}
+	
+	/** @brief IPN
+	 *
+	 *  Die Funktion wurde von PayPal auf dem GitHub-Portal
+	 *  zu Ver
+	 *
+	 *  @author PayPal
+	 *  @author http://developer.paypal.com/
+	 *  @author https://github.com/paypal/ipn-code-samples/blob/master/paypal_ipn.php
+	 */
+	public function isIPNOK(){
+		// CONFIG: Enable debug mode. This means we'll log requests into 'ipn.log' in the same directory.
+		// Especially useful if you encounter network errors or other intermittent problems with IPN (validation).
+		// Set this to 0 once you go live or don't require logging.
+		define("DEBUG", $this->debug);
+		
+		// Set to 0 once you're ready to go live
+		define("USE_SANDBOX", $this->useSandbox);
+		
+		
+		//define("LOG_FILE", "./ipn.log");
+		define("LOG_FILE", $this->logfile);
+		
+		
+		// Read POST data
+		// reading posted data directly from $_POST causes serialization
+		// issues with array data in POST. Reading raw POST data from input stream instead.
+		$raw_post_data = file_get_contents('php://input');
+		$raw_post_array = explode('&', $raw_post_data);
+		$myPost = array();
+		foreach ($raw_post_array as $keyval) {
+			$keyval = explode ('=', $keyval);
+			if (count($keyval) == 2)
+				$myPost[$keyval[0]] = urldecode($keyval[1]);
+		}
+		// read the post from PayPal system and add 'cmd'
+		$req = 'cmd=_notify-validate';
+		if(function_exists('get_magic_quotes_gpc')) {
+			$get_magic_quotes_exists = true;
+		}
+		foreach ($myPost as $key => $value) {
+			if($get_magic_quotes_exists == true && get_magic_quotes_gpc() == 1) {
+				$value = urlencode(stripslashes($value));
+			} else {
+				$value = urlencode($value);
+			}
+			$req .= "&$key=$value";
+		}
+		
+		// Post IPN data back to PayPal to validate the IPN data is genuine
+		// Without this step anyone can fake IPN data
+		
+		if(USE_SANDBOX == true) {
+			$paypal_url = "https://www.sandbox.paypal.com/cgi-bin/webscr";
+		} else {
+			$paypal_url = "https://www.paypal.com/cgi-bin/webscr";
+		}
+		
+		$ch = curl_init($paypal_url);
+		if ($ch == FALSE) {
+			return FALSE;
+		}
+		
+		curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+		curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
+		
+		if(DEBUG == true) {
+			curl_setopt($ch, CURLOPT_HEADER, 1);
+			curl_setopt($ch, CURLINFO_HEADER_OUT, 1);
+		}
+		
+		// CONFIG: Optional proxy configuration
+		//curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		//curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
+		
+		// Set TCP timeout to 30 seconds
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
+		
+		// CONFIG: Please download 'cacert.pem' from "http://curl.haxx.se/docs/caextract.html" and set the directory path
+		// of the certificate as shown below. Ensure the file is readable by the webserver.
+		// This is mandatory for some environments.
+		
+		//$cert = __DIR__ . "./cacert.pem";
+		//curl_setopt($ch, CURLOPT_CAINFO, $cert);
+		
+		$res = curl_exec($ch);
+		if (curl_errno($ch) != 0) // cURL error
+			{
+			if(DEBUG == true) {	
+				error_log(date('[Y-m-d H:i e] '). "Can't connect to PayPal to validate IPN message: " . curl_error($ch) . PHP_EOL, 3, LOG_FILE);
+			}
+			curl_close($ch);
+			exit;
+		
+		} else {
+				// Log the entire HTTP response if debug is switched on.
+				if(DEBUG == true) {
+					error_log(date('[Y-m-d H:i e] '). "HTTP request of validation request:". curl_getinfo($ch, CURLINFO_HEADER_OUT) ." for IPN payload: $req" . PHP_EOL, 3, LOG_FILE);
+					error_log(date('[Y-m-d H:i e] '). "HTTP response of validation request: $res" . PHP_EOL, 3, LOG_FILE);
+				}
+				curl_close($ch);
+		}
+		
+		// Inspect IPN validation result and act accordingly
+		
+		// Split response headers and payload, a better way for strcmp
+		$tokens = explode("\r\n\r\n", trim($res));
+		$res = trim(end($tokens));
+		
+		if (strcmp ($res, "VERIFIED") == 0) {
+			// check whether the payment_status is Completed
+			// check that txn_id has not been previously processed
+			// check that receiver_email is your PayPal email
+			// check that payment_amount/payment_currency are correct
+			// process payment and mark item as paid.
+		
+			// assign posted variables to local variables
+			//$item_name = $_POST['item_name'];
+			//$item_number = $_POST['item_number'];
+			//$payment_status = $_POST['payment_status'];
+			//$payment_amount = $_POST['mc_gross'];
+			//$payment_currency = $_POST['mc_currency'];
+			//$txn_id = $_POST['txn_id'];
+			//$receiver_email = $_POST['receiver_email'];
+			//$payer_email = $_POST['payer_email'];
+			
+			if(DEBUG == true) {
+				error_log(date('[Y-m-d H:i e] '). "Verified IPN: $req ". PHP_EOL, 3, LOG_FILE);
+			}
+			return true;
+		} else if (strcmp ($res, "INVALID") == 0) {
+			// log for manual investigation
+			// Add business logic here which deals with invalid IPN messages
+			if(DEBUG == true) {
+				error_log(date('[Y-m-d H:i e] '). "Invalid IPN: $req" . PHP_EOL, 3, LOG_FILE);
+			}
+			return false;
+		}	
+	}
+	
+	
+	function errorLog($str){
+		error_log(date('[Y-m-d H:i e] '). $str . PHP_EOL, 3, $this->logfile);
 	}
 }

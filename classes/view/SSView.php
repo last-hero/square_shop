@@ -68,17 +68,21 @@ class SSView {
 	 *  Eine Success-Meldung (Html-Code) anzeigen
 	 *
 	 *  @param $message
+	 *  @param $title optional
 	 *
 	 *  @see displayMessage()
 	 *  @see displaySuccessMessage()
 	 *  @see displayErrorMessage()
 	 *  @see displayMessageHtml()
 	 */
-	public function displaySuccessMessage($message){
+	public function displaySuccessMessage($message, $title = ''){
 		$params['msg_type'] = 'success';
 		$params['label_text'] = $message;
 		if(empty($params['label_text'])){
 			$params['label_text'] = SSHelper::i18n($this->FORM_ID.'_success_text');
+		}
+		if(!empty($title)){
+			$params['label_title'] = $title;
 		}
 		$this->displayMessageHtml($params);
 	}
@@ -88,17 +92,21 @@ class SSView {
 	 *  Eine Failure-Meldung (Html-Code) anzeigen
 	 *
 	 *  @param $message
+	 *  @param $title optional
 	 *
 	 *  @see displayMessage()
 	 *  @see displaySuccessMessage()
 	 *  @see displayErrorMessage()
 	 *  @see displayMessageHtml()
 	 */
-	public function displayErrorMessage($message){
+	public function displayErrorMessage($message, $title = ''){
 		$params['msg_type'] = 'error';
 		$params['label_text'] = $message;
 		if(empty($params['label_text'])){
 			$params['label_text'] = SSHelper::i18n($this->FORM_ID.'_failure_text');
+		}
+		if(!empty($title)){
+			$params['label_title'] = $title;
 		}
 		$this->displayMessageHtml($params);
 	}
@@ -108,17 +116,21 @@ class SSView {
 	 *  Eine einfache Meldung (Html-Code) anzeigen
 	 *
 	 *  @param $message
+	 *  @param $title optional
 	 *
 	 *  @see displayMessage()
 	 *  @see displaySuccessMessage()
 	 *  @see displayErrorMessage()
 	 *  @see displayMessageHtml()
 	 */
-	public function displayMessage($message){
+	public function displayMessage($message, $title = ''){
 		$params['msg_type'] = 'normal';
 		$params['label_text'] = $message;
 		if(empty($params['label_text'])){
 			$params['label_text'] = SSHelper::i18n($this->FORM_ID.'_failure_text');
+		}
+		if(!empty($title)){
+			$params['label_title'] = $title;
 		}
 		$this->displayMessageHtml($params);
 	}

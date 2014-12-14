@@ -37,9 +37,11 @@
         	<figure>
 <?
 			foreach($imgs as $img):
+				if(!empty($img)):
 ?>
             	<img src="index.php?rex_img_type=ss-article-detail&rex_img_file=<?=$img?>" />
 <?
+				endif;
 			endforeach;
 ?>
             </figure>

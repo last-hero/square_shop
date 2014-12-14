@@ -49,6 +49,8 @@ square_shop_label_status = Status
 square_shop_label_createdate = label_createdate
 square_shop_label_updatedate = label_updatedate
 square_shop_label_delivery_address = label_delivery_address
+square_shop_label_orderno = BestellNr.
+square_shop_label_time = Zeit
 
 square_shop_quicklinks = Quicklinks
 
@@ -71,3 +73,18 @@ square_shop_mwst = MwSt
 square_shop_total = Total
 
 square_shop_addon_help = Dieses REDAXO-AddOn ermöglicht einen Online-Shop betrieb.
+
+square_shop_label_payment_status = Zahlungsstatus
+
+square_shop_settings_paypal_configuration = PayPal Konfiguration
+square_shop_settings_paypal_business = Verkäuferkonto auf dem die Buchung durchgeführt
+square_shop_settings_paypal_debug = Debug Modus <br>(Logging)
+square_shop_settings_paypal_debug_0 = nein
+square_shop_settings_paypal_debug_1 = ja
+square_shop_settings_paypal_mail_errors_to = Fehlermeldungen an folgende E-Mail verschicken
+square_shop_settings_paypal_use_sandbox = PayPal Sandbox <br>(Test-Account)
+square_shop_settings_paypal_use_sandbox_0 = nein
+square_shop_settings_paypal_use_sandbox_1 = ja
+
+
+square_shop_label_delivery_same_like_billing = Lieferadresse entspricht Rechnungsadresse

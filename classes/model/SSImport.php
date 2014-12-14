@@ -70,9 +70,11 @@ class SSImport {
 				sprintf ("%03d\n", 26);
 			*/
 			$art_id = $art['id'];
-			$imgs = 'model'.sprintf ("%03d\n", $counter).'.jpg';
+			//$imgs = 'model'.sprintf ("%03d\n", $counter).'.jpg';
+			$imgs = ''.$counter.'.jpg';
 			$counter++;
-			$imgs .= ',model'.sprintf ("%03d\n", $counter).'.jpg';
+			//$imgs .= ',model'.sprintf ("%03d\n", $counter).'.jpg';
+			$imgs .= ','.$counter.'.jpg';
 			$counter++;
 			if($counter > 145){
 				$counter = 1;

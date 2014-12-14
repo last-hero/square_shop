@@ -24,22 +24,28 @@
     			<thead>
       				<tr>
                         <th><?=ss_utils::i18l('order')?></th>
+                        <th></th>
       				</tr>
                 </thead>
                 <tbody>
       				<tr>
-                   		<td>
-                            <strong style="width:100px;display:inline-block;">BestellNr:</strong> <?=$res_order['no']?><br />
-                            <strong style="width:100px;display:inline-block;">Zeit:</strong> <?=$res_order['date']?><br /><br />
+                   		<td width="50%">
+                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_orderno')?>:</strong> <?=$res_order['no']?><br />
+                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_time')?>:</strong> <?=$res_order['date']?><br /><br />
                             <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_customer_id')?>:</strong> <?=$res_order['customer_id']?><br />
                             <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_customer_title')?>:</strong> <?=$res_order['customer_title']?><br />
                             <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_customer_firstname')?>:</strong> <?=$res_order['customer_firstname']?><br />
                             <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_customer_lastname')?>:</strong> <?=$res_order['customer_lastname']?><br />
                     	</td>
+                   		<td width="50%"><br /><br /><br />
+                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_payment')?>:</strong><?=trim($res_order['payment'])?><br />
+                            <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_payment_status')?>:</strong> <?=$res_order['payment_status']?><br />
+                    	</td>
       				</tr>
                 </tbody>
             </table>
             <br /><br />
+            
         
   			<table class="rex-table">
     			<thead>
@@ -50,19 +56,25 @@
                 </thead>
                 <tbody>
       				<tr>
-                   		<td>
+                   		<td width="50%">
 					<? foreach($res_order as $key => $val): ?>
 						<? if(substr_count($key, 'billing_')): ?>
                             <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_'.str_replace('billing_', '',$key))?>:</strong> <?=$val?><br />
                         <? endif; ?>
                     <? endforeach; ?>
                     	</td>
-                   		<td>
+                   		<td width="50%">
+                    <? $deliverySameLikeBilling = true; ?>
 					<? foreach($res_order as $key => $val): ?>
-						<? if(substr_count($key, 'delivery_')): ?>
+						<? if(substr_count($key, 'delivery_') and strlen(trim($val))): ?>
+                    	<? $deliverySameLikeBilling = false; ?>
                             <strong style="width:100px;display:inline-block;"><?=ss_utils::i18l('label_'.str_replace('delivery_', '',$key))?>:</strong> <?=$val?><br />
                         <? endif; ?>
                     <? endforeach; ?>
+					<? if($deliverySameLikeBilling): ?>
+                    <? $deliverySameLikeBilling = false; ?>
+                        <?=ss_utils::i18l('label_delivery_same_like_billing')?>
+                    <? endif; ?>
                     	</td>
       				</tr>
                 </tbody>

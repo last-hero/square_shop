@@ -4,6 +4,6 @@
             
             <? $fname = 'submit'; ?>
             <p class="ss-<?=$fname?>">
-                <input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-<?=$fname?>" value="<?=$label_submit?>" />
+                <input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-<?=$fname?> ss-next" value="<?=$label_submit?>" />
             </p>
         </form>

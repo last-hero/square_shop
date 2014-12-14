@@ -83,14 +83,13 @@ class SSCheckoutController extends SSController{
 	* Warenkorb starten
 	*/
 	public function invoke(){
-		$handlePaymentPerAPI	= rex_get('handlePaymentPerAPI', 'string', '');
+		$handlePaymentPerAPI		 = rex_get('handlePaymentPerAPI', 'string', '');
 		$handleExecutePaymentStep	= rex_get('handleExecutePaymentStep', 'string', '');
 		if($handlePaymentPerAPI){
 			$this->handlePaymentPerAPI();
-			d('handlePaymentPerAPI');
 		}elseif($handleExecutePaymentStep){
-			d('handleExecutePaymentStep');
-			//$this->handleExecutePaymentStep();
+			$this->handleExecutePaymentStep();
+			$this->displayConfirmStep();
 		}else{
 			if($this->cartCtrl->isCartEmpty()){
 				$this->view->displaySuccessMessage(SSHelper::i18n('cart_is_empty'));
@@ -171,7 +170,7 @@ class SSCheckoutController extends SSController{
 				*/
 				break;
 			case 7:
-				//$this->handleConfirmStep();
+				$this->handleConfirmStep();
 			default:
 				break;
 		}
@@ -262,11 +261,30 @@ class SSCheckoutController extends SSController{
 		$orderId = $GLOBALS['checkout']['OrderId'];
 		$order = new SSOrder();
 		if($order->loadById($orderId)){
-			$orderCompleted = true;
+			if(in_array($order->get('payment'), $this->paymentsPerAPI)){
+				// Meldung anzeigen, wenn Zahlung erfolgreich
+				if((int)$order->get('payment_status') == 1){
+					$msg = SSHelper::i18n('checkout_order_with_payment_success');
+					$msg = str_replace('%order_no%', $order->get('no'), $msg);
+					$this->view->displaySuccessMessage($msg);
+				}else{
+					// Meldung anzeigen, wenn Zahlung fehlgeschlagen
+					$msg = SSHelper::i18n('checkout_order_with_payment_error');
+					$msg = str_replace('%order_no%', $order->get('no'), $msg);
+					$this->view->displayErrorMessage($msg);
+				}
+			}else{
+				// Meldung anzeigen, wenn Bestellung erfolgreich
+				// --> auf Rechnung
+				$msg = SSHelper::i18n('checkout_order_success');
+				$msg = str_replace('%order_no%', $order->get('no'), $msg);
+				$this->view->displaySuccessMessage($msg);
+			}
+		}else{
+			// Meldung anzeigen, wenn Bestellung fehlgeschlagen
+			$msg = SSHelper::i18n('checkout_order_error');
+			$this->view->displayErrorMessage($msg);
 		}
-		$msg = SSHelper::i18n('checkout_order_success');
-		$msg = str_replace('%order_no%', $order->get('no'), $msg);
-		$this->view->displaySuccessMessage($msg);
 	}
 	
 	/** @brief Title
@@ -277,7 +295,6 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::isConfirmStepOK();
 	 */
 	public function handleConfirmStep(){
-		
 		$GLOBALS['checkout'] = array(
 			'OrderId' => $this->getSession('OrderId')
 			, 'OrderCompleted' => $this->getSession('OrderCompleted')
@@ -307,6 +324,8 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::isExecutePaymentStepOK();
 	 */
 	public function displayExecutePaymentStep(){
+		$payment	= rex_get('payment', 'string', '');
+		
 		$order = new SSOrder();
 		if($order->loadById($this->getSession('OrderId'))){
 			$payment = $this->getSession('SelectPayment');
@@ -325,6 +344,7 @@ class SSCheckoutController extends SSController{
 			$params['step'] = $this->getStep();
 			$this->checkoutView->displayCheckoutByTmpl(self::ACTION_ORDER.'.'.$payment, $params);
 			//$this->checkoutView->displayCheckoutByTmpl(self::ACTION_ORDER, $params);
+		}elseif($payment){
 		}
 	}
 	
@@ -336,16 +356,37 @@ class SSCheckoutController extends SSController{
 	 *  @see SSCheckoutController::isExecutePaymentStepOK();
 	 */
 	public function handleExecutePaymentStep(){
-		$payment = $this->getSession('SelectPayment');
-		if($payment == self::PAYMENT_ONBILL){
-			if($this->getSession('OrderId') and $this->getSession('OrderCompleted')){
-				$this->nextStep();
-			}else{
-				$this->prevStep();
+		global $REX;
+		$payment	= rex_get('payment', 'string', '');
+		//$payment = $this->getSession('SelectPayment');
+		if($payment == 'paypal'){
+			$sid = rex_get('sid', 'string', '');
+			$orderId = 0;
+			$order = new SSOrder();
+			$orderDbData = $order->_getWhere('sid = "'.$sid.'"', SSDBSchema::SHOW_IN_PAYMENT);
+			if(count($orderDbData) == 1){
+				$orderId = (int)$orderDbData[0]['id'];
 			}
-		}elseif($payment == 'paypal'){
-			$paypal = new SSPayPalController();
-			$paypal->setSIDToOrder();
+			
+			$GLOBALS['checkout'] = array(
+				'OrderId' => $orderId
+				, 'OrderCompleted' => true
+				, 'SelectPayment' => $orderDbData['payment']
+				, 'PaymentStatus' => $orderDbData['payment_status']
+				, 'PayerEmail' => $orderDbData['payer_email']
+				, 'Step' => 7
+			);
+			$this->cartCtrl->clearCart();
+			$this->clearAll();
+		}else{
+			$payment = $this->getSession('SelectPayment');
+			if($payment == self::PAYMENT_ONBILL){
+				if($this->getSession('OrderId') and $this->getSession('OrderCompleted')){
+					$this->nextStep();
+				}else{
+					$this->prevStep();
+				}
+			}
 		}
 	}
 	
@@ -353,9 +394,7 @@ class SSCheckoutController extends SSController{
 	 *
 	 */
 	public function handlePaymentPerAPI(){
-		$payment	= rex_get('payment', 'string', '');
-		$sid		= rex_get('sid', 'string', '');
-		
+		$payment	= rex_get('payment', 'string', '');		
 		if($payment == 'paypal'){
 			$paypal = new SSPayPalController();
 			$paypal->handlePayment();
@@ -394,10 +433,17 @@ class SSCheckoutController extends SSController{
 		$cartCtrl->simpleView = 1;
 		$cartCtrl->displayView();
 		
+		
 		$payment = $this->getSession('SelectPayment');
 		
-		$params = array();
+		$this->view->displayMessage(
+			SSHelper::i18n('label_'.$payment.'')
+			, SSHelper::i18n('label_checkout_payment')
+		);		
 		
+		
+		
+		$params = array();
 		$params['label_submit'] = SSHelper::i18n('label_checkout_confirm');
 		$params['action'] = self::ACTION_ORDER;
 		$params['step'] = $this->getStep();
@@ -438,7 +484,13 @@ class SSCheckoutController extends SSController{
 						$this->saveOrderToDb();
 						$order = new SSOrder();
 						if($order->loadById($this->getSession('OrderId'))){
-							$this->nextStep();
+							$order->set('sid', SSHelper::generateHash());
+							try{
+								$order->save();
+								$this->nextStep();
+							}catch(SSException $e) {
+								echo $e;
+							}
 						}
 					}
 				}
@@ -523,6 +575,9 @@ class SSCheckoutController extends SSController{
 		
 		// SelectPayment
 		$order->set('payment', $payment);
+		
+		// Datum setzen
+		$order->set('date', date("Y-m-d H:i:s"));
 		
 		// Order in DB speichern
 		$order->save();

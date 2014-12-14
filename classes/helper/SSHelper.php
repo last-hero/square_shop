@@ -102,6 +102,33 @@ class SSHelper{
 		
 	}
 	
+	/** @brief Addon Ordnerpfad
+	 *
+	 *  Liefert den Ordnerpfad des Addons
+	 *
+	 *  @param (string) 
+	 */
+	public static function getAddonPath(){
+		global $REX;
+		
+		return $REX['INCLUDE_PATH'] . '/addons/square_shop';
+	}
+	
+	/** @brief Addon-Daten Ordnerpfad
+	 *
+	 *  Liefert den Ordnerpfad der Daten des Addons
+	 *  in dem Instanz spezifische Daten abgelegt werden,
+	 *  die nicht zum Source-Files gehören.
+	 *
+	 *  @param (string) 
+	 */
+	public static function getAddonDataPath(){
+		global $REX;
+		
+		return $REX['INCLUDE_PATH'] . '/data/addons/square_shop';
+	}
+	
+	
 	/** @brief Shop-Betreiber Setting Value
 	 *
 	 *  Liefert Backend Setting Value vom Shop-Betreiber

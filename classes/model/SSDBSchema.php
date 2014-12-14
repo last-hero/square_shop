@@ -343,16 +343,21 @@ class SSDBSchema {
 				, array(
 					'name' => 'sid'
 					, 'sql' => 'VARCHAR(255) NULL'
-					, 'show_in' => array('detail', 'list', 'payment')
+					, 'show_in' => array('detail', 'payment')
 				)
 				, array(
 					'name' => 'paypal_txn_id'
 					, 'sql' => 'VARCHAR(255) NULL'
-					, 'show_in' => array('detail', 'list', 'payment')
+					, 'show_in' => array('detail', 'payment')
 				)
 				, array(
 					'name' => 'payer_email'
 					, 'sql' => 'VARCHAR(255) NULL'
+					, 'show_in' => array('detail', 'payment')
+				)
+				, array(
+					'name' => 'payment_status'
+					, 'sql' => 'INT NULL'
 					, 'show_in' => array('detail', 'list', 'payment')
 				)
 				, array(
