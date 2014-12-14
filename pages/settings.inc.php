@@ -165,11 +165,26 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
 		<h2 class="rex-hl2">Admin Modus</h2>
 		
      	<div class="rex-addon-content">
-            <p>Datenbank</p>
+            <p><strong>Datenbank</strong></p>
             <ul>
                 <li><a href="<?=$baseurl?>&func=admin&action=db-delete">Tabellen löschen</a></li>
                 <li><a href="<?=$baseurl?>&func=admin&action=db-create">Tabellen erstellen</a></li>
                 <li><a href="<?=$baseurl?>&func=admin&action=db-import">Beispiel Daten importieren</a></li>
+            </ul>
+        </div>
+		
+     	<div class="rex-addon-content">
+            <p><strong>StringTable - Sprachelemente</strong></p>
+            <ul>
+                <li><a href="<?=$baseurl?>&func=admin&action=i18n-delete">löschen</a> Alle Übersetzung aus der Tabelle löschen.</li>
+                <li><a href="<?=$baseurl?>&func=admin&action=i18n-import">importieren</a> Bereits erfasste Übersetzung werden nicht aktualisiert.</li>
+            </ul>
+        </div>
+		
+     	<div class="rex-addon-content">
+            <p><strong>Multilanguage Felder</strong></p>
+            <ul>
+                <li><a href="<?=$baseurl?>&func=admin&action=i18n-db-field-update">aktualisieren</a> Felder werden entweder hinzugefügt (falls neue Sprache) oder gelöscht (falls Sprache nicht mehr vorhanden)</li>
             </ul>
         </div>
 	</div>
@@ -194,6 +209,22 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
 					}else{
 						echo rex_warning('Beispiel Daten Import FEHLGESCHLAGEN!');
 					}
+				}
+				
+				
+				if($action == 'i18n-delete'){
+					$res = SSHelper::deleteTranslationsFromStringTable();
+					echo rex_info('Sprachelemente ('.$res['rows'].') wurden aus StringTable gelöscht!');
+				}elseif($action == 'i18n-import'){
+					SSHelper::importTranslationsToStringTable();
+					echo rex_info('Sprachelemente wurden zu StringTable importiert!');
+				}
+				
+				
+				if($action == 'i18n-db-field-update'){
+					//echo rex_warning('<span style="font-size:150px">☺</span><span style="font-size:50px">TODO</span>');
+					?><span style="font-size:150px">☺</span><span style="font-size:50px">TODO</span>
+                    <?
 				}
 			?>
         </div>

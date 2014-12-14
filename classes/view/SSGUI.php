@@ -9,7 +9,6 @@ class SSGUI {
 	*/
 	public static function displayDetail($table, $id){
 		global $REX;
-		
 		try{			
 			echo self::parse($table.'.detail.tmpl.php', 
 				array(
@@ -36,7 +35,6 @@ class SSGUI {
         if(empty($filter_value)){
 			$filter_value	= rex_post('search', 'string', '');
         }
-		
 		
 		
 		$_table = SSDBSchema::_getTable($table, true);
@@ -111,30 +109,52 @@ class SSGUI {
 		$form = rex_form::factory($tableName=SSDBSchema::_getTableAttr($table, 'name', true), $fieldset='Allgemein', $whereCondition);
 		
 		try{
-			$fields = SSDBSchema::_getFields($table, null, array('show_in'=>$mode_type));
+			$fields = SSDBSchema::_getFields($table, null, array('show_in'=>$mode_type), 'add');
 		}catch(SSException $e) {
 			echo $e;
 		}
 		
+		
+		/* --------------------------------------------------------------
+		// Alle Multilanguage Felder hinzufügen
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+		/*
+		$fields = SSDBSchema::_replaceMultilanguageFieldsToCurClang(
+			array(
+				'fields'=>$fields
+				, 'show_in'=>$mode_type
+			)
+		);
+		$fields = SSDBSchema::_addMultilanguageFields(
+			array(
+				'fields'=>$fields
+				, 'show_in'=>$mode_type
+			)
+		);
+		*/
+		/* ------------------------------------------------------------ */
+		
 		foreach($fields as $f){
 			$name = $f['name'];
+			$label = ss_utils::i18l('label_'.$f['name']);
+			$name = $f['name_sql'];
 			if(isset($f['input'])){
 				switch ($f['input']){
 					case 'text':
 						$field = &$form->addTextField($name);
-						$field->setLabel(ss_utils::i18l('label_'.$name));
+						$field->setLabel($label);
 						break;
 					case 'textarea':
 						$field = &$form->addTextAreaField($name);
-						$field->setLabel(ss_utils::i18l('label_'.$name));
+						$field->setLabel($label);
 						break;
 					case 'media':
 						$field = &$form->addMedialistField($name);
-						$field->setLabel(ss_utils::i18l('label_'.$name));
+						$field->setLabel($label);
 						break;
 					case 'select_sql':
 						$field = &$form->addSelectField($name);
-						$field->setLabel(ss_utils::i18l('label_'.$name));
+						$field->setLabel($label);
 						$select = &$field->getSelect();
 						$select->setSize(1);
 						$query = 'SELECT '.$f['sql_join']['field_label'].' as title, id FROM '.SSDBSchema::_getTableAttr($f['sql_join']['table'], 'name', true).'';
@@ -142,7 +162,7 @@ class SSGUI {
 						break;
 					case 'select':
 						$field = &$form->addSelectField($name);
-						$field->setLabel(ss_utils::i18l('label_'.$name));
+						$field->setLabel($label);
 						$select = &$field->getSelect();
 						foreach($f['input_settings']['values'] as $val){
 							$select->addOption($val,$val);

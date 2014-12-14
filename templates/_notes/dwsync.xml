@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="order.detail.tmpl.php" server="p2.ibog.biz" local="130630499783943137" remote="130630499400000000" Dst="1" />
-<file name="search.form.tmpl.php" server="p2.ibog.biz" local="130623725371218051" remote="130629659400000000" Dst="1" />
-<file name="customer.logout.form.tmpl.php" server="p2.ibog.biz" local="130625500741182470" remote="130629659400000000" Dst="1" />
-<file name="article.detail.tmpl.php" server="p2.ibog.biz" local="130630442529512368" remote="130630442400000000" Dst="1" />
-<file name="article.list.tmpl.php" server="p2.ibog.biz" local="130630445351998746" remote="130630444800000000" Dst="1" />
-<file name="cart.complete.tmpl.php" server="p2.ibog.biz" local="130627799519307575" remote="130629659400000000" Dst="1" />
-<file name="message.tmpl.php" server="p2.ibog.biz" local="130630437370450817" remote="130630437000000000" Dst="1" />
-<file name="checkout.step.navi.tmpl.php" server="p2.ibog.biz" local="130629652088953215" remote="130629659400000000" Dst="1" />
-<file name="form.field.text.tmpl.php" server="p2.ibog.biz" local="130628825106527252" remote="130629659400000000" Dst="1" />
-<file name="form.field.select.tmpl.php" server="p2.ibog.biz" local="130628825353172652" remote="130629659400000000" Dst="1" />
-<file name="form.field.password.tmpl.php" server="p2.ibog.biz" local="130628885950978733" remote="130629659400000000" Dst="1" />
-<file name="form.tmpl.php" server="p2.ibog.biz" local="130629648748011367" remote="130629659400000000" Dst="1" />
-<file name="checkout.step.login.tmpl.php" server="p2.ibog.biz" local="130630457772381394" remote="130630457400000000" Dst="1" />
-<file name="checkout.step.address.tmpl.php" server="p2.ibog.biz" local="130630457048684850" remote="130630456800000000" Dst="1" />
-<file name="checkout.step.order.onbill.tmpl.php" server="p2.ibog.biz" local="130630457501516431" remote="130630457400000000" Dst="1" />
-<file name="checkout.step.order.paypal.tmpl.php" server="p2.ibog.biz" local="130630457560025343" remote="130630457400000000" Dst="1" />
-<file name="checkout.step.order.tmpl.php" server="p2.ibog.biz" local="130630457345529331" remote="130630456800000000" Dst="1" />
-<file name="checkout.step.selectpayment.tmpl.php" server="p2.ibog.biz" local="130630457723532303" remote="130630457400000000" Dst="1" />
+<file name="order.detail.tmpl.php" server="p2.ibog.biz" local="130630499783943137" remote="130630692600000000" Dst="1" />
+<file name="search.form.tmpl.php" server="p2.ibog.biz" local="130623725371218051" remote="130630692600000000" Dst="1" />
+<file name="customer.logout.form.tmpl.php" server="p2.ibog.biz" local="130625500741182470" remote="130630692600000000" Dst="1" />
+<file name="article.detail.tmpl.php" server="p2.ibog.biz" local="130630442529512368" remote="130630692600000000" Dst="1" />
+<file name="article.list.tmpl.php" server="p2.ibog.biz" local="130630445351998746" remote="130630692600000000" Dst="1" />
+<file name="cart.complete.tmpl.php" server="p2.ibog.biz" local="130630705727380521" remote="130630705200000000" Dst="1" />
+<file name="message.tmpl.php" server="p2.ibog.biz" local="130630437370450817" remote="130630692600000000" Dst="1" />
+<file name="checkout.step.navi.tmpl.php" server="p2.ibog.biz" local="130629652088953215" remote="130630692600000000" Dst="1" />
+<file name="form.field.text.tmpl.php" server="p2.ibog.biz" local="130628825106527252" remote="130630692600000000" Dst="1" />
+<file name="form.field.select.tmpl.php" server="p2.ibog.biz" local="130628825353172652" remote="130630692600000000" Dst="1" />
+<file name="form.field.password.tmpl.php" server="p2.ibog.biz" local="130628885950978733" remote="130630692600000000" Dst="1" />
+<file name="form.tmpl.php" server="p2.ibog.biz" local="130629648748011367" remote="130630692600000000" Dst="1" />
+<file name="checkout.step.login.tmpl.php" server="p2.ibog.biz" local="130630457772381394" remote="130630692600000000" Dst="1" />
+<file name="checkout.step.address.tmpl.php" server="p2.ibog.biz" local="130630457048684850" remote="130630692600000000" Dst="1" />
+<file name="checkout.step.order.onbill.tmpl.php" server="p2.ibog.biz" local="130630457501516431" remote="130630692600000000" Dst="1" />
+<file name="checkout.step.order.paypal.tmpl.php" server="p2.ibog.biz" local="130630457560025343" remote="130630692600000000" Dst="1" />
+<file name="checkout.step.order.tmpl.php" server="p2.ibog.biz" local="130630457345529331" remote="130630692600000000" Dst="1" />
+<file name="checkout.step.selectpayment.tmpl.php" server="p2.ibog.biz" local="130630457723532303" remote="130630692600000000" Dst="1" />
 </dwsync>

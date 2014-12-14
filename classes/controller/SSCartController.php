@@ -408,6 +408,7 @@ class SSCartController extends SSController{
 	 *  @return bool
 	 */
 	public function displayView(){		
+		global $REX;
 		// Artikel IDs aus Warenkorb
 		$ids = $this->getCartItemIds();
 		
@@ -458,11 +459,11 @@ class SSCartController extends SSController{
 			$tmpArt['subtotal'] = $this->article->formatPrice($tmpArt['subtotal']);
 			
 			$tmpArt['imgs'] = explode(',', $tmpArt['images']);
-			$tmpArt['url'] = rex_getUrl($this->getItemPageIdById($tmpArt['id']), $REX['CLANG_ID']);
+			$tmpArt['url'] = rex_getUrl($this->getItemPageIdById($tmpArt['id']), $REX['CUR_CLANG']);
 			
 			$pageId = $this->getItemPageIdById($tmpArt['id']);
 			$urlQueryArray = array(SSArticleController::VAR_NAME_ARTILEID=>$tmpArt['id']);
-			$tmpArt['url'] = rex_getUrl($pageId, $REX['CLANG_ID'], $urlQueryArray);
+			$tmpArt['url'] = rex_getUrl($pageId, $REX['CUR_CLANG'], $urlQueryArray);
 			
 			$tmpArticles[$tmpArt['id']] = $tmpArt;
 		}
@@ -475,7 +476,7 @@ class SSCartController extends SSController{
 			$params['articles'][] = $tmpArticles[$id];
 		}
 			
-		$params['url_checkout'] = rex_getUrl($this->checkoutPageId, $REX['CLANG_ID'], array('ss-cart'=>'checkout'));
+		$params['url_checkout'] = rex_getUrl($this->checkoutPageId, $REX['CUR_CLANG'], array('ss-cart'=>'checkout'));
 		$params['label_checkout'] = SSHelper::i18n('label_checkout');
 		
 		$this->cartView->displayCartHtml($params);

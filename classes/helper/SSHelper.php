@@ -43,15 +43,20 @@ class SSHelper{
 		// erfassen, falls nicht bereits eingetragen.
 		SSHelper::seti18l($str, $str);
 		
-		//if(class_exists('rex_string_table')){
-		if(false){
+		if(class_exists('rex_string_table')){
+		//if(false){
 			$key = 'SQUARE_SHOP_'.$str;
 			if(!rex_string_table::keyExists($key)){
 				$key = 'SQUARE_SHOP_'.$key;
 				$query = 'INSERT INTO rex_string_table SET keyname="'.$key.'" , value_0="'.$str.'"';
 				SSDBSQL::executeSqlQuery($query, false);
 			}
-			return rex_string_table::getString($key, $fillEmpty = true);
+			
+			$retval = rex_string_table::getString($key, $fillEmpty = false);
+			if(empty($retval)){
+				$retval = str_replace('label_', '', $str);
+			}
+			return $retval;
 		}else{
 			$searchpath = $REX['INCLUDE_PATH'] . '/addons/square_shop/lang/';
 			$i18n = new i18n($locale = 'fe_de_de_utf8', $searchpath);
@@ -79,7 +84,7 @@ class SSHelper{
 	 *  importieren, damit Übersetzung in andere
 	 *  Sprachen möglich ist.
 	 */
-	public static function importTranslationsInStringTable(){
+	public static function importTranslationsToStringTable(){
 		global $REX;
 		if(class_exists('rex_string_table')){
 			$searchpath = $REX['INCLUDE_PATH'] . '/addons/square_shop/lang/';
@@ -98,6 +103,24 @@ class SSHelper{
 					
 				}
 			}
+		}
+		
+	}
+	
+	/** @brief Remove all Texts from String Table
+	 *
+	 *  Alle Texte von der String-Table Addon Tabelle
+	 *  entfernen.
+	 */
+	public static function deleteTranslationsFromStringTable(){
+		global $REX;
+		if(class_exists('rex_string_table')){
+			$query = 'DELETE FROM rex_string_table 
+				WHERE keyname LIKE "SQUARE_SHOP_%"';
+				
+				
+			$res = SSDBSQL::executeSqlQuery($query, false);
+			return $res;
 		}
 		
 	}

@@ -43,7 +43,7 @@ class SSDBSchema {
 	* TODO: Indexes für Datenbankfelder erstellen (Performance-Steigerung bei der Suche)
 	*/
 	//public static function _getFields($table, $attributes=null, $filter=null){
-	public static function _getFields($table, array $attributes=null, $filter=null){
+	public static function _getFields($table, array $attributes=null, $filter=null, $clangfields='replace'){
 		if($table == 'article' or $table == 'square_shop_article'){
 			$_fields = array(
 				array(
@@ -179,7 +179,7 @@ class SSDBSchema {
 					, 'sql' => 'VARCHAR(20) NULL'
 					, 'sql_constraint_vals' => array('m','w')
 					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add', 'register', 'address')
-					, 'multilang' => true
+					//, 'multilang' => true
 				)
 				, array(
 					'name' => 'company'
@@ -645,13 +645,13 @@ class SSDBSchema {
 					'name' => 'title'
 					, 'sql' => 'VARCHAR(60) NULL'
 					, 'show_in' => array('detail', 'list', 'search', 'edit', 'add')
-					, 'multilang' => true
+					//, 'multilang' => true
 				)
 				, array(
 					'name' => 'description'
 					, 'sql' => 'TEXT NULL'
 					, 'show_in' => array('search', 'edit', 'add')
-					, 'multilang' => true
+					//, 'multilang' => true
 				)
 				, array(
 					'name' => 'price'
@@ -699,11 +699,28 @@ class SSDBSchema {
 				)
 			);
 		}
+		
 		$fields = $_fields;
+		
+		/* --------------------------------------------------------------
+		// Multilanguage Felder ersetzen nach aktuelle sprache
+		// oder
+		// hinzufügen (alle Sprachen)
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+		if($clangfields=='replace'){
+			$fields = self::_replaceMultilanguageFieldsToCurClang(
+				array_merge(array('fields'=>$fields), array($filter))
+			);
+		}elseif($clangfields=='add'){
+			$fields = self::_addMultilanguageFields(
+				array_merge(array('fields'=>$fields), array($filter))
+			);
+		}
+		/* ------------------------------------------------------------ */
+			
 		if (!is_array($fields)) {
 			throw new SSException('No Fields for this Table defined', self::ERROR_FIELDS_NOT_FOUND);
 		}
-		
 		if(is_array($fields)){
 			if(is_array($filter)){
 				$fields_new = $fields;
@@ -737,6 +754,100 @@ class SSDBSchema {
 			}
 		}
 		return $fields;
+	}
+	
+	/**
+	* 
+	*/
+	public static function _replaceMultilanguageFieldsToCurClang($params){
+		global $REX;
+		$fields = $params['fields'];
+		$filter = array();
+		if(isset($params['show_in'])){
+			$filter = array('show_in'=>$params['fields']);
+		}
+		
+		for($x=0; $x<sizeof($fields); $x++){
+			if(isset($fields[$x]['multilang'])){
+				$fields[$x]['name_sql'] = $fields[$x]['name'].(int)$REX['CUR_CLANG'];
+			}else{
+				$fields[$x]['name_sql'] = $fields[$x]['name'];
+			}
+			if(isset($fields[$x]['sql_join'])){
+				$sql_join_fields = SSDBSchema::_getFields($fields[$x]['sql_join']['table'], null, $filter);
+				$_table_join_full = SSDBSchema::_getTableAttr($fields[$x]['sql_join']['table'], 'name', true);
+				for($y=0; $y<sizeof($fields[$x]['sql_join']['field_labels']); $y++){
+					if(isset($sql_join_fields[$y]['multilang'])){
+						if($sql_join_fields[$y]['name'] == $fields[$x]['sql_join']['field_label']){
+							$fields[$x]['sql_join']['field_label'] = $sql_join_fields[$y]['name'].(int)$REX['CUR_CLANG'];
+						}
+						if(($key = array_search($sql_join_fields[$y]['name'], $fields[$x]['sql_join']['field_labels'])) !== false) {
+							$fields[$x]['sql_join']['field_labels'][$key] = $sql_join_fields[$y]['name'].(int)$REX['CUR_CLANG'];
+						}
+					}
+				}
+			}
+		}
+		return $fields;
+	}
+	
+	/**
+	* 
+	*/
+	public static function _addMultilanguageFields($params){
+		global $REX;
+		$fields = $params['fields'];
+		$filter = array();
+		if(isset($params['show_in'])){
+			$filter = array('show_in'=>$params['fields']);
+		}
+		
+		$fieldsNew = array();
+		
+		$sizeof = sizeof($fields);
+		for($x=0; $x<$sizeof; $x++){
+			
+			if(isset($fields[$x]['sql_join'])){
+				$sql_join_fields = SSDBSchema::_getFields($fields[$x]['sql_join']['table'], null, $filter);
+				$_table_join_full = SSDBSchema::_getTableAttr($fields[$x]['sql_join']['table'], 'name', true);
+				for($y=0; $y<sizeof($fields[$x]['sql_join']['field_labels']); $y++){
+					if(isset($sql_join_fields[$y]['multilang'])){
+						if($sql_join_fields[$y]['name'] == $fields[$x]['sql_join']['field_label']){
+							$fields[$x]['sql_join']['field_label'] = $sql_join_fields[$y]['name'].(int)$REX['CUR_CLANG'];
+						}
+						if(($key = array_search($sql_join_fields[$y]['name'], $fields[$x]['sql_join']['field_labels'])) !== false) {
+							$fields[$x]['sql_join']['field_labels'][$key] = $sql_join_fields[$y]['name'].(int)$REX['CUR_CLANG'];
+						}
+					}
+				}
+			}
+			
+			if(isset($fields[$x]['multilang'])){
+				$fields[$x]['name_sql'] = $fields[$x]['name'].(int)$REX['CUR_CLANG'];
+				$fieldsNew[] = $fields[$x];
+				reset($REX['CLANG']);
+				while(current($REX['CLANG'])){
+					if(key($REX['CLANG'])>0){
+						$ftmp = $fields[$x];
+						$ftmp['name_sql'] = $ftmp['name'].(int)key($REX['CLANG']);
+						$fieldsNew[] = $ftmp;
+					}
+					next($REX['CLANG']);
+				}
+			}else{
+				$fields[$x]['name_sql'] = $fields[$x]['name'];
+				$fieldsNew[] = $fields[$x];
+			}
+		}
+		
+		return $fieldsNew;
+	}
+	
+	/**
+	* z.b. title0 holen von title
+	*/
+	public static function _getSQLNameFieldByName($table, $key){
+		
 	}
 	
 	/**

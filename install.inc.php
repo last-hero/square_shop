@@ -10,9 +10,12 @@ foreach($classes as $class){
 
 $error = '';
 try{
+	// Tabellen erstellen
 	SSDBSQL::executeSql(SSDBSQL::_getSqlCreateTables(), false);
 	
-	SSHelper::importTranslationsInStringTable();
+	// Falls StringTable vorhanden
+	// Sprachelemente zu StringTable importieren
+	SSHelper::importTranslationsToStringTable();
 }catch(SSException $e) {
 	$error = $e;
 }

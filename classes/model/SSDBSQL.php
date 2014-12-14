@@ -42,6 +42,19 @@ class SSDBSQL {
 		}catch(SSException $e) {
 			echo $e;
 		}
+		
+		/* --------------------------------------------------------------
+		// Multilanguage Felder ersetzen nach aktuelle sprache
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+		/*
+		$fields = SSDBSchema::_replaceMultilanguageFieldsToCurClang(
+			array(
+				'fields'=>$fields
+				, 'show_in'=>$type_show_in
+			)
+		);
+		*/
+		/* ------------------------------------------------------------ */
 
 		if(is_array($fields) and !empty($_table_fullname)){
 			$_fields_string = '';
@@ -64,7 +77,12 @@ class SSDBSQL {
 					$_fields_join_string .= ' LEFT JOIN '.$_table_join_full
 												.' ON '.$_field_join_full.' = '.$_table_fullname.'.'.$fk['name'].' ';
 				}else{
-					$_fields_string .= $_table_fullname.'.'.$fk['name'].', ';
+					//$_fields_string .= $_table_fullname.'.'.$fk['name'].' as '.$_table_fullname.'.'.$fk['name'].', ';
+					if(isset($fk['name_sql'])){
+						$_fields_string .= $_table_fullname.'.'.$fk['name_sql'].' as '.$fk['name'].', ';
+					}else{
+						$_fields_string .= $_table_fullname.'.'.$fk['name'].' as '.$fk['name'].', ';
+					}
 				}
 			}
 			$_fields_string = substr($_fields_string, 0, -2);
@@ -103,6 +121,20 @@ class SSDBSQL {
 		}catch(SSException $e) {
 			echo $e;
 		}
+		
+		
+		/* --------------------------------------------------------------
+		// Multilanguage Felder ersetzen nach aktuelle sprache
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+		/*
+			$fields = SSDBSchema::_getFieldsAsSingleArray($table);
+		$fields = SSDBSchema::_addMultilanguageFields(
+			array(
+				'fields'=>$fields
+			)
+		);
+		*/
+		/* ------------------------------------------------------------ */
 		
 		$attrAndValues['createdate'] = time();
 		$attrAndValues['updatedate'] = time();
@@ -191,6 +223,7 @@ class SSDBSQL {
 	 *  @return (string) $query: SQL Create Query
 	 */
 	public static function _getSqlCreateTables(){
+		global $REX;
 		//$fields = SSDBSchema::_getFields(null, null, array('show_in'=>$type_show_in));
 		$tables = SSDBSchema::_getTables();
 		$structure = array();
@@ -215,7 +248,15 @@ class SSDBSQL {
 				$q .= 'CREATE TABLE IF NOT EXISTS '.SSDBSchema::_getTableAttr($tk, 'name', true).'(';
 				$q_l = '';
 				foreach($tv as $field){
-					$q .= $field['name'].' '.$field['sql'].', ';
+					if(isset($field['multilang'])){
+						reset($REX['CLANG']);
+						while(current($REX['CLANG'])){
+							$q .= $field['name'].key($REX['CLANG']).' '.$field['sql'].', ';
+							next($REX['CLANG']);
+						}
+					}else{
+						$q .= $field['name'].' '.$field['sql'].', ';
+					}
 					
 					if(isset($field['type']) and $field['type'] == SSDBSchema::PRIMARY_KEY){
 						$q_l .= 'PRIMARY KEY ('.$field['name'].'), ';

@@ -84,7 +84,12 @@
                 </th>
             	<th colspan="4" class="ss-total" align="right"><?=$label_total?> <?=$currency?> <?=$total?></th>
             <? if(!isset($simpleView)): ?>
-            	<th align="right"><a href="<?=$url_checkout?>"><?=$label_checkout?></a></th>
+            	<th align="right">
+                    <form action="<?=$url_checkout?>" method="post" class="ss-form">
+                        <input id="ss-submit" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-submit" value="<?=$label_checkout?>" />
+                    </form>
+                	<!--<a href="<?=$url_checkout?>"><?=$label_checkout?></a>-->
+                </th>
             <? endif; ?>
             </tr>
         </table>

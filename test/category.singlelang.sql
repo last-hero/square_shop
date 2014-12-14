@@ -1,4 +1,4 @@
-INSERT INTO `rex_square_shop_category` (`title0`) VALUES ("Human Resources")
+INSERT INTO `rex_square_shop_category` (`title`) VALUES ("Human Resources")
 ,("Accounting")
 ,("Advertising")
 ,("Asset Management")

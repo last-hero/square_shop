@@ -151,6 +151,7 @@ class SSArticleController extends SSController {
 	 *  Detailansicht vom Artikel.
 	 */
 	public function displayDetailView(){
+		global $REX;
 		$currency = SSHelper::getSetting('currency');
 		$mwst = SSHelper::getSetting('mwst');
 		
@@ -165,7 +166,7 @@ class SSArticleController extends SSController {
 		$params['title'] = $this->article->get('title');
 		$params['description'] = $this->article->get('description');
 		$params['price'] = $this->article->formatPrice($this->article->get('price'));
-		$params['url'] = rex_getUrl($REX['ARTICLE_ID'], $REX['CLANG_ID']);
+		$params['url'] = rex_getUrl($REX['ARTICLE_ID'], $REX['CUR_CLANG']);
 		$params['imgs'] = explode(',', $this->article->get('images'));
 		$params['label_submit'] = SSHelper::i18n('label_addtocart');
 		$params['label_qty'] = SSHelper::i18n('label_qty');
@@ -177,6 +178,7 @@ class SSArticleController extends SSController {
 	 *  Listenansicht von Artikeln, gefiltert nach Kategorie
 	 */
 	public function displayListView(){
+		global $REX;
 		$currency = SSHelper::getSetting('currency');
 		$mwst = SSHelper::getSetting('mwst');
 		
@@ -193,7 +195,7 @@ class SSArticleController extends SSController {
 				, 'id' => $article->get('id')
 				, 'no' => $article->get('no')
 				, 'price' => $article->formatPrice($article->get('price'))
-				, 'url' => rex_getUrl($REX['ARTICLE_ID'], $REX['CLANG_ID'], array(self::VAR_NAME_ARTILEID=>$article->get('id')))
+				, 'url' => rex_getUrl($REX['ARTICLE_ID'], $REX['CUR_CLANG'], array(self::VAR_NAME_ARTILEID=>$article->get('id')))
 				, 'imgs' => explode(',', $article->get('images'))
 			);
 		}
