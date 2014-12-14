@@ -167,7 +167,10 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
      	<div class="rex-addon-content">
             <p><strong>Datenbank</strong></p>
             <ul>
-                <li><a href="<?=$baseurl?>&func=admin&action=db-delete">Tabellen löschen</a></li>
+                <li>
+                	<a href="<?=$baseurl?>&func=admin&action=db-delete">Tabellen löschen</a>
+                	<span class="lower">Mehrmals ausführen um wirklich alle Daten zu entfernen</span>
+                </li>
                 <li><a href="<?=$baseurl?>&func=admin&action=db-create">Tabellen erstellen</a></li>
                 <li><a href="<?=$baseurl?>&func=admin&action=db-import">Beispiel Daten importieren</a></li>
             </ul>
@@ -176,15 +179,24 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
      	<div class="rex-addon-content">
             <p><strong>StringTable - Sprachelemente</strong></p>
             <ul>
-                <li><a href="<?=$baseurl?>&func=admin&action=i18n-delete">löschen</a> Alle Übersetzung aus der Tabelle löschen.</li>
-                <li><a href="<?=$baseurl?>&func=admin&action=i18n-import">importieren</a> Bereits erfasste Übersetzung werden nicht aktualisiert.</li>
+                <li>
+                	<a href="<?=$baseurl?>&func=admin&action=i18n-delete">löschen</a> 
+                	<span class="lower">Alle Übersetzung aus der Tabelle löschen.</span>
+                </li>
+                <li>
+                	<a href="<?=$baseurl?>&func=admin&action=i18n-import">importieren</a>
+                	<span class="lower">Bereits erfasste Übersetzung werden nicht aktualisiert.</span>
+                </li>
             </ul>
         </div>
 		
      	<div class="rex-addon-content">
             <p><strong>Multilanguage Felder</strong></p>
             <ul>
-                <li><a href="<?=$baseurl?>&func=admin&action=i18n-db-field-update">aktualisieren</a> Felder werden entweder hinzugefügt (falls neue Sprache) oder gelöscht (falls Sprache nicht mehr vorhanden)</li>
+                <li>
+                	<a href="<?=$baseurl?>&func=admin&action=i18n-db-field-update">aktualisieren</a>
+                	<span class="lower">Felder werden entweder hinzugefügt (falls neue Sprache) oder gelöscht (falls Sprache nicht mehr vorhanden)</span>
+                </li>
             </ul>
         </div>
 	</div>

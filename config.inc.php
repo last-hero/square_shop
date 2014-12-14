@@ -4,7 +4,7 @@
 $mypage = 'square_shop';
 $REX['ADDON']['name'][$mypage] = 'Online Shop';
 $REX['ADDON']['page'][$mypage] = $mypage;
-$REX['ADDON']['version'][$mypage] = '0.5.0';
+$REX['ADDON']['version'][$mypage] = '0.9.0';
 $REX['ADDON']['author'][$mypage] = 'Gobi Selva';
 $REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.org';
 $REX['ADDON']['perm'][$mypage] = 'square_shop[]';

@@ -11,6 +11,7 @@ square_shop_start_title = Online Shop für Redaxo
 square_shop_extlink_to_addon = zum Addon - redaxo.org
 
 square_shop_help_chapter_readme = Readme
+square_shop_help_chapter_quickstart = Quickstart
 square_shop_help_chapter_changelog = Changelog
 square_shop_help_chapter_license = Lizenz
 

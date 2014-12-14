@@ -100,6 +100,8 @@ class SSGUI {
 	* param $id: ID, der zu editierenden Eintrag
 	*/
 	public static function displayFormAddEdit($table, $id=null){
+		global $REX;
+		
 		$mode_type = 'add';
 		$whereCondition='1=10';
 		if(!empty($id)){
@@ -114,30 +116,15 @@ class SSGUI {
 			echo $e;
 		}
 		
-		
-		/* --------------------------------------------------------------
-		// Alle Multilanguage Felder hinzufügen
-		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-		/*
-		$fields = SSDBSchema::_replaceMultilanguageFieldsToCurClang(
-			array(
-				'fields'=>$fields
-				, 'show_in'=>$mode_type
-			)
-		);
-		$fields = SSDBSchema::_addMultilanguageFields(
-			array(
-				'fields'=>$fields
-				, 'show_in'=>$mode_type
-			)
-		);
-		*/
-		/* ------------------------------------------------------------ */
-		
 		foreach($fields as $f){
 			$name = $f['name'];
 			$label = ss_utils::i18l('label_'.$f['name']);
 			$name = $f['name_sql'];
+			
+			if($f['name'] != $f['name_sql']){
+				$clangid = trim(str_replace($f['name'], '', $f['name_sql']));
+				$label .= ' <span class="lower">'.$REX['CLANG'][$clangid].'</span>';
+			}
 			if(isset($f['input'])){
 				switch ($f['input']){
 					case 'text':

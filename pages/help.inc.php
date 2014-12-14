@@ -13,6 +13,7 @@ if (!class_exists('Parsedown')) {
 // chapters
 $chapterpages = array (
 	'' => array($I18N->msg('square_shop_help_chapter_readme'), 'pages/help/readme.inc.php'),
+	'quickstart' => array($I18N->msg('square_shop_help_chapter_quickstart'), 'pages/help/quickstart.inc.php'),
 	'changelog' => array($I18N->msg('square_shop_help_chapter_changelog'), 'pages/help/changelog.inc.php'),
 );
 

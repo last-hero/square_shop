@@ -209,8 +209,8 @@ class SSPayPalController extends SSController{
 	
 	/** @brief IPN
 	 *
-	 *  Die Funktion wurde von PayPal auf dem GitHub-Portal
-	 *  zu Ver
+	 *  Diese Funktion wurde auf dem GitHub-Portal
+	 *  zur Verwendung angeboten.
 	 *
 	 *  @author PayPal
 	 *  @author http://developer.paypal.com/
