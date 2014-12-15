@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['remove',['remove',['../class_s_s_session.html#a95483af4e2c07dc9893fe058b026bd5d',1,'SSSession']]],
-  ['rex_5fsquare_5fshop_5futils',['rex_square_shop_utils',['../classrex__square__shop__utils.html',1,'']]]
+  ['online_20shop_20addon_20für_20redaxo_204',['Online Shop AddOn für REDAXO 4',['../md__b_1_p2_redaxo_include_addons_square_shop__r_e_a_d_m_e.html',1,'']]]
 ];

@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,14 +87,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Data Fields</a>  </div>
+<a href="#pub-attribs">Data Fields</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">SSCheckoutController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for SSCheckoutController:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_s_s_checkout_controller.png" usemap="#SSCheckoutController_map" alt=""/>
+  <map id="SSCheckoutController_map" name="SSCheckoutController_map">
+<area href="class_s_s_controller.html" alt="SSController" shape="rect" coords="0,0,137,24"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a4be4055f3361d4800e16bc2e2e38cda6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4be4055f3361d4800e16bc2e2e38cda6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
+<tr class="separator:a4be4055f3361d4800e16bc2e2e38cda6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a969cad912937b1e2e6e66b49d8148738"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a969cad912937b1e2e6e66b49d8148738"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>invoke</b> ()</td></tr>
 <tr class="separator:a969cad912937b1e2e6e66b49d8148738"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,38 +117,959 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a08bb719581ceca96a42391db628da407"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08bb719581ceca96a42391db628da407"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>checkoutViewHandler</b> ()</td></tr>
 <tr class="separator:a08bb719581ceca96a42391db628da407"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca04b3e313abfb913efaacdfb7d5d3d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca04b3e313abfb913efaacdfb7d5d3d7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>displayView</b> ()</td></tr>
-<tr class="separator:aca04b3e313abfb913efaacdfb7d5d3d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31ad0eb1121f9a8fbea095b00a5a35b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31ad0eb1121f9a8fbea095b00a5a35b3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>displayViewByStep</b> ()</td></tr>
-<tr class="separator:a31ad0eb1121f9a8fbea095b00a5a35b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c40f27bdcc44f4faf3fc044ee577af2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a1c40f27bdcc44f4faf3fc044ee577af2">clearAll</a> ()</td></tr>
+<tr class="memdesc:a1c40f27bdcc44f4faf3fc044ee577af2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Daten vom Session löschen.  <a href="#a1c40f27bdcc44f4faf3fc044ee577af2">More...</a><br /></td></tr>
+<tr class="separator:a1c40f27bdcc44f4faf3fc044ee577af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a909453f0da5be16943bbdff91815a8d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a909453f0da5be16943bbdff91815a8d4"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>displayStepView</b> ()</td></tr>
 <tr class="separator:a909453f0da5be16943bbdff91815a8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c8636f42815148bba6f7eef37635cc0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a4c8636f42815148bba6f7eef37635cc0">isConfirmStepOK</a> ()</td></tr>
+<tr class="memdesc:a4c8636f42815148bba6f7eef37635cc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Title.  <a href="#a4c8636f42815148bba6f7eef37635cc0">More...</a><br /></td></tr>
+<tr class="separator:a4c8636f42815148bba6f7eef37635cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61b3d6a03080a47fef79a8a598d34dc9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a61b3d6a03080a47fef79a8a598d34dc9">displayConfirmStep</a> ()</td></tr>
+<tr class="memdesc:a61b3d6a03080a47fef79a8a598d34dc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Title.  <a href="#a61b3d6a03080a47fef79a8a598d34dc9">More...</a><br /></td></tr>
+<tr class="separator:a61b3d6a03080a47fef79a8a598d34dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69f33e7dae8e00a17fd226d9000bd437"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a69f33e7dae8e00a17fd226d9000bd437">handleConfirmStep</a> ()</td></tr>
+<tr class="memdesc:a69f33e7dae8e00a17fd226d9000bd437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Title.  <a href="#a69f33e7dae8e00a17fd226d9000bd437">More...</a><br /></td></tr>
+<tr class="separator:a69f33e7dae8e00a17fd226d9000bd437"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0058e34b8851d9c94b4342ec66037e0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#ad0058e34b8851d9c94b4342ec66037e0">isExecutePaymentStepOK</a> ()</td></tr>
+<tr class="memdesc:ad0058e34b8851d9c94b4342ec66037e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Title.  <a href="#ad0058e34b8851d9c94b4342ec66037e0">More...</a><br /></td></tr>
+<tr class="separator:ad0058e34b8851d9c94b4342ec66037e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0208a11d2aeed211436c89966b4492a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a0208a11d2aeed211436c89966b4492a9">displayExecutePaymentStep</a> ()</td></tr>
+<tr class="memdesc:a0208a11d2aeed211436c89966b4492a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Title.  <a href="#a0208a11d2aeed211436c89966b4492a9">More...</a><br /></td></tr>
+<tr class="separator:a0208a11d2aeed211436c89966b4492a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3439ed9802094815d0aab2147f0d342"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#ac3439ed9802094815d0aab2147f0d342">handleExecutePaymentStep</a> ()</td></tr>
+<tr class="memdesc:ac3439ed9802094815d0aab2147f0d342"><td class="mdescLeft">&#160;</td><td class="mdescRight">Title.  <a href="#ac3439ed9802094815d0aab2147f0d342">More...</a><br /></td></tr>
+<tr class="separator:ac3439ed9802094815d0aab2147f0d342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9b70ba4d42d74ca7e1f584cf8e3317d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#ad9b70ba4d42d74ca7e1f584cf8e3317d">handlePaymentPerAPI</a> ()</td></tr>
+<tr class="memdesc:ad9b70ba4d42d74ca7e1f584cf8e3317d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Title.  <a href="#ad9b70ba4d42d74ca7e1f584cf8e3317d">More...</a><br /></td></tr>
+<tr class="separator:ad9b70ba4d42d74ca7e1f584cf8e3317d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade18ab030f180172c6bca159451504f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#ade18ab030f180172c6bca159451504f5">isOrderStepOK</a> ()</td></tr>
+<tr class="memdesc:ade18ab030f180172c6bca159451504f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prüfen ob Zahlungsart ausgewählt.  <a href="#ade18ab030f180172c6bca159451504f5">More...</a><br /></td></tr>
+<tr class="separator:ade18ab030f180172c6bca159451504f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc5b0223fd3ea123dc3610cc14e0164c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#abc5b0223fd3ea123dc3610cc14e0164c">displayOrderStep</a> ()</td></tr>
+<tr class="memdesc:abc5b0223fd3ea123dc3610cc14e0164c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Title.  <a href="#abc5b0223fd3ea123dc3610cc14e0164c">More...</a><br /></td></tr>
+<tr class="separator:abc5b0223fd3ea123dc3610cc14e0164c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38bfceeb3f3a592e55274101716a80f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a38bfceeb3f3a592e55274101716a80f9">handleOrderStep</a> ()</td></tr>
+<tr class="memdesc:a38bfceeb3f3a592e55274101716a80f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Title.  <a href="#a38bfceeb3f3a592e55274101716a80f9">More...</a><br /></td></tr>
+<tr class="separator:a38bfceeb3f3a592e55274101716a80f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58ac28b711d74ae80426f63ddcb5dea2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a58ac28b711d74ae80426f63ddcb5dea2">saveOrderToDb</a> ()</td></tr>
+<tr class="memdesc:a58ac28b711d74ae80426f63ddcb5dea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bestellung speichern.  <a href="#a58ac28b711d74ae80426f63ddcb5dea2">More...</a><br /></td></tr>
+<tr class="separator:a58ac28b711d74ae80426f63ddcb5dea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af02a2c3503410019e2130c0c26c7165c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#af02a2c3503410019e2130c0c26c7165c">isSelectPaymentStepOK</a> ()</td></tr>
+<tr class="memdesc:af02a2c3503410019e2130c0c26c7165c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prüfen ob Zahlungsart ausgewählt.  <a href="#af02a2c3503410019e2130c0c26c7165c">More...</a><br /></td></tr>
+<tr class="separator:af02a2c3503410019e2130c0c26c7165c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5018f66ae6003acfcb508e9008b88e7d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a5018f66ae6003acfcb508e9008b88e7d">displaySelectPaymentStep</a> ()</td></tr>
+<tr class="memdesc:a5018f66ae6003acfcb508e9008b88e7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zahlungsarten-Liste.  <a href="#a5018f66ae6003acfcb508e9008b88e7d">More...</a><br /></td></tr>
+<tr class="separator:a5018f66ae6003acfcb508e9008b88e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c2d264ad6a4b249d6c8e01e33a61b7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#ac3c2d264ad6a4b249d6c8e01e33a61b7">handleSelectPaymentStep</a> ()</td></tr>
+<tr class="memdesc:ac3c2d264ad6a4b249d6c8e01e33a61b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zahlungsart verwalten.  <a href="#ac3c2d264ad6a4b249d6c8e01e33a61b7">More...</a><br /></td></tr>
+<tr class="separator:ac3c2d264ad6a4b249d6c8e01e33a61b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9df854ae91d98455f35fca3ebcfffe4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a9df854ae91d98455f35fca3ebcfffe4f">isAddressStepOK</a> ($action)</td></tr>
+<tr class="memdesc:a9df854ae91d98455f35fca3ebcfffe4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prüfen ob Schritt ok.  <a href="#a9df854ae91d98455f35fca3ebcfffe4f">More...</a><br /></td></tr>
+<tr class="separator:a9df854ae91d98455f35fca3ebcfffe4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af999e424d297f29eb22b72f385545ded"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#af999e424d297f29eb22b72f385545ded">displayAddressStep</a> ($action)</td></tr>
+<tr class="memdesc:af999e424d297f29eb22b72f385545ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adresse View.  <a href="#af999e424d297f29eb22b72f385545ded">More...</a><br /></td></tr>
+<tr class="separator:af999e424d297f29eb22b72f385545ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a591ddd7bd573dd36b23cf23c3d6817e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a591ddd7bd573dd36b23cf23c3d6817e1">handleAddressStep</a> ($action)</td></tr>
+<tr class="memdesc:a591ddd7bd573dd36b23cf23c3d6817e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adresse Login-Handler.  <a href="#a591ddd7bd573dd36b23cf23c3d6817e1">More...</a><br /></td></tr>
+<tr class="separator:a591ddd7bd573dd36b23cf23c3d6817e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4f4a0550f566f68fde164ef8acbd15d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#ad4f4a0550f566f68fde164ef8acbd15d">helperAddressConf</a> ($action)</td></tr>
+<tr class="memdesc:ad4f4a0550f566f68fde164ef8acbd15d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hilfsfunktion Adresse.  <a href="#ad4f4a0550f566f68fde164ef8acbd15d">More...</a><br /></td></tr>
+<tr class="separator:ad4f4a0550f566f68fde164ef8acbd15d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a719a5f66d889fe5dfcae84308302e30c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a719a5f66d889fe5dfcae84308302e30c">isLoginStepOK</a> ()</td></tr>
+<tr class="memdesc:a719a5f66d889fe5dfcae84308302e30c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prüfen ob Login Step ok.  <a href="#a719a5f66d889fe5dfcae84308302e30c">More...</a><br /></td></tr>
+<tr class="separator:a719a5f66d889fe5dfcae84308302e30c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a766a05a247f3bcdb8d5c2678b5472805"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a766a05a247f3bcdb8d5c2678b5472805">displayLoginStep</a> ()</td></tr>
+<tr class="memdesc:a766a05a247f3bcdb8d5c2678b5472805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Login View.  <a href="#a766a05a247f3bcdb8d5c2678b5472805">More...</a><br /></td></tr>
+<tr class="separator:a766a05a247f3bcdb8d5c2678b5472805"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8f1b73364d5f3494ecad30a526d21c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#ac8f1b73364d5f3494ecad30a526d21c1">handleLoginStep</a> ()</td></tr>
+<tr class="memdesc:ac8f1b73364d5f3494ecad30a526d21c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Login Logik.  <a href="#ac8f1b73364d5f3494ecad30a526d21c1">More...</a><br /></td></tr>
+<tr class="separator:ac8f1b73364d5f3494ecad30a526d21c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a683c06407d31b8c052498fc9945ff015"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a683c06407d31b8c052498fc9945ff015">setStep</a> ($step)</td></tr>
+<tr class="memdesc:a683c06407d31b8c052498fc9945ff015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Step setzen.  <a href="#a683c06407d31b8c052498fc9945ff015">More...</a><br /></td></tr>
+<tr class="separator:a683c06407d31b8c052498fc9945ff015"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaff2dcf0158b90a1d4285b46a5ce49e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#aaaff2dcf0158b90a1d4285b46a5ce49e">getStep</a> ()</td></tr>
+<tr class="memdesc:aaaff2dcf0158b90a1d4285b46a5ce49e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aktueller Step.  <a href="#aaaff2dcf0158b90a1d4285b46a5ce49e">More...</a><br /></td></tr>
+<tr class="separator:aaaff2dcf0158b90a1d4285b46a5ce49e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac35a99a93934b3aaea7d3a81d75be1d8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#ac35a99a93934b3aaea7d3a81d75be1d8">nextStep</a> ()</td></tr>
+<tr class="memdesc:ac35a99a93934b3aaea7d3a81d75be1d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Next Step.  <a href="#ac35a99a93934b3aaea7d3a81d75be1d8">More...</a><br /></td></tr>
+<tr class="separator:ac35a99a93934b3aaea7d3a81d75be1d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a398752bbd601d40253d56e29f98a0faf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a398752bbd601d40253d56e29f98a0faf">prevStep</a> ()</td></tr>
+<tr class="memdesc:a398752bbd601d40253d56e29f98a0faf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Previous Step.  <a href="#a398752bbd601d40253d56e29f98a0faf">More...</a><br /></td></tr>
+<tr class="separator:a398752bbd601d40253d56e29f98a0faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0257d7f16672a982456dc6d1646dbad4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a0257d7f16672a982456dc6d1646dbad4">setSession</a> ($key, $value)</td></tr>
+<tr class="memdesc:a0257d7f16672a982456dc6d1646dbad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">store Value in Session  <a href="#a0257d7f16672a982456dc6d1646dbad4">More...</a><br /></td></tr>
+<tr class="separator:a0257d7f16672a982456dc6d1646dbad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5">getSession</a> ($key)</td></tr>
+<tr class="memdesc:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">get Value from Session  <a href="#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5">More...</a><br /></td></tr>
+<tr class="separator:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32393e89136a03096cbead5caf2b1dda"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a32393e89136a03096cbead5caf2b1dda">removeSession</a> ($key)</td></tr>
+<tr class="memdesc:a32393e89136a03096cbead5caf2b1dda"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove Key + Value from Session  <a href="#a32393e89136a03096cbead5caf2b1dda">More...</a><br /></td></tr>
+<tr class="separator:a32393e89136a03096cbead5caf2b1dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_s_s_controller"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_s_s_controller')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_s_s_controller.html">SSController</a></td></tr>
+<tr class="memitem:a095c5d389db211932136b53f25f39685 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
+<tr class="memdesc:a095c5d389db211932136b53f25f39685 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor.  <a href="#a095c5d389db211932136b53f25f39685">More...</a><br /></td></tr>
+<tr class="separator:a095c5d389db211932136b53f25f39685 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9798c65d2a3254277e5b7943c4e289fd inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a9798c65d2a3254277e5b7943c4e289fd">isInputValid</a> ()</td></tr>
+<tr class="memdesc:a9798c65d2a3254277e5b7943c4e289fd inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Benutzereingabe überprüfen.  <a href="#a9798c65d2a3254277e5b7943c4e289fd">More...</a><br /></td></tr>
+<tr class="separator:a9798c65d2a3254277e5b7943c4e289fd inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af95168e2facf1c11beda7d5bc1b31ee5 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#af95168e2facf1c11beda7d5bc1b31ee5">messageHandler</a> ()</td></tr>
+<tr class="memdesc:af95168e2facf1c11beda7d5bc1b31ee5 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Meldungs-Handler.  <a href="#af95168e2facf1c11beda7d5bc1b31ee5">More...</a><br /></td></tr>
+<tr class="separator:af95168e2facf1c11beda7d5bc1b31ee5 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e7eb9acbf62a406a633a6cdedb463a0 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a9e7eb9acbf62a406a633a6cdedb463a0">getFormActionName</a> ()</td></tr>
+<tr class="memdesc:a9e7eb9acbf62a406a633a6cdedb463a0 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Form Action Name holen.  <a href="#a9e7eb9acbf62a406a633a6cdedb463a0">More...</a><br /></td></tr>
+<tr class="separator:a9e7eb9acbf62a406a633a6cdedb463a0 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a471428c2754eeb5c908f61c15b15ef22 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a471428c2754eeb5c908f61c15b15ef22">isFormActionName</a> ($action)</td></tr>
+<tr class="memdesc:a471428c2754eeb5c908f61c15b15ef22 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare Form Action Name  <a href="#a471428c2754eeb5c908f61c15b15ef22">More...</a><br /></td></tr>
+<tr class="separator:a471428c2754eeb5c908f61c15b15ef22 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8197ec4c543771b0c99b9830f6bf3647 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a8197ec4c543771b0c99b9830f6bf3647">isUserRequestUnique</a> ($action)</td></tr>
+<tr class="memdesc:a8197ec4c543771b0c99b9830f6bf3647 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is Benutzereingabe Unique.  <a href="#a8197ec4c543771b0c99b9830f6bf3647">More...</a><br /></td></tr>
+<tr class="separator:a8197ec4c543771b0c99b9830f6bf3647 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69589381f9521974590b912d68793575 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a69589381f9521974590b912d68793575">userRequestIsNotMoreUnique</a> ($action)</td></tr>
+<tr class="memdesc:a69589381f9521974590b912d68793575 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Benutzereingabe nicht mehr Unique.  <a href="#a69589381f9521974590b912d68793575">More...</a><br /></td></tr>
+<tr class="separator:a69589381f9521974590b912d68793575 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0257d7f16672a982456dc6d1646dbad4 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a0257d7f16672a982456dc6d1646dbad4">setSession</a> ($key, $value)</td></tr>
+<tr class="memdesc:a0257d7f16672a982456dc6d1646dbad4 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">store Value in Session  <a href="#a0257d7f16672a982456dc6d1646dbad4">More...</a><br /></td></tr>
+<tr class="separator:a0257d7f16672a982456dc6d1646dbad4 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5">getSession</a> ($key)</td></tr>
+<tr class="memdesc:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">get Value from Session  <a href="#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5">More...</a><br /></td></tr>
+<tr class="separator:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32393e89136a03096cbead5caf2b1dda inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a32393e89136a03096cbead5caf2b1dda">removeSession</a> ($key)</td></tr>
+<tr class="memdesc:a32393e89136a03096cbead5caf2b1dda inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove Key + Value from Session  <a href="#a32393e89136a03096cbead5caf2b1dda">More...</a><br /></td></tr>
+<tr class="separator:a32393e89136a03096cbead5caf2b1dda inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:ae6c48a15e83063eca2c557c8b70434fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6c48a15e83063eca2c557c8b70434fd"></a>
-const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_STEP1</b> = 'checkout_step1'</td></tr>
-<tr class="separator:ae6c48a15e83063eca2c557c8b70434fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dea8b190c26c41c31d62e0da0718a34"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0dea8b190c26c41c31d62e0da0718a34"></a>
-const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_STEP2</b> = 'checkout_step2'</td></tr>
-<tr class="separator:a0dea8b190c26c41c31d62e0da0718a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a612309a2367feb83eb82fa806683680a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a612309a2367feb83eb82fa806683680a"></a>
-const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_STEP3</b> = 'checkout_step3'</td></tr>
-<tr class="separator:a612309a2367feb83eb82fa806683680a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07a21c42a92d197ae7e5074b3f199278"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07a21c42a92d197ae7e5074b3f199278"></a>
-const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_STEP4</b> = 'checkout_step4'</td></tr>
-<tr class="separator:a07a21c42a92d197ae7e5074b3f199278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c2aed02e67bf09906e0fbc3bd69385"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11c2aed02e67bf09906e0fbc3bd69385"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_STEP</b> = 'checkout_step'</td></tr>
+<tr class="separator:a11c2aed02e67bf09906e0fbc3bd69385"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0869b5d786dfef927f1c483ff58c23e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0869b5d786dfef927f1c483ff58c23e"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_LOGIN</b> = 'login'</td></tr>
+<tr class="separator:ac0869b5d786dfef927f1c483ff58c23e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0be22c6cdf65e6a38423a988676ed483"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0be22c6cdf65e6a38423a988676ed483"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_GO_FOR_REGISTER</b> = 'checkout_go_for_register'</td></tr>
+<tr class="separator:a0be22c6cdf65e6a38423a988676ed483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b8b3ae88bbc9265f1719e2271d0826b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2b8b3ae88bbc9265f1719e2271d0826b"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_REGISTER</b> = 'register'</td></tr>
+<tr class="separator:a2b8b3ae88bbc9265f1719e2271d0826b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bf1f2626c020761a0bf01c73236e9cd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4bf1f2626c020761a0bf01c73236e9cd"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_BILLING</b> = 'billing'</td></tr>
+<tr class="separator:a4bf1f2626c020761a0bf01c73236e9cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a872879d8a753527bb356c140307226fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a872879d8a753527bb356c140307226fe"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_DELIVERY</b> = 'delivery'</td></tr>
+<tr class="separator:a872879d8a753527bb356c140307226fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1dbb1f800145aed02edc1dd808b08af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1dbb1f800145aed02edc1dd808b08af"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_SELECT_PAYMENT</b> = 'selectpayment'</td></tr>
+<tr class="separator:ad1dbb1f800145aed02edc1dd808b08af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa73e5807b79b133f309fc9dbad67fa5d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa73e5807b79b133f309fc9dbad67fa5d"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_EXE_PAYMENT</b> = 'exe_payment'</td></tr>
+<tr class="separator:aa73e5807b79b133f309fc9dbad67fa5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ae101ba11334f34af47dce55bba4f13"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8ae101ba11334f34af47dce55bba4f13"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>ACTION_ORDER</b> = 'order'</td></tr>
+<tr class="separator:a8ae101ba11334f34af47dce55bba4f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6efb244edfe0f2e0b150cf64f52b365"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6efb244edfe0f2e0b150cf64f52b365"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>PAYMENT_ONBILL</b> = 'onbill'</td></tr>
+<tr class="separator:ae6efb244edfe0f2e0b150cf64f52b365"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a505c5e4c4c2337be5c68ab3b00953861"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a505c5e4c4c2337be5c68ab3b00953861">$FORM_ID</a> = SSCheckoutView::FORM_ID</td></tr>
+<tr class="separator:a505c5e4c4c2337be5c68ab3b00953861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ec22d00799255f58733484eede8a941"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a2ec22d00799255f58733484eede8a941">$TABLE</a> = 'order'</td></tr>
+<tr class="separator:a2ec22d00799255f58733484eede8a941"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53d38442fc9ff3bde4acd5e485690fc2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_checkout_controller.html#a53d38442fc9ff3bde4acd5e485690fc2">$SHOW_IN</a> = SSDBSchema::SHOW_IN_CART_ITEM</td></tr>
+<tr class="separator:a53d38442fc9ff3bde4acd5e485690fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_s_s_controller"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_s_s_controller')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_s_s_controller.html">SSController</a></td></tr>
+<tr class="memitem:a505c5e4c4c2337be5c68ab3b00953861 inherit pro_attribs_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a505c5e4c4c2337be5c68ab3b00953861">$FORM_ID</a></td></tr>
+<tr class="separator:a505c5e4c4c2337be5c68ab3b00953861 inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ec22d00799255f58733484eede8a941 inherit pro_attribs_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a2ec22d00799255f58733484eede8a941">$TABLE</a></td></tr>
+<tr class="separator:a2ec22d00799255f58733484eede8a941 inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53d38442fc9ff3bde4acd5e485690fc2 inherit pro_attribs_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a53d38442fc9ff3bde4acd5e485690fc2">$SHOW_IN</a></td></tr>
+<tr class="separator:a53d38442fc9ff3bde4acd5e485690fc2 inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abefb3c26429d514777313e9a63d7cbac inherit pro_attribs_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#abefb3c26429d514777313e9a63d7cbac">$session</a></td></tr>
+<tr class="separator:abefb3c26429d514777313e9a63d7cbac inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cfbc2a55aef0ab0468f02d7d7612845 inherit pro_attribs_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a1cfbc2a55aef0ab0468f02d7d7612845">$formPropertiesAndValues</a></td></tr>
+<tr class="separator:a1cfbc2a55aef0ab0468f02d7d7612845 inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a52ca608ca949d1f72a1acdcf6ad4ee inherit pro_attribs_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a5a52ca608ca949d1f72a1acdcf6ad4ee">$formPropertyValueErrors</a></td></tr>
+<tr class="separator:a5a52ca608ca949d1f72a1acdcf6ad4ee inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a560ab0956605b518623b28b69b4b7079 inherit pro_attribs_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a560ab0956605b518623b28b69b4b7079">$showMessage</a></td></tr>
+<tr class="separator:a560ab0956605b518623b28b69b4b7079 inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acccf2eac8663e0cebe8101e90fbab089 inherit pro_attribs_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#acccf2eac8663e0cebe8101e90fbab089">$view</a></td></tr>
+<tr class="separator:acccf2eac8663e0cebe8101e90fbab089 inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_class_s_s_controller"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_s_s_controller')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_s_s_controller.html">SSController</a></td></tr>
+<tr class="memitem:a4be4055f3361d4800e16bc2e2e38cda6 inherit pro_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a4be4055f3361d4800e16bc2e2e38cda6">init</a> ()</td></tr>
+<tr class="memdesc:a4be4055f3361d4800e16bc2e2e38cda6 inherit pro_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialisierung.  <a href="#a4be4055f3361d4800e16bc2e2e38cda6">More...</a><br /></td></tr>
+<tr class="separator:a4be4055f3361d4800e16bc2e2e38cda6 inherit pro_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a1c40f27bdcc44f4faf3fc044ee577af2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">clearAll </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Daten vom Session löschen. </p>
+<p>Vom Benuzter erfasste Daten für das Checkout aus dem Session löschen</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_cart_controller.html#a43874348270d511575b3acc792df6b9e" title="Warenkorb leeren. ">SSCartController::clearCart()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af999e424d297f29eb22b72f385545ded"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">displayAddressStep </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$action</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adresse View. </p>
+<p>Das View zum Registrieren für Käufer ohne Benutzerkonto und das View für Rechnungsadresse, falls Benutzer eingeloggt. Zudem noch das View für Lieferadresse.</p>
+<p>Variante 1 (Neukunde): Registrieren + Lieferadresse</p>
+<p>Variante 2: Rechnungs- + Lieferadresse</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$action</td><td>: self::ACTION_REGISTER self::ACTION_BILLING self::ACTION_DELIVERY</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#af999e424d297f29eb22b72f385545ded" title="Adresse View. ">SSCheckoutController::displayAddressStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a591ddd7bd573dd36b23cf23c3d6817e1" title="Adresse Login-Handler. ">SSCheckoutController::handleAddressStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a9df854ae91d98455f35fca3ebcfffe4f" title="Prüfen ob Schritt ok. ">SSCheckoutController::isAddressStepOK()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ad4f4a0550f566f68fde164ef8acbd15d" title="Hilfsfunktion Adresse. ">SSCheckoutController::helperAddressConf()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a61b3d6a03080a47fef79a8a598d34dc9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">displayConfirmStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Title. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a61b3d6a03080a47fef79a8a598d34dc9" title="Title. ">SSCheckoutController::displayConfirmStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a69f33e7dae8e00a17fd226d9000bd437" title="Title. ">SSCheckoutController::handleConfirmStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a4c8636f42815148bba6f7eef37635cc0" title="Title. ">SSCheckoutController::isConfirmStepOK()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0208a11d2aeed211436c89966b4492a9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">displayExecutePaymentStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Title. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a0208a11d2aeed211436c89966b4492a9" title="Title. ">SSCheckoutController::displayExecutePaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac3439ed9802094815d0aab2147f0d342" title="Title. ">SSCheckoutController::handleExecutePaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ad0058e34b8851d9c94b4342ec66037e0" title="Title. ">SSCheckoutController::isExecutePaymentStepOK()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a766a05a247f3bcdb8d5c2678b5472805"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">displayLoginStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Login View. </p>
+<p>Zeigt die Login-Maske an und ermöglicht zudem, falls sich der Käufer registrieren möchte, zur Registrierungsmaske zu gelanden.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a719a5f66d889fe5dfcae84308302e30c" title="Prüfen ob Login Step ok. ">SSCheckoutController::isLoginStepOK()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac8f1b73364d5f3494ecad30a526d21c1" title="Login Logik. ">SSCheckoutController::handleLoginStep()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abc5b0223fd3ea123dc3610cc14e0164c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">displayOrderStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Title. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#abc5b0223fd3ea123dc3610cc14e0164c" title="Title. ">SSCheckoutController::displayOrderStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a38bfceeb3f3a592e55274101716a80f9" title="Title. ">SSCheckoutController::handleOrderStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ade18ab030f180172c6bca159451504f5" title="Prüfen ob Zahlungsart ausgewählt. ">SSCheckoutController::isOrderStepOK()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a5018f66ae6003acfcb508e9008b88e7d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">displaySelectPaymentStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zahlungsarten-Liste. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a5018f66ae6003acfcb508e9008b88e7d" title="Zahlungsarten-Liste. ">SSCheckoutController::displaySelectPaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac3c2d264ad6a4b249d6c8e01e33a61b7" title="Zahlungsart verwalten. ">SSCheckoutController::handleSelectPaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#af02a2c3503410019e2130c0c26c7165c" title="Prüfen ob Zahlungsart ausgewählt. ">SSCheckoutController::isSelectPaymentStepOK()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae6ad3c8f4d8953bfbcb6cfdfce8fedb5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getSession </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get Value from Session </p>
+<p>Session Funktion um Session innerhalb von Checkout zu verwalten.</p>
+<p>Wert nach Key in Session holen.</p>
+<dl class="section return"><dt>Returns</dt><dd>mixed</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a0257d7f16672a982456dc6d1646dbad4" title="store Value in Session ">SSCheckoutController::setSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5" title="get Value from Session ">SSCheckoutController::getSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a32393e89136a03096cbead5caf2b1dda" title="remove Key + Value from Session ">SSCheckoutController::removeSession</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aaaff2dcf0158b90a1d4285b46a5ce49e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Aktueller Step. </p>
+<p>Aktuelle Schritt holen</p>
+<dl class="section return"><dt>Returns</dt><dd>$step</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a398752bbd601d40253d56e29f98a0faf" title="Previous Step. ">SSCheckoutController::prevStep</a> </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac35a99a93934b3aaea7d3a81d75be1d8" title="Next Step. ">SSCheckoutController::nextStep</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a591ddd7bd573dd36b23cf23c3d6817e1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">handleAddressStep </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$action</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adresse Login-Handler. </p>
+<p>Die Schritte mit Registrieren und Lieferadresse , sowie für bereits eingeloggt Benutzer, die Rechnungs- und Lieferadresse Logik Handler</p>
+<p>Die durch Formular eingegebene Adresse (+Daten) werden auf Richtigkeit überprüft und in der Session abgelegt.</p>
+<p>Variante 1 (Neukunde): Registrieren + Lieferadresse</p>
+<p>Variante 2: Rechnungs- + Lieferadresse</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$action</td><td>: self::ACTION_REGISTER self::ACTION_BILLING self::ACTION_DELIVERY</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#af999e424d297f29eb22b72f385545ded" title="Adresse View. ">SSCheckoutController::displayAddressStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a591ddd7bd573dd36b23cf23c3d6817e1" title="Adresse Login-Handler. ">SSCheckoutController::handleAddressStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a9df854ae91d98455f35fca3ebcfffe4f" title="Prüfen ob Schritt ok. ">SSCheckoutController::isAddressStepOK()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ad4f4a0550f566f68fde164ef8acbd15d" title="Hilfsfunktion Adresse. ">SSCheckoutController::helperAddressConf()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a69f33e7dae8e00a17fd226d9000bd437"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">handleConfirmStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Title. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a61b3d6a03080a47fef79a8a598d34dc9" title="Title. ">SSCheckoutController::displayConfirmStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a69f33e7dae8e00a17fd226d9000bd437" title="Title. ">SSCheckoutController::handleConfirmStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a4c8636f42815148bba6f7eef37635cc0" title="Title. ">SSCheckoutController::isConfirmStepOK()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac3439ed9802094815d0aab2147f0d342"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">handleExecutePaymentStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Title. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a0208a11d2aeed211436c89966b4492a9" title="Title. ">SSCheckoutController::displayExecutePaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac3439ed9802094815d0aab2147f0d342" title="Title. ">SSCheckoutController::handleExecutePaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ad0058e34b8851d9c94b4342ec66037e0" title="Title. ">SSCheckoutController::isExecutePaymentStepOK()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac8f1b73364d5f3494ecad30a526d21c1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">handleLoginStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Login Logik. </p>
+<p>Hier wird das Login oder weiter zur Registrierungsmaske Handling durchgeführt.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a719a5f66d889fe5dfcae84308302e30c" title="Prüfen ob Login Step ok. ">SSCheckoutController::isLoginStepOK()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a766a05a247f3bcdb8d5c2678b5472805" title="Login View. ">SSCheckoutController::displayLoginStep()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a38bfceeb3f3a592e55274101716a80f9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">handleOrderStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Title. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#abc5b0223fd3ea123dc3610cc14e0164c" title="Title. ">SSCheckoutController::displayOrderStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a38bfceeb3f3a592e55274101716a80f9" title="Title. ">SSCheckoutController::handleOrderStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ade18ab030f180172c6bca159451504f5" title="Prüfen ob Zahlungsart ausgewählt. ">SSCheckoutController::isOrderStepOK()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a58ac28b711d74ae80426f63ddcb5dea2" title="Bestellung speichern. ">SSCheckoutController::saveOrderToDb()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad9b70ba4d42d74ca7e1f584cf8e3317d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">handlePaymentPerAPI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Title. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac3c2d264ad6a4b249d6c8e01e33a61b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">handleSelectPaymentStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Zahlungsart verwalten. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a5018f66ae6003acfcb508e9008b88e7d" title="Zahlungsarten-Liste. ">SSCheckoutController::displaySelectPaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac3c2d264ad6a4b249d6c8e01e33a61b7" title="Zahlungsart verwalten. ">SSCheckoutController::handleSelectPaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#af02a2c3503410019e2130c0c26c7165c" title="Prüfen ob Zahlungsart ausgewählt. ">SSCheckoutController::isSelectPaymentStepOK()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad4f4a0550f566f68fde164ef8acbd15d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">helperAddressConf </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$action</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Hilfsfunktion Adresse. </p>
+<p>Enthält die Zuweisung der Variablen welche je nach Aktion varieren.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a766a05a247f3bcdb8d5c2678b5472805" title="Login View. ">SSCheckoutController::displayLoginStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac8f1b73364d5f3494ecad30a526d21c1" title="Login Logik. ">SSCheckoutController::handleLoginStep()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9df854ae91d98455f35fca3ebcfffe4f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isAddressStepOK </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$action</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prüfen ob Schritt ok. </p>
+<p>Prüft ob die Adresse, die in der Session ausgelagert wurden, immer noch richtig sind.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$action</td><td>: self::ACTION_REGISTER self::ACTION_BILLING self::ACTION_DELIVERY</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>boolean</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#af999e424d297f29eb22b72f385545ded" title="Adresse View. ">SSCheckoutController::displayAddressStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a591ddd7bd573dd36b23cf23c3d6817e1" title="Adresse Login-Handler. ">SSCheckoutController::handleAddressStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a9df854ae91d98455f35fca3ebcfffe4f" title="Prüfen ob Schritt ok. ">SSCheckoutController::isAddressStepOK()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ad4f4a0550f566f68fde164ef8acbd15d" title="Hilfsfunktion Adresse. ">SSCheckoutController::helperAddressConf()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4c8636f42815148bba6f7eef37635cc0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isConfirmStepOK </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Title. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a61b3d6a03080a47fef79a8a598d34dc9" title="Title. ">SSCheckoutController::displayConfirmStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a69f33e7dae8e00a17fd226d9000bd437" title="Title. ">SSCheckoutController::handleConfirmStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a4c8636f42815148bba6f7eef37635cc0" title="Title. ">SSCheckoutController::isConfirmStepOK()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad0058e34b8851d9c94b4342ec66037e0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isExecutePaymentStepOK </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Title. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a0208a11d2aeed211436c89966b4492a9" title="Title. ">SSCheckoutController::displayExecutePaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac3439ed9802094815d0aab2147f0d342" title="Title. ">SSCheckoutController::handleExecutePaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ad0058e34b8851d9c94b4342ec66037e0" title="Title. ">SSCheckoutController::isExecutePaymentStepOK()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a719a5f66d889fe5dfcae84308302e30c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isLoginStepOK </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prüfen ob Login Step ok. </p>
+<p>Prüfen ob Login Step richtig vom Käufer ausgeführt wurde: Entweder hat der Käufer sich mit dem Login angemeldet, oder ist weitergefahren zur Register-Maske.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a766a05a247f3bcdb8d5c2678b5472805" title="Login View. ">SSCheckoutController::displayLoginStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac8f1b73364d5f3494ecad30a526d21c1" title="Login Logik. ">SSCheckoutController::handleLoginStep()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ade18ab030f180172c6bca159451504f5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isOrderStepOK </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prüfen ob Zahlungsart ausgewählt. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#abc5b0223fd3ea123dc3610cc14e0164c" title="Title. ">SSCheckoutController::displayOrderStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a38bfceeb3f3a592e55274101716a80f9" title="Title. ">SSCheckoutController::handleOrderStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ade18ab030f180172c6bca159451504f5" title="Prüfen ob Zahlungsart ausgewählt. ">SSCheckoutController::isOrderStepOK()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af02a2c3503410019e2130c0c26c7165c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isSelectPaymentStepOK </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prüfen ob Zahlungsart ausgewählt. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a5018f66ae6003acfcb508e9008b88e7d" title="Zahlungsarten-Liste. ">SSCheckoutController::displaySelectPaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac3c2d264ad6a4b249d6c8e01e33a61b7" title="Zahlungsart verwalten. ">SSCheckoutController::handleSelectPaymentStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#af02a2c3503410019e2130c0c26c7165c" title="Prüfen ob Zahlungsart ausgewählt. ">SSCheckoutController::isSelectPaymentStepOK()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac35a99a93934b3aaea7d3a81d75be1d8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">nextStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Next Step. </p>
+<p>Zum nächsten Schritt springen.</p>
+<dl class="section return"><dt>Returns</dt><dd>$step</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#aaaff2dcf0158b90a1d4285b46a5ce49e" title="Aktueller Step. ">SSCheckoutController::getStep</a> </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a398752bbd601d40253d56e29f98a0faf" title="Previous Step. ">SSCheckoutController::prevStep</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a398752bbd601d40253d56e29f98a0faf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">prevStep </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Previous Step. </p>
+<p>Zum vorherigen Schritt springen.</p>
+<dl class="section return"><dt>Returns</dt><dd>$step</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#aaaff2dcf0158b90a1d4285b46a5ce49e" title="Aktueller Step. ">SSCheckoutController::getStep</a> </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac35a99a93934b3aaea7d3a81d75be1d8" title="Next Step. ">SSCheckoutController::nextStep</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a32393e89136a03096cbead5caf2b1dda"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">removeSession </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>remove Key + Value from Session </p>
+<p>Session Funktion um Session innerhalb von Checkout zu verwalten.</p>
+<p>Key + Value von der Session löschen.</p>
+<dl class="section return"><dt>Returns</dt><dd>bool</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a0257d7f16672a982456dc6d1646dbad4" title="store Value in Session ">SSCheckoutController::setSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5" title="get Value from Session ">SSCheckoutController::getSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a32393e89136a03096cbead5caf2b1dda" title="remove Key + Value from Session ">SSCheckoutController::removeSession</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a58ac28b711d74ae80426f63ddcb5dea2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">saveOrderToDb </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bestellung speichern. </p>
+<p>Bestellun in der Datenbank ablegen.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#abc5b0223fd3ea123dc3610cc14e0164c" title="Title. ">SSCheckoutController::displayOrderStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a38bfceeb3f3a592e55274101716a80f9" title="Title. ">SSCheckoutController::handleOrderStep()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ade18ab030f180172c6bca159451504f5" title="Prüfen ob Zahlungsart ausgewählt. ">SSCheckoutController::isOrderStepOK()</a>; </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a58ac28b711d74ae80426f63ddcb5dea2" title="Bestellung speichern. ">SSCheckoutController::saveOrderToDb()</a>; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0257d7f16672a982456dc6d1646dbad4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">setSession </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>store Value in Session </p>
+<p>Session Funktion um Session innerhalb von Checkout zu verwalten.</p>
+<p>Key + Value in Session ablegen.</p>
+<dl class="section return"><dt>Returns</dt><dd>bool</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#a0257d7f16672a982456dc6d1646dbad4" title="store Value in Session ">SSCheckoutController::setSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5" title="get Value from Session ">SSCheckoutController::getSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a32393e89136a03096cbead5caf2b1dda" title="remove Key + Value from Session ">SSCheckoutController::removeSession</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a683c06407d31b8c052498fc9945ff015"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">setStep </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$step</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Step setzen. </p>
+<p>Zum Step springen</p>
+<dl class="section return"><dt>Returns</dt><dd>$step</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_checkout_controller.html#aaaff2dcf0158b90a1d4285b46a5ce49e" title="Aktueller Step. ">SSCheckoutController::getStep</a> </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#a398752bbd601d40253d56e29f98a0faf" title="Previous Step. ">SSCheckoutController::prevStep</a> </dd>
+<dd>
+<a class="el" href="class_s_s_checkout_controller.html#ac35a99a93934b3aaea7d3a81d75be1d8" title="Next Step. ">SSCheckoutController::nextStep</a> </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a505c5e4c4c2337be5c68ab3b00953861"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">$FORM_ID = SSCheckoutView::FORM_ID</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_article_view.html#aeca189a7edc29987e472d008eb9208b3">SSArticleView::FORM_ID</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a53d38442fc9ff3bde4acd5e485690fc2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">$SHOW_IN = SSDBSchema::SHOW_IN_CART_ITEM</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd>SSDBSchema::SHOW_IN_DETAIL </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2ec22d00799255f58733484eede8a941"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">$TABLE = 'order'</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_article.html#adf62e2b172196282218b1ece3d200fa1">SSArticle::TABLE</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>B:/p2/redaxo/include/addons/square_shop/classes/controller/SSCheckoutController.php</li>
+<li>B:/p2/redaxo/include/addons/square_shop/classes/controller/<a class="el" href="_s_s_checkout_controller_8php.html">SSCheckoutController.php</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 8 2014 23:40:07 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 15 2014 01:28:47 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

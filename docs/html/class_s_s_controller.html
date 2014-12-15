@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -95,10 +96,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for SSController:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_s_s_controller__inherit__graph.png" border="0" usemap="#_s_s_controller_inherit__map" alt="Inheritance graph"/></div>
-<map name="_s_s_controller_inherit__map" id="_s_s_controller_inherit__map">
+ <div class="center">
+  <img src="class_s_s_controller.png" usemap="#SSController_map" alt=""/>
+  <map id="SSController_map" name="SSController_map">
+<area href="class_s_s_article_controller.html" alt="SSArticleController" shape="rect" coords="0,56,183,80"/>
+<area href="class_s_s_cart_controller.html" alt="SSCartController" shape="rect" coords="193,56,376,80"/>
+<area href="class_s_s_checkout_controller.html" alt="SSCheckoutController" shape="rect" coords="386,56,569,80"/>
+<area href="class_s_s_customer_login_controller.html" alt="SSCustomerLoginController" shape="rect" coords="579,56,762,80"/>
+<area href="class_s_s_customer_register_controller.html" alt="SSCustomerRegisterController" shape="rect" coords="772,56,955,80"/>
+<area href="class_s_s_pay_pal_controller.html" alt="SSPayPalController" shape="rect" coords="965,56,1148,80"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -108,12 +116,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9798c65d2a3254277e5b7943c4e289fd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a9798c65d2a3254277e5b7943c4e289fd">isInputValid</a> ()</td></tr>
 <tr class="memdesc:a9798c65d2a3254277e5b7943c4e289fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Benutzereingabe überprüfen.  <a href="#a9798c65d2a3254277e5b7943c4e289fd">More...</a><br /></td></tr>
 <tr class="separator:a9798c65d2a3254277e5b7943c4e289fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af95168e2facf1c11beda7d5bc1b31ee5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#af95168e2facf1c11beda7d5bc1b31ee5">messageHandler</a> ()</td></tr>
+<tr class="memdesc:af95168e2facf1c11beda7d5bc1b31ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Meldungs-Handler.  <a href="#af95168e2facf1c11beda7d5bc1b31ee5">More...</a><br /></td></tr>
+<tr class="separator:af95168e2facf1c11beda7d5bc1b31ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e7eb9acbf62a406a633a6cdedb463a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a9e7eb9acbf62a406a633a6cdedb463a0">getFormActionName</a> ()</td></tr>
+<tr class="memdesc:a9e7eb9acbf62a406a633a6cdedb463a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Form Action Name holen.  <a href="#a9e7eb9acbf62a406a633a6cdedb463a0">More...</a><br /></td></tr>
+<tr class="separator:a9e7eb9acbf62a406a633a6cdedb463a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a471428c2754eeb5c908f61c15b15ef22"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a471428c2754eeb5c908f61c15b15ef22">isFormActionName</a> ($action)</td></tr>
+<tr class="memdesc:a471428c2754eeb5c908f61c15b15ef22"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare Form Action Name  <a href="#a471428c2754eeb5c908f61c15b15ef22">More...</a><br /></td></tr>
+<tr class="separator:a471428c2754eeb5c908f61c15b15ef22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8197ec4c543771b0c99b9830f6bf3647"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a8197ec4c543771b0c99b9830f6bf3647">isUserRequestUnique</a> ($action)</td></tr>
 <tr class="memdesc:a8197ec4c543771b0c99b9830f6bf3647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is Benutzereingabe Unique.  <a href="#a8197ec4c543771b0c99b9830f6bf3647">More...</a><br /></td></tr>
 <tr class="separator:a8197ec4c543771b0c99b9830f6bf3647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69589381f9521974590b912d68793575"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a69589381f9521974590b912d68793575">userRequestIsNotMoreUnique</a> ($action)</td></tr>
 <tr class="memdesc:a69589381f9521974590b912d68793575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Benutzereingabe nicht mehr Unique.  <a href="#a69589381f9521974590b912d68793575">More...</a><br /></td></tr>
 <tr class="separator:a69589381f9521974590b912d68793575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0257d7f16672a982456dc6d1646dbad4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a0257d7f16672a982456dc6d1646dbad4">setSession</a> ($key, $value)</td></tr>
+<tr class="memdesc:a0257d7f16672a982456dc6d1646dbad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">store Value in Session  <a href="#a0257d7f16672a982456dc6d1646dbad4">More...</a><br /></td></tr>
+<tr class="separator:a0257d7f16672a982456dc6d1646dbad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5">getSession</a> ($key)</td></tr>
+<tr class="memdesc:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">get Value from Session  <a href="#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5">More...</a><br /></td></tr>
+<tr class="separator:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32393e89136a03096cbead5caf2b1dda"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a32393e89136a03096cbead5caf2b1dda">removeSession</a> ($key)</td></tr>
+<tr class="memdesc:a32393e89136a03096cbead5caf2b1dda"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove Key + Value from Session  <a href="#a32393e89136a03096cbead5caf2b1dda">More...</a><br /></td></tr>
+<tr class="separator:a32393e89136a03096cbead5caf2b1dda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -135,6 +161,10 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a1cfbc2a55aef0ab0468f02d7d7612845"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a52ca608ca949d1f72a1acdcf6ad4ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a5a52ca608ca949d1f72a1acdcf6ad4ee">$formPropertyValueErrors</a></td></tr>
 <tr class="separator:a5a52ca608ca949d1f72a1acdcf6ad4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a560ab0956605b518623b28b69b4b7079"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a560ab0956605b518623b28b69b4b7079">$showMessage</a></td></tr>
+<tr class="separator:a560ab0956605b518623b28b69b4b7079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acccf2eac8663e0cebe8101e90fbab089"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#acccf2eac8663e0cebe8101e90fbab089">$view</a></td></tr>
+<tr class="separator:acccf2eac8663e0cebe8101e90fbab089"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a095c5d389db211932136b53f25f39685"></a>
@@ -157,6 +187,51 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a9e7eb9acbf62a406a633a6cdedb463a0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getFormActionName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Form Action Name holen. </p>
+<p>Action-Name aus dem Formular, welche abgeschickt wurde holen</p>
+<dl class="section return"><dt>Returns</dt><dd>$actionName </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae6ad3c8f4d8953bfbcb6cfdfce8fedb5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getSession </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>get Value from Session </p>
+<p>Session Funktion um Session innerhalb von dieser Klasse zu verwalten.</p>
+<p>Wert nach Key in Session holen.</p>
+<dl class="section return"><dt>Returns</dt><dd>mixed</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_controller.html#a0257d7f16672a982456dc6d1646dbad4" title="store Value in Session ">SSController::setSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_controller.html#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5" title="get Value from Session ">SSController::getSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_controller.html#a32393e89136a03096cbead5caf2b1dda" title="remove Key + Value from Session ">SSController::removeSession</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a4be4055f3361d4800e16bc2e2e38cda6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -184,6 +259,32 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a471428c2754eeb5c908f61c15b15ef22"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isFormActionName </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$action</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>compare Form Action Name </p>
+<p>Vergleicht Action-Name vom Formular, welche abgeschickt wurde</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ActioName</td><td>zum vergleichen </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a9798c65d2a3254277e5b7943c4e289fd"></a>
 <div class="memitem">
 <div class="memproto">
@@ -199,6 +300,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Benutzereingabe überprüfen. </p>
 <p>Formular Input Dateon vom User auf Richtigkeit überprüfen</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_helper.html#aa5b72ccad634190aa632064e18c35216" title="Formular Inputs überprüfen. ">SSHelper::checkFromInputs</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
 
 </div>
@@ -226,6 +328,86 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>bool: true = nicht generiert | false = generiert durch Browser-Refresh </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af95168e2facf1c11beda7d5bc1b31ee5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">messageHandler </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Meldungs-Handler. </p>
+<p>Die Meldungen je nach Aktionen, werden mit dieser Methode gehandlet. Die Zusammensetzung aus Aktionsname und error oder success ergibt den Platzhalter für die Meldung. </p>
+
+</div>
+</div>
+<a class="anchor" id="a32393e89136a03096cbead5caf2b1dda"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">removeSession </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>remove Key + Value from Session </p>
+<p>Session Funktion um Session innerhalb von dieser Klasse zu verwalten.</p>
+<p>Key + Value von der Session löschen.</p>
+<dl class="section return"><dt>Returns</dt><dd>bool</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_controller.html#a0257d7f16672a982456dc6d1646dbad4" title="store Value in Session ">SSController::setSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_controller.html#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5" title="get Value from Session ">SSController::getSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_controller.html#a32393e89136a03096cbead5caf2b1dda" title="remove Key + Value from Session ">SSController::removeSession</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0257d7f16672a982456dc6d1646dbad4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">setSession </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>store Value in Session </p>
+<p>Session Funktion um Session innerhalb von dieser Klasse zu verwalten.</p>
+<p>Key + Value in Session ablegen.</p>
+<dl class="section return"><dt>Returns</dt><dd>bool</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_controller.html#a0257d7f16672a982456dc6d1646dbad4" title="store Value in Session ">SSController::setSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_controller.html#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5" title="get Value from Session ">SSController::getSession</a> </dd>
+<dd>
+<a class="el" href="class_s_s_controller.html#a32393e89136a03096cbead5caf2b1dda" title="remove Key + Value from Session ">SSController::removeSession</a> </dd></dl>
 
 </div>
 </div>
@@ -364,6 +546,27 @@ SSSchema::SHOW_IN_X </dd></dl>
 
 </div>
 </div>
+<a class="anchor" id="a560ab0956605b518623b28b69b4b7079"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">$showMessage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Eine Hilfsvariable (Boolean) um Meldungen anzuzeigen. </p>
+
+</div>
+</div>
 <a class="anchor" id="a2ec22d00799255f58733484eede8a941"></a>
 <div class="memitem">
 <div class="memproto">
@@ -385,13 +588,34 @@ SSSchema::SHOW_IN_X </dd></dl>
 
 </div>
 </div>
+<a class="anchor" id="acccf2eac8663e0cebe8101e90fbab089"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">$view</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Ein Objekt für das View </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_view.html">SSView</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>B:/p2/redaxo/include/addons/square_shop/classes/controller/<a class="el" href="_s_s_controller_8php.html">SSController.php</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 8 2014 23:40:08 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 15 2014 01:28:47 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -96,17 +97,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for SSCustomerLoginController:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_s_s_customer_login_controller__inherit__graph.png" border="0" usemap="#_s_s_customer_login_controller_inherit__map" alt="Inheritance graph"/></div>
-<map name="_s_s_customer_login_controller_inherit__map" id="_s_s_customer_login_controller_inherit__map">
+ <div class="center">
+  <img src="class_s_s_customer_login_controller.png" usemap="#SSCustomerLoginController_map" alt=""/>
+  <map id="SSCustomerLoginController_map" name="SSCustomerLoginController_map">
+<area href="class_s_s_controller.html" alt="SSController" shape="rect" coords="0,0,168,24"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for SSCustomerLoginController:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_s_s_customer_login_controller__coll__graph.png" border="0" usemap="#_s_s_customer_login_controller_coll__map" alt="Collaboration graph"/></div>
-<map name="_s_s_customer_login_controller_coll__map" id="_s_s_customer_login_controller_coll__map">
-</map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -122,6 +118,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aca04b3e313abfb913efaacdfb7d5d3d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_customer_login_controller.html#aca04b3e313abfb913efaacdfb7d5d3d7">displayView</a> ()</td></tr>
 <tr class="memdesc:aca04b3e313abfb913efaacdfb7d5d3d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Login / Logout Maske anzeigen.  <a href="#aca04b3e313abfb913efaacdfb7d5d3d7">More...</a><br /></td></tr>
 <tr class="separator:aca04b3e313abfb913efaacdfb7d5d3d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb8740bf60e4dd962dbbc0611f0a8baf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_customer_login_controller.html#afb8740bf60e4dd962dbbc0611f0a8baf">getLoggedInUserId</a> ()</td></tr>
+<tr class="memdesc:afb8740bf60e4dd962dbbc0611f0a8baf"><td class="mdescLeft">&#160;</td><td class="mdescRight">User ID holen.  <a href="#afb8740bf60e4dd962dbbc0611f0a8baf">More...</a><br /></td></tr>
+<tr class="separator:afb8740bf60e4dd962dbbc0611f0a8baf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb08814a3b11252c66e465a868da3ea7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_customer_login_controller.html#aeb08814a3b11252c66e465a868da3ea7">isUserLoggedIn</a> ()</td></tr>
 <tr class="memdesc:aeb08814a3b11252c66e465a868da3ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ist Benutzer angemeldet.  <a href="#aeb08814a3b11252c66e465a868da3ea7">More...</a><br /></td></tr>
 <tr class="separator:aeb08814a3b11252c66e465a868da3ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,12 +140,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9798c65d2a3254277e5b7943c4e289fd inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a9798c65d2a3254277e5b7943c4e289fd">isInputValid</a> ()</td></tr>
 <tr class="memdesc:a9798c65d2a3254277e5b7943c4e289fd inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Benutzereingabe überprüfen.  <a href="#a9798c65d2a3254277e5b7943c4e289fd">More...</a><br /></td></tr>
 <tr class="separator:a9798c65d2a3254277e5b7943c4e289fd inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af95168e2facf1c11beda7d5bc1b31ee5 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#af95168e2facf1c11beda7d5bc1b31ee5">messageHandler</a> ()</td></tr>
+<tr class="memdesc:af95168e2facf1c11beda7d5bc1b31ee5 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Meldungs-Handler.  <a href="#af95168e2facf1c11beda7d5bc1b31ee5">More...</a><br /></td></tr>
+<tr class="separator:af95168e2facf1c11beda7d5bc1b31ee5 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e7eb9acbf62a406a633a6cdedb463a0 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a9e7eb9acbf62a406a633a6cdedb463a0">getFormActionName</a> ()</td></tr>
+<tr class="memdesc:a9e7eb9acbf62a406a633a6cdedb463a0 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Form Action Name holen.  <a href="#a9e7eb9acbf62a406a633a6cdedb463a0">More...</a><br /></td></tr>
+<tr class="separator:a9e7eb9acbf62a406a633a6cdedb463a0 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a471428c2754eeb5c908f61c15b15ef22 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a471428c2754eeb5c908f61c15b15ef22">isFormActionName</a> ($action)</td></tr>
+<tr class="memdesc:a471428c2754eeb5c908f61c15b15ef22 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare Form Action Name  <a href="#a471428c2754eeb5c908f61c15b15ef22">More...</a><br /></td></tr>
+<tr class="separator:a471428c2754eeb5c908f61c15b15ef22 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8197ec4c543771b0c99b9830f6bf3647 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a8197ec4c543771b0c99b9830f6bf3647">isUserRequestUnique</a> ($action)</td></tr>
 <tr class="memdesc:a8197ec4c543771b0c99b9830f6bf3647 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is Benutzereingabe Unique.  <a href="#a8197ec4c543771b0c99b9830f6bf3647">More...</a><br /></td></tr>
 <tr class="separator:a8197ec4c543771b0c99b9830f6bf3647 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69589381f9521974590b912d68793575 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a69589381f9521974590b912d68793575">userRequestIsNotMoreUnique</a> ($action)</td></tr>
 <tr class="memdesc:a69589381f9521974590b912d68793575 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Benutzereingabe nicht mehr Unique.  <a href="#a69589381f9521974590b912d68793575">More...</a><br /></td></tr>
 <tr class="separator:a69589381f9521974590b912d68793575 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0257d7f16672a982456dc6d1646dbad4 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a0257d7f16672a982456dc6d1646dbad4">setSession</a> ($key, $value)</td></tr>
+<tr class="memdesc:a0257d7f16672a982456dc6d1646dbad4 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">store Value in Session  <a href="#a0257d7f16672a982456dc6d1646dbad4">More...</a><br /></td></tr>
+<tr class="separator:a0257d7f16672a982456dc6d1646dbad4 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5 inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5">getSession</a> ($key)</td></tr>
+<tr class="memdesc:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5 inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">get Value from Session  <a href="#ae6ad3c8f4d8953bfbcb6cfdfce8fedb5">More...</a><br /></td></tr>
+<tr class="separator:ae6ad3c8f4d8953bfbcb6cfdfce8fedb5 inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32393e89136a03096cbead5caf2b1dda inherit pub_methods_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a32393e89136a03096cbead5caf2b1dda">removeSession</a> ($key)</td></tr>
+<tr class="memdesc:a32393e89136a03096cbead5caf2b1dda inherit pub_methods_class_s_s_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">remove Key + Value from Session  <a href="#a32393e89136a03096cbead5caf2b1dda">More...</a><br /></td></tr>
+<tr class="separator:a32393e89136a03096cbead5caf2b1dda inherit pub_methods_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -186,6 +203,10 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a1cfbc2a55aef0ab0468f02d7d7612845 inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a52ca608ca949d1f72a1acdcf6ad4ee inherit pro_attribs_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a5a52ca608ca949d1f72a1acdcf6ad4ee">$formPropertyValueErrors</a></td></tr>
 <tr class="separator:a5a52ca608ca949d1f72a1acdcf6ad4ee inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a560ab0956605b518623b28b69b4b7079 inherit pro_attribs_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#a560ab0956605b518623b28b69b4b7079">$showMessage</a></td></tr>
+<tr class="separator:a560ab0956605b518623b28b69b4b7079 inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acccf2eac8663e0cebe8101e90fbab089 inherit pro_attribs_class_s_s_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_controller.html#acccf2eac8663e0cebe8101e90fbab089">$view</a></td></tr>
+<tr class="separator:acccf2eac8663e0cebe8101e90fbab089 inherit pro_attribs_class_s_s_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="aca04b3e313abfb913efaacdfb7d5d3d7"></a>
@@ -204,6 +225,25 @@ Protected Attributes</h2></td></tr>
 <p>Login / Logout Maske anzeigen. </p>
 <p>Falls User nicht angemeldet: Login-Maske anzeigen</p>
 <p>Falls User angemeldet: Logout-Maske anzeigen </p>
+
+</div>
+</div>
+<a class="anchor" id="afb8740bf60e4dd962dbbc0611f0a8baf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getLoggedInUserId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>User ID holen. </p>
+<p>User ID vom angemeldeten Benutzer holen</p>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
 
 </div>
 </div>
@@ -473,7 +513,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 8 2014 23:40:08 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 15 2014 01:28:47 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -100,6 +101,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:afcef4b6fd7b4c8cf0a91174539d81e78"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_d_b_s_q_l.html#afcef4b6fd7b4c8cf0a91174539d81e78">_getSqlInsertQuery</a> ($attrAndValues, $table)</td></tr>
 <tr class="memdesc:afcef4b6fd7b4c8cf0a91174539d81e78"><td class="mdescLeft">&#160;</td><td class="mdescRight">SQL Insert Query generieren.  <a href="#afcef4b6fd7b4c8cf0a91174539d81e78">More...</a><br /></td></tr>
 <tr class="separator:afcef4b6fd7b4c8cf0a91174539d81e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eb6da12643175fb26ad6712443c1c46"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_d_b_s_q_l.html#a5eb6da12643175fb26ad6712443c1c46">_getSqlUpdateQuery</a> ($attrAndValues, $table)</td></tr>
+<tr class="memdesc:a5eb6da12643175fb26ad6712443c1c46"><td class="mdescLeft">&#160;</td><td class="mdescRight">SQL Update Query generieren.  <a href="#a5eb6da12643175fb26ad6712443c1c46">More...</a><br /></td></tr>
+<tr class="separator:a5eb6da12643175fb26ad6712443c1c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7ba59936d8e39a20630f382e2327b7b"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_d_b_s_q_l.html#ab7ba59936d8e39a20630f382e2327b7b">_getSqlCreateTables</a> ()</td></tr>
 <tr class="memdesc:ab7ba59936d8e39a20630f382e2327b7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">SQL Create Query generieren.  <a href="#ab7ba59936d8e39a20630f382e2327b7b">More...</a><br /></td></tr>
 <tr class="separator:ab7ba59936d8e39a20630f382e2327b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,6 +113,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ae4d04030e25fe59b8c1248dacc3dbfad"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_d_b_s_q_l.html#ae4d04030e25fe59b8c1248dacc3dbfad">executeSql</a> ($query, $debug=false)</td></tr>
 <tr class="memdesc:ae4d04030e25fe59b8c1248dacc3dbfad"><td class="mdescLeft">&#160;</td><td class="mdescRight">SQL Query ausführen.  <a href="#ae4d04030e25fe59b8c1248dacc3dbfad">More...</a><br /></td></tr>
 <tr class="separator:ae4d04030e25fe59b8c1248dacc3dbfad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b0b5ed5092c7864860fc358ecc7b822"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_d_b_s_q_l.html#a8b0b5ed5092c7864860fc358ecc7b822">executeSqlQuery</a> ($query, $debug=false)</td></tr>
+<tr class="memdesc:a8b0b5ed5092c7864860fc358ecc7b822"><td class="mdescLeft">&#160;</td><td class="mdescRight">SQL Query ausführen.  <a href="#a8b0b5ed5092c7864860fc358ecc7b822">More...</a><br /></td></tr>
+<tr class="separator:a8b0b5ed5092c7864860fc358ecc7b822"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -274,6 +281,51 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>ERROR_SQL_QUERY_NOT_
 
 </div>
 </div>
+<a class="anchor" id="a5eb6da12643175fb26ad6712443c1c46"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static _getSqlUpdateQuery </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$attrAndValues</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$table</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>SQL Update Query generieren. </p>
+<p>Liefert SQL Query zum Aktualisieren von Datensätzen (Data Manipulation Language)</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$attrAndValues</td><td>Attribute und Values </td></tr>
+    <tr><td class="paramname">$table</td><td>Tabellenname </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>(string) $query: SQL Update Query </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ae4d04030e25fe59b8c1248dacc3dbfad"></a>
 <div class="memitem">
 <div class="memproto">
@@ -307,7 +359,8 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>ERROR_SQL_QUERY_NOT_
 </div><div class="memdoc">
 
 <p>SQL Query ausführen. </p>
-<p>Führt einen SQL Script mittels rex_sql aus param $query param $debug </p><dl class="section return"><dt>Returns</dt><dd>array &lt;- Results als ArrayFührt einen SQL Script mittels rex_sql aus</dd></dl>
+<p>Führt einen SQL Script mittels rex_sql aus</p>
+<p>Hier werden die Queries nach ; aufgeteilt und einzeln ausgeführt.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">$query</td><td>SQL Query </td></tr>
@@ -315,7 +368,54 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>ERROR_SQL_QUERY_NOT_
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>(array) $res: DB Results </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(array) $res: DB Results</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_d_b_s_q_l.html#a8b0b5ed5092c7864860fc358ecc7b822" title="SQL Query ausführen. ">SSDBSQL::executeSqlQuery</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8b0b5ed5092c7864860fc358ecc7b822"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static executeSqlQuery </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$debug</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>SQL Query ausführen. </p>
+<p>Führt einen SQL Script mittels rex_sql aus</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$query</td><td>SQL Query </td></tr>
+    <tr><td class="paramname">$debug</td><td>Fehlermeldungen anzeigen oder nicht </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>(array) $res: DB Results</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_d_b_s_q_l.html#ae4d04030e25fe59b8c1248dacc3dbfad" title="SQL Query ausführen. ">SSDBSQL::executeSql</a> </dd></dl>
 
 </div>
 </div>
@@ -325,7 +425,7 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>ERROR_SQL_QUERY_NOT_
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 8 2014 23:40:08 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 15 2014 01:28:47 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

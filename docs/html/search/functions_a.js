@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['remove',['remove',['../class_s_s_session.html#a95483af4e2c07dc9893fe058b026bd5d',1,'SSSession']]]
+  ['messagehandler',['messageHandler',['../class_s_s_controller.html#af95168e2facf1c11beda7d5bc1b31ee5',1,'SSController']]]
 ];

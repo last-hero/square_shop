@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -95,17 +96,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for SSCategory:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_s_s_category__inherit__graph.png" border="0" usemap="#_s_s_category_inherit__map" alt="Inheritance graph"/></div>
-<map name="_s_s_category_inherit__map" id="_s_s_category_inherit__map">
+ <div class="center">
+  <img src="class_s_s_category.png" usemap="#SSCategory_map" alt=""/>
+  <map id="SSCategory_map" name="SSCategory_map">
+<area href="class_s_s_model.html" alt="SSModel" shape="rect" coords="0,0,80,24"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for SSCategory:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_s_s_category__coll__graph.png" border="0" usemap="#_s_s_category_coll__map" alt="Collaboration graph"/></div>
-<map name="_s_s_category_coll__map" id="_s_s_category_coll__map">
-</map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -143,6 +139,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a41c010a33856bd19a7629cfeb22cd7ee inherit pub_methods_class_s_s_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_model.html#a41c010a33856bd19a7629cfeb22cd7ee">getByForeignId</a> ($foreignId, $foreignTable)</td></tr>
 <tr class="memdesc:a41c010a33856bd19a7629cfeb22cd7ee inherit pub_methods_class_s_s_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Datensatz nach FK holen.  <a href="#a41c010a33856bd19a7629cfeb22cd7ee">More...</a><br /></td></tr>
 <tr class="separator:a41c010a33856bd19a7629cfeb22cd7ee inherit pub_methods_class_s_s_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35c6e2a29ed76d4c79418c0a3e1ca3f5 inherit pub_methods_class_s_s_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_model.html#a35c6e2a29ed76d4c79418c0a3e1ca3f5">_getWhere</a> ($where, $show_in=null)</td></tr>
+<tr class="memdesc:a35c6e2a29ed76d4c79418c0a3e1ca3f5 inherit pub_methods_class_s_s_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Datensätze aus der DB holen.  <a href="#a35c6e2a29ed76d4c79418c0a3e1ca3f5">More...</a><br /></td></tr>
+<tr class="separator:a35c6e2a29ed76d4c79418c0a3e1ca3f5 inherit pub_methods_class_s_s_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -182,13 +181,6 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a2d228671995fcf8aa9736de56f64517c inherit pro_attribs_class_s_s_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01370ad0946802d48988eb203cb3a606 inherit pro_attribs_class_s_s_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_model.html#a01370ad0946802d48988eb203cb3a606">$ERROR_NO_FOREIGN_KEYS</a></td></tr>
 <tr class="separator:a01370ad0946802d48988eb203cb3a606 inherit pro_attribs_class_s_s_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pro_methods_class_s_s_model"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_s_s_model')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_s_s_model.html">SSModel</a></td></tr>
-<tr class="memitem:a35c6e2a29ed76d4c79418c0a3e1ca3f5 inherit pro_methods_class_s_s_model"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_model.html#a35c6e2a29ed76d4c79418c0a3e1ca3f5">_getWhere</a> ($where, $show_in=null)</td></tr>
-<tr class="memdesc:a35c6e2a29ed76d4c79418c0a3e1ca3f5 inherit pro_methods_class_s_s_model"><td class="mdescLeft">&#160;</td><td class="mdescRight">Datensätze aus der DB holen.  <a href="#a35c6e2a29ed76d4c79418c0a3e1ca3f5">More...</a><br /></td></tr>
-<tr class="separator:a35c6e2a29ed76d4c79418c0a3e1ca3f5 inherit pro_methods_class_s_s_model"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a8729ba486702e7e12a3fff08965e1e7f"></a>
@@ -220,7 +212,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd>parent </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_model.html#a01370ad0946802d48988eb203cb3a606">SSModel::$ERROR_NO_FOREIGN_KEYS</a> </dd></dl>
 
 </div>
 </div>
@@ -233,7 +225,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd>parent </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_model.html#a354f858a16c3b1147b3d65b0efb38aae">SSModel::$ERROR_TABLE_ATTR_DIFF</a> </dd></dl>
 
 </div>
 </div>
@@ -246,7 +238,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd>parent </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_model.html#a2d228671995fcf8aa9736de56f64517c">SSModel::$ERROR_TO_MANY_FOREIGN_KEYS</a> </dd></dl>
 
 </div>
 </div>
@@ -259,7 +251,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd>parent </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_model.html#a2ec22d00799255f58733484eede8a941">SSModel::$TABLE</a> </dd></dl>
 
 </div>
 </div>
@@ -269,7 +261,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 8 2014 23:40:07 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 15 2014 01:28:47 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

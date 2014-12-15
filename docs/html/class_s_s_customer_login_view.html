@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -95,23 +96,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="dynheader">
 Inheritance diagram for SSCustomerLoginView:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_s_s_customer_login_view__inherit__graph.png" border="0" usemap="#_s_s_customer_login_view_inherit__map" alt="Inheritance graph"/></div>
-<map name="_s_s_customer_login_view_inherit__map" id="_s_s_customer_login_view_inherit__map">
+ <div class="center">
+  <img src="class_s_s_customer_login_view.png" usemap="#SSCustomerLoginView_map" alt=""/>
+  <map id="SSCustomerLoginView_map" name="SSCustomerLoginView_map">
+<area href="class_s_s_view.html" alt="SSView" shape="rect" coords="0,0,140,24"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for SSCustomerLoginView:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_s_s_customer_login_view__coll__graph.png" border="0" usemap="#_s_s_customer_login_view_coll__map" alt="Collaboration graph"/></div>
-<map name="_s_s_customer_login_view_coll__map" id="_s_s_customer_login_view_coll__map">
-</map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a44a0c8be402b297e04e753bb82b520cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_customer_login_view.html#a44a0c8be402b297e04e753bb82b520cd">displayLogoutHtml</a> ($params=array())</td></tr>
 <tr class="memdesc:a44a0c8be402b297e04e753bb82b520cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logout Maske anzeigen.  <a href="#a44a0c8be402b297e04e753bb82b520cd">More...</a><br /></td></tr>
 <tr class="separator:a44a0c8be402b297e04e753bb82b520cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_s_s_view"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_s_s_view')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_s_s_view.html">SSView</a></td></tr>
+<tr class="memitem:ab7647ffef2497c797370d12a82299324 inherit pub_methods_class_s_s_view"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#ab7647ffef2497c797370d12a82299324">displayFormHtml</a> ($params=array())</td></tr>
+<tr class="memdesc:ab7647ffef2497c797370d12a82299324 inherit pub_methods_class_s_s_view"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formular anzeigen.  <a href="#ab7647ffef2497c797370d12a82299324">More...</a><br /></td></tr>
+<tr class="separator:ab7647ffef2497c797370d12a82299324 inherit pub_methods_class_s_s_view"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0306221a02835b4bdb59e0d06af552c1 inherit pub_methods_class_s_s_view"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#a0306221a02835b4bdb59e0d06af552c1">displaySuccessMessage</a> ($message, $title= '')</td></tr>
+<tr class="memdesc:a0306221a02835b4bdb59e0d06af552c1 inherit pub_methods_class_s_s_view"><td class="mdescLeft">&#160;</td><td class="mdescRight">Success-Meldung anzeigen.  <a href="#a0306221a02835b4bdb59e0d06af552c1">More...</a><br /></td></tr>
+<tr class="separator:a0306221a02835b4bdb59e0d06af552c1 inherit pub_methods_class_s_s_view"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1780a36d01ff9d28d95ed18d0a0d0c8b inherit pub_methods_class_s_s_view"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#a1780a36d01ff9d28d95ed18d0a0d0c8b">displayErrorMessage</a> ($message, $title= '')</td></tr>
+<tr class="memdesc:a1780a36d01ff9d28d95ed18d0a0d0c8b inherit pub_methods_class_s_s_view"><td class="mdescLeft">&#160;</td><td class="mdescRight">Failure-Meldung anzeigen.  <a href="#a1780a36d01ff9d28d95ed18d0a0d0c8b">More...</a><br /></td></tr>
+<tr class="separator:a1780a36d01ff9d28d95ed18d0a0d0c8b inherit pub_methods_class_s_s_view"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0ed340132245b0a17cebac4f09fc324 inherit pub_methods_class_s_s_view"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#ad0ed340132245b0a17cebac4f09fc324">displayMessage</a> ($message, $title= '')</td></tr>
+<tr class="memdesc:ad0ed340132245b0a17cebac4f09fc324 inherit pub_methods_class_s_s_view"><td class="mdescLeft">&#160;</td><td class="mdescRight">Einfache Meldung anzeigen.  <a href="#ad0ed340132245b0a17cebac4f09fc324">More...</a><br /></td></tr>
+<tr class="separator:ad0ed340132245b0a17cebac4f09fc324 inherit pub_methods_class_s_s_view"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -123,6 +132,16 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a505c5e4c4c2337be5c68ab3b00953861"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a505c5e4c4c2337be5c68ab3b00953861"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>$FORM_ID</b> = self::FORM_ID</td></tr>
 <tr class="separator:a505c5e4c4c2337be5c68ab3b00953861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_s_s_view"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_s_s_view')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_s_s_view.html">SSView</a></td></tr>
+<tr class="memitem:a505c5e4c4c2337be5c68ab3b00953861 inherit pro_attribs_class_s_s_view"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#a505c5e4c4c2337be5c68ab3b00953861">$FORM_ID</a> = null</td></tr>
+<tr class="separator:a505c5e4c4c2337be5c68ab3b00953861 inherit pro_attribs_class_s_s_view"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_class_s_s_view"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_s_s_view')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_s_s_view.html">SSView</a></td></tr>
+<tr class="memitem:a7528716d1e0c476cc15d15937b0e8e91 inherit pro_methods_class_s_s_view"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#a7528716d1e0c476cc15d15937b0e8e91">displayMessageHtml</a> ($params=array())</td></tr>
+<tr class="memdesc:a7528716d1e0c476cc15d15937b0e8e91 inherit pro_methods_class_s_s_view"><td class="mdescLeft">&#160;</td><td class="mdescRight">Meldung anzeigen.  <a href="#a7528716d1e0c476cc15d15937b0e8e91">More...</a><br /></td></tr>
+<tr class="separator:a7528716d1e0c476cc15d15937b0e8e91 inherit pro_methods_class_s_s_view"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a44a0c8be402b297e04e753bb82b520cd"></a>
@@ -171,7 +190,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 8 2014 23:40:08 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 15 2014 01:28:47 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

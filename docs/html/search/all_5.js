@@ -1,21 +1,8 @@
 var searchData=
 [
-  ['displaycarthtml',['displayCartHtml',['../class_s_s_cart_view.html#a169bffbedc23ec1ec93831dddd1bddcb',1,'SSCartView']]],
-  ['displaycartmessagehtml',['displayCartMessageHtml',['../class_s_s_cart_view.html#a7ca16c1bf6f3dd4f471968bdaeb4092e',1,'SSCartView']]],
-  ['displaydetail',['displayDetail',['../class_s_s_g_u_i.html#a749260a7c5dcca9e6e7ed078fe282088',1,'SSGUI']]],
-  ['displaydetailhtml',['displayDetailHtml',['../class_s_s_article_view.html#ab010b81a22917149a013768ee3b5e180',1,'SSArticleView']]],
-  ['displaydetailview',['displayDetailView',['../class_s_s_article_controller.html#afab87894a16fc2caaf028e7a92ddd1a6',1,'SSArticleController']]],
-  ['displayerrormessage',['displayErrorMessage',['../class_s_s_view.html#abb1a7de30865bdb51d14c67f509510bc',1,'SSView']]],
-  ['displayformaddedit',['displayFormAddEdit',['../class_s_s_g_u_i.html#aa5eeb5a1670567016f90a4d405ba64ac',1,'SSGUI']]],
-  ['displayformhtml',['displayFormHtml',['../class_s_s_view.html#ab7647ffef2497c797370d12a82299324',1,'SSView']]],
-  ['displayformsearch',['displayFormSearch',['../class_s_s_g_u_i.html#adb1c40bbd9561a931b1505fd756fe2d4',1,'SSGUI']]],
-  ['displaylist',['displayList',['../class_s_s_g_u_i.html#a0063dfc715e1bbbceeaca295a7eb812c',1,'SSGUI']]],
-  ['displaylisthtml',['displayListHtml',['../class_s_s_article_view.html#a4acab8de77713ba660c82a8a658f37ab',1,'SSArticleView']]],
-  ['displaylistview',['displayListView',['../class_s_s_article_controller.html#aa577c1bba8b2ab55602041732e0995fc',1,'SSArticleController']]],
-  ['displaylogouthtml',['displayLogoutHtml',['../class_s_s_customer_login_view.html#a44a0c8be402b297e04e753bb82b520cd',1,'SSCustomerLoginView']]],
-  ['displaymessage',['displayMessage',['../class_s_s_view.html#ae84e18348de1a78bb481462078acfab7',1,'SSView']]],
-  ['displaymessagehtml',['displayMessageHtml',['../class_s_s_view.html#a7528716d1e0c476cc15d15937b0e8e91',1,'SSView']]],
-  ['displaysuccessmessage',['displaySuccessMessage',['../class_s_s_view.html#ac884cc2475c77e19694e04a0d7309a5c',1,'SSView']]],
-  ['displayview',['displayView',['../class_s_s_article_controller.html#aca04b3e313abfb913efaacdfb7d5d3d7',1,'SSArticleController\displayView()'],['../class_s_s_customer_login_controller.html#aca04b3e313abfb913efaacdfb7d5d3d7',1,'SSCustomerLoginController\displayView()']]],
-  ['dopropertiesexist',['doPropertiesExist',['../class_s_s_model.html#a069b2c7c8caad29b856ce83c0b77f946',1,'SSModel']]]
+  ['error_5fno_5fforeign_5fkeys',['ERROR_NO_FOREIGN_KEYS',['../class_s_s_article.html#a1fa1d7037ea0b1b4d61153ce5c42577c',1,'SSArticle\ERROR_NO_FOREIGN_KEYS()'],['../class_s_s_category.html#a1fa1d7037ea0b1b4d61153ce5c42577c',1,'SSCategory\ERROR_NO_FOREIGN_KEYS()'],['../class_s_s_customer.html#a1fa1d7037ea0b1b4d61153ce5c42577c',1,'SSCustomer\ERROR_NO_FOREIGN_KEYS()'],['../class_s_s_order.html#a1fa1d7037ea0b1b4d61153ce5c42577c',1,'SSOrder\ERROR_NO_FOREIGN_KEYS()'],['../class_s_s_order_item.html#a1fa1d7037ea0b1b4d61153ce5c42577c',1,'SSOrderItem\ERROR_NO_FOREIGN_KEYS()']]],
+  ['error_5ftable_5fattr_5fdiff',['ERROR_TABLE_ATTR_DIFF',['../class_s_s_article.html#a72295ac34d4bc20feca932c4bfe1afee',1,'SSArticle\ERROR_TABLE_ATTR_DIFF()'],['../class_s_s_category.html#a72295ac34d4bc20feca932c4bfe1afee',1,'SSCategory\ERROR_TABLE_ATTR_DIFF()'],['../class_s_s_customer.html#a72295ac34d4bc20feca932c4bfe1afee',1,'SSCustomer\ERROR_TABLE_ATTR_DIFF()'],['../class_s_s_order.html#a72295ac34d4bc20feca932c4bfe1afee',1,'SSOrder\ERROR_TABLE_ATTR_DIFF()'],['../class_s_s_order_item.html#a72295ac34d4bc20feca932c4bfe1afee',1,'SSOrderItem\ERROR_TABLE_ATTR_DIFF()']]],
+  ['error_5fto_5fmany_5fforeign_5fkeys',['ERROR_TO_MANY_FOREIGN_KEYS',['../class_s_s_article.html#a1aa96ad33e5751f883a767bf15ffc001',1,'SSArticle\ERROR_TO_MANY_FOREIGN_KEYS()'],['../class_s_s_category.html#a1aa96ad33e5751f883a767bf15ffc001',1,'SSCategory\ERROR_TO_MANY_FOREIGN_KEYS()'],['../class_s_s_customer.html#a1aa96ad33e5751f883a767bf15ffc001',1,'SSCustomer\ERROR_TO_MANY_FOREIGN_KEYS()'],['../class_s_s_order.html#a1aa96ad33e5751f883a767bf15ffc001',1,'SSOrder\ERROR_TO_MANY_FOREIGN_KEYS()'],['../class_s_s_order_item.html#a1aa96ad33e5751f883a767bf15ffc001',1,'SSOrderItem\ERROR_TO_MANY_FOREIGN_KEYS()']]],
+  ['executesql',['executeSql',['../class_s_s_d_b_s_q_l.html#ae4d04030e25fe59b8c1248dacc3dbfad',1,'SSDBSQL']]],
+  ['executesqlquery',['executeSqlQuery',['../class_s_s_d_b_s_q_l.html#a8b0b5ed5092c7864860fc358ecc7b822',1,'SSDBSQL']]]
 ];

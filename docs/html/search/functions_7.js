@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['i18l',['i18l',['../class_s_s_helper.html#a0cab4a8c1493c4098d53d64c5ee03196',1,'SSHelper']]],
-  ['importsamples',['importSamples',['../class_s_s_import.html#a265e477a5cc3d73227671d1a77ed17d2',1,'SSImport']]],
-  ['init',['init',['../class_s_s_controller.html#a4be4055f3361d4800e16bc2e2e38cda6',1,'SSController\init()'],['../class_s_s_customer_login_controller.html#a4be4055f3361d4800e16bc2e2e38cda6',1,'SSCustomerLoginController\init()']]],
-  ['invoke',['invoke',['../class_s_s_article_controller.html#a969cad912937b1e2e6e66b49d8148738',1,'SSArticleController\invoke()'],['../class_s_s_customer_login_controller.html#a969cad912937b1e2e6e66b49d8148738',1,'SSCustomerLoginController\invoke()']]],
-  ['isinputvalid',['isInputValid',['../class_s_s_controller.html#a9798c65d2a3254277e5b7943c4e289fd',1,'SSController\isInputValid()'],['../class_s_s_customer_login_controller.html#a9798c65d2a3254277e5b7943c4e289fd',1,'SSCustomerLoginController\isInputValid()']]],
-  ['istypeof',['isTypeOf',['../class_s_s_helper.html#a252971d168d1c2644a9c9c1d3a0bcefc',1,'SSHelper']]],
-  ['isuserloggedin',['isUserLoggedIn',['../class_s_s_customer_login_controller.html#aeb08814a3b11252c66e465a868da3ea7',1,'SSCustomerLoginController']]],
-  ['isuserrequestunique',['isUserRequestUnique',['../class_s_s_controller.html#a8197ec4c543771b0c99b9830f6bf3647',1,'SSController']]]
+  ['handleaddressstep',['handleAddressStep',['../class_s_s_checkout_controller.html#a591ddd7bd573dd36b23cf23c3d6817e1',1,'SSCheckoutController']]],
+  ['handleconfirmstep',['handleConfirmStep',['../class_s_s_checkout_controller.html#a69f33e7dae8e00a17fd226d9000bd437',1,'SSCheckoutController']]],
+  ['handleexecutepaymentstep',['handleExecutePaymentStep',['../class_s_s_checkout_controller.html#ac3439ed9802094815d0aab2147f0d342',1,'SSCheckoutController']]],
+  ['handleloginstep',['handleLoginStep',['../class_s_s_checkout_controller.html#ac8f1b73364d5f3494ecad30a526d21c1',1,'SSCheckoutController']]],
+  ['handleorderstep',['handleOrderStep',['../class_s_s_checkout_controller.html#a38bfceeb3f3a592e55274101716a80f9',1,'SSCheckoutController']]],
+  ['handlepaymentperapi',['handlePaymentPerAPI',['../class_s_s_checkout_controller.html#ad9b70ba4d42d74ca7e1f584cf8e3317d',1,'SSCheckoutController']]],
+  ['handleselectpaymentstep',['handleSelectPaymentStep',['../class_s_s_checkout_controller.html#ac3c2d264ad6a4b249d6c8e01e33a61b7',1,'SSCheckoutController']]],
+  ['helperaddressconf',['helperAddressConf',['../class_s_s_checkout_controller.html#ad4f4a0550f566f68fde164ef8acbd15d',1,'SSCheckoutController']]]
 ];

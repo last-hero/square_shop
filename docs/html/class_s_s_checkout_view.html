@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -100,23 +101,29 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a3b1312167248d98a5306026af8047e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a3b1312167248d98a5306026af8047e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>displayCheckoutByStepHtml</b> ($step, $params=array())</td></tr>
 <tr class="separator:a1a3b1312167248d98a5306026af8047e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac33a401acf5649d207651f0b1b76d540"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac33a401acf5649d207651f0b1b76d540"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>displayCheckoutMessageHtml</b> ($params=array())</td></tr>
-<tr class="separator:ac33a401acf5649d207651f0b1b76d540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd7a88d205a56267c245288d21c5701a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd7a88d205a56267c245288d21c5701a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>displayCheckoutByTmpl</b> ($tmpl, $params=array())</td></tr>
+<tr class="separator:afd7a88d205a56267c245288d21c5701a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a165e60cabb4a2c517ada2238c9b969fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a165e60cabb4a2c517ada2238c9b969fb"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>displayBillingAddressForm</b> ($step, $params=array())</td></tr>
+<tr class="separator:a165e60cabb4a2c517ada2238c9b969fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:aeca189a7edc29987e472d008eb9208b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeca189a7edc29987e472d008eb9208b3"></a>
 const&#160;</td><td class="memItemRight" valign="bottom"><b>FORM_ID</b> = 'checkout'</td></tr>
 <tr class="separator:aeca189a7edc29987e472d008eb9208b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a432e7d74912d2bb623c295cf1a0f2205"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a432e7d74912d2bb623c295cf1a0f2205"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>FORM_ID_ADDRESS</b> = 'checkout_address'</td></tr>
+<tr class="separator:a432e7d74912d2bb623c295cf1a0f2205"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>B:/p2/redaxo/include/addons/square_shop/classes/view/SSCheckoutView.php</li>
+<li>B:/p2/redaxo/include/addons/square_shop/classes/view/<a class="el" href="_s_s_checkout_view_8php.html">SSCheckoutView.php</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 8 2014 23:40:08 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 15 2014 01:28:47 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

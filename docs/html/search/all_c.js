@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['parse',['parse',['../class_s_s_g_u_i.html#a41dbc82f8bbc7991044d2fe4f51d7ac9',1,'SSGUI']]],
-  ['parsedown',['Parsedown',['../class_parsedown.html',1,'']]]
+  ['nextstep',['nextStep',['../class_s_s_checkout_controller.html#ac35a99a93934b3aaea7d3a81d75be1d8',1,'SSCheckoutController']]]
 ];

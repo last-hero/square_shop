@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,21 +93,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">SSView Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Inheritance diagram for SSView:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_s_s_view.png" usemap="#SSView_map" alt=""/>
+  <map id="SSView_map" name="SSView_map">
+<area href="class_s_s_article_view.html" alt="SSArticleView" shape="rect" coords="0,56,155,80"/>
+<area href="class_s_s_cart_view.html" alt="SSCartView" shape="rect" coords="165,56,320,80"/>
+<area href="class_s_s_customer_login_view.html" alt="SSCustomerLoginView" shape="rect" coords="330,56,485,80"/>
+<area href="class_s_s_customer_register_view.html" alt="SSCustomerRegisterView" shape="rect" coords="495,56,650,80"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab7647ffef2497c797370d12a82299324"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#ab7647ffef2497c797370d12a82299324">displayFormHtml</a> ($params=array())</td></tr>
 <tr class="memdesc:ab7647ffef2497c797370d12a82299324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formular anzeigen.  <a href="#ab7647ffef2497c797370d12a82299324">More...</a><br /></td></tr>
 <tr class="separator:ab7647ffef2497c797370d12a82299324"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac884cc2475c77e19694e04a0d7309a5c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#ac884cc2475c77e19694e04a0d7309a5c">displaySuccessMessage</a> ($message)</td></tr>
-<tr class="memdesc:ac884cc2475c77e19694e04a0d7309a5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Success-Meldung anzeigen.  <a href="#ac884cc2475c77e19694e04a0d7309a5c">More...</a><br /></td></tr>
-<tr class="separator:ac884cc2475c77e19694e04a0d7309a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb1a7de30865bdb51d14c67f509510bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#abb1a7de30865bdb51d14c67f509510bc">displayErrorMessage</a> ($message)</td></tr>
-<tr class="memdesc:abb1a7de30865bdb51d14c67f509510bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Failure-Meldung anzeigen.  <a href="#abb1a7de30865bdb51d14c67f509510bc">More...</a><br /></td></tr>
-<tr class="separator:abb1a7de30865bdb51d14c67f509510bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae84e18348de1a78bb481462078acfab7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#ae84e18348de1a78bb481462078acfab7">displayMessage</a> ($message)</td></tr>
-<tr class="memdesc:ae84e18348de1a78bb481462078acfab7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Einfache Meldung anzeigen.  <a href="#ae84e18348de1a78bb481462078acfab7">More...</a><br /></td></tr>
-<tr class="separator:ae84e18348de1a78bb481462078acfab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0306221a02835b4bdb59e0d06af552c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#a0306221a02835b4bdb59e0d06af552c1">displaySuccessMessage</a> ($message, $title= '')</td></tr>
+<tr class="memdesc:a0306221a02835b4bdb59e0d06af552c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Success-Meldung anzeigen.  <a href="#a0306221a02835b4bdb59e0d06af552c1">More...</a><br /></td></tr>
+<tr class="separator:a0306221a02835b4bdb59e0d06af552c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1780a36d01ff9d28d95ed18d0a0d0c8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#a1780a36d01ff9d28d95ed18d0a0d0c8b">displayErrorMessage</a> ($message, $title= '')</td></tr>
+<tr class="memdesc:a1780a36d01ff9d28d95ed18d0a0d0c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Failure-Meldung anzeigen.  <a href="#a1780a36d01ff9d28d95ed18d0a0d0c8b">More...</a><br /></td></tr>
+<tr class="separator:a1780a36d01ff9d28d95ed18d0a0d0c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0ed340132245b0a17cebac4f09fc324"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_view.html#ad0ed340132245b0a17cebac4f09fc324">displayMessage</a> ($message, $title= '')</td></tr>
+<tr class="memdesc:ad0ed340132245b0a17cebac4f09fc324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Einfache Meldung anzeigen.  <a href="#ad0ed340132245b0a17cebac4f09fc324">More...</a><br /></td></tr>
+<tr class="separator:ad0ed340132245b0a17cebac4f09fc324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -120,7 +133,7 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a505c5e4c4c2337be5c68ab3b00953861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="abb1a7de30865bdb51d14c67f509510bc"></a>
+<a class="anchor" id="a1780a36d01ff9d28d95ed18d0a0d0c8b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -128,8 +141,18 @@ Protected Attributes</h2></td></tr>
           <td class="memname">displayErrorMessage </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$message</em></td><td>)</td>
+          <td class="paramname"><em>$message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$title</em> = <code>''</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -139,14 +162,15 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">$message</td><td></td></tr>
+    <tr><td class="paramname">$title</td><td>optional</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_view.html#ae84e18348de1a78bb481462078acfab7" title="Einfache Meldung anzeigen. ">displayMessage()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_view.html#ad0ed340132245b0a17cebac4f09fc324" title="Einfache Meldung anzeigen. ">displayMessage()</a> </dd>
 <dd>
-<a class="el" href="class_s_s_view.html#ac884cc2475c77e19694e04a0d7309a5c" title="Success-Meldung anzeigen. ">displaySuccessMessage()</a> </dd>
+<a class="el" href="class_s_s_view.html#a0306221a02835b4bdb59e0d06af552c1" title="Success-Meldung anzeigen. ">displaySuccessMessage()</a> </dd>
 <dd>
-<a class="el" href="class_s_s_view.html#abb1a7de30865bdb51d14c67f509510bc" title="Failure-Meldung anzeigen. ">displayErrorMessage()</a> </dd>
+<a class="el" href="class_s_s_view.html#a1780a36d01ff9d28d95ed18d0a0d0c8b" title="Failure-Meldung anzeigen. ">displayErrorMessage()</a> </dd>
 <dd>
 <a class="el" href="class_s_s_view.html#a7528716d1e0c476cc15d15937b0e8e91" title="Meldung anzeigen. ">displayMessageHtml()</a> </dd></dl>
 
@@ -179,7 +203,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae84e18348de1a78bb481462078acfab7"></a>
+<a class="anchor" id="ad0ed340132245b0a17cebac4f09fc324"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -187,8 +211,18 @@ Protected Attributes</h2></td></tr>
           <td class="memname">displayMessage </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$message</em></td><td>)</td>
+          <td class="paramname"><em>$message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$title</em> = <code>''</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -198,14 +232,15 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">$message</td><td></td></tr>
+    <tr><td class="paramname">$title</td><td>optional</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_view.html#ae84e18348de1a78bb481462078acfab7" title="Einfache Meldung anzeigen. ">displayMessage()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_view.html#ad0ed340132245b0a17cebac4f09fc324" title="Einfache Meldung anzeigen. ">displayMessage()</a> </dd>
 <dd>
-<a class="el" href="class_s_s_view.html#ac884cc2475c77e19694e04a0d7309a5c" title="Success-Meldung anzeigen. ">displaySuccessMessage()</a> </dd>
+<a class="el" href="class_s_s_view.html#a0306221a02835b4bdb59e0d06af552c1" title="Success-Meldung anzeigen. ">displaySuccessMessage()</a> </dd>
 <dd>
-<a class="el" href="class_s_s_view.html#abb1a7de30865bdb51d14c67f509510bc" title="Failure-Meldung anzeigen. ">displayErrorMessage()</a> </dd>
+<a class="el" href="class_s_s_view.html#a1780a36d01ff9d28d95ed18d0a0d0c8b" title="Failure-Meldung anzeigen. ">displayErrorMessage()</a> </dd>
 <dd>
 <a class="el" href="class_s_s_view.html#a7528716d1e0c476cc15d15937b0e8e91" title="Meldung anzeigen. ">displayMessageHtml()</a> </dd></dl>
 
@@ -242,17 +277,17 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_view.html#ae84e18348de1a78bb481462078acfab7" title="Einfache Meldung anzeigen. ">displayMessage()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_view.html#ad0ed340132245b0a17cebac4f09fc324" title="Einfache Meldung anzeigen. ">displayMessage()</a> </dd>
 <dd>
-<a class="el" href="class_s_s_view.html#ac884cc2475c77e19694e04a0d7309a5c" title="Success-Meldung anzeigen. ">displaySuccessMessage()</a> </dd>
+<a class="el" href="class_s_s_view.html#a0306221a02835b4bdb59e0d06af552c1" title="Success-Meldung anzeigen. ">displaySuccessMessage()</a> </dd>
 <dd>
-<a class="el" href="class_s_s_view.html#abb1a7de30865bdb51d14c67f509510bc" title="Failure-Meldung anzeigen. ">displayErrorMessage()</a> </dd>
+<a class="el" href="class_s_s_view.html#a1780a36d01ff9d28d95ed18d0a0d0c8b" title="Failure-Meldung anzeigen. ">displayErrorMessage()</a> </dd>
 <dd>
 <a class="el" href="class_s_s_view.html#a7528716d1e0c476cc15d15937b0e8e91" title="Meldung anzeigen. ">displayMessageHtml()</a> </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ac884cc2475c77e19694e04a0d7309a5c"></a>
+<a class="anchor" id="a0306221a02835b4bdb59e0d06af552c1"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -260,8 +295,18 @@ Protected Attributes</h2></td></tr>
           <td class="memname">displaySuccessMessage </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$message</em></td><td>)</td>
+          <td class="paramname"><em>$message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$title</em> = <code>''</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -271,14 +316,15 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">$message</td><td></td></tr>
+    <tr><td class="paramname">$title</td><td>optional</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_view.html#ae84e18348de1a78bb481462078acfab7" title="Einfache Meldung anzeigen. ">displayMessage()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="class_s_s_view.html#ad0ed340132245b0a17cebac4f09fc324" title="Einfache Meldung anzeigen. ">displayMessage()</a> </dd>
 <dd>
-<a class="el" href="class_s_s_view.html#ac884cc2475c77e19694e04a0d7309a5c" title="Success-Meldung anzeigen. ">displaySuccessMessage()</a> </dd>
+<a class="el" href="class_s_s_view.html#a0306221a02835b4bdb59e0d06af552c1" title="Success-Meldung anzeigen. ">displaySuccessMessage()</a> </dd>
 <dd>
-<a class="el" href="class_s_s_view.html#abb1a7de30865bdb51d14c67f509510bc" title="Failure-Meldung anzeigen. ">displayErrorMessage()</a> </dd>
+<a class="el" href="class_s_s_view.html#a1780a36d01ff9d28d95ed18d0a0d0c8b" title="Failure-Meldung anzeigen. ">displayErrorMessage()</a> </dd>
 <dd>
 <a class="el" href="class_s_s_view.html#a7528716d1e0c476cc15d15937b0e8e91" title="Meldung anzeigen. ">displayMessageHtml()</a> </dd></dl>
 
@@ -312,7 +358,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 8 2014 23:40:08 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 15 2014 01:28:47 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -94,8 +95,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ae38b24781af1cc60a0bc940bedb414fb"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_d_b_schema.html#ae38b24781af1cc60a0bc940bedb414fb">_getFields</a> ($table, array $attributes=null, $filter=null)</td></tr>
-<tr class="separator:ae38b24781af1cc60a0bc940bedb414fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5009b71c2090dc1b0c5d2b84f8083bf6"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_d_b_schema.html#a5009b71c2090dc1b0c5d2b84f8083bf6">_getFields</a> ($table, array $attributes=null, $filter=null, $clangfields='replace')</td></tr>
+<tr class="separator:a5009b71c2090dc1b0c5d2b84f8083bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a858eb4877f7c6744f12274c7ef09e5ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a858eb4877f7c6744f12274c7ef09e5ab"></a>
+static&#160;</td><td class="memItemRight" valign="bottom"><b>_replaceMultilanguageFieldsToCurClang</b> ($params)</td></tr>
+<tr class="separator:a858eb4877f7c6744f12274c7ef09e5ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32d0e7511b02152a0410bb273fb008f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32d0e7511b02152a0410bb273fb008f0"></a>
+static&#160;</td><td class="memItemRight" valign="bottom"><b>_addMultilanguageFields</b> ($params)</td></tr>
+<tr class="separator:a32d0e7511b02152a0410bb273fb008f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a149bfbb0fef2d17a4b8e5021956a2b09"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_d_b_schema.html#a149bfbb0fef2d17a4b8e5021956a2b09">_getSQLNameFieldByName</a> ($table, $key)</td></tr>
+<tr class="separator:a149bfbb0fef2d17a4b8e5021956a2b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e0c8f602504f2120f72ba245c3b05cd"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_d_b_schema.html#a2e0c8f602504f2120f72ba245c3b05cd">_getFieldsAsSingleArray</a> ($table, array $attributes=null, $filter=null)</td></tr>
 <tr class="separator:a2e0c8f602504f2120f72ba245c3b05cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af786c5bd61e60c8c1edc333be1ec6bee"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_d_b_schema.html#af786c5bd61e60c8c1edc333be1ec6bee">_getForeignKeyNamesByForeignTable</a> ($table, $foreignTable)</td></tr>
@@ -133,12 +142,24 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>SHOW_IN_REGISTER</b>
 <tr class="memitem:a51375da1ed416480548deda387a44285"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51375da1ed416480548deda387a44285"></a>
 const&#160;</td><td class="memItemRight" valign="bottom"><b>SHOW_IN_LOGIN</b> = 'login'</td></tr>
 <tr class="separator:a51375da1ed416480548deda387a44285"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedd959ec63b30b40b43c06e21ae9326e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aedd959ec63b30b40b43c06e21ae9326e"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>SHOW_IN_ADDRESS</b> = 'address'</td></tr>
+<tr class="separator:aedd959ec63b30b40b43c06e21ae9326e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9a371fb7b04ba059f6e412dd30f30f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af9a371fb7b04ba059f6e412dd30f30f7"></a>
 const&#160;</td><td class="memItemRight" valign="bottom"><b>SHOW_IN_CART_ITEM</b> = 'cart_item'</td></tr>
 <tr class="separator:af9a371fb7b04ba059f6e412dd30f30f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af07188002331b6270f206c0e8c15f70e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af07188002331b6270f206c0e8c15f70e"></a>
 const&#160;</td><td class="memItemRight" valign="bottom"><b>SHOW_IN_CART_ITEM_DEL</b> = 'cart_item_del'</td></tr>
 <tr class="separator:af07188002331b6270f206c0e8c15f70e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf4e795baec6ef940676cbea3d2d0d8a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf4e795baec6ef940676cbea3d2d0d8a"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>SHOW_IN_BILL_ADDRESS</b> = 'billing_address'</td></tr>
+<tr class="separator:acf4e795baec6ef940676cbea3d2d0d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9ddf8ce120064b82080c5af1c293c9f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9ddf8ce120064b82080c5af1c293c9f"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>SHOW_IN_DELIVER_ADDRESS</b> = 'delivery_address'</td></tr>
+<tr class="separator:ae9ddf8ce120064b82080c5af1c293c9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfe4ce75cd9a0b13f7ae18eab3083911"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acfe4ce75cd9a0b13f7ae18eab3083911"></a>
+const&#160;</td><td class="memItemRight" valign="bottom"><b>SHOW_IN_PAYMENT</b> = 'payment'</td></tr>
+<tr class="separator:acfe4ce75cd9a0b13f7ae18eab3083911"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84edd0f7724815c1653e940c8f66dac7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84edd0f7724815c1653e940c8f66dac7"></a>
 const&#160;</td><td class="memItemRight" valign="bottom"><b>ERROR_FIELDS_NOT_FOUND</b> = 1000</td></tr>
 <tr class="separator:a84edd0f7724815c1653e940c8f66dac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,7 +171,7 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>ERROR_TABLE_ATTR_NOT
 <tr class="separator:a29622481c4fba5c4c29367653476104e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ae38b24781af1cc60a0bc940bedb414fb"></a>
+<a class="anchor" id="a5009b71c2090dc1b0c5d2b84f8083bf6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -173,7 +194,13 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>ERROR_TABLE_ATTR_NOT
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$filter</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>$filter</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$clangfields</em> = <code>'replace'</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -273,6 +300,41 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>ERROR_TABLE_ATTR_NOT
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>array </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a149bfbb0fef2d17a4b8e5021956a2b09"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static _getSQLNameFieldByName </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$table</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>z.b. title0 holen von title </p>
 
 </div>
 </div>
@@ -383,7 +445,7 @@ const&#160;</td><td class="memItemRight" valign="bottom"><b>ERROR_TABLE_ATTR_NOT
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 8 2014 23:40:08 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 15 2014 01:28:47 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -9,4 +9,8 @@ digraph "SSModel"
   Node3 [label="SSCategory",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_category.html"];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node4 [label="SSCustomer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_customer.html"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SSOrder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_order.html"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="SSOrderItem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_order_item.html"];
 }

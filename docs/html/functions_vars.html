@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li class="current"><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -81,7 +82,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_a"><span>a</span></a></li>
       <li><a href="#index_e"><span>e</span></a></li>
       <li><a href="#index_f"><span>f</span></a></li>
-      <li class="current"><a href="#index_t"><span>t</span></a></li>
+      <li><a href="#index_t"><span>t</span></a></li>
+      <li class="current"><a href="#index_v"><span>v</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -90,7 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,6 +105,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &#160;
 
 <h3><a class="anchor" id="index_$"></a>- $ -</h3><ul>
+<li>$currency
+: <a class="el" href="class_s_s_cart_controller.html#a37d22fd3b896e9d5488f3479a4d8f451">SSCartController</a>
+</li>
 <li>$data
 : <a class="el" href="class_s_s_session.html#a6efc15b5a2314dd4b5aaa556a375c6d6">SSSession</a>
 </li>
@@ -116,8 +121,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_s_s_model.html#a2d228671995fcf8aa9736de56f64517c">SSModel</a>
 </li>
 <li>$FORM_ID
-: <a class="el" href="class_s_s_controller.html#a505c5e4c4c2337be5c68ab3b00953861">SSController</a>
+: <a class="el" href="class_s_s_article_controller.html#a505c5e4c4c2337be5c68ab3b00953861">SSArticleController</a>
+, <a class="el" href="class_s_s_cart_controller.html#a505c5e4c4c2337be5c68ab3b00953861">SSCartController</a>
+, <a class="el" href="class_s_s_checkout_controller.html#a505c5e4c4c2337be5c68ab3b00953861">SSCheckoutController</a>
+, <a class="el" href="class_s_s_controller.html#a505c5e4c4c2337be5c68ab3b00953861">SSController</a>
 , <a class="el" href="class_s_s_customer_login_controller.html#a505c5e4c4c2337be5c68ab3b00953861">SSCustomerLoginController</a>
+, <a class="el" href="class_s_s_customer_register_controller.html#a505c5e4c4c2337be5c68ab3b00953861">SSCustomerRegisterController</a>
 , <a class="el" href="class_s_s_view.html#a505c5e4c4c2337be5c68ab3b00953861">SSView</a>
 </li>
 <li>$formPropertiesAndValues
@@ -125,6 +134,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>$formPropertyValueErrors
 : <a class="el" href="class_s_s_controller.html#a5a52ca608ca949d1f72a1acdcf6ad4ee">SSController</a>
+</li>
+<li>$mwst
+: <a class="el" href="class_s_s_cart_controller.html#ad1216933d263df4f75518e811e9e1243">SSCartController</a>
 </li>
 <li>$objInstance
 : <a class="el" href="class_s_s_session.html#a917d057900327b25608ed26c927eac3b">SSSession</a>
@@ -139,23 +151,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_s_s_controller.html#abefb3c26429d514777313e9a63d7cbac">SSController</a>
 </li>
 <li>$SHOW_IN
-: <a class="el" href="class_s_s_controller.html#a53d38442fc9ff3bde4acd5e485690fc2">SSController</a>
+: <a class="el" href="class_s_s_article_controller.html#a53d38442fc9ff3bde4acd5e485690fc2">SSArticleController</a>
+, <a class="el" href="class_s_s_cart_controller.html#a53d38442fc9ff3bde4acd5e485690fc2">SSCartController</a>
+, <a class="el" href="class_s_s_checkout_controller.html#a53d38442fc9ff3bde4acd5e485690fc2">SSCheckoutController</a>
+, <a class="el" href="class_s_s_controller.html#a53d38442fc9ff3bde4acd5e485690fc2">SSController</a>
 , <a class="el" href="class_s_s_customer_login_controller.html#a53d38442fc9ff3bde4acd5e485690fc2">SSCustomerLoginController</a>
+, <a class="el" href="class_s_s_customer_register_controller.html#a53d38442fc9ff3bde4acd5e485690fc2">SSCustomerRegisterController</a>
+</li>
+<li>$showMessage
+: <a class="el" href="class_s_s_controller.html#a560ab0956605b518623b28b69b4b7079">SSController</a>
+</li>
+<li>$showRegisterForm
+: <a class="el" href="class_s_s_customer_register_controller.html#af5b5a23febb0a6c648e6b14ec96f12c7">SSCustomerRegisterController</a>
+</li>
+<li>$simpleView
+: <a class="el" href="class_s_s_cart_controller.html#af3d21ece9918170da5255a2e5e12bc1a">SSCartController</a>
 </li>
 <li>$TABLE
-: <a class="el" href="class_s_s_controller.html#a2ec22d00799255f58733484eede8a941">SSController</a>
+: <a class="el" href="class_s_s_article_controller.html#a2ec22d00799255f58733484eede8a941">SSArticleController</a>
+, <a class="el" href="class_s_s_cart_controller.html#a2ec22d00799255f58733484eede8a941">SSCartController</a>
+, <a class="el" href="class_s_s_checkout_controller.html#a2ec22d00799255f58733484eede8a941">SSCheckoutController</a>
+, <a class="el" href="class_s_s_controller.html#a2ec22d00799255f58733484eede8a941">SSController</a>
 , <a class="el" href="class_s_s_customer_login_controller.html#a2ec22d00799255f58733484eede8a941">SSCustomerLoginController</a>
+, <a class="el" href="class_s_s_customer_register_controller.html#a2ec22d00799255f58733484eede8a941">SSCustomerRegisterController</a>
 , <a class="el" href="class_s_s_model.html#a2ec22d00799255f58733484eede8a941">SSModel</a>
+</li>
+<li>$view
+: <a class="el" href="class_s_s_controller.html#acccf2eac8663e0cebe8101e90fbab089">SSController</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>ACTION_ADD_TO_CART
+: <a class="el" href="class_s_s_article_controller.html#afdbbebc75d51f99e84f90fe62f88c7c6">SSArticleController</a>
+</li>
 <li>ACTION_LOGIN
 : <a class="el" href="class_s_s_customer_login_controller.html#ac0869b5d786dfef927f1c483ff58c23e">SSCustomerLoginController</a>
 </li>
 <li>ACTION_LOGOUT
 : <a class="el" href="class_s_s_customer_login_controller.html#ae6356e7acf41a3accd27cd475c7015f6">SSCustomerLoginController</a>
+</li>
+<li>ACTION_REGISTER
+: <a class="el" href="class_s_s_customer_register_controller.html#a2b8b3ae88bbc9265f1719e2271d0826b">SSCustomerRegisterController</a>
 </li>
 </ul>
 
@@ -165,16 +203,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_s_s_article.html#a1fa1d7037ea0b1b4d61153ce5c42577c">SSArticle</a>
 , <a class="el" href="class_s_s_category.html#a1fa1d7037ea0b1b4d61153ce5c42577c">SSCategory</a>
 , <a class="el" href="class_s_s_customer.html#a1fa1d7037ea0b1b4d61153ce5c42577c">SSCustomer</a>
+, <a class="el" href="class_s_s_order.html#a1fa1d7037ea0b1b4d61153ce5c42577c">SSOrder</a>
+, <a class="el" href="class_s_s_order_item.html#a1fa1d7037ea0b1b4d61153ce5c42577c">SSOrderItem</a>
 </li>
 <li>ERROR_TABLE_ATTR_DIFF
 : <a class="el" href="class_s_s_article.html#a72295ac34d4bc20feca932c4bfe1afee">SSArticle</a>
 , <a class="el" href="class_s_s_category.html#a72295ac34d4bc20feca932c4bfe1afee">SSCategory</a>
 , <a class="el" href="class_s_s_customer.html#a72295ac34d4bc20feca932c4bfe1afee">SSCustomer</a>
+, <a class="el" href="class_s_s_order.html#a72295ac34d4bc20feca932c4bfe1afee">SSOrder</a>
+, <a class="el" href="class_s_s_order_item.html#a72295ac34d4bc20feca932c4bfe1afee">SSOrderItem</a>
 </li>
 <li>ERROR_TO_MANY_FOREIGN_KEYS
 : <a class="el" href="class_s_s_article.html#a1aa96ad33e5751f883a767bf15ffc001">SSArticle</a>
 , <a class="el" href="class_s_s_category.html#a1aa96ad33e5751f883a767bf15ffc001">SSCategory</a>
 , <a class="el" href="class_s_s_customer.html#a1aa96ad33e5751f883a767bf15ffc001">SSCustomer</a>
+, <a class="el" href="class_s_s_order.html#a1aa96ad33e5751f883a767bf15ffc001">SSOrder</a>
+, <a class="el" href="class_s_s_order_item.html#a1aa96ad33e5751f883a767bf15ffc001">SSOrderItem</a>
 </li>
 </ul>
 
@@ -194,12 +238,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_s_s_article.html#adf62e2b172196282218b1ece3d200fa1">SSArticle</a>
 , <a class="el" href="class_s_s_category.html#adf62e2b172196282218b1ece3d200fa1">SSCategory</a>
 , <a class="el" href="class_s_s_customer.html#adf62e2b172196282218b1ece3d200fa1">SSCustomer</a>
+, <a class="el" href="class_s_s_order.html#adf62e2b172196282218b1ece3d200fa1">SSOrder</a>
+, <a class="el" href="class_s_s_order_item.html#adf62e2b172196282218b1ece3d200fa1">SSOrderItem</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_v"></a>- v -</h3><ul>
+<li>VAR_NAME_ARTILEID
+: <a class="el" href="class_s_s_article_controller.html#aa543004fdab15249767aee1e56f773ac">SSArticleController</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 8 2014 23:40:12 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 15 2014 01:28:49 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

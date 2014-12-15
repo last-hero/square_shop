@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['table',['TABLE',['../class_s_s_article.html#adf62e2b172196282218b1ece3d200fa1',1,'SSArticle\TABLE()'],['../class_s_s_category.html#adf62e2b172196282218b1ece3d200fa1',1,'SSCategory\TABLE()'],['../class_s_s_customer.html#adf62e2b172196282218b1ece3d200fa1',1,'SSCustomer\TABLE()']]],
-  ['todo_20list',['Todo List',['../todo.html',1,'']]]
+  ['quickstart',['Quickstart',['../md__b_1_p2_redaxo_include_addons_square_shop__q_u_i_c_k_s_t_a_r_t.html',1,'']]]
 ];

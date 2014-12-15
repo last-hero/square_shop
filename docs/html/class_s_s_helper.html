@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
@@ -73,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -97,12 +98,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a096c538159975131963b7dd547982a4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_helper.html#a096c538159975131963b7dd547982a4e">array_keys_exists</a> (array $array1, array $array2)</td></tr>
 <tr class="memdesc:a096c538159975131963b7dd547982a4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array-Keys vergleichen.  <a href="#a096c538159975131963b7dd547982a4e">More...</a><br /></td></tr>
 <tr class="separator:a096c538159975131963b7dd547982a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7af327ace145b87f92f8b6324a2a6f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_helper.html#ab7af327ace145b87f92f8b6324a2a6f8">generateHash</a> ()</td></tr>
+<tr class="memdesc:ab7af327ace145b87f92f8b6324a2a6f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash.  <a href="#ab7af327ace145b87f92f8b6324a2a6f8">More...</a><br /></td></tr>
+<tr class="separator:ab7af327ace145b87f92f8b6324a2a6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a0cab4a8c1493c4098d53d64c5ee03196"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_helper.html#a0cab4a8c1493c4098d53d64c5ee03196">i18l</a> ($str)</td></tr>
-<tr class="memdesc:a0cab4a8c1493c4098d53d64c5ee03196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internationalization and localization.  <a href="#a0cab4a8c1493c4098d53d64c5ee03196">More...</a><br /></td></tr>
-<tr class="separator:a0cab4a8c1493c4098d53d64c5ee03196"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bece4aee1514dbafbd7d0234227e053"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_helper.html#a3bece4aee1514dbafbd7d0234227e053">i18n</a> ($str)</td></tr>
+<tr class="memdesc:a3bece4aee1514dbafbd7d0234227e053"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internationalization and localization.  <a href="#a3bece4aee1514dbafbd7d0234227e053">More...</a><br /></td></tr>
+<tr class="separator:a3bece4aee1514dbafbd7d0234227e053"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50f106600a25de036f9b6f0a89a198d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50f106600a25de036f9b6f0a89a198d5"></a>
+static&#160;</td><td class="memItemRight" valign="bottom"><b>seti18l</b> ($_k, $_v)</td></tr>
+<tr class="separator:a50f106600a25de036f9b6f0a89a198d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e7574f66ddb9714f23bd78aa1614170"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_helper.html#a1e7574f66ddb9714f23bd78aa1614170">importTranslationsToStringTable</a> ()</td></tr>
+<tr class="memdesc:a1e7574f66ddb9714f23bd78aa1614170"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add all Texts to String Table.  <a href="#a1e7574f66ddb9714f23bd78aa1614170">More...</a><br /></td></tr>
+<tr class="separator:a1e7574f66ddb9714f23bd78aa1614170"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8106f80fcdd92c26fc51ed21951f9f36"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_helper.html#a8106f80fcdd92c26fc51ed21951f9f36">deleteTranslationsFromStringTable</a> ()</td></tr>
+<tr class="memdesc:a8106f80fcdd92c26fc51ed21951f9f36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all Texts from String Table.  <a href="#a8106f80fcdd92c26fc51ed21951f9f36">More...</a><br /></td></tr>
+<tr class="separator:a8106f80fcdd92c26fc51ed21951f9f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab867eaa914bfa2f38eba7f9ebf8c3b6b"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_helper.html#ab867eaa914bfa2f38eba7f9ebf8c3b6b">getAddonPath</a> ()</td></tr>
+<tr class="memdesc:ab867eaa914bfa2f38eba7f9ebf8c3b6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Addon Ordnerpfad.  <a href="#ab867eaa914bfa2f38eba7f9ebf8c3b6b">More...</a><br /></td></tr>
+<tr class="separator:ab867eaa914bfa2f38eba7f9ebf8c3b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3447b2cf5b28e465d8335cfa0158ac69"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_helper.html#a3447b2cf5b28e465d8335cfa0158ac69">getAddonDataPath</a> ()</td></tr>
+<tr class="memdesc:a3447b2cf5b28e465d8335cfa0158ac69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Addon-Daten Ordnerpfad.  <a href="#a3447b2cf5b28e465d8335cfa0158ac69">More...</a><br /></td></tr>
+<tr class="separator:a3447b2cf5b28e465d8335cfa0158ac69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22ea98c9a7625ae25a20010920a5b2cb"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_s_helper.html#a22ea98c9a7625ae25a20010920a5b2cb">getSetting</a> ($key)</td></tr>
 <tr class="memdesc:a22ea98c9a7625ae25a20010920a5b2cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shop-Betreiber Setting Value.  <a href="#a22ea98c9a7625ae25a20010920a5b2cb">More...</a><br /></td></tr>
 <tr class="separator:a22ea98c9a7625ae25a20010920a5b2cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -236,7 +255,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>User Input Values bereinigen. </p>
-<p>Bereinigt $value und liefert sie zurück</p>
+<p>Bereinigt $value und liefert sie zurück. Mit dieser Bereinigung wird eine mögliche SQL Injection Attack beseitigt.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">(string|array)</td><td>$value </td></tr>
@@ -244,6 +263,115 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>(string|array): bereinigte Value(s) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8106f80fcdd92c26fc51ed21951f9f36"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static deleteTranslationsFromStringTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Remove all Texts from String Table. </p>
+<p>Alle Texte von der String-Table Addon Tabelle entfernen. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab7af327ace145b87f92f8b6324a2a6f8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">generateHash </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Hash. </p>
+<p>Hash Wert generieren</p>
+<dl class="section return"><dt>Returns</dt><dd>string </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3447b2cf5b28e465d8335cfa0158ac69"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static getAddonDataPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Addon-Daten Ordnerpfad. </p>
+<p>Liefert den Ordnerpfad der Daten des Addons in dem Instanz spezifische Daten abgelegt werden, die nicht zum Source-Files gehören.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">(string)</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab867eaa914bfa2f38eba7f9ebf8c3b6b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static getAddonPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Addon Ordnerpfad. </p>
+<p>Liefert den Ordnerpfad des Addons</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">(string)</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -367,7 +495,7 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0cab4a8c1493c4098d53d64c5ee03196"></a>
+<a class="anchor" id="a3bece4aee1514dbafbd7d0234227e053"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -375,7 +503,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static i18l </td>
+          <td class="memname">static i18n </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>$str</em></td><td>)</td>
@@ -398,6 +526,32 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>(string) $str </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1e7574f66ddb9714f23bd78aa1614170"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static importTranslationsToStringTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add all Texts to String Table. </p>
+<p>Alle Texte in der String-Table Addon Tabelle importieren, damit Übersetzung in andere Sprachen möglich ist. </p>
 
 </div>
 </div>
@@ -452,7 +606,7 @@ Static Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 8 2014 23:40:08 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Dec 15 2014 01:28:47 for Redaxo Addon - Online Shop FE by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
