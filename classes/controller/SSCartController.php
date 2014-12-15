@@ -296,8 +296,6 @@ class SSCartController extends SSController{
 	/** @brief Artikel zum Warenkorb hinzufügen
 	 *
 	 *  Dabei werden ID, Qty in Session gespeichert
-	 *  auf dem sich der Artikel befindet,
-	 *  um eine direkte Url zum Artikel zu
 	 *
 	 *  @param int $artId: Artikel ID
 	 *  @param int $qty: Menge
