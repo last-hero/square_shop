@@ -86,7 +86,7 @@
             <? if(!isset($simpleView)): ?>
             	<th align="right">
                     <form action="<?=$url_checkout?>" method="post" class="ss-form">
-                        <input id="ss-submit" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-submit" value="<?=$label_checkout?>" />
+                        <input id="ss-submit-checkout" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-submit ss-submit-checkout" value="<?=$label_checkout?>" />
                     </form>
                 	<!--<a href="<?=$url_checkout?>"><?=$label_checkout?></a>-->
                 </th>

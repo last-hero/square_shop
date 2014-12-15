@@ -178,7 +178,6 @@ class SSModel {
 			unset($propertiesAndValues['id']);
 			$query = SSDBSQL::_getSqlInsertQuery($propertiesAndValues, $this->TABLE);
 			
-			d($query);
 			$res = SSDBSQL::executeSqlQuery($query, false);
 			if((int)$res['last_insert_id'] > 0){
 				$this->set('id', $res['last_insert_id']);

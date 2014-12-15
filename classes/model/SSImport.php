@@ -51,7 +51,7 @@ class SSImport {
 			$q = 'INSERT INTO `rex_square_shop_order_item` (order_id, article_id, no, title, description, price, images, qty) VALUES ';
 			$order_id = $order['id'];
 			for($x=0; $x<rand(1,10); $x++){
-				$query = 'SELECT id, no, title, description, price, images, FLOOR(1+RAND()*10) FROM rex_square_shop_article ORDER BY RAND() LIMIT 1';
+				$query = 'SELECT id, no, title0, description0, price, images, FLOOR(1+RAND()*10) FROM rex_square_shop_article ORDER BY RAND() LIMIT 1';
 				$res = SSDBSQL::executeSql($query, false);
 				$q .= '("'.$order_id.'", "'.implode('", "', $res[0]).'"), ';
 			}

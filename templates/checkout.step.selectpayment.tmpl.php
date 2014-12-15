@@ -18,7 +18,7 @@
             <br /><br />
             <? $fname = 'submit'; ?>
             <p class="ss-<?=$fname?>">
-                <input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-<?=$fname?> ss-next" value="<?=$label_submit?>" />
+                <input id="ss-<?=$fname?>-next" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-<?=$fname?> ss-next" value="<?=$label_submit?>" />
             </p>
         </form>
         
@@ -29,7 +29,7 @@
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][uniqueId]" value="<?=hash('md5', microtime(true))?>" />
             <input type="hidden" name="SSForm[<?=$FORM_ID?>][jumpToStep]" value="<?=$jumpToStep?>" />
             <? $fname = 'submit'; ?>
-			<input id="ss-<?=$fname?>" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-<?=$fname?> ss-prev" value="<?=SSHelper::i18n('label_goback')?>" />
+			<input id="ss-<?=$fname?>-prev" name="SSForm[<?=$FORM_ID?>][submit]" type="submit" class="ss-<?=$fname?> ss-prev" value="<?=SSHelper::i18n('label_goback')?>" />
         </form>
 		<? endif; ?>
 	</div>
