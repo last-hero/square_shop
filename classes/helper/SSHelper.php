@@ -51,7 +51,6 @@ class SSHelper{
 				$query = 'INSERT INTO rex_string_table SET keyname="'.$key.'" , value_0="'.$str.'"';
 				SSDBSQL::executeSqlQuery($query, false);
 			}
-			
 			$retval = rex_string_table::getString($key, $fillEmpty = false);
 			if(empty($retval)){
 				$retval = str_replace('label_', '', $str);
@@ -203,10 +202,10 @@ class SSHelper{
 			return $value;
 		}
 		else{
-			$value = mysql_real_escape_string($value);
 			$value = htmlspecialchars($value, ENT_IGNORE, 'utf-8');
 			$value = strip_tags($value);
 			$value = stripslashes($value);
+			$value = mysql_real_escape_string($value);
 			return $value;
 			//return mysql_real_escape_string(strip_tags(trim($value)), $link);
 		}

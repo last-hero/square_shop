@@ -2,6 +2,8 @@
 	$payPalCtrl = new SSPayPalController();
 	$conf = $payPalCtrl->getConf();
 	
+	$formUrl = $payPalCtrl->paypalUrl;
+	
 	if(isset($_GET['handlePayPalPayment'])):
 		$payPalCtrl->handlePayment();
 		die();
@@ -36,7 +38,7 @@
         </table>
         <br /><br />
         <!--<form class="paypalpaymentform" action="https://www.paypal.com/cgi-bin/webscr" method="post">-->
-        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" 
+        <form action="<?=$formUrl?>" 
         method="post" name="ss-form-<?=$FORM_ID?>" class="ss-form ss-form-<?=$FORM_ID?> paypalpaymentform" method="post">
             <input type="hidden" name="cmd" value="_cart" />
             <input type="hidden" name="upload" value="1" />

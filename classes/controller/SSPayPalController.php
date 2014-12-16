@@ -15,7 +15,8 @@ class SSPayPalController extends SSController{
 	
 	private $debug = 0;
 	private $useSandbox = 0;
-	private $logfile;	
+	private $logfile;
+	public $paypalUrl;	
 	
 	public function init(){
 		global $REX;
@@ -24,6 +25,13 @@ class SSPayPalController extends SSController{
 		
 		$this->debug = (int)SSHelper::getSetting('paypal_debug');
 		$this->useSandbox = (int)SSHelper::getSetting('paypal_use_sandbox');
+		
+		if($this->useSandbox == true) {
+			$this->paypalUrl = "https://www.sandbox.paypal.com/cgi-bin/webscr";
+		} else {
+			$this->paypalUrl = "https://www.paypal.com/cgi-bin/webscr";
+		}
+		
 		
 		$checkoutCtrl = new SSCheckoutController();
 		$this->orderId = $checkoutCtrl->getSession('OrderId');

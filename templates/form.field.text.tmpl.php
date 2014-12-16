@@ -6,11 +6,16 @@
             $max = $f['max']?$f['max']:255;
             $min = $f['min']?$f['min']:'';
             $post_data = $formPropertiesAndValues[$fname];
+            $post_data = stripslashes($post_data);
 			$errors = $formPropertyValueErrors[$fname];
 			$css_class = 'ss-'.$fname.' '.$required.' '.$value_type;
 			if(count($errors) > 0){
 				$css_class .= ' error';
 			}
+			/*
+			
+			d(stripslashes($_POST['SSForm']['register']['firstname']));
+			*/
 ?>
             <p class="<?=$css_class?>">
                 <label for="ss-<?=$fname?>"><?=$label?></label>

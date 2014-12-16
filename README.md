@@ -34,6 +34,7 @@ Hinweise
 --------
 
 * Getestet mit REDAXO 4.6
+* Zahlungsmöglichkeit getestet mit PayPal Sandbox Accounts
 
 
 Quickstart
@@ -46,6 +47,12 @@ Changelog
 ---------
 
 siehe [CHANGELOG.md](CHANGELOG.md)
+
+Links
+------------
+
+* [Neueste Version](https://github.com/last-hero/square_shop)
+* [Bug-Tracking](https://github.com/last-hero/square_shop/issues)
 
 Credits
 -------

@@ -89,7 +89,11 @@ class SSCheckoutController extends SSController{
 			$this->handlePaymentPerAPI();
 		}elseif($handleExecutePaymentStep){
 			$this->handleExecutePaymentStep();
-			$this->displayConfirmStep();
+			if($this->customerLoginCtrl->isUserLoggedIn()){
+				$this->displayConfirmStep();
+			}else{
+				$this->customerLoginCtrl->displayView();
+			}
 		}else{
 			if($this->cartCtrl->isCartEmpty()){
 				$this->view->displaySuccessMessage(SSHelper::i18n('cart_is_empty'));
@@ -367,15 +371,20 @@ class SSCheckoutController extends SSController{
 			if(count($orderDbData) == 1){
 				$orderId = (int)$orderDbData[0]['id'];
 			}
-			
-			$GLOBALS['checkout'] = array(
-				'OrderId' => $orderId
-				, 'OrderCompleted' => true
-				, 'SelectPayment' => $orderDbData['payment']
-				, 'PaymentStatus' => $orderDbData['payment_status']
-				, 'PayerEmail' => $orderDbData['payer_email']
-				, 'Step' => 7
-			);
+			$order->loadById($orderId);
+			if($orderId > 0 and $this->customerLoginCtrl->isUserLoggedIn()
+			and $order->get('customer_id') == $this->customerLoginCtrl->getLoggedInUserId()){
+				$customer = new SSCustomer();
+				$GLOBALS['checkout'] = array(
+					'OrderId' => $orderId
+					, 'OrderCompleted' => true
+					, 'CustomerId' => $this->customerLoginCtrl->getLoggedInUserId()
+					, 'SelectPayment' => $orderDbData['payment']
+					, 'PaymentStatus' => $orderDbData['payment_status']
+					, 'PayerEmail' => $orderDbData['payer_email']
+					, 'Step' => 7
+				);
+			}
 			$this->cartCtrl->clearCart();
 			$this->clearAll();
 		}else{

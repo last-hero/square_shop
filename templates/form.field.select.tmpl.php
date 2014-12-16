@@ -5,6 +5,7 @@
             $label_options = $f['label_values'];
             $required = $f['required']?'required':'';
             $post_data = $formPropertiesAndValues[$fname];
+            $post_data = stripslashes($post_data);
 			$errors = $formPropertyValueErrors[$fname];
 			$css_class = 'ss-'.$fname.' '.$required;
 			if(count($errors) > 0){
@@ -17,6 +18,7 @@
                     <option value="" selected="selected">-</option>
 <?
                 for($x=0; $x<sizeof($options); $x++):
+           			$options[$x] = stripslashes($options[$x]);
 ?>
                     <option <?=$post_data==$options[$x]?'selected="selected"':''?> value="<?=$options[$x]?>"><?=$label_options[$x]?></option>
 <?
