@@ -8,7 +8,7 @@
 <file name="SSCustomer.php" server="p2.ibog.biz" local="130628085836360494" remote="130630692600000000" Dst="1" />
 <file name="SSArticle.php" server="p2.ibog.biz" local="130626319716251132" remote="130630692600000000" Dst="1" />
 <file name="SSCategory.php" server="p2.ibog.biz" local="130626319716620808" remote="130630692600000000" Dst="1" />
-<file name="SSModel.php" server="p2.ibog.biz" local="130630749704015026" remote="130630749600000000" Dst="1" />
+<file name="SSModel.php" server="p2.ibog.biz" local="130633312951377281" remote="130633312800000000" Dst="1" />
 <file name="SSOrder.php" server="p2.ibog.biz" local="130628112587748105" remote="130630692600000000" Dst="1" />
 <file name="SSOrderItem.php" server="p2.ibog.biz" local="130627819043689310" remote="130630692600000000" Dst="1" />
 </dwsync>

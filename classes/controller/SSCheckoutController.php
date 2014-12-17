@@ -4,6 +4,9 @@
  *
  *  Diese Klasse verwaltet den ganzen Einkauf
  *
+ *
+ *  @todo Mail an Käufer + Shop-Betreiber nach erfolgreicher Bestellung
+ *
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
@@ -179,7 +182,7 @@ class SSCheckoutController extends SSController{
 				break;
 		}
 	}
-	public function checkoutViewHandler(){
+	public function checkoutViewHandler(){				
 		switch($this->getStep()){
 			case 1:
 				$this->displayLoginStep();
@@ -384,6 +387,39 @@ class SSCheckoutController extends SSController{
 					, 'PayerEmail' => $orderDbData['payer_email']
 					, 'Step' => 7
 				);
+				
+				/* --------------------------------------------------------------
+				// Mail an Shop-Betreier + Käufer
+				- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+				// Todo Mail verschicken
+				$orders_mail_to = SSHelper::getSetting('orders_mail_to');
+				$orderItem = new SSOrderItem();
+				$orderItemsArray = $orderItem->getByForeignId($orderId, SSOrder::TABLE);
+				
+				//$order = new SSOrder();
+				//$order->loadById($orderId);
+				$orders_mail_to_customer = $order->get('billing_email');
+				$order_no = $order->get('no');
+				
+				$output = 'Guten Tag ';
+				$output .= $order->get('billing_firstname').' '.$order->get('billing_lastname');
+				$output .= "\r\n";
+				$output .= "\r\n";
+				for($x=0; $x<count($orderItemsArray); $x++){
+					$output .= 	'(ArtNr.)'.$orderItemsArray[$x]['no'];
+					$output .= 	' | (Artikel) '.$orderItemsArray[$x]['title'];
+					$output .= 	' | (Preis) '.$orderItemsArray[$x]['price'];
+					$output .= 	' | (Menge) '.$orderItemsArray[$x]['qty'];
+					$output .= 	' | (Subtotal) '.number_format(((int)$orderItemsArray[$x]['qty']*(int)$orderItemsArray[$x]['price']), 2, '.', '');
+					$output .= "\r\n";
+				}
+				$output .= "\r\n";
+				$output .= "\r\n";
+						
+				mail($orders_mail_to,"Bestellung - ".$order_no,$output);
+				mail($orders_mail_to_customer,"Bestellung - ".$order_no,$output);
+				/* ------------------------------------------------------------ */
+				
 			}
 			$this->cartCtrl->clearCart();
 			$this->clearAll();

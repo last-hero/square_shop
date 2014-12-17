@@ -15,7 +15,7 @@
 <file name="checkout.step.login.tmpl.php" server="p2.ibog.biz" local="130630751601615212" remote="130630752000000000" Dst="1" />
 <file name="checkout.step.address.tmpl.php" server="p2.ibog.biz" local="130630751973970753" remote="130630751400000000" Dst="1" />
 <file name="checkout.step.order.onbill.tmpl.php" server="p2.ibog.biz" local="130630751602685795" remote="130630752000000000" Dst="1" />
-<file name="checkout.step.order.paypal.tmpl.php" server="p2.ibog.biz" local="130632330149469489" remote="130632330000000000" Dst="1" />
+<file name="checkout.step.order.paypal.tmpl.php" server="p2.ibog.biz" local="130633301142181905" remote="130633300800000000" Dst="1" />
 <file name="checkout.step.order.tmpl.php" server="p2.ibog.biz" local="130630751964674723" remote="130630752000000000" Dst="1" />
 <file name="checkout.step.selectpayment.tmpl.php" server="p2.ibog.biz" local="130630751965801860" remote="130630752000000000" Dst="1" />
 </dwsync>

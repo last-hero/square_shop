@@ -282,7 +282,7 @@ class SSModel {
 		
 		if(count($res) > 0){
 			try{
-				$result = $this->getClearedUnknownProperties($res[0]);
+				//$result = $this->getClearedUnknownProperties($res[0]);
 				return $res;
 			}catch(SSException $e) {
 				echo $e;

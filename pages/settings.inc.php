@@ -67,6 +67,14 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
                         </p>
                     </div>
                     
+					<? $fname = 'orders_mail_to' ?>
+					<div class="rex-form-row rex-form-element-v1">
+						<p class="rex-form-text">
+							<label for="<?=$fname?>"><?=ss_utils::i18l('settings_'.$fname)?></label>
+							<input type="text" value="<?=$REX['ADDON']['square_shop']['settings'][$fname]?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
+						</p>
+					</div>
+                    
 					<div class="rex-form-row rex-form-element-v1">
 						<p class="rex-form-submit">
 							<input type="submit" class="rex-form-submit" name="sendit" value="<?=$I18N->msg('square_shop_settings_save'); ?>" />
@@ -98,13 +106,13 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
 						</p>
 					</div>
                     
-					<? $fname = 'paypal_mail_errors_to' ?>
+					<!--<? $fname = 'paypal_mail_errors_to' ?>
 					<div class="rex-form-row rex-form-element-v1">
 						<p class="rex-form-text">
 							<label for="<?=$fname?>"><?=ss_utils::i18l('settings_'.$fname)?></label>
 							<input type="text" value="<?=$REX['ADDON']['square_shop']['settings'][$fname]?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
 						</p>
-					</div>
+					</div>-->
 					<? $fname = 'paypal_debug' ?>
                     <?
 						$paypal_select = new rex_select();
