@@ -311,36 +311,11 @@ class SSCheckoutController extends SSController{
 		
 				
 		/* --------------------------------------------------------------
-		// Todo Mail verschicken
+		// Todo Better Mail
 		// Mail an Shop-Betreier + Käufer
 		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 		$orderId = $this->getSession('OrderId');
-		$orders_mail_to = SSHelper::getSetting('orders_mail_to');
-		$orderItem = new SSOrderItem();
-		$orderItemsArray = $orderItem->getByForeignId($orderId, SSOrder::TABLE);
-		
-		$order = new SSOrder();
-		$order->loadById($orderId);
-		$orders_mail_to_customer = $order->get('billing_email');
-		$order_no = $order->get('no');
-		
-		$output = 'Guten Tag ';
-		$output .= $order->get('billing_firstname').' '.$order->get('billing_lastname');
-		$output .= "\r\n";
-		$output .= "\r\n";
-		for($x=0; $x<count($orderItemsArray); $x++){
-			$output .= 	'(ArtNr.)'.$orderItemsArray[$x]['no'];
-			$output .= 	' | (Artikel) '.$orderItemsArray[$x]['title'];
-			$output .= 	' | (Preis) '.$orderItemsArray[$x]['price'];
-			$output .= 	' | (Menge) '.$orderItemsArray[$x]['qty'];
-			$output .= 	' | (Subtotal) '.number_format(((int)$orderItemsArray[$x]['qty']*(int)$orderItemsArray[$x]['price']), 2, '.', '');
-			$output .= "\r\n";
-		}
-		$output .= "\r\n";
-		$output .= "\r\n";
-				
-		mail($orders_mail_to,"Bestellung - ".$order_no,$output);
-		mail($orders_mail_to_customer,"Bestellung - ".$order_no,$output);
+		$this->mailOrder($orderId);
 		/* ------------------------------------------------------------ */
 		
 		$this->cartCtrl->clearCart();
@@ -422,6 +397,15 @@ class SSCheckoutController extends SSController{
 					, 'PayerEmail' => $orderDbData['payer_email']
 					, 'Step' => 7
 				);
+				
+				
+				
+				/* --------------------------------------------------------------
+				// Todo Better Mail
+				// Mail an Shop-Betreier + Käufer
+				- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+				$this->mailOrder($orderId);
+				/* ------------------------------------------------------------ */
 			}
 			$this->cartCtrl->clearCart();
 			$this->clearAll();
@@ -447,6 +431,54 @@ class SSCheckoutController extends SSController{
 			$paypal->handlePayment();
 		}
 	}
+	
+	
+	/** @brief Prüfen ob Zahlungsart ausgewählt
+	 *
+	 *  
+	 *  @param $orderId
+	 */
+	public function mailOrder($orderId){
+		/* --------------------------------------------------------------
+		// Todo Better Mail
+		// Mail an Shop-Betreier + Käufer
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+		$orders_mail_to = SSHelper::getSetting('orders_mail_to');
+		
+		$order = new SSOrder();
+		$order->loadById($orderId);
+		$orderItem = new SSOrderItem();
+		$orderItemsArray = $orderItem->getByForeignId($orderId, SSOrder::TABLE);
+		
+		$orders_mail_to_customer = $order->get('billing_email');
+		$order_no = $order->get('no');
+		
+		$output = 'Guten Tag ';
+		$output .= $order->get('billing_firstname').' '.$order->get('billing_lastname');
+		$output .= "\r\n";
+		$total = 0;
+		for($x=0; $x<count($orderItemsArray); $x++){
+			$subtotal = (int)$orderItemsArray[$x]['qty'] * (int)$orderItemsArray[$x]['price'];
+			$total += $subtotal;
+			$output .= "\n".'ArtNr.: '.$orderItemsArray[$x]['no'];
+			$output .= "\n".'Artikel: '.$orderItemsArray[$x]['title'];
+			$output .= "\n".'Preis: '.$orderItemsArray[$x]['price'];
+			$output .= "\n".'Menge: '.$orderItemsArray[$x]['qty'];
+			$output .= "\n".'Subtotal: '.number_format($subtotal, 2, '.', '');
+			$output .= "\n";
+			$output .= "- - - - - - - - - - - - - - - - - - - - - - - -";
+		}
+		$output .= "\n";
+		$output .= "- - - - - - - - - - - - - - - - - - - - - - - -";
+		$output .= "\n".'Total: '.number_format($total, 2, '.', '');
+		$output .= "\r\n";
+		$output .= "\r\n";
+				
+		mail($orders_mail_to,"Bestellung - ".$order_no,$output);
+		mail($orders_mail_to_customer,"Bestellung - ".$order_no,$output);
+		/* ------------------------------------------------------------ */
+	}
+	
 	
 	/** @brief Prüfen ob Zahlungsart ausgewählt
 	 *
