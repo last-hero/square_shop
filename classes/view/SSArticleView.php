@@ -15,7 +15,7 @@
  
 class SSArticleView extends SSView{
 	/**
-	* siehe Parent
+	 * @see SSView::$FORM_ID
 	*/
 	const FORM_ID = 'article';
 	protected $FORM_ID = self::FORM_ID;

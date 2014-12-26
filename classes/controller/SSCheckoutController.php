@@ -61,9 +61,11 @@ class SSCheckoutController extends SSController{
 	
 	private $step = 1;
 	
+	// verwendete APIs
 	private $paymentsPerAPI = array('paypal', 'saferpay');
 	
-	/*
+	/** @brief Initialisierung
+	 *
 	* Konstruktor: lädt Session Instanz (Singleton)
 	* Falls POST Request abgeschickt wurde, dann daten laden
 	*/
@@ -82,9 +84,10 @@ class SSCheckoutController extends SSController{
 		$this->checkoutView = new SSCheckoutView();
     }
 	
-	/*
-	* Warenkorb starten
-	*/
+	/** @brief Warenkorb starten
+	 *
+	 * Warenkorb Verwaltung
+	 */
 	public function invoke(){
 		$handlePaymentPerAPI		 = rex_get('handlePaymentPerAPI', 'string', '');
 		$handleExecutePaymentStep	= rex_get('handleExecutePaymentStep', 'string', '');
@@ -109,9 +112,11 @@ class SSCheckoutController extends SSController{
 		}
 	}
 	
-	/*
-	* Warenkorb Handler: Add to Cart, Remove from Cart, Menge ändern
-	*/
+	/** @brief Checkout Handler
+	 *
+	 *  Es wird überprüft ob die einzelnen Bestellungs-
+	 *  schritte...
+	 */
 	public function checkoutHandler(){
 		if((int)$this->formPropertiesAndValues['jumpToStep'] > 0){
 			$this->setStep($this->formPropertiesAndValues['jumpToStep']);

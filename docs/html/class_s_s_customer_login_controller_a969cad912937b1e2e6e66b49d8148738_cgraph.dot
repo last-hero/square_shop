@@ -1,0 +1,45 @@
+digraph "invoke"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="invoke",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="loginLogoutHandler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_customer_login_controller.html#a1ec48b325777925c936a89a25214cb92",tooltip="Login / Logout Logik. "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="isInputValid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_customer_login_controller.html#a9798c65d2a3254277e5b7943c4e289fd",tooltip="Benutzereingabe überprüfen. "];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="SSHelper\\checkFromInputs",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_helper.html#aa5b72ccad634190aa632064e18c35216",tooltip="Formular Inputs überprüfen. "];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SSDBSchema\\_getFields",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_schema.html#a5009b71c2090dc1b0c5d2b84f8083bf6"];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="SSHelper\\isTypeOf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_helper.html#a252971d168d1c2644a9c9c1d3a0bcefc",tooltip="Value nach Typ überprüfen. "];
+  Node4 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="SSDBSchema\\_getTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_schema.html#a80e5da3cf00787232ca303bf2931ba81"];
+  Node4 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="SSDBSQL\\_getSqlDmlQuery",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_s_q_l.html#a9d13fcbb2215767813960ef3a39c133e",tooltip="SQL Select Query generieren. "];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="SSDBSchema\\_getTableAttr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_schema.html#af64920244671f28b491228b5113809db"];
+  Node8 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="SSDBSQL\\executeSql",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_s_q_l.html#ae4d04030e25fe59b8c1248dacc3dbfad",tooltip="SQL Query ausführen. "];
+  Node2 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="loginUser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_customer_login_controller.html#ad6bf242fc31bbc73cee1fff7621d46f5",tooltip="Benutzer anmelden. "];
+  Node2 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="logoutUser",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_customer_login_controller.html#ad4c5f502195f1c8b6f7bfb0a101958c2",tooltip="Benutzer abmelden. "];
+  Node1 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="displayView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_customer_login_controller.html#aca04b3e313abfb913efaacdfb7d5d3d7",tooltip="Login / Logout Maske anzeigen. "];
+  Node13 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="isUserLoggedIn",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_customer_login_controller.html#aeb08814a3b11252c66e465a868da3ea7",tooltip="Ist Benutzer angemeldet. "];
+  Node13 -> Node15 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="SSHelper\\i18n",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_helper.html#a3bece4aee1514dbafbd7d0234227e053",tooltip="Internationalization and localization. "];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="SSHelper\\seti18l",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_helper.html#a50f106600a25de036f9b6f0a89a198d5"];
+  Node15 -> Node17 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="SSDBSQL\\executeSqlQuery",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_s_q_l.html#a8b0b5ed5092c7864860fc358ecc7b822",tooltip="SQL Query ausführen. "];
+  Node13 -> Node18 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="getLoggedInUserName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_customer_login_controller.html#aa682ffa862eb49bba5131c5df3503b81",tooltip="Name vom User. "];
+  Node13 -> Node19 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="SSHelper\\getFormProperties",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_helper.html#af67d5c1052dd07c445391b85cfa3dd8e",tooltip="Formular Felder Setting generien. "];
+  Node19 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,9 +1,0 @@
-digraph "B:/p2/redaxo/include/addons/square_shop/classes/model" {
-  compound=true
-  node [ fontsize="10", fontname="Helvetica"];
-  edge [ labelfontsize="10", labelfontname="Helvetica"];
-  subgraph clusterdir_b02e4219757ae4e3a0f1714873865bbf {
-    graph [ bgcolor="#ddddee", pencolor="black", label="classes" fontname="Helvetica", fontsize="10", URL="dir_b02e4219757ae4e3a0f1714873865bbf.html"]
-  dir_a70f49f23a1958af5d5c0a5c0699667d [shape=box, label="model", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_a70f49f23a1958af5d5c0a5c0699667d.html"];
-  }
-}

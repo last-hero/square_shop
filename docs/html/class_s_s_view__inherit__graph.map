@@ -1,0 +1,6 @@
+<map id="SSView" name="SSView">
+<area shape="rect" id="node2" href="$class_s_s_article_view.html" title="SSArticleView" alt="" coords="5,80,111,107"/>
+<area shape="rect" id="node3" href="$class_s_s_cart_view.html" title="SSCartView" alt="" coords="135,80,227,107"/>
+<area shape="rect" id="node4" href="$class_s_s_customer_login_view.html" title="SSCustomerLoginView" alt="" coords="251,80,406,107"/>
+<area shape="rect" id="node5" href="$class_s_s_customer_register_view.html" title="SSCustomerRegisterView" alt="" coords="431,80,603,107"/>
+</map>

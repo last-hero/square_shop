@@ -12,7 +12,7 @@
  
 class SSCustomerRegisterView extends SSView{
 	/**
-	* siehe Parent
+	 * @see SSView::$FORM_ID
 	*/
 	const FORM_ID = 'register';
 	protected $FORM_ID = self::FORM_ID;

@@ -14,7 +14,7 @@
 
 class SSCartView extends SSView{
 	/**
-	* siehe Parent
+	 * @see SSView::$FORM_ID
 	*/
 	const FORM_ID = 'cart';
 	protected $FORM_ID = self::FORM_ID;

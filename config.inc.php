@@ -1,5 +1,4 @@
 <?php
-
 // init addon
 $mypage = 'square_shop';
 $REX['ADDON']['name'][$mypage] = 'Online Shop';
@@ -17,28 +16,6 @@ $REX['PERM'][] = 'square_shop[]';
 if ($REX['REDAXO']) {
 	$I18N->appendFile($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/lang/');
 }
-
-// includes
-//require($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.rex_'.$mypage.'_utils.inc.php');
-//require($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.ss_utils.inc.php');
-
-// $classes = array('SSException', 'SSDBSchema', 'SSDBSQL', 'SSGUI', 'SSImport', 'SSHelper', 'SSCart', 'SSItem');
-
-// SSSession Classes
-// $classes = array_merge($classes, array('SSSession'));
-
-// Customer Classes
-// $classes = array_merge($classes, array('SSClient', 'SSClientLoginView', 'SSClientLoginController'));
-
-// Customer Register Classes
-// $classes = array_merge($classes, array('SSClientRegisterView', 'SSClientRegisterController'));
-
-// foreach($classes as $class){
-// 	if (!class_exists($class)) {
-// 		require_once($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.'.$class.'.inc.php');
-// 	}
-// }
-
 
 // overwrite default settings with user settings
 rex_square_shop_utils::includeSettingsFile();

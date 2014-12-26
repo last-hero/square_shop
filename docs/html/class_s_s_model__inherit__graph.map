@@ -1,0 +1,7 @@
+<map id="SSModel" name="SSModel">
+<area shape="rect" id="node2" href="$class_s_s_article.html" title="SSArticle" alt="" coords="5,80,83,107"/>
+<area shape="rect" id="node3" href="$class_s_s_category.html" title="SSCategory" alt="" coords="107,80,199,107"/>
+<area shape="rect" id="node4" href="$class_s_s_customer.html" title="SSCustomer" alt="" coords="224,80,320,107"/>
+<area shape="rect" id="node5" href="$class_s_s_order.html" title="SSOrder" alt="" coords="344,80,416,107"/>
+<area shape="rect" id="node6" href="$class_s_s_order_item.html" title="SSOrderItem" alt="" coords="441,80,538,107"/>
+</map>

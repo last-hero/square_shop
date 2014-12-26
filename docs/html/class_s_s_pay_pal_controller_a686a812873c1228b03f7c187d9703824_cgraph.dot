@@ -1,0 +1,17 @@
+digraph "handlePayment"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="handlePayment",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="getConf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_pay_pal_controller.html#ab5019584a7fd1de86f069cbf20e5f06d",tooltip="Wichtige Konfigurationen. "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="SSHelper\\getSetting",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_helper.html#a22ea98c9a7625ae25a20010920a5b2cb",tooltip="Shop-Betreiber Setting Value. "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="isIPNOK",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_pay_pal_controller.html#a97e051d42c8bf718785b0d9ae8774dce",tooltip="Instant Payment Notification. "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SSHelper\\cleanInput",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_helper.html#ae24bd4f4c6c95b0fe5a30e68bbd04bd4",tooltip="User Input Values bereinigen. "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="errorLog",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_pay_pal_controller.html#a0d74e81f01c601084bb23c92990b2ffd"];
+}

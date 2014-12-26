@@ -1,0 +1,8 @@
+<map id="Grafische Darstellung der Klassenhierarchie" name="Grafische Darstellung der Klassenhierarchie">
+<area shape="rect" id="node1" href="$class_s_s_model.html" title="SSModel" alt="" coords="5,107,80,133"/>
+<area shape="rect" id="node2" href="$class_s_s_article.html" title="SSArticle" alt="" coords="138,5,215,32"/>
+<area shape="rect" id="node3" href="$class_s_s_category.html" title="SSCategory" alt="" coords="131,56,223,83"/>
+<area shape="rect" id="node4" href="$class_s_s_customer.html" title="SSCustomer" alt="" coords="129,107,225,133"/>
+<area shape="rect" id="node5" href="$class_s_s_order.html" title="SSOrder" alt="" coords="141,157,213,184"/>
+<area shape="rect" id="node6" href="$class_s_s_order_item.html" title="SSOrderItem" alt="" coords="128,208,225,235"/>
+</map>

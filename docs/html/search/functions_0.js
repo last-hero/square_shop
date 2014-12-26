@@ -1,8 +1,10 @@
 var searchData=
 [
+  ['_5f_5fautoload',['__autoload',['../config_8inc_8php.html#aad8b7aa708813ad0fa2dd42669bb796c',1,'config.inc.php']]],
   ['_5f_5fconstruct',['__construct',['../class_s_s_controller.html#a095c5d389db211932136b53f25f39685',1,'SSController\__construct()'],['../class_s_s_model.html#a095c5d389db211932136b53f25f39685',1,'SSModel\__construct()'],['../class_s_s_session.html#a095c5d389db211932136b53f25f39685',1,'SSSession\__construct()']]],
   ['_5f_5fdestruct',['__destruct',['../class_s_s_session.html#a421831a265621325e1fdd19aace0c758',1,'SSSession']]],
   ['_5f_5ftostring',['__toString',['../class_s_s_exception.html#a7516ca30af0db3cdbf9a7739b48ce91d',1,'SSException']]],
+  ['_5faddmultilanguagefields',['_addMultilanguageFields',['../class_s_s_d_b_schema.html#a32d0e7511b02152a0410bb273fb008f0',1,'SSDBSchema']]],
   ['_5fgetfields',['_getFields',['../class_s_s_d_b_schema.html#a5009b71c2090dc1b0c5d2b84f8083bf6',1,'SSDBSchema']]],
   ['_5fgetfieldsassinglearray',['_getFieldsAsSingleArray',['../class_s_s_d_b_schema.html#a2e0c8f602504f2120f72ba245c3b05cd',1,'SSDBSchema']]],
   ['_5fgetforeignkeynamesbyforeigntable',['_getForeignKeyNamesByForeignTable',['../class_s_s_d_b_schema.html#af786c5bd61e60c8c1edc333be1ec6bee',1,'SSDBSchema']]],
@@ -15,5 +17,6 @@ var searchData=
   ['_5fgettable',['_getTable',['../class_s_s_d_b_schema.html#a80e5da3cf00787232ca303bf2931ba81',1,'SSDBSchema']]],
   ['_5fgettableattr',['_getTableAttr',['../class_s_s_d_b_schema.html#af64920244671f28b491228b5113809db',1,'SSDBSchema']]],
   ['_5fgettables',['_getTables',['../class_s_s_d_b_schema.html#aedce4e3ba5def563bd5c0051616e997e',1,'SSDBSchema']]],
-  ['_5fgetwhere',['_getWhere',['../class_s_s_model.html#a35c6e2a29ed76d4c79418c0a3e1ca3f5',1,'SSModel']]]
+  ['_5fgetwhere',['_getWhere',['../class_s_s_model.html#a35c6e2a29ed76d4c79418c0a3e1ca3f5',1,'SSModel']]],
+  ['_5freplacemultilanguagefieldstocurclang',['_replaceMultilanguageFieldsToCurClang',['../class_s_s_d_b_schema.html#a858eb4877f7c6744f12274c7ef09e5ab',1,'SSDBSchema']]]
 ];

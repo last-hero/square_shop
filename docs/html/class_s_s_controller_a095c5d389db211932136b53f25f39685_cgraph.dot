@@ -1,0 +1,15 @@
+digraph "__construct"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="__construct",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SSSession\\getInstance",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_session.html#ac93fbec81f07e5d15f80db907e63dc10",tooltip="Instanz holen - Singleton. "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="SSHelper\\getPostByFormId",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_helper.html#a428243c74c0e83bd79079777bb03aa69",tooltip="Formular Daten holen. "];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="SSHelper\\cleanInput",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_helper.html#ae24bd4f4c6c95b0fe5a30e68bbd04bd4",tooltip="User Input Values bereinigen. "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_controller.html#a4be4055f3361d4800e16bc2e2e38cda6",tooltip="Initialisierung. "];
+}

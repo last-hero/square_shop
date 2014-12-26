@@ -10,7 +10,7 @@
  */
 class SSController {
 	/**
-	 * Formular ID
+	 * Formular ID die hier eingesetzt wird: $_POST[SSForm][[FORM_ID]
 	 */
 	protected $FORM_ID;
 	
