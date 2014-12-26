@@ -13,18 +13,18 @@
  */
 
 class SSCheckoutController extends SSController{
-	const ACTION_STEP								= 'checkout_step';
+	const ACTION_STEP					= 'checkout_step';
 	
-	const ACTION_LOGIN							= 'login';
-	const ACTION_GO_FOR_REGISTER		= 'checkout_go_for_register';
-	const ACTION_REGISTER						= 'register';
-	const ACTION_BILLING						= 'billing';
-	const ACTION_DELIVERY						= 'delivery';
-	const ACTION_SELECT_PAYMENT			= 'selectpayment';
-	const ACTION_EXE_PAYMENT				= 'exe_payment';
-	const ACTION_ORDER							= 'order';
+	const ACTION_LOGIN				   = 'login';
+	const ACTION_GO_FOR_REGISTER		 = 'checkout_go_for_register';
+	const ACTION_REGISTER				= 'register';
+	const ACTION_BILLING				 = 'billing';
+	const ACTION_DELIVERY				= 'delivery';
+	const ACTION_SELECT_PAYMENT		  = 'selectpayment';
+	const ACTION_EXE_PAYMENT			 = 'exe_payment';
+	const ACTION_ORDER				   = 'order';
 	
-	const PAYMENT_ONBILL						= 'onbill';
+	const PAYMENT_ONBILL				 = 'onbill';
 	
 	/**
 	 * @see SSArticleView::FORM_ID
