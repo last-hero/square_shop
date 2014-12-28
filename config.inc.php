@@ -1,5 +1,5 @@
 <?php
-
+spl_autoload_register ('squareshop_autoload');
 // init addon
 $mypage = 'square_shop';
 $REX['ADDON']['name'][$mypage] = 'Online Shop';
@@ -69,7 +69,7 @@ if ($REX['REDAXO']) {
 * Klassen, welche benötigt werden automatisch eingebunden.
 * param string $class_name: Klassenname 
 */
-function __autoload($class_name) {
+function squareshop_autoload($class_name) {
 	global $REX;
 	$classes_folder = $REX['INCLUDE_PATH'] . '/addons/square_shop/classes/';
 	$file = $classes_folder.''.$class_name.'.php';
