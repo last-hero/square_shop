@@ -5,7 +5,8 @@
             $value_type = $f['value_type']?$f['value_type']:'';
             $max = $f['max']?$f['max']:255;
             $min = $f['min']?$f['min']:'';
-            $post_data = $formPropertiesAndValues[$fname];
+            $post_data = isset($formPropertiesAndValues[$fname])
+							? $formPropertiesAndValues[$fname]:'';
             $post_data = stripslashes($post_data);
 			$errors = $formPropertyValueErrors[$fname];
 			$css_class = 'ss-'.$fname.' '.$required.' '.$value_type;

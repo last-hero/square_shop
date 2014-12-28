@@ -1181,7 +1181,9 @@ class SSCheckoutController extends SSController{
 	 */
 	public function getSession($key){
 		$values = $this->session->get('checkout');
-		return $values[$key];
+		if(isset($values[$key]))
+			return $values[$key];
+		return '';
 	}
 	
 	/** @brief remove Key + Value from Session

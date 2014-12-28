@@ -8,12 +8,12 @@
 <file name="cart.complete.tmpl.php" server="p2.ibog.biz" local="130630751114947576" remote="130630750800000000" Dst="1" />
 <file name="message.tmpl.php" server="p2.ibog.biz" local="130630437370450817" remote="130630692600000000" Dst="1" />
 <file name="checkout.step.navi.tmpl.php" server="p2.ibog.biz" local="130629652088953215" remote="130630692600000000" Dst="1" />
-<file name="form.field.text.tmpl.php" server="p2.ibog.biz" local="130632294536533381" remote="130632294000000000" Dst="1" />
-<file name="form.field.select.tmpl.php" server="p2.ibog.biz" local="130632295156062140" remote="130632294600000000" Dst="1" />
+<file name="form.field.text.tmpl.php" server="p2.ibog.biz" local="130642513712841155" remote="130642513200000000" Dst="1" />
+<file name="form.field.select.tmpl.php" server="p2.ibog.biz" local="130642513535074019" remote="130642513200000000" Dst="1" />
 <file name="form.field.password.tmpl.php" server="p2.ibog.biz" local="130628885950978733" remote="130630692600000000" Dst="1" />
 <file name="form.tmpl.php" server="p2.ibog.biz" local="130629648748011367" remote="130630692600000000" Dst="1" />
 <file name="checkout.step.login.tmpl.php" server="p2.ibog.biz" local="130630751601615212" remote="130630752000000000" Dst="1" />
-<file name="checkout.step.address.tmpl.php" server="p2.ibog.biz" local="130630751973970753" remote="130630751400000000" Dst="1" />
+<file name="checkout.step.address.tmpl.php" server="p2.ibog.biz" local="130642514273072144" remote="130642513800000000" Dst="1" />
 <file name="checkout.step.order.onbill.tmpl.php" server="p2.ibog.biz" local="130630751602685795" remote="130630752000000000" Dst="1" />
 <file name="checkout.step.order.paypal.tmpl.php" server="p2.ibog.biz" local="130633301142181905" remote="130633300800000000" Dst="1" />
 <file name="checkout.step.order.tmpl.php" server="p2.ibog.biz" local="130630751964674723" remote="130630752000000000" Dst="1" />

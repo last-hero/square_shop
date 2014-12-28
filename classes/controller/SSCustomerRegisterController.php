@@ -112,12 +112,12 @@ class SSCustomerRegisterController extends SSController{
 	public function registerHandler(){
 		switch($this->formPropertiesAndValues['action']){
 			case self::ACTION_REGISTER:
-				if($this->isUserRequestUnique()){
+				if($this->isUserRequestUnique(self::ACTION_REGISTER)){
 					if($this->isInputValid()){
 						$clearedUserInputs = $this->customer->getClearedUnknownProperties($this->formPropertiesAndValues);
 						$this->customer->set($clearedUserInputs);
 						$this->customer->save();
-						$this->userRequestIsNotMoreUnique();
+						$this->userRequestIsNotMoreUnique(self::ACTION_REGISTER);
 						$this->showRegisterForm = false;
 					}
 				}else{

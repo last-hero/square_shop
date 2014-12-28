@@ -322,12 +322,14 @@ class SSHelper{
 				$settingsByShowIn = is_array($settingsByShowIn)?$settingsByShowIn:array($settingsByShowIn);
 				$settings = array_merge($settings, $settingsByShowIn);
 				$label_values = array();
-				foreach($settings['values'] as $v){
-					//$label_values[] = self::i18n($formId.'_label_'.$name.'_'.$v);
-					if(isset($settings['label']) and strlen($settings['label'])){
-						$label_values[] = self::i18n('label_'.$settings['label'].'_'.$v);
-					}else{
-						$label_values[] = self::i18n('label_'.$name.'_'.$v);
+				if(is_array($settings['values'])){
+					foreach($settings['values'] as $v){
+						//$label_values[] = self::i18n($formId.'_label_'.$name.'_'.$v);
+						if(isset($settings['label']) and strlen($settings['label'])){
+							$label_values[] = self::i18n('label_'.$settings['label'].'_'.$v);
+						}else{
+							$label_values[] = self::i18n('label_'.$name.'_'.$v);
+						}
 					}
 				}
 				/*

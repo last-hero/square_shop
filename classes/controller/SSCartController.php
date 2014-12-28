@@ -305,7 +305,7 @@ class SSCartController extends SSController{
 		$items = $this->session->get('cartItems');
 		$updated = false;
 		for($i=0; $i<sizeof($items); $i++){
-			if((int)$items[$i]['id'] == $artId){
+			if(isset($items[$i]['id']) and (int)$items[$i]['id'] == $artId){
 				$items[$i]['qty'] = (int)$items[$i]['qty'] + $qty;
 				$updated = true;
 			}
@@ -380,7 +380,7 @@ class SSCartController extends SSController{
 	 */
 	public function isCartEmpty(){
 		$items = $this->session->get('cartItems');
-		if(sizeof($items)){
+		if(is_array($items) and sizeof($items)){
 			return false;
 		}
 		return true;
