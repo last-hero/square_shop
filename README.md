@@ -51,7 +51,7 @@ siehe [CHANGELOG.md](CHANGELOG.md)
 Links
 ------------
 
-* [Aktuellste Version](https://github.com/last-hero/square_shop)
+* [Current Version](https://github.com/last-hero/square_shop)
 * [Bug-Tracking](https://github.com/last-hero/square_shop/issues)
 
 Credits
