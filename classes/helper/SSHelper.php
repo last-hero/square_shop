@@ -161,8 +161,9 @@ class SSHelper{
 	 */
 	public static function getSetting($key){
 		global $REX;
-		
-		return $REX['ADDON']['square_shop']['settings'][$key];
+		if(isset($REX['ADDON']['square_shop']['settings'][$key]))
+			return $REX['ADDON']['square_shop']['settings'][$key];
+		return '';
 	}
 	
 	/** @brief Formular Daten holen
@@ -174,7 +175,7 @@ class SSHelper{
 	 *  @return (array) User Inputs von einem Formular
 	 */
 	public static function getPostByFormId($formId){
-		if($_POST['SSForm'][$formId]){
+		if(isset($_POST['SSForm'][$formId])){
 			return SSHelper::cleanInput($_POST['SSForm'][$formId]);
 		}
 		return null;

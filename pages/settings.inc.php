@@ -1,4 +1,6 @@
 <?php
+  ini_set("display_errors", "1");
+  error_reporting(E_ALL);
 // ADDON PARAMETER AUS URL HOLEN
 ////////////////////////////////////////////////////////////////////////////////
 $page      		 = rex_request('page'   , 'string');
@@ -17,14 +19,17 @@ if ($func == 'update') {
 }
 
 // payment select box
+
+$fname = 'payment';
 $payment_select = new rex_select();
 $payment_select->setSize(5);
-$payment_select->setName('settings[payment][]');
+$payment_select->setName('settings['.$fname.'][]');
 $payment_select->setMultiple(true);
 $payment_options = array('onbill', 'paypal');
 foreach($payment_options as $option){
 	$payment_select->addOption(ss_utils::i18l($option),$option);
-	if(in_array($option, $REX['ADDON']['square_shop']['settings']['payment'])){
+	if(is_array(SSHelper::getSetting($fname))
+	and in_array($option, SSHelper::getSetting($fname))){
 		$payment_select->setSelected($option);
 	}
 }
@@ -45,18 +50,19 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
 					<input type="hidden" name="page" value="<?=$page; ?>" />
 					<input type="hidden" name="subpage" value="<?=$subpage; ?>" />
 					<input type="hidden" name="func" value="update" />
-
+					<? $fname = 'currency' ?>
 					<div class="rex-form-row rex-form-element-v1">
 						<p class="rex-form-text">
-							<label for="currency"><?=ss_utils::i18l('settings_currency')?></label>
-							<input type="text" value="<?=$REX['ADDON']['square_shop']['settings']['currency']; ?>" name="settings[currency]" id="currency" class="rex-form-text">
+							<label for="<?=$fname?>"><?=ss_utils::i18l('settings_'.$fname)?></label>
+							<input type="text" value="<?=SSHelper::getSetting($fname)?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
 						</p>
 					</div>
-
+                    
+					<? $fname = 'mwst' ?>
 					<div class="rex-form-row rex-form-element-v1">
 						<p class="rex-form-text">
-							<label for="currency"><?=ss_utils::i18l('settings_mwst')?></label>
-							<input type="text" value="<?=$REX['ADDON']['square_shop']['settings']['mwst']; ?>" name="settings[mwst]" id="mwst" class="rex-form-text">
+							<label for="<?=$fname?>"><?=ss_utils::i18l('settings_'.$fname)?></label>
+							<input type="text" value="<?=SSHelper::getSetting($fname)?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
 						</p>
 					</div>
 					<? $fname = 'payment' ?>
@@ -71,7 +77,7 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
 					<div class="rex-form-row rex-form-element-v1">
 						<p class="rex-form-text">
 							<label for="<?=$fname?>"><?=ss_utils::i18l('settings_'.$fname)?></label>
-							<input type="text" value="<?=$REX['ADDON']['square_shop']['settings'][$fname]?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
+							<input type="text" value="<?=SSHelper::getSetting($fname)?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
 						</p>
 					</div>
                     
@@ -102,7 +108,7 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
 					<div class="rex-form-row rex-form-element-v1">
 						<p class="rex-form-text">
 							<label for="<?=$fname?>"><?=ss_utils::i18l('settings_'.$fname)?></label>
-							<input type="text" value="<?=$REX['ADDON']['square_shop']['settings'][$fname]?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
+							<input type="text" value="<?=SSHelper::getSetting($fname)?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
 						</p>
 					</div>
                     
@@ -110,7 +116,7 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
 					<div class="rex-form-row rex-form-element-v1">
 						<p class="rex-form-text">
 							<label for="<?=$fname?>"><?=ss_utils::i18l('settings_'.$fname)?></label>
-							<input type="text" value="<?=$REX['ADDON']['square_shop']['settings'][$fname]?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
+							<input type="text" value="<?=SSHelper::getSetting($fname)?>" name="settings[<?=$fname?>]" id="<?=$fname?>" class="rex-form-text">
 						</p>
 					</div>-->
 					<? $fname = 'paypal_debug' ?>
@@ -122,7 +128,7 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
 						$paypal_options = array('0', '1');
 						foreach($paypal_options as $option){
 							$paypal_select->addOption(ss_utils::i18l('settings_'.$fname.'_'.$option),$option);
-							if($option == $REX['ADDON']['square_shop']['settings'][$fname]){
+							if($option == SSHelper::getSetting($fname)){
 								$paypal_select->setSelected($option);
 							}
 						}
@@ -144,7 +150,7 @@ if(count($REX['ADDON']['square_shop']['settings']['payment']) == 0){
 						$paypal_options = array('0', '1');
 						foreach($paypal_options as $option){
 							$paypal_select->addOption(ss_utils::i18l('settings_'.$fname.'_'.$option),$option);
-							if($option == $REX['ADDON']['square_shop']['settings'][$fname]){
+							if($option == SSHelper::getSetting($fname)){
 								$paypal_select->setSelected($option);
 							}
 						}

@@ -51,7 +51,6 @@ class SSModel {
 	 */
     function __construct(){
 		$this->loadPropertiesAndNames();
-		if(is_array($array)) $this->set($propertiesAndValues);
     }
 	
 	/** @brief Tabellenfelder laden
