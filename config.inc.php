@@ -1,4 +1,22 @@
 <?php
+/** @brief Autoloader - Classes
+ *
+ *  Klassen werden automatisch eingebunden.
+ *  @param $class_name: Klassenname 
+ */
+spl_autoload_register('ssAutoloader');
+function ssAutoloader($class_name) {
+	global $REX;
+	$classes_folder = $REX['INCLUDE_PATH'] . '/addons/square_shop/classes/';
+	$sub_folders = array('', 'model/', 'view/', 'controller/', 'helper/');
+	foreach($sub_folders as $folder){
+		$file = $classes_folder.''.$folder.''.$class_name.'.php';
+		if(file_exists($file)) {
+			require_once $file;
+		}
+	}
+}
+
 // init addon
 $mypage = 'square_shop';
 $REX['ADDON']['name'][$mypage] = 'Online Shop';
@@ -39,26 +57,5 @@ if ($REX['REDAXO']) {
 		array('settings', ss_utils::i18l('settings')),
 		array('help', ss_utils::i18l('help'))
 	);
-}
-
-
-/*
-* Klassen, welche benötigt werden automatisch eingebunden.
-* param string $class_name: Klassenname 
-*/
-function __autoload($class_name) {
-	global $REX;
-	$classes_folder = $REX['INCLUDE_PATH'] . '/addons/square_shop/classes/';
-	$file = $classes_folder.''.$class_name.'.php';
-	if(file_exists($file)) {
-        require_once $file;
-    }
-	$sub_folders = array('model', 'view', 'controller', 'helper');
-	foreach($sub_folders as $folder){
-		$file = $classes_folder.''.$folder.'/'.''.$class_name.'.php';
-		if(file_exists($file)) {
-			require_once $file;
-		}
-	}
 }
 ?>

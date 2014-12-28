@@ -1,17 +1,12 @@
 <?php
-$mypage = 'square_shop';
-
+// Klassen einbinden
 $classes = array('SSDBSchema', 'SSDBSQL', 'SSException', 'SSHelper');
 foreach($classes as $class_name){
 	if (!class_exists($class_name)) {
 		$classes_folder = $REX['INCLUDE_PATH'] . '/addons/square_shop/classes/';
-		$file = $classes_folder.''.$class_name.'.php';
-		if(file_exists($file)) {
-			require_once $file;
-		}
-		$sub_folders = array('model', 'view', 'controller', 'helper');
+		$sub_folders = array('', 'model/', 'view/', 'controller/', 'helper/');
 		foreach($sub_folders as $folder){
-			$file = $classes_folder.''.$folder.'/'.''.$class_name.'.php';
+			$file = $classes_folder.''.$folder.''.$class_name.'.php';
 			if(file_exists($file)) {
 				require_once $file;
 			}
