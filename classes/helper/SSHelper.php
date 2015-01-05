@@ -19,7 +19,7 @@ class SSHelper{
 	 *  @param $array2: 2. Array
 	 *  @return boolean
 	 */
-	function array_keys_exists(array $array1, array $array2){
+	public static function array_keys_exists(array $array1, array $array2){
 		foreach($array1 as $k => $v){
 			if(!array_key_exists($k, $array2)){
 				return false;
