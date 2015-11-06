@@ -1,0 +1,13 @@
+digraph "cleanInput"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="cleanInput",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SSPayPalController\l\\handlePayment",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_pay_pal_controller.html#a686a812873c1228b03f7c187d9703824",tooltip="handlePayment "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="getPostByFormId",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_helper.html#a428243c74c0e83bd79079777bb03aa69",tooltip="Formular Daten holen. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="SSController\\__construct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_controller.html#a095c5d389db211932136b53f25f39685",tooltip="Konstruktor. "];
+}

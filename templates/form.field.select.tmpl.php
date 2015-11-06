@@ -4,7 +4,8 @@
             $options = $f['values'];
             $label_options = $f['label_values'];
             $required = $f['required']?'required':'';
-            $post_data = $formPropertiesAndValues[$fname];
+            $post_data = isset($formPropertiesAndValues[$fname])
+							? $formPropertiesAndValues[$fname]:'';
             $post_data = stripslashes($post_data);
 			$errors = $formPropertyValueErrors[$fname];
 			$css_class = 'ss-'.$fname.' '.$required;

@@ -67,7 +67,9 @@ class SSSession {
 	 *  @see remove()
 	 */
 	public function get($key){
-		return $this->data[$key];
+		if(isset($this->data[$key]))
+			return $this->data[$key];
+		return '';
 	}
 	
 	/** @brief Wert setzen

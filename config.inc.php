@@ -1,5 +1,26 @@
 <?php
+<<<<<<< HEAD
 spl_autoload_register ('squareshop_autoload');
+=======
+/** @brief Autoloader - Classes
+ *
+ *  Klassen werden automatisch eingebunden.
+ *  @param $class_name: Klassenname 
+ */
+spl_autoload_register('ssAutoloader');
+function ssAutoloader($class_name) {
+	global $REX;
+	$classes_folder = $REX['INCLUDE_PATH'] . '/addons/square_shop/classes/';
+	$sub_folders = array('', 'model/', 'view/', 'controller/', 'helper/');
+	foreach($sub_folders as $folder){
+		$file = $classes_folder.''.$folder.''.$class_name.'.php';
+		if(file_exists($file)) {
+			require_once $file;
+		}
+	}
+}
+
+>>>>>>> rc1
 // init addon
 $mypage = 'square_shop';
 $REX['ADDON']['name'][$mypage] = 'Online Shop';
@@ -17,28 +38,6 @@ $REX['PERM'][] = 'square_shop[]';
 if ($REX['REDAXO']) {
 	$I18N->appendFile($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/lang/');
 }
-
-// includes
-//require($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.rex_'.$mypage.'_utils.inc.php');
-//require($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.ss_utils.inc.php');
-
-// $classes = array('SSException', 'SSDBSchema', 'SSDBSQL', 'SSGUI', 'SSImport', 'SSHelper', 'SSCart', 'SSItem');
-
-// SSSession Classes
-// $classes = array_merge($classes, array('SSSession'));
-
-// Customer Classes
-// $classes = array_merge($classes, array('SSClient', 'SSClientLoginView', 'SSClientLoginController'));
-
-// Customer Register Classes
-// $classes = array_merge($classes, array('SSClientRegisterView', 'SSClientRegisterController'));
-
-// foreach($classes as $class){
-// 	if (!class_exists($class)) {
-// 		require_once($REX['INCLUDE_PATH'] . '/addons/'.$mypage.'/classes/class.'.$class.'.inc.php');
-// 	}
-// }
-
 
 // overwrite default settings with user settings
 rex_square_shop_utils::includeSettingsFile();
@@ -63,6 +62,7 @@ if ($REX['REDAXO']) {
 		array('help', ss_utils::i18l('help'))
 	);
 }
+<<<<<<< HEAD
 
 
 /*
@@ -84,4 +84,6 @@ function squareshop_autoload($class_name) {
 		}
 	}
 }
+=======
+>>>>>>> rc1
 ?>

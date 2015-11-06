@@ -1,0 +1,11 @@
+digraph "_getTables"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="_getTables",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SSDBSQL\\_getSqlCreateTables",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_s_q_l.html#ab7ba59936d8e39a20630f382e2327b7b",tooltip="SQL Create Query generieren. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="SSDBSQL\\_getSqlDeleteTables",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_s_q_l.html#a2d01886041b8a6aefa1d38082f949ddd",tooltip="SQL Delete Query generieren. "];
+}

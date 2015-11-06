@@ -3,11 +3,6 @@
 	$conf = $payPalCtrl->getConf();
 	
 	$formUrl = $payPalCtrl->paypalUrl;
-	
-	if(isset($_GET['handlePayPalPayment'])):
-		$payPalCtrl->handlePayment();
-		die();
-	endif;
 ?>
 <?
 		$cartOverview = $payPalCtrl->getOrderInfoAndItems();

@@ -1,5 +1,5 @@
 <div class="rex-addon-output">
-	<div class="rex-area-content"
+	<div class="rex-area-content">
 		<div class="rex-form-wrapper">
 			<form action="<?=$baseurl?>" method="post" name="form-search">
                 <p class="rex-form-col-a rex-form-text" id="_top">

@@ -15,7 +15,7 @@
  
 class SSCustomerLoginView extends SSView{
 	/**
-	* siehe Parent
+	 * @see SSView::$FORM_ID
 	*/
 	const FORM_ID = 'login';
 	protected $FORM_ID = self::FORM_ID;

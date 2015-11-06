@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="config.inc.php" server="p2.ibog.biz" local="130630745933014530" remote="130630745400000000" Dst="1" />
+<file name="config.inc.php" server="p2.ibog.biz" local="130642481969814650" remote="130642481400000000" Dst="1" />
 <file name="CHANGELOG.md" server="p2.ibog.biz" local="130630745690668989" remote="130630745400000000" Dst="1" />
 <file name="help.inc.php" server="p2.ibog.biz" local="130623725371158052" remote="130630692600000000" Dst="1" />
+<<<<<<< HEAD
 <file name="README.md" server="p2.ibog.biz" local="130632385939330148" remote="130632385800000000" Dst="1" />
 <file name="install.inc.php" server="p2.ibog.biz" local="130630581052410294" remote="130630692600000000" Dst="1" />
+=======
+<file name="README.md" server="p2.ibog.biz" local="130642486310510234" remote="130642486200000000" Dst="1" />
+<file name="install.inc.php" server="p2.ibog.biz" local="130642482167171286" remote="130642482000000000" Dst="1" />
+>>>>>>> rc1
 <file name="uninstall.inc.php" server="p2.ibog.biz" local="130623725371728042" remote="130630692600000000" Dst="1" />
 <file name="update.inc.php" server="p2.ibog.biz" local="130623725371738042" remote="130630692600000000" Dst="1" />
 <file name="desktop.ini" server="p2.ibog.biz" local="130623725371148053" remote="130630692600000000" Dst="1" />

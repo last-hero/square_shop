@@ -64,8 +64,11 @@ class rex_square_shop_utils {
 			}
 		}
 		*/
-		
-		$REX['ADDON']['square_shop']['settings'] = array_merge((array) $REX['ADDON']['square_shop']['settings'], $settings);
+		if(isset($REX['ADDON']['square_shop']['settings'])){
+			$REX['ADDON']['square_shop']['settings'] = array_merge((array) $REX['ADDON']['square_shop']['settings'], $settings);
+		}else{
+			$REX['ADDON']['square_shop']['settings'] = $settings;
+		}
 	}
 
 	public static function createDynFile($file) {

@@ -102,11 +102,13 @@ class SSArticleController extends SSController {
 		}elseif((int)$this->categoryId > 0){
 			// Daten nach Kategorie ID holen
 			$articles = $this->article->getByForeignId($this->categoryId, SSCategory::TABLE);
-			foreach($articles as $article){
-				$artObj = new SSArticle();
-				$artObj->set($artObj->getClearedUnknownProperties($article));
-				// Artikel Objekte in Array laden
-				$this->articlelist[] = $artObj;
+			if(is_array($articles)){
+				foreach($articles as $article){
+					$artObj = new SSArticle();
+					$artObj->set($artObj->getClearedUnknownProperties($article));
+					// Artikel Objekte in Array laden
+					$this->articlelist[] = $artObj;
+				}
 			}
 		}
 		// View anzeigen --> Detail / List
@@ -141,7 +143,7 @@ class SSArticleController extends SSController {
 	public function displayView(){
 		if(sizeof($this->articlelist) > 0){
 			$this->displayListView();
-		}else{
+		}elseif((int)$this->articleId > 0){
 			$this->displayDetailView();
 		}
 	}

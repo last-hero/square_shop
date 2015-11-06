@@ -4,24 +4,27 @@
  *
  *  Diese Klasse verwaltet den ganzen Einkauf
  *
+ *
+ *  @todo Mail an Käufer + Shop-Betreiber nach erfolgreicher Bestellung
+ *
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
  */
 
 class SSCheckoutController extends SSController{
-	const ACTION_STEP  = 'checkout_step';
+	const ACTION_STEP					= 'checkout_step';
 	
-	const ACTION_LOGIN = 'login';
-	const ACTION_GO_FOR_REGISTER = 'checkout_go_for_register';
-	const ACTION_REGISTER = 'register';
-	const ACTION_BILLING = 'billing';
-	const ACTION_DELIVERY = 'delivery';
-	const ACTION_SELECT_PAYMENT = 'selectpayment';
-	const ACTION_EXE_PAYMENT = 'exe_payment';
-	const ACTION_ORDER = 'order';
+	const ACTION_LOGIN				   = 'login';
+	const ACTION_GO_FOR_REGISTER		 = 'checkout_go_for_register';
+	const ACTION_REGISTER				= 'register';
+	const ACTION_BILLING				 = 'billing';
+	const ACTION_DELIVERY				= 'delivery';
+	const ACTION_SELECT_PAYMENT		  = 'selectpayment';
+	const ACTION_EXE_PAYMENT			 = 'exe_payment';
+	const ACTION_ORDER				   = 'order';
 	
-	const PAYMENT_ONBILL = 'onbill';
+	const PAYMENT_ONBILL				 = 'onbill';
 	
 	/**
 	 * @see SSArticleView::FORM_ID
@@ -58,9 +61,11 @@ class SSCheckoutController extends SSController{
 	
 	private $step = 1;
 	
+	// verwendete APIs
 	private $paymentsPerAPI = array('paypal', 'saferpay');
 	
-	/*
+	/** @brief Initialisierung
+	 *
 	* Konstruktor: lädt Session Instanz (Singleton)
 	* Falls POST Request abgeschickt wurde, dann daten laden
 	*/
@@ -79,9 +84,10 @@ class SSCheckoutController extends SSController{
 		$this->checkoutView = new SSCheckoutView();
     }
 	
-	/*
-	* Warenkorb starten
-	*/
+	/** @brief Warenkorb starten
+	 *
+	 * Warenkorb Verwaltung
+	 */
 	public function invoke(){
 		$handlePaymentPerAPI		 = rex_get('handlePaymentPerAPI', 'string', '');
 		$handleExecutePaymentStep	= rex_get('handleExecutePaymentStep', 'string', '');
@@ -106,9 +112,11 @@ class SSCheckoutController extends SSController{
 		}
 	}
 	
-	/*
-	* Warenkorb Handler: Add to Cart, Remove from Cart, Menge ändern
-	*/
+	/** @brief Checkout Handler
+	 *
+	 *  Es wird überprüft ob die einzelnen Bestellungs-
+	 *  schritte...
+	 */
 	public function checkoutHandler(){
 		if((int)$this->formPropertiesAndValues['jumpToStep'] > 0){
 			$this->setStep($this->formPropertiesAndValues['jumpToStep']);
@@ -305,6 +313,16 @@ class SSCheckoutController extends SSController{
 			, 'SelectPayment' => $this->getSession('SelectPayment')
 			, 'Step' => $this->getStep()
 		);
+		
+				
+		/* --------------------------------------------------------------
+		// Todo Better Mail
+		// Mail an Shop-Betreier + Käufer
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+		$orderId = $this->getSession('OrderId');
+		$this->mailOrder($orderId);
+		/* ------------------------------------------------------------ */
+		
 		$this->cartCtrl->clearCart();
 		$this->clearAll();
 	}
@@ -384,6 +402,15 @@ class SSCheckoutController extends SSController{
 					, 'PayerEmail' => $orderDbData['payer_email']
 					, 'Step' => 7
 				);
+				
+				
+				
+				/* --------------------------------------------------------------
+				// Todo Better Mail
+				// Mail an Shop-Betreier + Käufer
+				- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+				$this->mailOrder($orderId);
+				/* ------------------------------------------------------------ */
 			}
 			$this->cartCtrl->clearCart();
 			$this->clearAll();
@@ -409,6 +436,54 @@ class SSCheckoutController extends SSController{
 			$paypal->handlePayment();
 		}
 	}
+	
+	
+	/** @brief Prüfen ob Zahlungsart ausgewählt
+	 *
+	 *  
+	 *  @param $orderId
+	 */
+	public function mailOrder($orderId){
+		/* --------------------------------------------------------------
+		// Todo Better Mail
+		// Mail an Shop-Betreier + Käufer
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+		$orders_mail_to = SSHelper::getSetting('orders_mail_to');
+		
+		$order = new SSOrder();
+		$order->loadById($orderId);
+		$orderItem = new SSOrderItem();
+		$orderItemsArray = $orderItem->getByForeignId($orderId, SSOrder::TABLE);
+		
+		$orders_mail_to_customer = $order->get('billing_email');
+		$order_no = $order->get('no');
+		
+		$output = 'Guten Tag ';
+		$output .= $order->get('billing_firstname').' '.$order->get('billing_lastname');
+		$output .= "\r\n";
+		$total = 0;
+		for($x=0; $x<count($orderItemsArray); $x++){
+			$subtotal = (int)$orderItemsArray[$x]['qty'] * (int)$orderItemsArray[$x]['price'];
+			$total += $subtotal;
+			$output .= "\n".'ArtNr.: '.$orderItemsArray[$x]['no'];
+			$output .= "\n".'Artikel: '.$orderItemsArray[$x]['title'];
+			$output .= "\n".'Preis: '.$orderItemsArray[$x]['price'];
+			$output .= "\n".'Menge: '.$orderItemsArray[$x]['qty'];
+			$output .= "\n".'Subtotal: '.number_format($subtotal, 2, '.', '');
+			$output .= "\n";
+			$output .= "- - - - - - - - - - - - - - - - - - - - - - - -";
+		}
+		$output .= "\n";
+		$output .= "- - - - - - - - - - - - - - - - - - - - - - - -";
+		$output .= "\n".'Total: '.number_format($total, 2, '.', '');
+		$output .= "\r\n";
+		$output .= "\r\n";
+				
+		mail($orders_mail_to,"Bestellung - ".$order_no,$output);
+		mail($orders_mail_to_customer,"Bestellung - ".$order_no,$output);
+		/* ------------------------------------------------------------ */
+	}
+	
 	
 	/** @brief Prüfen ob Zahlungsart ausgewählt
 	 *
@@ -1106,7 +1181,9 @@ class SSCheckoutController extends SSController{
 	 */
 	public function getSession($key){
 		$values = $this->session->get('checkout');
-		return $values[$key];
+		if(isset($values[$key]))
+			return $values[$key];
+		return '';
 	}
 	
 	/** @brief remove Key + Value from Session

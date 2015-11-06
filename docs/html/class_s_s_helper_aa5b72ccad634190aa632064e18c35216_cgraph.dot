@@ -1,0 +1,20 @@
+digraph "checkFromInputs"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="checkFromInputs",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SSDBSchema\\_getFields",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_schema.html#a5009b71c2090dc1b0c5d2b84f8083bf6"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="isTypeOf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_helper.html#a252971d168d1c2644a9c9c1d3a0bcefc",tooltip="Value nach Typ überprüfen. "];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="SSDBSchema\\_getTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_schema.html#a80e5da3cf00787232ca303bf2931ba81"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SSDBSQL\\_getSqlDmlQuery",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_s_q_l.html#a9d13fcbb2215767813960ef3a39c133e",tooltip="SQL Select Query generieren. "];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="SSDBSchema\\_getTableAttr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_schema.html#af64920244671f28b491228b5113809db"];
+  Node5 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="SSDBSQL\\executeSql",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_s_q_l.html#ae4d04030e25fe59b8c1248dacc3dbfad",tooltip="SQL Query ausführen. "];
+}

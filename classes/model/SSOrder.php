@@ -74,11 +74,14 @@ class SSOrder extends SSModel{
 			, array('show_in'=>SSDBSchema::SHOW_IN_DELIVER_ADDRESS)
 		);
 		foreach($properties as $prob){
-			
-			if(isset($customerAddress[$label])){
-				$address[$prob['name']] = $customerAddress[$label];
+			if(isset($prob['name'])){
+				if(isset($customerAddress[$label])){
+					$address[$prob['name']] = $customerAddress[$label];
+				}
+				if(isset($billAddress[$prob['name']])){
+					$deliverAddress[$prob['name']] = $billAddress[$prob['name']];
+				}
 			}
-			$deliverAddress[$prob['name']] = $billAddress[$prob['name']];
 		}
 		return $deliverAddress;
 	}

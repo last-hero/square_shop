@@ -19,7 +19,7 @@ class SSHelper{
 	 *  @param $array2: 2. Array
 	 *  @return boolean
 	 */
-	function array_keys_exists(array $array1, array $array2){
+	public static function array_keys_exists(array $array1, array $array2){
 		foreach($array1 as $k => $v){
 			if(!array_key_exists($k, $array2)){
 				return false;
@@ -161,8 +161,9 @@ class SSHelper{
 	 */
 	public static function getSetting($key){
 		global $REX;
-		
-		return $REX['ADDON']['square_shop']['settings'][$key];
+		if(isset($REX['ADDON']['square_shop']['settings'][$key]))
+			return $REX['ADDON']['square_shop']['settings'][$key];
+		return '';
 	}
 	
 	/** @brief Formular Daten holen
@@ -174,7 +175,7 @@ class SSHelper{
 	 *  @return (array) User Inputs von einem Formular
 	 */
 	public static function getPostByFormId($formId){
-		if($_POST['SSForm'][$formId]){
+		if(isset($_POST['SSForm'][$formId])){
 			return SSHelper::cleanInput($_POST['SSForm'][$formId]);
 		}
 		return null;
@@ -321,12 +322,14 @@ class SSHelper{
 				$settingsByShowIn = is_array($settingsByShowIn)?$settingsByShowIn:array($settingsByShowIn);
 				$settings = array_merge($settings, $settingsByShowIn);
 				$label_values = array();
-				foreach($settings['values'] as $v){
-					//$label_values[] = self::i18n($formId.'_label_'.$name.'_'.$v);
-					if(isset($settings['label']) and strlen($settings['label'])){
-						$label_values[] = self::i18n('label_'.$settings['label'].'_'.$v);
-					}else{
-						$label_values[] = self::i18n('label_'.$name.'_'.$v);
+				if(is_array($settings['values'])){
+					foreach($settings['values'] as $v){
+						//$label_values[] = self::i18n($formId.'_label_'.$name.'_'.$v);
+						if(isset($settings['label']) and strlen($settings['label'])){
+							$label_values[] = self::i18n('label_'.$settings['label'].'_'.$v);
+						}else{
+							$label_values[] = self::i18n('label_'.$name.'_'.$v);
+						}
 					}
 				}
 				/*

@@ -1,0 +1,30 @@
+digraph "_getFieldsAsSingleArray"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="_getFieldsAsSingleArray",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SSCustomer\\getAddress",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_customer.html#a59bc5cde6d5044bb76ee8464738a87a2",tooltip="Adresse holen. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="SSDBSQL\\_getSqlInsertQuery",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_s_q_l.html#afcef4b6fd7b4c8cf0a91174539d81e78",tooltip="SQL Insert Query generieren. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="SSModel\\save",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_model.html#afc8a3c62679cf00ade9f15fb2a6d6132",tooltip="Speichern in DB. "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SSDBSQL\\_getSqlUpdateQuery",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_d_b_s_q_l.html#a5eb6da12643175fb26ad6712443c1c46",tooltip="SQL Update Query generieren. "];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="SSModel\\getClearedUnknown\lProperties",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_model.html#afa9876e2892d3614019baf239d6fb817",tooltip="Tabellenfelder reinigen. "];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="SSModel\\loadById",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_model.html#aaa52c32cdc5298be8f8b86d8b8fc16e5",tooltip="Datensatz laden. "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="SSOrder\\convertCustomerAddr\lToBillOrDeliverAddr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_order.html#a40835104c80825bc3846ce05430187a0"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="SSOrder\\convertBillAddrTo\lDeliverAddr",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_order.html#a6b4acf6174fa41f75e2597a7652f57ac"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="SSCheckoutController\l\\handleAddressStep",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#a591ddd7bd573dd36b23cf23c3d6817e1",tooltip="Adresse Login-Handler. "];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="SSCheckoutController\l\\checkoutHandler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#aa2a0d5ed77007dbe98a2be79f430971e"];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="SSCheckoutController\l\\invoke",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#a969cad912937b1e2e6e66b49d8148738"];
+}

@@ -1,0 +1,17 @@
+digraph "_getWhere"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="_getWhere",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SSCategory\\getCategories",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_category.html#a8729ba486702e7e12a3fff08965e1e7f",tooltip="Kategorien holen. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="SSCustomer\\loadCustomerBy\lEmailAndPassword",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_customer.html#ae0f3b1ea3b543491631868d3beb9880f",tooltip="Authetifizierung. "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="loadById",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_model.html#aaa52c32cdc5298be8f8b86d8b8fc16e5",tooltip="Datensatz laden. "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="getByIds",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_model.html#ab004368ffff7ccf403178e68458b42be",tooltip="Datensatz holen. "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="getByForeignId",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_model.html#a41c010a33856bd19a7629cfeb22cd7ee",tooltip="Datensatz nach FK holen. "];
+}

@@ -67,11 +67,13 @@ class SSDBSQL {
 					$_table_join_full = SSDBSchema::_getTableAttr($fk['sql_join']['table'], 'name', true);
 					$_field_join_full = $_table_join_full.'.'.$fk['sql_join']['field'];
 					
-					foreach($fk['sql_join']['field_labels'] as $label){
-						$_field_join_label_full = $_table_join_full.'.'.$label;
-						$_field_join_label_new_full = $fk['sql_join']['table'].'_'.$label;
-						
-						$_fields_string .= $_field_join_label_full.' as '.$_field_join_label_new_full.', ';
+					if(isset($fk['sql_join']['field_labels'])){
+						foreach($fk['sql_join']['field_labels'] as $label){
+							$_field_join_label_full = $_table_join_full.'.'.$label;
+							$_field_join_label_new_full = $fk['sql_join']['table'].'_'.$label;
+							
+							$_fields_string .= $_field_join_label_full.' as '.$_field_join_label_new_full.', ';
+						}
 					}
 					
 					$_fields_join_string .= ' LEFT JOIN '.$_table_join_full

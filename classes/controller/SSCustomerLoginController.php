@@ -12,15 +12,15 @@
 
 class SSCustomerLoginController extends SSController{
 	/**
-	 * siehe Parent
+	 * @see SSController::$FORM_ID
 	 */
 	protected $FORM_ID = SSCustomerLoginView::FORM_ID;
 	/**
-	 * siehe Parent
+	 * @see SSController::$TABLE
 	 */
 	protected $TABLE = SSCustomer::TABLE;
 	/**
-	 * siehe Parent
+	 * @see SSController::$SHOW_IN
 	 */
 	protected $SHOW_IN = SSDBSchema::SHOW_IN_LOGIN;
 	

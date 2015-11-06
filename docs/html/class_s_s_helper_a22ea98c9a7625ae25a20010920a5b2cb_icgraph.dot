@@ -1,0 +1,47 @@
+digraph "getSetting"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="getSetting",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="SSArticleController\l\\displayDetailView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_article_controller.html#afab87894a16fc2caaf028e7a92ddd1a6",tooltip="Detailansicht. "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="SSArticleController\l\\displayView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_article_controller.html#aca04b3e313abfb913efaacdfb7d5d3d7",tooltip="Artikel oder Artikeln anzeigen. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="SSArticleController\l\\invoke",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_article_controller.html#a969cad912937b1e2e6e66b49d8148738",tooltip="Starter. "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="SSArticleController\l\\displayListView",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_article_controller.html#aa577c1bba8b2ab55602041732e0995fc",tooltip="Listenansicht. "];
+  Node5 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="SSCartController\\init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_cart_controller.html#a4be4055f3361d4800e16bc2e2e38cda6",tooltip="Initialisierung. "];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="SSCheckoutController\l\\mailOrder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#af05c8b89ef41535c0d336edecbb38d1d",tooltip="Prüfen ob Zahlungsart ausgewählt. "];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="SSCheckoutController\l\\handleConfirmStep",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#a69f33e7dae8e00a17fd226d9000bd437",tooltip="Title. "];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="SSCheckoutController\l\\checkoutHandler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#aa2a0d5ed77007dbe98a2be79f430971e"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="SSCheckoutController\l\\invoke",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#a969cad912937b1e2e6e66b49d8148738"];
+  Node7 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="SSCheckoutController\l\\handleExecutePaymentStep",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#ac3439ed9802094815d0aab2147f0d342",tooltip="Title. "];
+  Node11 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="SSCheckoutController\l\\isSelectPaymentStepOK",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#af02a2c3503410019e2130c0c26c7165c",tooltip="Prüfen ob Zahlungsart ausgewählt. "];
+  Node12 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="SSCheckoutController\l\\displaySelectPaymentStep",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#a5018f66ae6003acfcb508e9008b88e7d",tooltip="Zahlungsarten-Liste. "];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="SSCheckoutController\l\\checkoutViewHandler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#a08bb719581ceca96a42391db628da407"];
+  Node14 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="SSCheckoutController\l\\handleSelectPaymentStep",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_checkout_controller.html#ac3c2d264ad6a4b249d6c8e01e33a61b7",tooltip="Zahlungsart verwalten. "];
+  Node15 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="SSPayPalController\\init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_pay_pal_controller.html#a4be4055f3361d4800e16bc2e2e38cda6",tooltip="Initialisierung. "];
+  Node1 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="SSPayPalController\l\\getConf",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_pay_pal_controller.html#ab5019584a7fd1de86f069cbf20e5f06d",tooltip="Wichtige Konfigurationen. "];
+  Node17 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="SSPayPalController\l\\handlePayment",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_s_s_pay_pal_controller.html#a686a812873c1228b03f7c187d9703824",tooltip="handlePayment "];
+}

@@ -1,23 +1,58 @@
 <?php
-/** @file SSCheckoutController.php
- *  @brief Einkauf Verwalten
+/** @file SSPayPalController.php
+ *  @brief PayPal Verwalten
  *
- *  Diese Klasse verwaltet den ganzen Einkauf
+ *  Mit dieser Klasse wird die Zahlung
+ *  über PayPal abgewickelt.
  *
  *  @author Gobi Selva
  *  @author http://www.square.ch
  *  @author https://github.com/last-hero/square_shop
  */
-
+ 
 class SSPayPalController extends SSController{
+	/**
+	 * Bestellungs ID
+	 */
 	private $orderId;
+	
+	/**
+	 * @see SSPayPalController::getConf
+	 */
 	private $sid;
 	
+	/**
+	 * Debug Ja | Nein
+	 * z.B. werden die Zahlungsinformationen
+	 * im Logfile geschrieben.
+	 */
 	private $debug = 0;
-	private $useSandbox = 0;
-	private $logfile;
-	public $paypalUrl;	
 	
+	/**
+	 * Das Verwenden von PayPal Sandbox Accounts.
+	 * Dies wird für Testzwecken verwendet.
+	 */
+	private $useSandbox = 0;
+	
+	/**
+	 * Pfad vom Logfile
+	 */
+	private $logfile;
+	
+	/**
+	 * PayPal Url, sie unterscheidet sich wenn Sandbox
+	 * für Testzwecken verwendet wird.
+	 */
+	public $paypalUrl;
+	
+	/** @brief Initialisierung
+	 *
+	 * Dieser Funktion wird im Konstruktor aufgerufen
+	 * und dient für die Initialisierung der Values
+	 * z.B. Logfile-Pfad, Debug-Modus aktiv|inaktiv 
+	 * PayPal Url anhand von Sandbox aktiv|inaktiv,
+	 * OrderId aus dem Session holen
+	 */
 	public function init(){
 		global $REX;
 		$this->logfile = SSHelper::getAddonDataPath() . '/paypal.ipn.log';
@@ -32,11 +67,41 @@ class SSPayPalController extends SSController{
 			$this->paypalUrl = "https://www.paypal.com/cgi-bin/webscr";
 		}
 		
-		
 		$checkoutCtrl = new SSCheckoutController();
 		$this->orderId = $checkoutCtrl->getSession('OrderId');
 	}
 	
+	/** @brief Wichtige Konfigurationen
+	 *
+	 * business: PayPal-Account des Shop-betreibers
+	 * 
+	 * mail_errors_to: Mail Addresse für Fehlermeldungen
+	 * 
+	 * sid: Ein Hash-Value die für das Identifizieren
+	 * von Bestellung über PayPal Zahlung
+	 * verwendet wird.
+	 * 
+	 * currency: Die Währung, die bei der Zahlung
+	 * über PayPal verwendet wird.
+	 * 
+	 * notify_url: Diese Url wird während der
+	 * Zahlung über PayPal abgerufen, dabei wird
+	 * sie im Hintergrund, während der Käufer
+	 * sich noch auf der PayPal-Seite befindet,
+	 * aufgerufen. D.h. die Bestellung vom Käufer
+	 * wird durch den sid (Hash-Value) identifiziert
+	 * und nicht durch OrderId. Hier wird auch in
+	 * der DB vermerkt, ob die Zahlung erfolgreich
+	 * war oder nicht.
+	 * 
+	 * return_url: Auf dieser Url wird weitergeleitet,
+	 * sobald der Benutzer nach der Zahlungsvorgang
+	 * auf der PayPal-Seite auf "zurück zum Shop"
+	 * klickt.
+	 * 
+	 * invoice: Bestellungs Nummer - PayPal
+	 * 
+	 */
 	public function getConf(){
 		global $REX;
 		
@@ -72,6 +137,11 @@ class SSPayPalController extends SSController{
 			, 'invoice' 	    => time().'_'.$sid
 		);
 	}
+	
+	/** @brief Bestellungsinformationen
+	 *
+	 * Alle Artikel, Subtotal, Total usw.
+	 */
 	public function getOrderInfoAndItems(){
 		$orderItems = new SSOrderItem();
 		$orderItems->getByForeignId($this->orderId, SSOrder::TABLE);
@@ -79,6 +149,20 @@ class SSPayPalController extends SSController{
 		$cartCtrl = new SSCartController();
 		return $cartCtrl->getOverviewData();
 	}
+	
+	/** @brief handlePayment
+	 *
+	 *  Dies Funktion wird aufgerufen, wenn
+	 *  PayPal im Hintergrund den "notify_url"
+	 *  aufruft.
+	 *
+	 *  Die Bestellung wird überprüft, ob die
+	 *  Zahlung erfolgreich über PayPal bezahlt
+	 *  wurde und dem entsprechend in der DB
+	 *  vermerkt.
+	 *
+	 *  @see SSPayPalController::getConf
+	 */
 	public function handlePayment(){
 		global $REX;
 		$conf = $this->getConf();
@@ -215,10 +299,14 @@ class SSPayPalController extends SSController{
 		die();
 	}
 	
-	/** @brief IPN
+	/** @brief Instant Payment Notification
 	 *
 	 *  Diese Funktion wurde auf dem GitHub-Portal
 	 *  zur Verwendung angeboten.
+	 *
+	 *  PayPal Daten werden überprüft, ob sie Original
+	 *  von PayPal erzeugt wurden. Damit wird verhindert,
+	 *  dass die Daten nicht manipuliert wurden.
 	 *
 	 *  @author PayPal
 	 *  @author http://developer.paypal.com/
